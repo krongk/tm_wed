@@ -114,19 +114,19 @@ a:focus,
 }
 
 .margin-top-bottom {
-    margin:100px 0;
+    margin:60px 0;
 }
 
 .margin-top {
-    margin:100px 0 0;
+    margin:60px 0 0;
 }
 
 .padding-top-bottom {
-    padding:100px 0;
+    padding:60px 0;
 }
 
 .padding-top {
-    padding:100px 0 0;
+    padding:60px 0 0;
 }
 
 .navbar {
@@ -445,6 +445,7 @@ a:focus,
 .jumbotron p{
     font-size:32px;
     font-weight:400;
+    line-height: 30px;
     letter-spacing:0.02em;
 	opacity:0;
 	-webkit-transform:translateY(1000px);

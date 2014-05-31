@@ -1,0 +1,3 @@
+<% @posts.each do |post| %>
+  <p> <%= link_to post.title, "/post/#{post.short_title}" %> </p>
+<% end %>

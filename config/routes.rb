@@ -18,6 +18,8 @@ TmCard::Application.routes.draw do
   match '/portfolio(/page/:page)', to: "home#portfolio", via: :get, as: 'portfolio'
   match '/search(/page/:page)', to: "home#search", via: :get, as: 'search'
   match '/case(/page/:page)', to: "home#case", via: :get, as: 'case'
+  match '/blog(/page/:page)', to: "home#blog", via: :get, as: 'blog'
+   match '/post/:id', to: "home#post", via: :get, as: 'post'
   match '/pricing', to: "home#pricing", via: :get, as: 'pricing'
   root :to => "home#index"
   devise_for :users, :controllers => {:registrations => "registrations"}
