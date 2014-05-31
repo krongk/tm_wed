@@ -1,0 +1,6 @@
+<% user = @other_user || other_user %>
+<%= form_for(current_user.relationships.build(followed_id: user.id),
+    remote: true) do |f| %>
+  <div><%= f.hidden_field :followed_id %></div>
+  <%= f.submit "订阅", class: "btn btn-primary btn-xs" %>
+<% end %>

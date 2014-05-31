@@ -1,0 +1,56 @@
+<!-- this is layout for site_images
+- 在site_steps/show.html.erb 中模态框调用
+==============================================
+文件上传：
+＃　https://github.com/thoughtbot/paperclip
+＃　https://github.com/lidaobing/paperclip-qiniu
+＃　https://github.com/tors/jquery-fileupload-rails
+＃　引用到的文件：
+#js:
+  　app/assets/javascripts/application.js
+      //= require jquery-fileupload/basic
+      //= require jquery-fileupload/vendor/tmpl
+    app/assets/javascripts/site_images.js.coffee
+#controller:
+    app/controllers/site_images.rb
+#model:
+    app/models/site_image.rb
+#views:
+    app/views/site_images/
+#config:
+    config/initializers/paperclip.rb
+=============================================== --> 
+<div class="row">
+  <div class="col-sm-12 col-md-6">
+    <ul id="site_images" data-update-url="<%= sort_site_images_url %>">
+      <%= render @site_images %>
+    </ul>
+    <%= will_paginate @site_images %>
+  </div>
+  <div class="col-sm-12 col-md-6">
+    <%= form_for SiteImage.new do |f| %>
+      <%= f.hidden_field :site_page_id, value: @site_page.id %>
+      <div class="fileUpload btn btn-meflat icon-right btn-lg btn-block">
+        <span>点击这里上传图片</span>
+        <%= f.file_field :image, multiple: true, name: "site_image[image]", class: 'file' %>
+        <i class="fa fa-arrow-right"></i>
+      </div>
+    <% end %>
+
+    <div class="alert alert-info fade in">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <ol>
+       <li>文件的大小不能超过2MB,请下载压缩软件自动压缩以后再上传大图。</li>
+       <li>可以选择多张图片同时上传.</li>
+       <li>上传完成以后，请点击‘下一步’</li>
+      </ol>
+    </div>
+
+    <script id="template-upload" type="text/x-tmpl">
+    <div class="upload">
+      {%=o.name%}
+      <div class="progress"><div class="bar" style="width: 0%"></div></div>
+    </div>
+    </script>
+  </div><!--End col -->
+</div>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+
+<%= render inline: Templates::Keystore.value_for(@site.template, 'header') || '' %>
+
+<h1><%= SitePageKeystore.value_for(@site_page, 'name') %></h1>
+<p><%= SitePageKeystore.value_for(@site_page, 'phone')  %></p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1">
+  <tr>
+    <% @site_page.site_images.each do |site_image| %>
+      <th scope="col"><%= qiniu_image_tag site_image.image.url(:content), :quality => 80, class: 'img-responsive' %></th>
+    <% end %>
+  </tr>
+</table>
+
+
+<hr/>
+<h1>对应的表单</h1>
+
+<fieldset>
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="title">标题</label>
+  <div class="controls">
+    <input id="title" name="site_page[title]" type="text" placeholder="标题" class="input-xlarge" required="">
+    
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="control-group">
+  <label class="control-label" for="description">描述</label>
+  <div class="controls">                     
+    <textarea id="description" name="site_page[description]"></textarea>
+  </div>
+</div>
+
+</fieldset>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+<div class="row">
+<div class="col-sm-6">
+  <%= render inline: Templates::Keystore.value_for(@site_page.template_page, 'temp_form') || '', locals: {site_page_id: @site_page.id } %>
+</div>
+<div class="col-sm-6">
+  <iframe width="600px" height="400px" src="<%= site_page_path(@site_page) %>"></iframe>
+</div>

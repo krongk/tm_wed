@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  site_id: 
+  template_page_id: 
+  name: MyString
+  mobile_phone: MyString
+  tel_phone: MyString
+  email: MyString
+  qq: MyString
+  weixin: MyString
+  weibo: MyString
+  gender: MyString
+  birth: 2014-05-22
+  address: MyString
+  hobby: MyString
+  content: MyText
+  content2: MyText
+  content3: MyText
+  status: MyString
+  updated_by: 1
+  note: MyText
+
+two:
+  site_id: 
+  template_page_id: 
+  name: MyString
+  mobile_phone: MyString
+  tel_phone: MyString
+  email: MyString
+  qq: MyString
+  weixin: MyString
+  weibo: MyString
+  gender: MyString
+  birth: 2014-05-22
+  address: MyString
+  hobby: MyString
+  content: MyText
+  content2: MyText
+  content3: MyText
+  status: MyString
+  updated_by: 1
+  note: MyText

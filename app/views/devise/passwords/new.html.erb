@@ -1,0 +1,12 @@
+<div class="authform">
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => 'form'}) do |f| %>
+    <h3>忘记密码?</h3>
+    <p>你可以通过注册时候用到的电子邮箱取回密码，如果接收不到邮件，请联系[客服]申请密码重置.</p>
+    <%= devise_error_messages! %>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+    </div>
+     <%= f.submit '发送密码重置请求', :class => 'btn btn-meflat' %>
+  <% end %>
+</div>

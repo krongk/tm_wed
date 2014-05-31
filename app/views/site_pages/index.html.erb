@@ -1,0 +1,35 @@
+<h1>Listing site_pages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Site</th>
+      <th>Template page</th>
+      <th>Short title</th>
+      <th>Title</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @site_pages.each do |site_page| %>
+      <tr>
+        <td><%= site_page.user %></td>
+        <td><%= site_page.site %></td>
+        <td><%= site_page.template_page %></td>
+        <td><%= site_page.short_title %></td>
+        <td><%= site_page.title %></td>
+        <td><%= link_to 'Show', site_page %></td>
+        <td><%= link_to 'Edit', edit_site_page_path(site_page) %></td>
+        <td><%= link_to 'Destroy', site_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Site page', new_site_page_path %>

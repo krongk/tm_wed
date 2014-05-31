@@ -1,0 +1,266 @@
+    <!-- ==============================================
+    PORTFOLIO
+    =============================================== --> 
+
+        <header class="section-header text-center">
+        
+          <h1 class="scrollimation scale-in">My Works</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/> Aenean purus felis, condimentum et tempor in, commodo id nibh. Fusce a lacus arcu.</p>
+        
+        </header>
+        
+        <!--==== Portfolio Filters ====-->
+        <div id="filter-works">
+          <ul>
+            <li class="active scrollimation fade-right d1">
+              <a href="#" data-filter="*">All</a>
+            </li>
+            <li class="scrollimation fade-right">
+              <a href="#" data-filter=".web-design">Web Design</a>
+            </li>
+            <li class="scrollimation fade-left">
+              <a href="#" data-filter=".icons">Icons</a>
+            </li>
+            <li class="scrollimation fade-left d1">
+              <a href="#" data-filter=".ui-kits">UI Kits</a>
+            </li>
+          </ul>
+        </div><!--End portfolio filters -->
+        
+      </div><!--End portfolio header -->
+      
+      <div class="container masonry-wrapper scrollimation fade-in">
+      
+        <div id="projects-container">
+          <% @templates.each do |template| %>
+          <!-- ==============================================
+          SINGLE PROJECT ITEM
+          =============================================== --> 
+          <article class="project-item web-design">
+            
+            <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
+            
+            <div class="hover-mask">
+              <h2 class="project-title"><%= template.title %></h2><!--Project Title -->
+              <p><%= template.property %></p><!--Project Subtitle -->
+            </div>
+            
+            <!--==== Project Preview HTML ====-->
+            
+            <div class="sr-only project-description" 
+              data-category="<%= template.cate.title %>" 
+              data-date="<%= get_date(template.updated_at) %>" 
+              data-client="<%= template.keywords %>" 
+              data-link="www.example.com,http://www.google.com" 
+              data-descr="<%= template.summary %>" 
+              data-images="<%= get_host_image_list(template, 'demo_img').join(',') %>"
+            >
+              <%= raw template.description %>
+              <%= get_host_image_list(template, 'demo_img').join(',') %>
+              <p class="text-right">
+                <%= link_to new_site_path(template_id: template.id),  data: {confirm: '确定要使用该模板？'}, class: "btn btn-meflat icon-right" do %>
+                  我要购买 <i class="fa fa-arrow-right"></i>
+                <% end %>
+              </p>
+            </div>
+            
+          </article>
+          <!-- ==============================================
+          END PROJECT ITEM
+          =============================================== -->           
+          <% end %>
+
+          <article class="project-item icons">
+            
+            <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
+            
+            <div class="hover-mask">
+              <h2 class="project-title">Project Title</h2><!--Project Title -->
+              <p>Subtitle</p><!--Project Subtitle -->
+            </div>
+            
+            <!--==== Project Preview HTML ====-->
+            
+            <div class="sr-only project-description" 
+              data-category="Category" 
+              data-date="Date" 
+              data-client="Client" 
+              data-link="www.example.com,http://www.google.com" 
+              data-descr="A small description goes here." 
+              data-images="assets/placeholder-750x430.jpg,assets/placeholder-750x430.jpg"
+            >
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              <p>Nam eget urna pellentesque nisl ultrices dapibus. Mauris accumsan vehicula nisl, sed tempus mauris facilisis eu. Donec a iaculis nisi, quis malesuada justo. Pellentesque ut enim sit amet ipsum dignissim egestas. Morbi tincidunt rhoncus urna eget placerat.</p>
+              <p class="text-right"><a class="btn btn-meflat icon-right" href="#external-link">Visit Website<i class="fa fa-arrow-right"></i></a></p>
+            </div>
+            
+          </article><!--End Project Item -->
+
+          <article class="project-item web-design">
+            
+            <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
+            
+            <div class="hover-mask">
+              <h2 class="project-title">Project Title</h2><!--Project Title -->
+              <p>Subtitle</p><!--Project Subtitle -->
+            </div>
+            
+            <!--==== Project Preview HTML ====-->
+            
+            <div class="sr-only project-description" 
+              data-category="Category" 
+              data-date="Date" 
+              data-client="Client" 
+              data-link="www.example.com,http://www.google.com" 
+              data-descr="A small description goes here." 
+              data-images="assets/placeholder-750x430.jpg,assets/placeholder-750x430.jpg"
+            >
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              <p>Nam eget urna pellentesque nisl ultrices dapibus. Mauris accumsan vehicula nisl, sed tempus mauris facilisis eu. Donec a iaculis nisi, quis malesuada justo. Pellentesque ut enim sit amet ipsum dignissim egestas. Morbi tincidunt rhoncus urna eget placerat.</p>
+              <p class="text-right"><a class="btn btn-meflat icon-right" href="#external-link">Visit Website<i class="fa fa-arrow-right"></i></a></p>
+            </div>
+            
+          </article><!--End Project Item -->
+
+          <article class="project-item icons">
+            
+            <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
+            
+            <div class="hover-mask">
+              <h2 class="project-title">Project Title</h2><!--Project Title -->
+              <p>Subtitle</p><!--Project Subtitle -->
+            </div>
+            
+            <!--==== Project Preview HTML ====-->
+            
+            <div class="sr-only project-description" 
+              data-category="Category" 
+              data-date="Date" 
+              data-client="Client" 
+              data-link="www.example.com,http://www.google.com" 
+              data-descr="A small description goes here." 
+              data-images="assets/placeholder-750x430.jpg,assets/placeholder-750x430.jpg"
+            >
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              <p>Nam eget urna pellentesque nisl ultrices dapibus. Mauris accumsan vehicula nisl, sed tempus mauris facilisis eu. Donec a iaculis nisi, quis malesuada justo. Pellentesque ut enim sit amet ipsum dignissim egestas. Morbi tincidunt rhoncus urna eget placerat.</p>
+              <p class="text-right"><a class="btn btn-meflat icon-right" href="#external-link">Visit Website<i class="fa fa-arrow-right"></i></a></p>
+            </div>
+            
+          </article><!--End Project Item -->
+
+          <article class="project-item ui-kits">
+            
+            <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
+            
+            <div class="hover-mask">
+              <h2 class="project-title">Project Title</h2><!--Project Title -->
+              <p>Subtitle</p><!--Project Subtitle -->
+            </div>
+            
+            <!--==== Project Preview HTML ====-->
+            
+            <div class="sr-only project-description" 
+              data-category="Category" 
+              data-date="Date" 
+              data-client="Client" 
+              data-link="www.example.com,http://www.google.com" 
+              data-descr="A small description goes here." 
+              data-images="assets/placeholder-750x430.jpg,assets/placeholder-750x430.jpg"
+            >
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              <p>Nam eget urna pellentesque nisl ultrices dapibus. Mauris accumsan vehicula nisl, sed tempus mauris facilisis eu. Donec a iaculis nisi, quis malesuada justo. Pellentesque ut enim sit amet ipsum dignissim egestas. Morbi tincidunt rhoncus urna eget placerat.</p>
+              <p class="text-right"><a class="btn btn-meflat icon-right" href="#external-link">Visit Website<i class="fa fa-arrow-right"></i></a></p>
+            </div>
+            
+          </article><!--End Project Item -->
+
+          <article class="project-item ui-kits">
+            
+            <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
+            
+            <div class="hover-mask">
+              <h2 class="project-title">Project Title</h2><!--Project Title -->
+              <p>Subtitle</p><!--Project Subtitle -->
+            </div>
+            
+            <!--==== Project Preview HTML ====-->
+            
+            <div class="sr-only project-description" 
+              data-category="Category" 
+              data-date="Date" 
+              data-client="Client" 
+              data-link="www.example.com,http://www.google.com" 
+              data-descr="A small description goes here." 
+              data-images="assets/placeholder-750x430.jpg,assets/placeholder-750x430.jpg"
+            >
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              <p>Nam eget urna pellentesque nisl ultrices dapibus. Mauris accumsan vehicula nisl, sed tempus mauris facilisis eu. Donec a iaculis nisi, quis malesuada justo. Pellentesque ut enim sit amet ipsum dignissim egestas. Morbi tincidunt rhoncus urna eget placerat.</p>
+              <p class="text-right"><a class="btn btn-meflat icon-right" href="#external-link">Visit Website<i class="fa fa-arrow-right"></i></a></p>
+            </div>
+            
+          </article><!--End Project Item -->
+            
+        </div><!-- End projects --> 
+        
+      </div><!-- End container --> 
+      
+      <!-- ==============================================
+      PROJECT PREVIEW MODAL (Do not alter this markup)
+      =============================================== --> 
+      <div id="project-modal" class="modal fade">
+      
+        <div class="modal-dialog">
+        
+          <div class="modal-content">
+          
+            <div class="modal-header">
+            
+              <div class="container">
+              
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                
+                <h1 id="hdr-title" class="text-center"></h1>
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                    <div class="image-wrapper">
+                      <img class="img-responsive" src="assets/chrome.png" alt="">
+                      <div class="loader"></div>
+                      <div class="screen"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            
+            <div class="modal-body">
+              <div class="container">
+                <div class="row">
+                  <div id="project-sidebar" class="col-md-3">
+                    <h2 id="sdbr-title"></h2>
+                    <p id="sdbr-category"></p>
+                    <p id="sdbr-date"></p>
+                    <p id="sdbr-client"></p>
+                    <p id="sdbr-link"><a href="#link" target="_blank"></a></p>
+                    <p id="sdbr-descr"></p>
+                  </div>
+                  <div id="project-content" class="col-md-8 col-md-offset-1">
+                  </div>
+                </div>
+                
+              </div>
+            </div><!-- End modal-body -->
+            
+          </div><!-- End modal-content -->
+          
+        </div><!-- End modal-dialog -->

@@ -1,0 +1,66 @@
+<!DOCtype html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-typo" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+
+<!--[[header start]] -->
+<table width="100%" border="1" cellspacing="0" cellpadding="1">
+  <tr>
+    <% @site.site_pages.each do |site_page| %>
+      <th scope="col"><a href="<%= get_url(site_page)%>"><%= site_page.title %></a></th>
+    <% end %>
+  </tr>
+</table>
+<!--[[header end]] -->
+
+<!--[[content start]] -->
+<h1><%= SitePageKeystore.value_for(@site_page, 'title', typo: 'string', default: true, required: true) %></h1>
+<p><%= SitePageKeystore.value_for(@site_page, 'description', typo: 'text')  %></p>
+<p><%= SitePageKeystore.value_for(@site_page, 'sex', typo: 'select', title: '性别', options: ['男', '女'], default: true)  %></p>
+<p><%= SitePageKeystore.value_for(@site_page, 'weding_date', typo: 'date', title: '婚礼日期', required: true)  %></p>
+<p><%= SitePageKeystore.value_for(@site_page, 'weding_date', typo: 'integer', title: '参加人数')  %></p>
+<p><%= SitePageKeystore.value_for(@site_page, 'content', typo: 'text', title: '爱情故事', default: true)  %></p>
+<table width="100%" border="1" cellspacing="0" cellpadding="1">
+  <tr>
+    <% @site_page.site_images.each do |site_image| %>
+      <th scope="col"><%= qiniu_image_tag site_image.image.url(:content), :quality => 80, class: 'img-responsive' %></th>
+    <% end %>
+  </tr>
+</table>
+<!--[[content end]] -->
+
+</body>
+</html>
+
+
+<hr/>
+<h1>对应的表单</h1>
+
+<!--[[form start]] -->
+<fieldset>
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="name">姓名</label>
+  <div class="controls">
+    <input id="name" name="site_page[name]" typo="text" placeholder="请输入姓名" class="input-xlarge" required="">
+    
+  </div>
+</div>
+
+<div class="control-group integer required templates_page_position"><label class="integer required control-label" for="templates_page_position"><abbr title="必填项">*</abbr> Position</label><div class="controls"><input class="numeric integer required" id="templates_page_position" name="templates_page[position]" step="1" typo="number" value="1"><p class="help-block">影响模板网页的编辑顺序，数字越大越靠后, 1为首页</p></div></div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="phone">电话号码</label>
+  <div class="controls">
+    <input id="phone" name="site_page[phone]" typo="text" placeholder="" class="input-small" required="">
+    
+  </div>
+</div>
+
+</fieldset>
+<!--[[form end]] -->

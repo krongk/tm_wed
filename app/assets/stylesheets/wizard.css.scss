@@ -1,0 +1,113 @@
+/******************************************
+* the source is from: https://coderwall.com/p/-7trcg
+* used in view: app/site_steps/show.html.erb
+* #F1678D
+*/
+$theme_color: #F1678D;
+$active_color: #36D9C3;
+
+.wizard-progress {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.wizard-progress[data-steps="1"] li { width: 100%; }
+.wizard-progress[data-steps="2"] li { width: 50%; }
+.wizard-progress[data-steps="3"] li { width: 33%; }
+.wizard-progress[data-steps="4"] li { width: 25%; }
+.wizard-progress[data-steps="5"] li { width: 20%; }
+.wizard-progress[data-steps="6"] li { width: 16.6%; }
+.wizard-progress[data-steps="7"] li { width: 14.2%; }
+.wizard-progress[data-steps="8"] li { width: 12.5%; }
+.wizard-progress[data-steps="9"] li { width: 11%; }
+.wizard-progress[data-steps="10"] li { width: 10%; }
+
+.wizard-progress li {
+  list-style-type: none;
+  display: inline-block;
+
+  position: relative;
+  margin: 0;
+  padding: 0;
+
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+
+  background-color: #ddd;
+}
+
+.wizard-progress li > span {
+  display: block;
+  text-transform: uppercase;
+}
+.wizard-progress li.current > span {
+  color: #fff;
+  background-color: $active_color;
+}
+.wizard-progress li.done > span {
+  color: #fff;
+  background-color: $theme_color;
+}
+.wizard-progress li > span:after,
+.wizard-progress li > span:before {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 0px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  border: solid transparent;
+  border-left-color: #ddd;
+  border-width: 15px;
+}
+
+.wizard-progress li > span:after {
+  top: -5px;
+  z-index: 1;
+  border-left-color: white;
+  border-width: 20px;
+}
+
+.wizard-progress li > span:before {
+  z-index: 2;
+}
+
+.wizard-progress li.current + li > span:before {
+  border-left-color: $active_color;
+}
+.wizard-progress li.done + li > span:before {
+  border-left-color: $theme_color;
+}
+
+.wizard-progress li:first-child > span:after,
+.wizard-progress li:first-child > span:before {
+  display: none;
+}
+
+.wizard-progress li:first-child i,
+.wizard-progress li:last-child i {
+  display: block;
+  height: 0;
+  width: 0;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  border: solid transparent;
+  border-left-color: white;
+  border-width: 15px;
+}
+
+.wizard-progress li:last-child i {
+  left: auto;
+  right: -15px;
+
+  border-left-color: transparent;
+  border-top-color: white;
+  border-bottom-color: white;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= content_for?(:title) ? yield(:title) : ENV["SITE_NAME"] %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : ENV["SITE_NAME"] %>">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+    <%= csrf_meta_tags %>
+  </head>
+    <body>
+
+    <!-- ==============================================
+    This layout is for site_images model dialog
+    =============================================== -->
+    <section id="<%= params[:container] %>" class="white-bg">
+        <div class="container">
+            <%= yield %>
+        </div>
+    </section>
+  
+  </body>
+</html>

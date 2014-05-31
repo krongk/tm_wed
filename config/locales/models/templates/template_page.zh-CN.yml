@@ -1,0 +1,16 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      templates/page: 模板页
+    attributes:
+      templates/page:
+        template_id: 模版编号
+        position: 排序
+        title: 标题
+        image_count: 图片数量
+        demo_img: 示例图片
+    errors:
+      templates/page: 
+  helpers:
+    templates/page: 

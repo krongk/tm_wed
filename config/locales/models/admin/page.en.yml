@@ -1,0 +1,22 @@
+---
+en:
+  active_record:
+    models:
+      admin:
+        page: Page
+    attributes:
+      admin:
+        page:
+          user: 发布者
+          channel: 栏目
+          title: 文章标题
+          short_title: 简略标题
+          properties: 文章属性
+          keywords: 关键词
+          description: 摘要描述
+          image_path: 缩略图
+          content: 文章内容
+    errors:
+      page: 
+  helpers:
+    page: 

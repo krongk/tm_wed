@@ -1,0 +1,37 @@
+<% unless user_signed_in? %>
+  <!-- ==============================================
+  CONTACT
+  =============================================== --> 
+  <section id="contact" class="dark-bg light-typo padding-top">
+
+    <div class="container">
+    
+      <header class="section-header text-center">
+      
+        <h1 class="scrollimation scale-in">我要制作</h1>
+        <p>TM<sup>®</sup>喜帖为你提供高大上的微信喜帖、电子请柬制作服务.<br/> 我们采用最先进的技术，精心研究微信喜帖应用场景，帮助你引爆朋友圈，让一生一次的婚礼永生难忘.</p>
+      </header>
+      <%= simple_form_for(SiteComment.new,  html: {id: "contact-form", class: "bl_form text-center", novalidate: true}) do |f| %>
+        <%= f.input :site_id, as: :hidden, input_html: {value: 1} %>
+        <%= f.input :template_page_id, as: :hidden, input_html: {value: 1} %>
+        <span class="field-wrap scrollimation fade-right">
+          <label class="control-label" for="contact-name">姓名</label>
+          <input id="contact-name" name="site_comment[name]" type="text" class="label_better requiredField" data-new-placeholder="姓名" placeholder="姓名" data-error-empty="*请输入你的姓名">
+        </span>
+        <span class="field-wrap scrollimation fade-in">
+          <label class="control-label" for="contact-mail">电子邮箱</label>
+          <input id="contact-mail" name="site_comment[email]" type="email" class="label_better requiredField" data-new-placeholder="电子邮箱" placeholder="电子邮箱" data-error-empty="*请输入电子邮箱" data-error-invalid="x 无效的电子邮箱">
+        </span>
+        <span class="field-wrap scrollimation fade-left">
+          <label class="control-label" for="contact-message">留言</label>
+          <textarea id="contact-message" name="site_comment[content]" rows="1" class="label_better requiredField" data-new-placeholder="留言" placeholder="留言" data-error-empty="* 请描述你的需求"></textarea>
+        </span>
+        
+        <p class="text-center"><button  name="submit" type="submit" class="btn btn-meflat icon-left" data-error-message="错误!" data-sending-message="发送中..." data-ok-message="发送成功"><i class="fa fa-location-arrow"></i>发送留言</button></p>
+        <input type="hidden" name="submitted" id="submitted" value="true" />
+        
+      <% end %>
+    </div>
+
+  </section>
+<% end %>

@@ -1,0 +1,73 @@
+<!-- <header class="section-header text-center">
+  <h1 class="scrollimation scale-in">编辑应用内容</h1>
+</header>
+ -->
+<%= get_wizard_html(@site) %>
+
+<%= simple_form_for @site_page, url: wizard_path, html: {class: 'form-horizontal'} do |f| %>
+  <div class="row margin-top-bottom">
+    <div class="col-sm-12 col-md-8">
+      <div class="row">
+        <div class="col-sm-12 col-md-6" id="template_form">
+          <h3 class="bottom_bordered">1. 编辑内容</h3>
+          <div style="background: #F1678D;">
+            <%= render inline: Templates::Keystore.value_for(@site_page.template_page, 'form') || '', locals: {site_page_id: @site_page.id } %>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <h3 class="bottom_bordered">2. 编辑照片</h3>
+
+            <ul id="site_images" data-update-url="<%= sort_site_images_url %>">
+              <%= render @site_images %>
+            </ul>
+            <%= will_paginate @site_images %>
+
+            <% if (image_count = @site_page.template_page.image_count) > 0 %>
+            <div class="text-center">
+              <%= link_to "点击这里上传#{image_count}张照片", site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#myModal' %>
+            </div>
+            <% end %>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 hidden-xs">
+      <h3 class="bottom_bordered">3. 示例预览</h3>
+        <% get_host_image_list(@site_page.template_page, 'demo_img').each do |img_url| %>
+          <img src="<%=img_url%>" class='img-responsive' />
+        <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <div class="actions text-center">
+        <%= link_to "上一步", previous_wizard_path, class: 'btn btn-default' %>
+        <%= button_tag(type: 'submit', class: "btn btn-meflat icon-left") do %>
+          <i class="fa fa-location-arrow"></i> 保存，进入下一步
+        <% end %>
+        <%#= f.button :submit, %{<i class="fa fa-location-arrow"></i>保存，进入下一步}.html_safe, class: 'btn btn-meflat icon-left' %>
+        
+        <%= link_to "跳过", next_wizard_path, class: 'btn btn-default' %>
+      </div>
+    </div>
+  </div>
+<% end %> 
+
+
+<!-- Modal dialog call: /site_images/index.html.erb -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">上传照片</h4>
+      </div>
+      <div class="modal-body">
+        <p class="text-center"><i class="fa fa-spinner fa-spin"></i>正在加载...</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">保存并关闭</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

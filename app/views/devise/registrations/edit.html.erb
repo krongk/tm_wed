@@ -1,0 +1,40 @@
+<div class="authform">
+  <h3>修改账户</h3>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :role => 'form'}) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+    </div>
+    <fieldset>
+      <p>请输入新密码，如果不打算修改，则留空.</p>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, :autocomplete => 'off', class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="form-group">
+        <%= f.label :current_password %>
+        <%= f.password_field :current_password, class: 'form-control' %>
+      </div>
+    </fieldset>
+    <%= f.submit '提 交', :class => 'button right' %>
+  <% end %>
+</div>
+<div class="authform">
+<h3>注销账户</h3>
+<p>确定要注销吗? 注销账户将彻底删除你在本网站上的所有信息.</p>
+<%= button_to "确定注销", registration_path(resource_name), :data => { :confirm => "该操作无法撤销，你确定要注销吗?" }, :method => :delete, :class => 'button right' %>
+</div>

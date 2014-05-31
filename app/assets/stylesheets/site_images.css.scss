@@ -1,0 +1,72 @@
+$theme_color: #F1678D;
+$active_color: #36D9C3;
+
+#new_site_image {
+  clear: both;
+}
+
+.site_image {
+  border: solid 1px #eee;
+  background: $active_color;
+  padding: 5px;
+  display: block;
+  margin-bottom: 20px;
+
+  .handle {
+    font-size: 32px;
+    color: #DDD;
+    cursor: move;
+    padding: 10px;
+    display: block;
+    width: 105px;
+    margin-left: 20px;
+  }
+
+  .actions {
+    font-size: 10px;
+    text-align: center;
+    color: #777;
+  }
+}
+
+.upload {
+  width: 100%;
+  padding-top: 10px;
+  margin-top: 10px;
+
+  .progress {
+    margin-top: 8px;
+    border: solid 1px #21b799;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    .bar {
+      height: 25px;
+      background: #36D9C3;
+    }
+  }
+}
+
+/*******for file input style *************************************************
+* http://geniuscarrier.com/how-to-style-a-html-file-upload-button-in-pure-css/
+*****************************************************************************/
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+}
+.fileUpload input.file {
+  border: 1px solid #000;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+/*******for sortable style *************************************************
+* https://github.com/railscasts/147-sortable-lists-revised
+*****************************************************************************/

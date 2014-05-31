@@ -1,0 +1,17 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      templates/theme: 模板主题
+    attributes:
+      templates/theme:
+        template_id: 模版
+        title: 标题
+        css_url: CSS文件地址
+        preview_images: 预览图片
+        preview_url: 预览地址
+
+    errors:
+      templates/theme: 
+  helpers:
+    templates/theme: 

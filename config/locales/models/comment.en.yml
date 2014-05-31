@@ -1,0 +1,24 @@
+---
+en:
+  activerecord:
+    models:
+      comment: Comment
+    attributes:
+      comment:
+        name: Name
+        mobile_phone: Mobile phone
+        tel_phone: Tel phone
+        email: Email
+        qq: Qq
+        address: Address
+        gender: Gender
+        birth: Birth
+        hobby: Hobby
+        content: Content
+        content2: Content2
+        content3: Content3
+        status: Status
+    errors:
+      comment: 
+  helpers:
+    comment: 

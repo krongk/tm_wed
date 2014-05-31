@@ -1,0 +1,119 @@
+/* This css is for /price 
+ * Source from: http://wbpreview.com/previews/WB07C692G/;
+ */
+
+/*
+ * =================== Start pricing table =====================*/
+$theme_color: #F1678D;
+$active_color: #36D9C3;
+
+.pricing-table .plan {
+  width: 31%;
+  padding: 0px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #f3f3f3;
+  -moz-box-shadow: 0 0 6px 2px #b0b2ab;
+  -webkit-box-shadow: 0 0 6px 2px #b0b2ab;
+  box-shadow: 0 0 6px 2px #b0b2ab;
+}
+
+.pricing-table .plan:hover {
+  background-color: #fff;
+  -moz-box-shadow: 0 0 12px 3px #b0b2ab;
+  -webkit-box-shadow: 0 0 12px 3px #b0b2ab;
+  box-shadow: 0 0 12px 3px #b0b2ab;
+}
+
+.pricing-table .plan .plan-name {
+  padding: 20px;
+  color: #fff;
+  background-color: $active_color;
+  -moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
+
+.pricing-table .plan .plan-name span {
+  font-size: 20px;
+}
+
+.pricing-table .plan ul {
+  list-style: none;
+  margin: 0;
+  -moz-border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+}
+
+.pricing-table .plan ul li.plan-feature {
+  padding: 15px 10px;
+  border-bottom: 1px solid #c5c8c0;
+}
+
+.pricing-three-column {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.pricing-variable-height .plan {
+  float: none;
+  margin-left: 2%;
+  vertical-align: bottom;
+  display: inline-block;
+  /* Support for inline-block in IE7 */
+  zoom:1;
+  *display:inline;
+}
+
+.plan-mouseover .plan-name {
+  background-color: $theme_color !important;
+}
+
+.btn-plan-select {
+  padding: 8px 25px;
+  font-size: 18px;
+}
+
+/*
+ * =================== End pricing table =====================*/
+/* 
+ * Copyright 2013 Soundarapandian
+ * Pricing table built on Twitter Bootstrap.
+
+  Responsive styles for pricing table tested in the 
+  below device simulations.
+  Apple iPhone
+    320x480 Portrait
+    480x320 Landscape
+  Apple iPhone 5
+    320x568 Portrait
+    568x320 Landscape
+  Small Tablet
+    600x800 Portrait
+    800x600 Landscape
+  Tablet
+    768x1024 Portrait
+    1024x768 Landscape
+  Widescreen
+    1280x800 Landscape
+    800x1280 Portrait
+*/
+
+@media (max-width: 320px) {
+  .pricing-three-column {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .pricing-table .plan {
+    margin-bottom: 20px;
+  }
+  .pricing-variable-height .plan {
+    margin-left: 0;
+  }
+  .pricing-three-column {
+    width: 100%;
+  }
+}

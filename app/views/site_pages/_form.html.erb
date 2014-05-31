@@ -1,0 +1,15 @@
+<%= simple_form_for(@site_page) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :user %>
+    <%= f.association :site %>
+    <%= f.association :template_page %>
+    <%= f.input :short_title %>
+    <%= f.input :title %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

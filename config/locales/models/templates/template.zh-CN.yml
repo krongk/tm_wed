@@ -1,0 +1,19 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      templates/template: 模板
+    attributes:
+      templates/template:
+        title: 标题
+        cate_id: 分类
+        property: 属性
+        base_url: 根目录
+        keywords: 标签
+        description: 描述
+        demo_img: 示例图片
+
+    errors:
+      templates/template: 
+  helpers:
+    templates/template: 

@@ -1,0 +1,5 @@
+<% if @site_image.new_record? %>
+  alert("Failed to upload site_image: <%= j @site_image.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+  $("#site_images").append("<%= j render(@site_image) %>");
+<% end %>

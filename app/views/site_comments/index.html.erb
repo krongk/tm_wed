@@ -1,0 +1,63 @@
+<h1>Listing site_comments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Site</th>
+      <th>Template page</th>
+      <th>Name</th>
+      <th>Mobile phone</th>
+      <th>Tel phone</th>
+      <th>Email</th>
+      <th>Qq</th>
+      <th>Weixin</th>
+      <th>Weibo</th>
+      <th>Gender</th>
+      <th>Birth</th>
+      <th>Address</th>
+      <th>Hobby</th>
+      <th>Content</th>
+      <th>Content2</th>
+      <th>Content3</th>
+      <th>Status</th>
+      <th>Updated by</th>
+      <th>Note</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @site_comments.each do |site_comment| %>
+      <tr>
+        <td><%= site_comment.site %></td>
+        <td><%= site_comment.template_page %></td>
+        <td><%= site_comment.name %></td>
+        <td><%= site_comment.mobile_phone %></td>
+        <td><%= site_comment.tel_phone %></td>
+        <td><%= site_comment.email %></td>
+        <td><%= site_comment.qq %></td>
+        <td><%= site_comment.weixin %></td>
+        <td><%= site_comment.weibo %></td>
+        <td><%= site_comment.gender %></td>
+        <td><%= site_comment.birth %></td>
+        <td><%= site_comment.address %></td>
+        <td><%= site_comment.hobby %></td>
+        <td><%= site_comment.content %></td>
+        <td><%= site_comment.content2 %></td>
+        <td><%= site_comment.content3 %></td>
+        <td><%= site_comment.status %></td>
+        <td><%= site_comment.updated_by %></td>
+        <td><%= site_comment.note %></td>
+        <td><%= link_to 'Show', site_comment %></td>
+        <td><%= link_to 'Edit', edit_site_comment_path(site_comment) %></td>
+        <td><%= link_to 'Destroy', site_comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Site comment', new_site_comment_path %>

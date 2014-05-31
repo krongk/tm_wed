@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-sm-6 text-col">
+    <div class="authform">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+        <h3 class="bottom_bordered">登录</h3>
+
+        <%= devise_error_messages! %>
+        <div class="form-group">
+         
+          <%= f.label :email %>
+          <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+          <%= f.submit '提 交', :class => 'btn btn-meflat' %>
+          <% if devise_mapping.rememberable? -%>
+            <div class="checkbox">
+              <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+            </div>
+          <% end -%>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-6 text-col">
+    <h3 class="bottom_bordered">新用户</h3>
+    <%- if devise_mapping.registerable? %>
+      <p><%= link_to '新用户注册', new_registration_path(resource_name), class: 'right'  %></p>
+    <% end -%>
+    <%- if devise_mapping.recoverable? %>
+      <p><%= link_to "忘记密码?", new_password_path(resource_name), class: 'right' %></p>
+    <% end -%>
+    <p>联系客服：</p>
+    <p><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes"><img border="0" src="/assets/icon-qq-boy.png" width="46px" /></a> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes"><img border="0" src="/assets/icon-qq-girl.png" width="46px" /></a>
+    <a id="icon-weixin" data-original-title="扫一扫加微信"><img border="0" src="/assets/icon-weixin.png" width="46px" /></a>
+    <div id="weixin-qrcode" class="hidden"><img src="/assets/weixin-qrcode.png" /></div>
+    <br/>
+    热线电话：<a href="tel:18080810818">180-8081-0818</a></p>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#icon-weixin').popover({
+        html: true,
+        placement: 'right',
+        title: '扫描二维码加微信',
+        content: function(){
+          return $('#weixin-qrcode').html();
+        }
+    });
+  });
+</script>

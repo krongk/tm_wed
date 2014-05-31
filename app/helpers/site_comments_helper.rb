@@ -1,0 +1,2 @@
+module SiteCommentsHelper
+end

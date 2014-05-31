@@ -1,0 +1,23 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      admin/channel: 栏目
+    attributes:
+      admin/channel:
+        user: 发布者
+        typo: 栏目模型
+        title: 栏目名称
+        short_title: 名称简写
+        properties: 栏目属性
+        default_url: 首页默认路径
+        tmp_index: 封面模板
+        tmp_list: 列表页面模板
+        tmp_detail: 详细页面模板
+        keywords: 关键词
+        description: 栏目描述
+        content: 栏目内容
+    errors:
+      channel: 
+  helpers:
+    channel: 

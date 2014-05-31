@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  template_id: 
+  short_title: MyString
+  title: MyString
+  description: MyString
+  domain: MyString
+  status: MyString
+  is_publiched: false
+  is_comment_show: false
+  updated_by: 1
+  note: MyText
+
+two:
+  user_id: 
+  template_id: 
+  short_title: MyString
+  title: MyString
+  description: MyString
+  domain: MyString
+  status: MyString
+  is_publiched: false
+  is_comment_show: false
+  updated_by: 1
+  note: MyText

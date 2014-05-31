@@ -1,0 +1,15 @@
+/* Copyright 2013 Soundarapandian
+ * Pricing table built on Twitter Bootstrap.
+ * Below styles provides support for IE7 & 8
+ */
+
+.pricing-table .plan ul {
+  /* Below border serves as fallback for box-shadow in IE 7 & 8 */
+  border: 1px solid #c5c8c0;
+  border-top: 0;
+}
+
+.pricing-variable-height .plan {
+  /* Ensures variable height pricing table to sit in single line in IE 7 & 8 */
+  margin-left: 1.5%;
+}

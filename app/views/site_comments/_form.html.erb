@@ -1,0 +1,28 @@
+<%= simple_form_for(@site_comment) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :site %>
+    <%= f.association :template_page %>
+    <%= f.input :name %>
+    <%= f.input :mobile_phone %>
+    <%= f.input :tel_phone %>
+    <%= f.input :email %>
+    <%= f.input :qq %>
+    <%= f.input :weixin %>
+    <%= f.input :gender %>
+    <%= f.input :birth %>
+    <%= f.input :address %>
+    <%= f.input :hobby %>
+    <%= f.input :content %>
+    <%= f.input :content2 %>
+    <%= f.input :content3 %>
+    <%= f.input :status %>
+    <%= f.input :updated_by %>
+    <%= f.input :note %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

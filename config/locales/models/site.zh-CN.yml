@@ -1,0 +1,24 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      site: 应用
+    attributes:
+      site:
+        user_id: 用户编号
+        template_id: 模版编号
+        short_title: 唯一地址
+        title: 标题
+        description: 描述
+        domain: 域名
+        status: 状态
+        is_published: 是否发布
+        is_comment_show: 是否显示留言
+        updated_by: 更新
+        note: 备注
+        updated_at: 更新时间
+        created_at: 创建时间
+    errors:
+      site: 
+  helpers:
+    site: 

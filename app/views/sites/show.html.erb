@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-sm-12 col-md-4">
+    <div class="thumbnail">
+      <%# if @site_images.any? %>
+        <%#= qiniu_image_tag @site_images.first.image.url(:content), :thumbnail => '120x120>', :quality => 80, class: 'img-responsive' %>
+      <%# end %>
+      <div class="caption">
+        <h3><%= @site.title %></h3>
+        <p><%= @site.description %></p>
+        <p><%= link_to '修改', edit_site_path(@site), class: 'btn btn-default' %> <%= link_to '预览', "/s/#{@site.short_title}", target: '_blank', class: 'btn btn-default' %></p>
+      </div>
+    </div>
+    <div class="thumbnail">
+      <h3>喜帖永久访问地址：</h3>
+      <a href="<%= get_site_url(@site) %>" target="_blank"><%= get_site_url(@site) %></a>
+    </div>
+    <div class="thumbnail">
+      <%= form_tag("/sites/send_sms", id: 'send_sms_form', method: "post", remote: true) do %>
+        <%= label_tag(:content, "编辑短信发送到手机:") %>
+        <%= text_field_tag :mobile_phone, nil, placeholder: '18080810818' %>
+        <%= text_area_tag :content, "#{@site.title}\n 点击链接查看电子喜帖：#{get_site_url(@site)}" %>
+        <%= submit_tag "发送", id: "send_sms_submbit", class: "button", data: {disable_with: "发送中..."} %>
+      <% end %>
+    </div>
+    <div class="thumbnail">
+      <h3>分享喜帖：</h3>
+      <%= render 'layouts/baidu_share' %>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <div class="thumbnail text-center">
+      <img src="<%= @site.qrcode %>" />
+      <div class="caption"><p>扫一扫二维码，在手机上查看</p></div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <iframe id="preview" src="<%= get_site_url(@site) %>" width="330px" height="500px" frameBorder="0" scrolling="no"></iframe>
+  </div>
+</div>

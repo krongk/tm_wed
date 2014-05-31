@@ -1,0 +1,22 @@
+<h1>New site_image</h1>
+
+<%#= render 'form' %>
+
+
+<%= simple_form_for @site_image, html: {multipart: true} do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :site_page %>
+    <%= f.input :file, as: :file, input_html: {id: 'uploaded_file', multiple: true} %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+<script id="template-upload" type="text/x-tmpl"><div class="upload">{%=o.name%}<div class="progress"><div class="bar" style="width: 0%"></div></div></div></script>
+

@@ -1,0 +1,2 @@
+module SiteImagesHelper
+end

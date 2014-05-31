@@ -1,0 +1,31 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      site_comment: 留言
+    attributes:
+      site_comment:
+        site_id: 网站编号
+        template_page_id: 模版编号 
+        name: 姓名
+        mobile_phone: 手机
+        tel_phone: 电话
+        email: 电子邮箱
+        qq: QQ
+        weixin: 微信号
+        address: 地址
+        gender: 性别
+        birth: 出生
+        hobby: 爱好
+        content: 内容
+        content2: 内容二
+        content3: 内容三
+        status: 状态
+        updated_by: 更新者 
+        note: 备注
+        created_at: 创建时间
+        updated_at: 更新时间
+    errors:
+      site_comment: 
+  helpers:
+    site_comment: 

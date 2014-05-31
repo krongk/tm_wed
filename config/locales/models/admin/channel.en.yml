@@ -1,0 +1,24 @@
+---
+en:
+  active_record:
+    models:
+      admin:
+        channel: Channel
+    attributes:
+      admin:
+        channel:
+          user: User
+          typo: Typo
+          title: Title
+          properties: Properties
+          default_url: Default url
+          tmp_index: Tmp index
+          tmp_list: Tmp list
+          tmp_detial: Tmp detial
+          keywords: Keywords
+          description: Description
+          content: Content
+    errors:
+      channel: 
+  helpers:
+    channel: 

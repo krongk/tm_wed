@@ -1,0 +1,24 @@
+---
+zh-CN:
+  activerecord:
+    models:
+      comment: 留言
+    attributes:
+      comment:
+        name: 姓名
+        mobile_phone: 手机号码
+        tel_phone: 电话号码
+        email: 电子邮件
+        qq: QQ
+        address: 地址
+        gender: 性别
+        birth: 出生日期
+        hobby: 爱好
+        content: 留言内容
+        content2: 补充
+        content3: 其它
+        status: 状态
+    errors:
+      comment: 
+  helpers:
+    comment: 
