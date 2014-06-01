@@ -10,7 +10,7 @@ class SitePage < ActiveRecord::Base
   private
     def create_unique_short_title
       begin
-        self.short_title = SecureRandom.hex(5)
+        self.short_title = SecureRandom.hex(3)
       end while self.class.exists?(:short_title => short_title)
     end
 end

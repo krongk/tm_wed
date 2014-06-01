@@ -25,6 +25,7 @@
             <% if (image_count = @site_page.template_page.image_count) > 0 %>
             <div class="text-center">
               <%= link_to "点击这里上传#{image_count}张照片", site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#myModal' %>
+               <%= link_to "点击这里上传#{image_count}张照片", '/home/choose_banner', class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#myModal' %>
             </div>
             <% end %>
 

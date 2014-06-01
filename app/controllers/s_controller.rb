@@ -10,7 +10,7 @@ class SController < ApplicationController
     @site_page ||= @site.site_pages.first
     @template = @site.template
     @base_url = get_temp_base_url(@template)
-
+    
     render inline: Templates::Keystore.value_for(@site_page.template_page, 'html'), layout: false
   end
 end

@@ -1,6 +1,7 @@
 class SiteImagesController < ApplicationController
   before_action :set_site_image, only: [:show, :edit, :update, :destroy]
-  
+  layout 'simple'
+
   # 图片上传页面
   # 1. 显示已上传图片
   # 2. 上传表单

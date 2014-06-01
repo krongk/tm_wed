@@ -4,10 +4,9 @@
   <tbody>
     <% @sites.each do |site| %>
       <tr>
-
+        <td><%= site.id %> </td>
         <td><%= site.title %> </td>
         <td><%= site.description %> </td>
-        <td><%= site.domain %> </td>
         <td><%= site.status %> </td>
         <td><%= link_to '预览', "/s/#{site.short_title}", target: '_blank' %></td>
         <td><%= link_to '详细', site %></td>

@@ -1,6 +1,10 @@
 class SiteCommentsController < ApplicationController
   before_filter :authenticate_user!, only: [:destroy]
   before_action :set_site_comment, only: [:show, :edit, :update, :destroy]
+  #skip CSRF on create.
+  skip_before_filter :verify_authenticity_token
+
+  layout false, only: [:new, :create]
 
   # GET /site_comments
   # GET /site_comments.json
@@ -29,7 +33,7 @@ class SiteCommentsController < ApplicationController
 
     respond_to do |format|
       if @site_comment.save
-        format.html { redirect_to root_path, notice: t('notice.site_comment.created') }
+        format.html { render text: 'success' }
         format.json { render action: 'show', status: :created, location: @site_comment }
       else
         format.html { render action: 'new' }

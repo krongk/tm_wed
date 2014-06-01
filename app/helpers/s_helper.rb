@@ -2,7 +2,15 @@ module SHelper
   def get_temp_base_url(template)
     return if template.nil?
     raise "请指定ASSETS_HOST" if ENV['ASSETS_HOST'].nil?
-    ENV['ASSETS_HOST'] + ['/', template.base_url, '/'].join('/').squeeze('/')
+    URI.join(ENV['ASSETS_HOST'], ['/', template.base_url, '/'].join('/').squeeze('/'))
+  end
+  #comment url/music url
+  # temp_dir = comment => /public/templates/comment
+  #call: get_base_url('comment', 'theme_one')
+  def get_base_url(temp_dir, theme = nil)
+    return if temp_dir.nil?
+    raise "请指定ASSETS_HOST" if ENV['ASSETS_HOST'].nil?
+    URI.join(ENV['ASSETS_HOST'], ['/', 'templates', temp_dir, theme, '/'].join('/').squeeze('/'))
   end
 
   #Site URL generate ###########################
@@ -19,7 +27,11 @@ module SHelper
   #/s/:site_id(/p-:id)
   def get_site_page_url(site_page)
     return if site_page.nil?
-    ENV["HOST_NAME"] + "/s/#{site_page.site.short_title}/p-#{site_page.short_title}"
+    if site_page.template_page.position == 1
+      ENV["HOST_NAME"] + "/s-#{site_page.site.short_title}"
+    else
+      ENV["HOST_NAME"] + "/s-#{site_page.site.short_title}/p-#{site_page.short_title}"
+    end
   end
   #Site image generate ###########################
   # => qiniu_image_tag site_image.image.url, :quality => 100, class: 'img-responsive'
@@ -32,6 +44,7 @@ module SHelper
     return site_images.first.image.url if site_images.any?
     return nil
   end
+  
   #SEO generate ###########################
   def get_seo_title(site_page)
     site_page.title

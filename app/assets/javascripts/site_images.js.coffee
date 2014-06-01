@@ -14,7 +14,7 @@ $(document).on 'ready page:load', ->
     #没有成功
     disableImageResize: /Android(?!.*Chrome)|Opera/.test(window.navigator && navigator.userAgent)
     imageMaxWidth: 800
-    imageMaxHeight: 800
+    imageMaxHeight: 1000
     imageCrop: true
 
     add: (e, data) ->
