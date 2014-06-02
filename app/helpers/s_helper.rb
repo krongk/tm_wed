@@ -41,7 +41,8 @@ module SHelper
   end
   #
   def get_first_site_image_url(site)
-    SiteImage.joins(:site_page).where("site_pages.site_id = ?", site.id).limit(1)
+    site_iamges = SiteImage.joins(:site_page).where("site_pages.site_id = ?", site.id).limit(1)
+    site_iamges.first.try(:image).try(:url)
   end
 
   #获取应用的菜单
