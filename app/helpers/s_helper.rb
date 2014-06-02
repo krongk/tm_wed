@@ -61,7 +61,7 @@ module SHelper
   end
 
   #SitePageKeystore.value_for(@site_page, 'text1')
-  def value_for(obj, name, attr)
+  def value_for(obj, name, attr={})
     SitePageKeystore.value_for(obj, name, attr).try(:html_safe)
   end
 
