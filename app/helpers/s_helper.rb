@@ -44,6 +44,11 @@ module SHelper
     site_iamges = SiteImage.joins(:site_page).where("site_pages.site_id = ?", site.id).limit(1)
     site_iamges.first.try(:image).try(:url)
   end
+  #
+  def get_site_page_url_by_title(site, title)
+    site_page = site.site_pages.find{|s| s.title == title}
+    get_site_page_url(site_page)
+  end
 
   #获取应用的菜单
   def get_menu(site)
