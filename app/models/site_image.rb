@@ -2,7 +2,7 @@ class SiteImage < ActiveRecord::Base
   belongs_to :site_page
 
   has_attached_file :image,
-                    :path => ":class/:id-#{Time.now.to_i}/:style.:extension",
+                    :path => ":class/#{self.site_page.short_title}-:id/:style.:extension",
                     :styles => {:original => '640x960#'} #override the original file
                     #:styles => { :content => '640x960>' } #standerd mobile size: 320*480 480*800 640*960
 
