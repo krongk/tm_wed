@@ -1,4 +1,5 @@
 module SHelper
+  #
   def get_temp_base_url(template)
     return if template.nil?
     raise "请指定ASSETS_HOST" if ENV['ASSETS_HOST'].nil?
@@ -40,11 +41,14 @@ module SHelper
   end
   #
   def get_first_site_image_url(site)
-    site_images = SiteImage.joins(:site_page).where("site_pages.site_id = ?", site.id)
-    return site_images.first.image.url if site_images.any?
-    return nil
+    SiteImage.joins(:site_page).where("site_pages.site_id = ?", site.id).limit(1)
   end
-  
+
+  #获取应用的菜单
+  def get_menu(site)
+    site.site_pages.order("id ASC")
+  end
+
   #SEO generate ###########################
   def get_seo_title(site_page)
     site_page.title
@@ -57,8 +61,8 @@ module SHelper
   end
 
   #SitePageKeystore.value_for(@site_page, 'text1')
-  def value_for(obj, attr)
-    SitePageKeystore.value_for(obj, attr).try(:html_safe)
+  def value_for(obj, name, attr)
+    SitePageKeystore.value_for(obj, name, attr).try(:html_safe)
   end
 
 end

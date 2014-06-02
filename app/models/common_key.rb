@@ -1,4 +1,5 @@
 class CommonKey < ActiveRecord::Base
+  
   def self.get(key)
     self.find_by(name: key)
   end

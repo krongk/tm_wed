@@ -15,7 +15,7 @@ TmCard::Application.routes.draw do
   namespace :sites do
     post "temp_form_update"
   end
-  match '/s/:site_id(/p-:id)', to: "s#index", via: :get
+  match '/s-:site_id(/p-:id)', to: "s#index", via: :get
   match '/portfolio(/page/:page)', to: "home#portfolio", via: :get, as: 'portfolio'
   match '/search(/page/:page)', to: "home#search", via: :get, as: 'search'
   match '/case(/page/:page)', to: "home#case", via: :get, as: 'case'

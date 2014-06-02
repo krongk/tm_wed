@@ -18,12 +18,12 @@
 <!--[[header end]] -->
 
 <!--[[content start]] -->
-<h1><%= SitePageKeystore.value_for(@site_page, 'title', typo: 'string', default: true, required: true) %></h1>
-<p><%= SitePageKeystore.value_for(@site_page, 'description', typo: 'text')  %></p>
-<p><%= SitePageKeystore.value_for(@site_page, 'sex', typo: 'select', title: '性别', options: ['男', '女'], default: true)  %></p>
-<p><%= SitePageKeystore.value_for(@site_page, 'weding_date', typo: 'date', title: '婚礼日期', required: true)  %></p>
-<p><%= SitePageKeystore.value_for(@site_page, 'weding_date', typo: 'integer', title: '参加人数')  %></p>
-<p><%= SitePageKeystore.value_for(@site_page, 'content', typo: 'text', title: '爱情故事', default: true)  %></p>
+<h1><%= value_for(@site_page, 'title', typo: 'string', default: true, required: true) %></h1>
+<p><%= value_for(@site_page, 'description', typo: 'text')  %></p>
+<p><%= value_for(@site_page, 'sex', typo: 'select', title: '性别', options: ['男', '女'], default: true)  %></p>
+<p><%= value_for(@site_page, 'weding_date', typo: 'date', title: '婚礼日期', required: true)  %></p>
+<p><%= value_for(@site_page, 'weding_date', typo: 'integer', title: '参加人数')  %></p>
+<p><%= value_for(@site_page, 'content', typo: 'text', title: '爱情故事', default: true)  %></p>
 <table width="100%" border="1" cellspacing="0" cellpadding="1">
   <tr>
     <% @site_page.site_images.each do |site_image| %>
