@@ -61,7 +61,7 @@ class SitesController < ApplicationController
   def update
     respond_to do |format|
       if @site.update(site_params)
-        generate_qrcode(@site) #only for development test.
+        #generate_qrcode(@site) #only for development test.
         format.html { redirect_to site_site_steps_path(@site), notice: t('notice.site.updated') }
         format.json { head :no_content }
       else
@@ -116,10 +116,10 @@ class SitesController < ApplicationController
       FileUtils.mkdir_p qr_dir
       png_path = File.join(qr_dir, "#{page.id}.png")
       if File.exist? png_path
-        FileUtils.rm png_path
-      end
-
-      png.resize(120, 120).save(png_path)
+        #FileUtils.rm png_path
+      else
+        png.resize(120, 120).save(png_path)
+      end     
     end
 
 end

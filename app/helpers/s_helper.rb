@@ -29,9 +29,9 @@ module SHelper
   def get_site_page_url(site_page)
     return if site_page.nil?
     if site_page.template_page.position == 1
-      ENV["HOST_NAME"] + "/s-#{site_page.site.short_title}"
+      [ENV["HOST_NAME"], "s-#{site_page.site.short_title}"].join('/')
     else
-      ENV["HOST_NAME"] + "/s-#{site_page.site.short_title}/p-#{site_page.short_title}"
+      [ENV["HOST_NAME"], "s-#{site_page.site.short_title}", "p-#{site_page.short_title}"].join('/')
     end
   end
   #Site image generate ###########################

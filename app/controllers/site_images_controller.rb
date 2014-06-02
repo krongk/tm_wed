@@ -50,8 +50,7 @@ class SiteImagesController < ApplicationController
   def destroy
     @site_image.destroy
     respond_to do |format|
-      format.html { redirect_to site_images_url }
-      format.json { head :no_content }
+      format.js { render 'destroy'}
     end
   end
 

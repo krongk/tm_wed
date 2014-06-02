@@ -7,10 +7,10 @@
         <td><%= site.id %> </td>
         <td><%= site.title %> </td>
         <td><%= site.description %> </td>
-        <td><%= site.status %> </td>
-        <td><%= link_to '预览', "/s/#{site.short_title}", target: '_blank' %></td>
-        <td><%= link_to '详细', site %></td>
-        <td><%= link_to '编辑', edit_site_path(site) %></td>
+        <td><%= site.status || '免费' %> </td>
+        <td><%= link_to '预览', get_site_url(site), target: '_blank' %></td>
+        <td><%= link_to '查看', site %></td>
+        <td><%= link_to '修改', edit_site_path(site) %></td>
         <td><%= link_to '删除', site, method: :delete, data: { confirm: '确定要删除?' } %></td>
       </tr>
     <% end %>

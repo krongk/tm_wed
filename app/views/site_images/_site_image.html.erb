@@ -2,7 +2,7 @@
   <table><tr><td>
   <%= qiniu_image_tag site_image.image.url, :thumbnail => '120x120>', :quality => 80, class: 'img-responsive' %>
   <div class="text-center">
-    <%= link_to "删除", site_image, data: { confirm: '确定要删除吗?' }, :method => :delete, class: "btn btn-warning btn-xs"%>
+    <%= link_to "删除", site_image, data: { confirm: '确定要删除吗?' }, :method => :delete, :remote => true, class: "btn btn-warning btn-xs"%>
   </div>
   </td><td>
     <span class="handle"><i class="fa fa-long-arrow-up"> </i>上下排序<i class="fa fa-long-arrow-down"> </i></span>

@@ -17,8 +17,8 @@
     <div class="thumbnail">
       <%= form_tag("/sites/send_sms", id: 'send_sms_form', method: "post", remote: true) do %>
         <%= label_tag(:content, "编辑短信发送到手机:") %>
-        <%= text_field_tag :mobile_phone, nil, placeholder: '18080810818' %>
-        <%= text_area_tag :content, "#{@site.title}\n 点击链接查看电子喜帖：#{get_site_url(@site)}" %>
+        <%= text_field_tag :mobile_phone, nil, placeholder: '请输入你的手机号' %>
+        <%= text_area_tag :content, "#{@site.title}\n点击下面查看：#{get_site_url(@site)}" %>
         <%= submit_tag "发送", id: "send_sms_submbit", class: "button", data: {disable_with: "发送中..."} %>
       <% end %>
     </div>
