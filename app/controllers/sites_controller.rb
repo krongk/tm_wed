@@ -40,6 +40,7 @@ class SitesController < ApplicationController
     respond_to do |format|
       if @site.save
         generate_qrcode(@site)
+        generate_qrcode(@site) unless File.exist?(File.join(Rails.root, 'public', @site.qrcode))
         #build site_page via template_page
         Templates::Page.where(template_id: @site.template_id).order("position ASC").each do |temp_page|
           @site.site_pages.create(
