@@ -39,7 +39,7 @@ class HomeController < ApplicationController
   private
     def resolve_layout
       case action_name
-      when "choose_banner"
+      when "dialog_banner"
         "simple"
       else
         "application"

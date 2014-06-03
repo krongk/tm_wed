@@ -1,2 +1,29 @@
-暂时不考虑这个怎么做
--》 名片针对每个学校的封面搜索。。。
+<div class="btn-group" data-toggle="buttons-radio">
+  <button class="btn" type="button" name="rating" value="1">
+    <img src="/banners/1.jpg" width="200px">
+  </button>
+  <button class="btn" type="button" name="rating" value="2">
+    <img src="/banners/1.jpg" width="200px">
+  </button>
+  <button class="btn" type="button" name="rating" value="3">
+    <img src="/banners/1.jpg" width="200px">
+  </button>
+  <button class="btn" type="button" name="rating" value="4">
+    <img src="/banners/1.jpg" width="200px">
+  </button>
+</div>
+
+<button class="btn" type="submit" name="submit" id="submit">Submit</button>
+
+<script language="javascript">
+
+$('#submit').on('click', function() {
+
+    var img = $('button[name="rating"].active').val();
+
+    $('#site_page_banner').val(img);
+    alert($('#site_page_banner').val());
+    $("#myModal").modal("hide");
+});
+
+</script>

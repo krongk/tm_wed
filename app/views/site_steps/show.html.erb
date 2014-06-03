@@ -42,7 +42,7 @@
     <div class="col-sm-12 col-md-12">
       <div class="actions text-center">
         <%= link_to "上一步", previous_wizard_path, class: 'btn btn-default' %>
-        <%= button_tag(type: 'submit', class: "btn btn-meflat icon-left") do %>
+        <%= button_tag(type: 'submit', data: { disable_with: "正在保存..." }, class: "btn btn-meflat icon-left") do %>
           <i class="fa fa-location-arrow"></i> 保存，进入下一步
         <% end %>
         <%#= f.button :submit, %{<i class="fa fa-location-arrow"></i>保存，进入下一步}.html_safe, class: 'btn btn-meflat icon-left' %>
@@ -60,13 +60,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">上传照片</h4>
+        <h4 class="modal-title" id="myModalLabel">对话框</h4>
       </div>
       <div class="modal-body">
         <p class="text-center"><i class="fa fa-spinner fa-spin"></i>正在加载...</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-info" data-dismiss="modal">保存并关闭</button>
+        <button type="button" class="btn btn-info">保存并关闭</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

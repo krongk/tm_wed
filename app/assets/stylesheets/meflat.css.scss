@@ -86,6 +86,15 @@ a:focus {
   text-decoration: underline;
 }
 
+.dialog a {
+  color: blue;
+}
+
+.dialog a:hover,
+.dialog a:focus {
+  color: blue;
+}
+
 a:focus,
 .btn:focus {
   outline: none;
