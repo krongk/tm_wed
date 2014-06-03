@@ -21,7 +21,6 @@ $active_color: #36D9C3;
 
   label{
     font-size: 14px;
-    color: #FFF;
   }
   .controls .radio_buttons{
     width: 20px;
@@ -33,6 +32,9 @@ $active_color: #36D9C3;
   }
 
   .help-inline{
-    color: red;
+    font-size: 12px;
+  }
+  .help-block{
+    font-size: 12px;
   }
 }

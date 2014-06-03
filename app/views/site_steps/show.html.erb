@@ -10,22 +10,29 @@
       <div class="row">
         <div class="col-sm-12 col-md-6" id="template_form">
           <h3 class="bottom_bordered">1. 编辑内容</h3>
-          <div style="background: #F1678D;">
-            <%= render inline: Templates::Keystore.value_for(@site_page.template_page, 'form') || '', locals: {site_page_id: @site_page.id } %>
+          <div >
+            <% temp_form = Templates::Keystore.value_for(@site_page.template_page, 'form') %>
+            <% if temp_form %>
+              <%= render inline:  temp_form, locals: {site_page_id: @site_page.id } %>
+            <% else %>
+              <P>没有需要编辑的内容</P>
+            <% end %>
           </div>
         </div>
         <div class="col-sm-12 col-md-6">
           <h3 class="bottom_bordered">2. 编辑照片</h3>
+            <% image_count = @site_page.template_page.image_count %>
+            <% if image_count > 0 %>
+              <ul id="site_images" data-update-url="<%= sort_site_images_url %>">
+                <%= render @site_images %>
+              </ul>
+              <%= will_paginate @site_images %>
 
-            <ul id="site_images" data-update-url="<%= sort_site_images_url %>">
-              <%= render @site_images %>
-            </ul>
-            <%= will_paginate @site_images %>
-
-            <% if (image_count = @site_page.template_page.image_count) > 0 %>
-            <div class="text-center">
-              <%= link_to "点击这里上传#{image_count}张照片", site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#myModal' %>
-            </div>
+              <div class="text-center">
+                <%= link_to "点击这里上传#{image_count}张照片", site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#myModal', 'data-no-turbolink' => true  %>
+              </div>
+            <% else %>
+              <p>没有需要添加的照片</p>
             <% end %>
 
         </div>
@@ -53,21 +60,35 @@
   </div>
 <% end %> 
 
-
 <!-- Modal dialog call: /site_images/index.html.erb -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">对话框</h4>
+        <h4 class="modal-title" id="myModalLabel">对话框窗口</h4>
       </div>
       <div class="modal-body">
         <p class="text-center"><i class="fa fa-spinner fa-spin"></i>正在加载...</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-info">保存并关闭</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal" aria-hidden="true">保存并关闭</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<script languange="javascript">
+  ready2 = function() {
+    $('#myModal').on('hidden.bs.modal', function (e) {
+      $(this).removeData('bs.modal');
+    });
+  }
+
+  //#turbolinks style
+  $(document).ready(ready2);
+  $(document).on('page:load', ready2);
+  $('body').on('hidden.bs.modal', 'div#myModal', function () {
+    $(this).removeData('bs.modal');
+  });
+</script>

@@ -7,7 +7,7 @@
       <div class="caption">
         <h3><%= @site.title %></h3>
         <p><%= @site.description %></p>
-        <p><%= link_to '修改', edit_site_path(@site), class: 'btn btn-default' %> <%= link_to '预览', "/s/#{@site.short_title}", target: '_blank', class: 'btn btn-default' %></p>
+        <p><%= link_to '修改', edit_site_path(@site), class: 'btn btn-default' %> <%= link_to '预览', get_site_url(@site), target: '_blank', class: 'btn btn-default' %></p>
       </div>
     </div>
     <div class="thumbnail">

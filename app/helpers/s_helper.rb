@@ -71,4 +71,17 @@ module SHelper
     SitePageKeystore.value_for(obj, name, attr).try(:html_safe)
   end
 
+  #获取所有banner封面图片from /public/banners/
+  #用于在/home/dialog_banner.html.erb中展示
+  # "/home/www/tm_wed/public/banners/1.jpg" => "/banners/1.jpg"
+  def get_banners
+    images = Dir.glob(File.join(Rails.root, 'public', 'banners', '*.jpg'))
+    return images.map{|s| s.sub(/^.*\/public\b/i, '')}
+  end
+  #获取所有本地背景音乐
+  def get_musics
+    images = Dir.glob(File.join(Rails.root, 'public', 'musics', 'mp3', '*.mp3'))
+    return images.map{|s| s.sub(/^.*\/public\b/i, '')}
+  end
+
 end

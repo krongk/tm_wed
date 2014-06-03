@@ -62,7 +62,7 @@ class SitesController < ApplicationController
   def update
     respond_to do |format|
       if @site.update(site_params)
-        #generate_qrcode(@site) #only for development test.
+        generate_qrcode(@site) unless File.exist?(File.join(Rails.root, 'public', @site.qrcode))
         format.html { redirect_to site_site_steps_path(@site), notice: t('notice.site.updated') }
         format.json { head :no_content }
       else

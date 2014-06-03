@@ -1,5 +1,6 @@
+#encoding: utf-8
 class SController < ApplicationController
-  layout 'site'
+  # layout 'simple' 其实这里不用统一一个layout, 直接render到模板即可
   include SHelper
 
   #/s/:site_id(/p-:id)

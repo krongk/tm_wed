@@ -1,29 +1,16 @@
-<div class="btn-group" data-toggle="buttons-radio">
-  <button class="btn" type="button" name="rating" value="1">
-    <img src="/banners/1.jpg" width="200px">
-  </button>
-  <button class="btn" type="button" name="rating" value="2">
-    <img src="/banners/1.jpg" width="200px">
-  </button>
-  <button class="btn" type="button" name="rating" value="3">
-    <img src="/banners/1.jpg" width="200px">
-  </button>
-  <button class="btn" type="button" name="rating" value="4">
-    <img src="/banners/1.jpg" width="200px">
-  </button>
+<div class="banner btn-group" data-toggle="buttons-radio">
+  <% get_banners.each do |img| %>
+    <button class="banner btn btn-info" type="button" name="rating" value="<%= img %>">
+      <img src="<%= img %>" width="200px">
+    </button>
+  <% end %>
 </div>
 
-<button class="btn" type="submit" name="submit" id="submit">Submit</button>
-
 <script language="javascript">
-
-$('#submit').on('click', function() {
-
-    var img = $('button[name="rating"].active').val();
-
-    $('#site_page_banner').val(img);
-    alert($('#site_page_banner').val());
-    $("#myModal").modal("hide");
-});
-
+  $('.banner').on('click', function() {
+      var img = $('button[name="rating"].active').val();
+      $('#site_page_banner').val(img);
+      $("#myModal").modal("hide");
+      $("#myModal").removeData('bs.modal');
+  });
 </script>

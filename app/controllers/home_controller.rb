@@ -35,11 +35,13 @@ class HomeController < ApplicationController
   def dialog_banner
    #暂时不做
   end
+  def dialog_music
+  end
 
   private
     def resolve_layout
       case action_name
-      when "dialog_banner"
+      when /dialog_.*/ 
         "simple"
       else
         "application"
