@@ -1,6 +1,6 @@
 TmCard::Application.routes.draw do
 
-  get '/home/choose_banner'
+  get '/home/dialog_banner'
   resources :site_images do 
     collection {post :sort}
   end

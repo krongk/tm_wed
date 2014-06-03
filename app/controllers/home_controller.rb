@@ -32,7 +32,7 @@ class HomeController < ApplicationController
   
   #用于page_steps中对话框扩展： 选择封面、选择音乐。
   #这些特殊的内容，不放在tm_admin中。
-  def choose_banner
+  def dialog_banner
    #暂时不做
   end
 
