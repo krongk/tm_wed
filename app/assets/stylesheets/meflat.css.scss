@@ -1199,6 +1199,14 @@ a:focus,
 #contact-form.no-placeholder .field-wrap .control-label{
     display:inline-block;
 }
+
+hr.bordered{
+  border-top: 4px dotted $theme_color;
+  color: #fff;
+  background-color: #fff;
+  height: 4px;
+  width: 100%;
+}
 /*----------------------
 -----Footer Styles------
 ------------------------*/    

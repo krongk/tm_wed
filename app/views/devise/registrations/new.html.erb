@@ -1,24 +1,43 @@
-<div class="authform">
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
-    <h3>用户注册</h3>
-    <hr/>
-    <%= devise_error_messages! %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
+<div class="row">
+  <div class="col-sm-6 text-col">
+    <div class="authform">
+      <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f| %>
+        <h3 class="bottom_bordered">用户注册</h3>
+        <hr/>
+        <%= devise_error_messages! %>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, :autofocus => true, class: 'required form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'required form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'required form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: 'required form-control' %>
+        </div>
+         <%= f.submit '提 交 注 册', :class => 'btn btn-meflat' %>
+         <hr/>
+         我已经有账号了，<a href="/users/sign_in">点击这里登录</a>
+      <% end %>
     </div>
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-    </div>
-     <%= f.submit '提 交', :class => 'btn btn-meflat' %>
-  <% end %>
+  </div>
+  <div class="col-sm-6 text-col">
+    <h3 class="bottom_bordered">使用教程</h3>
+    <p>首先，欢迎你来到维斗喜帖官网。我们是一个专业提供电子喜帖、微相册轻应用建设的技术团队。</p>
+    <h4>要创建一个完美的轻应用，需要走一下几个步骤，请悉知：</h4>
+    <ol>
+      <li>注册成为会员：目的是可以为你提供一个强大的后台管理</li>
+      <li>到【模板】菜单中挑选自己中意的喜帖（你可以通过二维码扫描案例，真实的体验一下）</li>
+      <li>根据你选择的喜帖的要求，准备好素材（一般为文字和照片；照片最好在本地压缩成640*960大小）</li>
+      <li>在选中的模板里点击【我要复制这个】开始创建微信应用</li>
+      <li>根据向导完成应用创建工作</li>
+      <li>创建应用后，我们提供如下几种方式帮助你分享你的喜帖和应用：直接打开链接；扫描二维码；短信发送到手机；分享到各大社交网络平台。</li>
+    </ol>
+  </div>
 </div>
