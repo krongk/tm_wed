@@ -80,8 +80,10 @@ module SHelper
   end
   #获取所有本地背景音乐
   def get_musics
-    images = Dir.glob(File.join(Rails.root, 'public', 'musics', 'mp3', '*.mp3'))
-    return images.map{|s| s.sub(/^.*\/public\b/i, '')}
+    musics = []
+    musics << Dir.glob(File.join(Rails.root, 'public', 'musics', 'mp3', '*.mp3'))
+    musics << Dir.glob(File.join(Rails.root, 'public', 'musics', 'mp3', '*.m4a'))
+    return musics.map{|s| s.sub(/^.*\/public\b/i, '')}
   end
 
 end
