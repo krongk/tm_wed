@@ -41,6 +41,7 @@ db/*.sqlite3
 /public/stylesheets/compiled
 /public/system/*
 /public/qrcode/*
+/public/musics/mp3/*
 /spec/tmp/*
 /cache
 /capybara*
