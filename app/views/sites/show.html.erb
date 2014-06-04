@@ -27,13 +27,13 @@
       <%= render 'layouts/baidu_share' %>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-sm-12 col-md-4 hidden-sm">
     <div class="thumbnail text-center">
       <img src="<%= @site.qrcode %>" />
       <div class="caption"><p>扫一扫二维码，在手机上查看</p></div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-sm-12 col-md-4 hidden-sm">
     <iframe id="preview" src="<%= get_site_url(@site) %>" width="330px" height="500px" frameBorder="0" scrolling="no"></iframe>
   </div>
 </div>

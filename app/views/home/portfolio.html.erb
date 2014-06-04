@@ -6,183 +6,41 @@
       
         <div id="projects-container">
           <% @templates.each do |template| %>
-          <!-- ==============================================
-          SINGLE PROJECT ITEM
-          =============================================== --> 
-          <article class="project-item web-design">
-            
-            <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
-            
-            <div class="hover-mask">
-              <h2 class="project-title"><%= template.title %></h2><!--Project Title -->
-              <p><%= template.property %></p><!--Project Subtitle -->
-            </div>
-            
-            <!--==== Project Preview HTML ====-->
-            
-            <div class="sr-only project-description" 
-              data-category="<%= template.cate.title %>" 
-              data-date="<%= get_date(template.updated_at) %>" 
-              data-client="<%= template.keywords %>" 
-              data-link="www.example.com,http://www.google.com" 
-              data-descr="<%= template.summary %>" 
-              data-images="<%= get_host_image_list(template, 'demo_img').join(',') %>"
-            >
-              <%= raw template.description %>
-              <%= get_host_image_list(template, 'demo_img').join(',') %>
-              <p class="text-right">
-                <%= link_to new_site_path(template_id: template.id),  data: {confirm: '确定要使用该模板？'}, class: "btn btn-meflat icon-right" do %>
-                  我要购买 <i class="fa fa-arrow-right"></i>
-                <% end %>
-              </p>
-            </div>
-            
-          </article>
-          <!-- ==============================================
-          END PROJECT ITEM
-          =============================================== -->           
-          <% end %>
-
-          <article class="project-item icons">
-            
-            <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
-            
-            <div class="hover-mask">
-              <h2 class="project-title">Project Title</h2><!--Project Title -->
-              <p>Subtitle</p><!--Project Subtitle -->
-            </div>
-            
-            <!--==== Project Preview HTML ====-->
-            
-            <div class="sr-only project-description" 
-              data-category="Category" 
-              data-date="Date" 
-              data-client="Client" 
-              data-link="www.example.com,http://www.google.com" 
-              data-descr="A small description goes here." 
-              data-images="assets/placeholder-750x430.jpg,assets/placeholder-750x430.jpg"
-            >
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+            <!-- ==============================================
+            SINGLE PROJECT ITEM
+            =============================================== --> 
+            <article class="project-item web-design">
               
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
-              <p>Nam eget urna pellentesque nisl ultrices dapibus. Mauris accumsan vehicula nisl, sed tempus mauris facilisis eu. Donec a iaculis nisi, quis malesuada justo. Pellentesque ut enim sit amet ipsum dignissim egestas. Morbi tincidunt rhoncus urna eget placerat.</p>
-              <p class="text-right"><a class="btn btn-meflat icon-right" href="#external-link">Visit Website<i class="fa fa-arrow-right"></i></a></p>
-            </div>
-            
-          </article><!--End Project Item -->
-
-          <article class="project-item web-design">
-            
-            <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
-            
-            <div class="hover-mask">
-              <h2 class="project-title">Project Title</h2><!--Project Title -->
-              <p>Subtitle</p><!--Project Subtitle -->
-            </div>
-            
-            <!--==== Project Preview HTML ====-->
-            
-            <div class="sr-only project-description" 
-              data-category="Category" 
-              data-date="Date" 
-              data-client="Client" 
-              data-link="www.example.com,http://www.google.com" 
-              data-descr="A small description goes here." 
-              data-images="assets/placeholder-750x430.jpg,assets/placeholder-750x430.jpg"
-            >
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
               
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
-              <p>Nam eget urna pellentesque nisl ultrices dapibus. Mauris accumsan vehicula nisl, sed tempus mauris facilisis eu. Donec a iaculis nisi, quis malesuada justo. Pellentesque ut enim sit amet ipsum dignissim egestas. Morbi tincidunt rhoncus urna eget placerat.</p>
-              <p class="text-right"><a class="btn btn-meflat icon-right" href="#external-link">Visit Website<i class="fa fa-arrow-right"></i></a></p>
-            </div>
-            
-          </article><!--End Project Item -->
-
-          <article class="project-item icons">
-            
-            <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
-            
-            <div class="hover-mask">
-              <h2 class="project-title">Project Title</h2><!--Project Title -->
-              <p>Subtitle</p><!--Project Subtitle -->
-            </div>
-            
-            <!--==== Project Preview HTML ====-->
-            
-            <div class="sr-only project-description" 
-              data-category="Category" 
-              data-date="Date" 
-              data-client="Client" 
-              data-link="www.example.com,http://www.google.com" 
-              data-descr="A small description goes here." 
-              data-images="assets/placeholder-750x430.jpg,assets/placeholder-750x430.jpg"
-            >
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              <div class="hover-mask">
+                <h2 class="project-title"><%= template.title %></h2><!--Project Title -->
+                <p><%= template.property %></p><!--Project Subtitle -->
+              </div>
               
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
-              <p>Nam eget urna pellentesque nisl ultrices dapibus. Mauris accumsan vehicula nisl, sed tempus mauris facilisis eu. Donec a iaculis nisi, quis malesuada justo. Pellentesque ut enim sit amet ipsum dignissim egestas. Morbi tincidunt rhoncus urna eget placerat.</p>
-              <p class="text-right"><a class="btn btn-meflat icon-right" href="#external-link">Visit Website<i class="fa fa-arrow-right"></i></a></p>
-            </div>
-            
-          </article><!--End Project Item -->
-
-          <article class="project-item ui-kits">
-            
-            <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
-            
-            <div class="hover-mask">
-              <h2 class="project-title">Project Title</h2><!--Project Title -->
-              <p>Subtitle</p><!--Project Subtitle -->
-            </div>
-            
-            <!--==== Project Preview HTML ====-->
-            
-            <div class="sr-only project-description" 
-              data-category="Category" 
-              data-date="Date" 
-              data-client="Client" 
-              data-link="www.example.com,http://www.google.com" 
-              data-descr="A small description goes here." 
-              data-images="assets/placeholder-750x430.jpg,assets/placeholder-750x430.jpg"
-            >
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              <!--==== Project Preview HTML ====-->
               
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
-              <p>Nam eget urna pellentesque nisl ultrices dapibus. Mauris accumsan vehicula nisl, sed tempus mauris facilisis eu. Donec a iaculis nisi, quis malesuada justo. Pellentesque ut enim sit amet ipsum dignissim egestas. Morbi tincidunt rhoncus urna eget placerat.</p>
-              <p class="text-right"><a class="btn btn-meflat icon-right" href="#external-link">Visit Website<i class="fa fa-arrow-right"></i></a></p>
-            </div>
-            
-          </article><!--End Project Item -->
-
-          <article class="project-item ui-kits">
-            
-            <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
-            
-            <div class="hover-mask">
-              <h2 class="project-title">Project Title</h2><!--Project Title -->
-              <p>Subtitle</p><!--Project Subtitle -->
-            </div>
-            
-            <!--==== Project Preview HTML ====-->
-            
-            <div class="sr-only project-description" 
-              data-category="Category" 
-              data-date="Date" 
-              data-client="Client" 
-              data-link="www.example.com,http://www.google.com" 
-              data-descr="A small description goes here." 
-              data-images="assets/placeholder-750x430.jpg,assets/placeholder-750x430.jpg"
-            >
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
+              <div class="sr-only project-description" 
+                data-category="<%= template.cate.title %>" 
+                data-date="<%= get_date(template.updated_at) %>" 
+                data-client="<%= template.keywords %>" 
+                data-link="www.example.com,http://www.google.com" 
+                data-descr="<%= template.summary %>" 
+                data-images="<%= get_host_image_list(template, 'demo_img').join(',') %>"
+              >
+                <%= raw template.description %>
+                <p class="text-right">
+                  <%= link_to new_site_path(template_id: template.id),  data: {confirm: '确定要使用该模板？'}, class: "btn btn-meflat icon-right" do %>
+                    我要购买 <i class="fa fa-arrow-right"></i>
+                  <% end %>
+                </p>
+              </div>
               
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sapien risus, blandit at fringilla ac, varius sed dolor. Donec augue lacus, vulputate sed consectetur facilisis, interdum pharetra ligula. Nulla suscipit erat nibh, ut porttitor nisl dapibus eu.</p>
-              <p>Nam eget urna pellentesque nisl ultrices dapibus. Mauris accumsan vehicula nisl, sed tempus mauris facilisis eu. Donec a iaculis nisi, quis malesuada justo. Pellentesque ut enim sit amet ipsum dignissim egestas. Morbi tincidunt rhoncus urna eget placerat.</p>
-              <p class="text-right"><a class="btn btn-meflat icon-right" href="#external-link">Visit Website<i class="fa fa-arrow-right"></i></a></p>
-            </div>
-            
-          </article><!--End Project Item -->
-            
+            </article>
+            <!-- ==============================================
+            END PROJECT ITEM
+            =============================================== -->           
+          <% end %>            
         </div><!-- End projects --> 
         
       </div><!-- End container --> 

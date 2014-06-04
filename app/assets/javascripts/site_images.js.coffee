@@ -7,6 +7,7 @@
 
 # turbolinks style:
 $(document).on 'ready page:load', ->
+  count = 0
   $('#new_site_image').fileupload
     dataType: "script"
 
@@ -26,7 +27,8 @@ $(document).on 'ready page:load', ->
         return
       if types.test(file.type) || types.test(file.name)
         data.context = $(tmpl("template-upload", file))
-        $('#new_site_image').append(data.context)
+        $('#updating').append(data.context)
+        $('#current-select').html("已上传照片："+ count += 1);
         data.submit()
       else
         alert("#{file.name} 文件格式错误，允许上传的文件格式为:gif/jpg/jpeg/png.")
