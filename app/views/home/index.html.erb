@@ -2,9 +2,7 @@
 HEADER
 =============================================== -->
 <%= content_for :header do %>
-
 <div class="row">
-
 <div class="col-sm-6 text-col">
   <h1>高大上的结婚喜帖</h1>
   <p>私人定制，打造属于你的真挚邀请</p>
@@ -12,122 +10,82 @@ HEADER
   <p>一生一次，再一次引爆你的朋友圈</p>
   <p class="text-center"><a href="/users/sign_up" class="btn btn-lg btn-active"><i class="fa fa-location-arrow"></i> 我要制作</a></p>
 </div>
-
 <div class="col-sm-6">
   <div class="imac-frame">
     <img class="img-responsive img-center" src="assets/imac.png" alt=""/>
     <div class="imac-screen flexslider">
       <ul class="slides">
         <li>
-          <img src="assets/banner1.jpg" alt="制作简单"/>
+          <%= image_tag(asset_path('banner1.jpg'), alt: '维斗喜帖，时尚的体验') %>
         </li>
         <li>
-          <img src="assets/banner2.jpg" alt="模板时尚"/>
+          <%= image_tag(asset_path('banner2.jpg'), alt: '维斗喜帖，制作如此简单') %>
         </li>
         <li>
-          <img src="assets/banner3.jpg" alt="分享快捷"/>
+          <%= image_tag(asset_path('banner3.jpg'), alt: '维斗喜帖，分享如此方便') %>
         </li>
       </ul>
     </div>
   </div>
 </div>
-
 </div>
-
 <% end %>
-
 <!-- ==============================================
 SERVICES
 =============================================== -->
 <section id="services" class="white-bg padding-top-bottom">
-
-  <div class="container">
-    
-    <header class="section-header text-center">
-    
+  <div class="container">    
+    <header class="section-header text-center">    
       <h1 class="scrollimation scale-in"><img src="/assets/logo.png" /></h1>
-      <p>电子版的结婚请柬，也称电子请帖、电子喜帖，适合在微信上传播的叫微信喜帖.<br/> 提供电子喜帖制作的很多家，真正定位高端的唯独我们一家，我们始终认为，一生一次的婚礼，必须出彩.</p>
-    
-    </header>
-  
-    <div class="row services">
-    
-      <div class="col-md-3 col-sm-6 item scrollimation fade-up">
-      
+      <p>电子版的结婚请柬，也称电子请帖、电子喜帖，适合在微信上传播的叫微信喜帖.<br/> 提供电子喜帖制作的很多家，真正定位高端的唯独我们一家，我们始终认为，一生一次的婚礼，必须出彩.</p>    
+    </header>  
+    <div class="row services">    
+      <div class="col-md-3 col-sm-6 item scrollimation fade-up">      
         <div class="icon">
-          <img class="img-responsive img-center" src="assets/feature1.png" alt="" />
-        </div>
-        
+          <img class="img-responsive img-center" src="/assets/feature1.png" alt="" />
+        </div>        
         <h2>操作简单方便</h2>
-        <p>轻，不代表简单; 轻，用最直接的方式呈现最震撼的内容.</p>
-      
-      </div>
-      
-      <div class="col-md-3 col-sm-6 item scrollimation fade-up d1">
-      
+        <p>轻，不代表简单; 轻，用最直接的方式呈现最震撼的内容.</p>      
+      </div>      
+      <div class="col-md-3 col-sm-6 item scrollimation fade-up d1">      
         <div class="icon">
-          <img class="img-responsive img-center" src="assets/feature2.png" alt="" />
-        </div>
-        
+          <img class="img-responsive img-center" src="/assets/feature2.png" alt="" />
+        </div>        
         <h2>基于云计算架构</h2>
-        <p>采用云计算+云存储服务，即安全，又能保障应用的快速传递和高负载访问.</p>
-      
-      </div>
-      
-      <div class="col-md-3 col-sm-6 item scrollimation fade-up d2">
-      
+        <p>采用云计算+云存储服务，即安全，又能保障应用的快速传递和高负载访问.</p>      
+      </div>      
+      <div class="col-md-3 col-sm-6 item scrollimation fade-up d2">      
         <div class="icon">
-          <img class="img-responsive img-center" src="assets/feature3.png" alt="" />
-        </div>
-        
+          <img class="img-responsive img-center" src="/assets/feature3.png" alt="" />
+        </div>        
         <h2>传递喜庆和祝福</h2>
-        <p>结婚喜帖，只在最需要的那一刻美丽绽放，我们设计的理念即时帮助客户传递喜庆.</p>
-      
-      </div>
-      
-      <div class="col-md-3 col-sm-6 item scrollimation fade-up d3">
-      
+        <p>结婚喜帖，只在最需要的那一刻美丽绽放，我们设计的理念即时帮助客户传递喜庆.</p>      
+      </div>      
+      <div class="col-md-3 col-sm-6 item scrollimation fade-up d3">      
         <div class="icon">
-          <img class="img-responsive img-center" src="assets/feature4.png" alt="" />
-        </div>
-        
+          <img class="img-responsive img-center" src="/assets/feature4.png" alt="" />
+        </div>        
         <h2>针对高端用户</h2>
-        <p>我们很在乎你的婚礼，真的很在乎，所以我们做好了一切准备为你服务.</p>
-      
-      </div>
-    
-    </div>
-  
+        <p>我们很在乎你的婚礼，真的很在乎，所以我们做好了一切准备为你服务.</p>      
+      </div>    
+    </div>  
   </div>
-
 </section>
-
 <!-- ==============================================
 FEATURED PROJECT
 =============================================== --> 
 <section id="feat-project" class="hidden-xs gray-bg padding-top">
-
   <div class="container">
-  
     <header class="section-header text-center">
-    
       <h1 class="scrollimation scale-in">如何制作</h1>
       <p>新人只需要准备双方的姓名、联系方式、婚礼安排、婚庆地点、婚纱照片；<br/>在模板中挑选一个中意的样例，注册后在后台完成，制作过程不到5分钟.</p>
-    
     </header>
-    
     <div class="scrollimation fade-up">
-      <img class="img-responsive img-center" src="assets/chrome-top.png" alt="" />
-      
+      <img class="img-responsive img-center" src="/assets/chrome-top.png" alt="" />      
       <div class="img-wrapper">
-        
-        <img class="img-responsive img-center" src="assets/wedxt800x500.png" alt="维斗喜帖，为你骄傲" />
-        
-        <p class="text-center on-hover"><a class="btn btn-meflat icon-right" href="/blog">使用教程<i class="fa fa-arrow-right"></i></a></p>
-      
+        <%= image_tag(asset_path('wedxt800x500.png'), alt: '维斗喜帖，为你骄傲', class: 'img-responsive img-center') %>
+        <p class="text-center on-hover"><a class="btn btn-meflat icon-right" href="/blog">使用教程<i class="fa fa-arrow-right"></i></a></p>      
       </div>
     </div>
-    
   </div>
-
 </section>
