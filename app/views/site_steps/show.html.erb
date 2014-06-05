@@ -40,9 +40,7 @@
     </div>
     <div class="col-md-4 hidden-xs">
       <h3 class="bottom_bordered">示例预览</h3>
-        <% get_host_image_list(@site_page.template_page, 'demo_img').each do |img_url| %>
-          <img src="<%=img_url%>" class='img-responsive' />
-        <% end %>
+      <%= render partial: 'demo_show', locals: {site_page: @site_page} %>
     </div>
   </div>
   <div class="row">

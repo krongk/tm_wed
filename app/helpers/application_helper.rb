@@ -30,32 +30,4 @@ module ApplicationHelper
   def get_date(date)
     date.strftime("%Y-%m-%d")
   end
-
-  #Maybe image storeed in another host
-  #demo_img like: "assets/previews/demo.png,assets/previews/demo2.png,assets/previews/mobile.png"
-  #need to parse to: templates/simple_one/assets/previews/demo.png
-  #eg: get_host_image_list(@template, 'domo_img')
-  def get_host_image_list(obj, img_col)
-    image_list = []
-    puts obj.send(img_col)
-    puts obj.class
-
-    case obj.class.to_s
-    when "Templates::Template"
-      obj.send(img_col).to_s.split(SPECIAL_SYMBO_REG).each do |img|
-        puts img
-        next unless img =~ /\.(jpg|png|gif|jpeg)/i
-        image_list << [ENV["ASSETS_HOST"], obj.base_url, img].join('/')
-      end
-    when "Templates::Page"
-      obj.send(img_col).to_s.split(SPECIAL_SYMBO_REG).each do |img|
-        puts img
-        next unless img =~ /\.(jpg|png|gif|jpeg)/i
-        image_list << [ENV["ASSETS_HOST"], obj.template.base_url, img].join('/')
-      end
-    else
-    end
-    return image_list
-  end
-
 end

@@ -1,23 +1,31 @@
-<h1>应用列表</h1>
-
-<table class="table table-bordered">
-  <tbody>
-    <% @sites.each do |site| %>
-      <tr>
-        <td><%= site.id %> </td>
-        <td><%= site.title %> </td>
-        <td><%= site.description %> </td>
-        <td><%= site.template.title %> </td>
-        <td><%= site.status || '免费' %> </td>
-        <td><%= link_to '预览', get_site_url(site), target: '_blank' %></td>
-        <td><%= link_to '查看', site %></td>
-        <td><%= link_to '修改', edit_site_path(site) %></td>
-        <td><%= link_to '删除', site, method: :delete, data: { confirm: '确定要删除?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
 <%= link_to '创建新应用', new_site_path, class: 'btn btn-meflat' %>
+
+<div class="panel-group" id="accordion">
+  <% @sites.each_with_index do |site, index| %>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>">
+            <%= site.title %>
+          </a>
+        </h4>
+      </div>
+      <div id="collapse<%= index %>" class="panel-collapse collapse <%= if index ==0 then 'in' end%>">
+        <div class="panel-body">
+          <%= site.template.title %> 
+        <%= site.status || '免费' %> 
+        <%= link_to '预览', get_site_url(site), target: '_blank' %>
+        <%= link_to '查看', site %>
+        <%= link_to '修改', edit_site_path(site) %>
+        <%= link_to '删除', site, method: :delete, data: { confirm: '确定要删除?' } %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $('#accordion').collapse({
+    toggle: false
+  })
+</scrpit>

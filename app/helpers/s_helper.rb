@@ -34,6 +34,12 @@ module SHelper
       [ENV["HOST_NAME"], "s-#{site_page.site.short_title}", "p-#{site_page.short_title}"].join('/')
     end
   end
+   #
+  def get_site_page_url_by_title(site, title)
+    site_page = site.site_pages.find{|s| s.title == title}
+    get_site_page_url(site_page)
+  end
+
   #Site image generate ###########################
   # => qiniu_image_tag site_image.image.url, :quality => 100, class: 'img-responsive'
   def get_site_images(site)
@@ -44,11 +50,32 @@ module SHelper
     site_iamges = SiteImage.joins(:site_page).where("site_pages.site_id = ?", site.id).limit(1)
     site_iamges.first.try(:image).try(:url)
   end
-  #
-  def get_site_page_url_by_title(site, title)
-    site_page = site.site_pages.find{|s| s.title == title}
-    get_site_page_url(site_page)
+   #Maybe image storeed in another host
+  #demo_img like: "assets/previews/demo.png,assets/previews/demo2.png,assets/previews/mobile.png"
+  #need to parse to: templates/simple_one/assets/previews/demo.png
+  #eg: get_host_image_list(@template, 'domo_img')
+  def get_demo_image_list(obj, img_col)
+    image_list = []
+
+    case obj.class.to_s
+    when "Templates::Template"
+      obj.send(img_col).to_s.split(ApplicationHelper::SPECIAL_SYMBO_REG).each do |img|
+        puts img
+        next unless img =~ /\.(jpg|png|gif|jpeg)/i
+        image_list << [ENV["ASSETS_HOST"], obj.base_url, img].join('/')
+      end
+    when "Templates::Page"
+      obj.send(img_col).to_s.split(ApplicationHelper::SPECIAL_SYMBO_REG).each do |img|
+        puts img
+        next unless img =~ /\.(jpg|png|gif|jpeg)/i
+        image_list << [ENV["ASSETS_HOST"], obj.template.base_url, img].join('/')
+      end
+    else
+    end
+    return image_list
   end
+ 
+
 
   #获取应用的菜单
   def get_menu(site)
@@ -75,7 +102,10 @@ module SHelper
   #用于在/home/dialog_banner.html.erb中展示
   # "/home/www/tm_wed/public/banners/1.jpg" => "/banners/1.jpg"
   def get_banners
-    images = Dir.glob(File.join(Rails.root, 'public', 'banners', '*.jpg'))
+    images = []
+    images += Dir.glob(File.join(Rails.root, 'public', 'banners', '*.jpg'))
+    images += Dir.glob(File.join(Rails.root, 'public', 'banners', '*.png'))
+    images += Dir.glob(File.join(Rails.root, 'public', 'banners', '*.gif'))
     return images.map{|s| s.sub(/^.*\/public\b/i, '')}
   end
   #获取所有本地背景音乐
