@@ -1,31 +1,23 @@
 <%= link_to '创建新应用', new_site_path, class: 'btn btn-meflat' %>
 
-<div class="panel-group" id="accordion">
+<div class="row">
   <% @sites.each_with_index do |site, index| %>
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>">
-            <%= site.title %>
-          </a>
-        </h4>
-      </div>
-      <div id="collapse<%= index %>" class="panel-collapse collapse <%= if index ==0 then 'in' end%>">
+    <div class="col-md-6 col-sm-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= site.title %></h3>
+        </div>
         <div class="panel-body">
-          <%= site.template.title %> 
-        <%= site.status || '免费' %> 
-        <%= link_to '预览', get_site_url(site), target: '_blank' %>
-        <%= link_to '查看', site %>
-        <%= link_to '修改', edit_site_path(site) %>
-        <%= link_to '删除', site, method: :delete, data: { confirm: '确定要删除?' } %>
+          <a href="#" class="thumbnail pull-left">
+            <img src="<%= get_first_site_image_url(site) %>" alt="<%= site.title %>" width="220px;" class="img-responsive">
+          </a>
+          <%= site.status || '免费' %> <br/>
+          <%= link_to '预览', get_site_url(site), target: '_blank', class: 'btn btn-default' %>
+          <%= link_to '查看', site, class: 'btn btn-default' %>
+          <%= link_to '修改', edit_site_path(site), class: 'btn btn-default' %>
+          <%= link_to '删除', site, method: :delete, data: { confirm: '确定要删除?' }, class: 'btn btn-default' %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
-
-<script type="text/javascript">
-  $('#accordion').collapse({
-    toggle: false
-  })
-</scrpit>

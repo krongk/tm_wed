@@ -39,8 +39,6 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @site.save
-        generate_qrcode(@site)
-        generate_qrcode(@site) unless File.exist?(File.join(Rails.root, 'public', @site.qrcode))
         #build site_page via template_page
         Templates::Page.where(template_id: @site.template_id).order("position ASC").each do |temp_page|
           @site.site_pages.create(
@@ -48,6 +46,10 @@ class SitesController < ApplicationController
             template_page_id: temp_page.id,
             title: temp_page.title)
         end
+        #create qrcode
+        generate_qrcode(@site)
+        generate_qrcode(@site) unless File.exist?(File.join(Rails.root, 'public', @site.qrcode))
+        #redirect
         format.html { redirect_to site_site_steps_path(@site), notice: t('notice.site.created') }
         format.json { render action: 'show', status: :created, location: @site }
       else
