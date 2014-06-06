@@ -46,9 +46,6 @@ class SitesController < ApplicationController
             template_page_id: temp_page.id,
             title: temp_page.title)
         end
-        #create qrcode
-        generate_qrcode(@site)
-        generate_qrcode(@site) unless File.exist?(File.join(Rails.root, 'public', @site.qrcode))
         #redirect
         format.html { redirect_to site_site_steps_path(@site), notice: t('notice.site.created') }
         format.json { render action: 'show', status: :created, location: @site }
@@ -64,7 +61,6 @@ class SitesController < ApplicationController
   def update
     respond_to do |format|
       if @site.update(site_params)
-        generate_qrcode(@site) unless File.exist?(File.join(Rails.root, 'public', @site.qrcode))
         format.html { redirect_to site_site_steps_path(@site), notice: t('notice.site.updated') }
         format.json { head :no_content }
       else
@@ -109,7 +105,8 @@ class SitesController < ApplicationController
       params.require(:site).permit(:user_id, :template_id, :short_title, :title, :description, :domain, :status, :is_publiched, :is_comment_show, :updated_by, :note)
     end
 
-    def generate_qrcode(page)
+    #expired, we used QRcode API to generate qrcode
+    def generate_qrcode_bak(page)
       url = get_site_url(page)
       return if url.blank?
       qr = RQRCode::QRCode.new( url, :size => 6, :level => :h )

@@ -12,10 +12,14 @@
     <!-- site info -->
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title">喜帖固定访问地址：</h3>
+        <h3 class="panel-title">喜帖唯一二维码&固定访问地址：</h3>
       </div>
       <div class="panel-body">
-         <a href="<%= get_site_url(@site) %>" target="_blank"><%= get_site_url(@site) %></a>
+        <div class="thumbnail text-center">
+          <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=120&t=p&e=m">
+          <div class="caption"><p>扫一扫在手机上查看</p></div>
+        </div>
+        <a href="<%= get_site_url(@site) %>" target="_blank"><%= get_site_url(@site) %></a>
       </div>
     </div>
     <!-- site info -->
@@ -42,10 +46,7 @@
     </div>
   </div>
   <div class="col-sm-12 col-md-4 hidden-sm">
-    <div class="thumbnail text-center">
-      <img src="<%= @site.qrcode %>" />
-      <div class="caption"><p>扫一扫在手机上查看</p></div>
-    </div>
+    &nbsp;
   </div>
   <div class="col-sm-12 col-md-4 hidden-sm">
     <div class="iphone-bg">

@@ -6,16 +6,17 @@
       
         <div id="projects-container">
           <% @templates.each do |template| %>
+            <% demo_images = get_demo_image_list(template, 'demo_img') %>
             <!-- ==============================================
             SINGLE PROJECT ITEM
             =============================================== --> 
             <article class="project-item web-design">
               
-              <img class="img-responsive project-image" src="assets/placeholder-320x210.jpg"  alt=""><!--Project thumb -->
+              <img class="img-responsive project-image" src="<%= demo_images.shift %>"  alt="<%= template.title %>"><!--Project thumb -->
               
               <div class="hover-mask">
                 <h2 class="project-title"><%= template.title %></h2><!--Project Title -->
-                <p><%= template.property %></p><!--Project Subtitle -->
+                <p><%= template.cate.title %></p><!--Project Subtitle -->
               </div>
               
               <!--==== Project Preview HTML ====-->
@@ -24,14 +25,29 @@
                 data-category="<%= template.cate.title %>" 
                 data-date="<%= get_date(template.updated_at) %>" 
                 data-client="<%= template.keywords %>" 
-                data-link="www.example.com,http://www.google.com" 
                 data-descr="<%= template.summary %>" 
-                data-images="<%= get_demo_image_list(template, 'demo_img').join(',') %>"
+                data-images="<%= demo_images.join(',') %>"
               >
                 <%= raw template.description %>
+                <div class="">
+                  <h3 class="bottom_bordered">真实案例展示</h3>
+                  <div class="row">
+                    <% template.sites.each do |site| %>
+                      <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                          <img src="http://qrickit.com/api/qr?d=<%=get_site_url(site)%>&fgdcolor=000000&bgdcolor=F1678D&qrsize=120&t=p&e=m">
+                          <div class="caption text-center">
+                            <p><small><a href="<%= get_site_url(site)%>" target="_blank"><%= site.title.to_s.truncate(10) %></a></small></br><%= distance_of_time_in_words_to_now(site.updated_at) %>前</p>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+                <p>怎么样，是不是觉得很赞？<br/>其实制作很简单，填一个表格，传几张图即可完成，超级方便！</p>
                 <p class="text-right">
                   <%= link_to new_site_path(template_id: template.id),  data: {confirm: '确定要使用该模板？'}, class: "btn btn-meflat icon-right" do %>
-                    我要购买 <i class="fa fa-arrow-right"></i>
+                    我要制作 <i class="fa fa-arrow-right"></i>
                   <% end %>
                 </p>
               </div>
