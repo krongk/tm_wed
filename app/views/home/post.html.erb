@@ -1,1 +1,14 @@
-<%= @post.title %>
+<div class="row">
+  <div id="project-sidebar" class="col-md-3 hidden-xs">
+    <h2 id="sdbr-title">维斗喜帖</h2>
+    <p id="sdbr-category"><%= @post.keywords %></p>
+    <p id="sdbr-date"><%= get_date(@post.updated_at) %></p>
+    <p id="sdbr-link"><a href="/post/<%= @post.short_title %>" target="_blank"><%= ENV["HOST_NAME"] + "/post/#{@post.short_title}" %></a></p>
+  </div>
+  <div id="project-content" class="col-md-8 col-md-offset-1">
+    <h1><%= @post.title %></h1>
+    <hr/>
+    <%= raw @post.content %>
+    <p class="text-right"><a class="btn btn-meflat icon-right" href="/blog"><i class="fa fa-arrow-left"></i> 返回</a></p>
+  </div>
+</div>

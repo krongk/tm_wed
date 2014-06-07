@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   end
 
   def portfolio
-    @templates = Templates::Template.where(true).order("updated_at DESC").page(params[:page] || 1)
+    @templates = Templates::Template.where(true).order("updated_at DESC").paginate(page: params[:page] || 1, per_page: 6)
   end
 
   def case
@@ -23,7 +23,7 @@ class HomeController < ApplicationController
 
   #post list
   def blog
-    @posts = Admin::Page.joins(:channel).where(true).page(params[:page])
+    @posts = Admin::Page.joins(:channel).where(true).paginate(page: params[:page], per_page: 9)
   end
 
   def post

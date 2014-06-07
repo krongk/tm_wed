@@ -599,6 +599,53 @@ a:focus,
     transition:transform .4s ease-out;
 }
 /*----------------------
+-----Blog Styles----
+------------------------*/  
+.blog .item {
+    max-height: 400px;
+    overflow: hidden;
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.blog .item .icon{
+    min-height: 180px;
+    max-height: 220px;
+    overflow: hidden;
+    margin:0 auto 30px;
+    -webkit-transition:all .3s ease-out;
+    transition:all .3s ease-out;
+}
+
+.blog .item h2{
+    font-size: 22px;
+    -webkit-transition:all .3s ease-out;
+    transition:all .3s ease-out;
+}
+
+.blog .item h2 a{
+    color: #000;
+}
+
+.blog .item p{
+   font-size: 12px;
+   color: #999; 
+}
+
+.blog .item:hover h2{
+    color: $theme_color;
+}
+.blog .item:hover h2 a{
+    color: $theme_color;
+}
+
+.blog .item:hover .icon{
+    -webkit-transform:translateY(-10px);
+    transform:translateY(-10px);
+    -webkit-transition:-webkit-transform .4s ease-out;
+    transition:transform .4s ease-out;
+}
+/*----------------------
 -----Featured Project----
 ------------------------*/  
 .img-wrapper {

@@ -14,12 +14,9 @@ class ApplicationController < ActionController::Base
   end
   
   def authenticate_auth
-    puts "sesson............................"
     if session[:member].nil?
-      puts "new session"
-      before_filter :authenticate_user!
+      authenticate_user!
     else
-      puts session[:member]
       current_member
       redirect_to(root_path, notice: '请登录') and return if current_member.nil?
     end

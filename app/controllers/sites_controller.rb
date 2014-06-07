@@ -9,10 +9,6 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-     puts current_member.class
-      puts current_member.id
-      puts "..............................................."
-
     if current_user
       @sites = current_user.sites.page(params[:page] || 1)
     elsif current_member

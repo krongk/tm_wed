@@ -31,6 +31,11 @@ module ApplicationHelper
     date.strftime("%Y-%m-%d")
   end
 
+  def get_short_content(content, count = 120)
+    sanitize(strip_tags(content).to_s.truncate(count))
+  end
+
+  #session for member
   def current_member(sess = session[:member])
     return if sess.nil?
     Member.find(sess)

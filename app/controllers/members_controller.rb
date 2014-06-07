@@ -12,9 +12,6 @@ class MembersController < ApplicationController
     if member
       #old user, judge if he has any sites, redirect to send_token
       #else like a new user
-      puts member.class
-      puts member.id
-      puts "..............................................."
       if member.try(:sites)
         session[:token] = nil
         session[:token] = member.id

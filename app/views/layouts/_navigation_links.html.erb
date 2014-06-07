@@ -1,7 +1,6 @@
 <%# add navigation links to this file %>
-<%= current_member.try(:id) %>|<%= user_signed_in?%>
 <% if user_signed_in? || current_member %>
-  <li><%= link_to '我的', sites_path  %></li>
+  <li><%= link_to '后台', sites_path  %></li>
 <% else %>
   <li><%= link_to '登录', new_user_session_path %></li>
 <% end %>
