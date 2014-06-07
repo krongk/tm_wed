@@ -30,4 +30,9 @@ module ApplicationHelper
   def get_date(date)
     date.strftime("%Y-%m-%d")
   end
+
+  def current_member(sess = session[:member])
+    return if sess.nil?
+    Member.find(sess)
+  end
 end

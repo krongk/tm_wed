@@ -1,5 +1,5 @@
 class SiteCommentsController < ApplicationController
-  before_filter :authenticate_user!, only: [:destroy]
+  before_filter :authenticate_auth, only: [:destroy]
   before_action :set_site_comment, only: [:show, :edit, :update, :destroy]
   #skip CSRF on create.
   skip_before_filter :verify_authenticity_token

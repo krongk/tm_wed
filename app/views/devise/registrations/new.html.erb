@@ -5,19 +5,19 @@
         <h3 class="bottom_bordered">用户注册</h3>
         <hr/>
         <%= devise_error_messages! %>
-        <div class="form-group">
+        <div class="form-group col-md-6">
           <%= f.label :name %>
           <%= f.text_field :name, :autofocus => true, class: 'required form-control' %>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-6">
           <%= f.label :email %>
           <%= f.email_field :email, class: 'required form-control' %>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-6">
           <%= f.label :password %>
           <%= f.password_field :password, class: 'required form-control' %>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-6">
           <%= f.label :password_confirmation %>
           <%= f.password_field :password_confirmation, class: 'required form-control' %>
         </div>

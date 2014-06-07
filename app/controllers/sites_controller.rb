@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   include SHelper
-  before_filter :authenticate_user!
+  before_filter :authenticate_auth
   before_action :set_site, only: [:show, :edit, :update, :destroy]
 
   #skip CSRF on update from tempp form.
@@ -9,7 +9,15 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @sites = current_user.sites.page(params[:page] || 1)
+     puts current_member.class
+      puts current_member.id
+      puts "..............................................."
+
+    if current_user
+      @sites = current_user.sites.page(params[:page] || 1)
+    elsif current_member
+      @sites = current_member.sites.page(params[:page] || 1)
+    end
   end
 
   # GET /sites/1
@@ -35,7 +43,8 @@ class SitesController < ApplicationController
   # POST /sites.json
   def create
     @site = Site.new(site_params)
-    @site.user_id = current_user.id
+    @site.user_id = current_user.id if current_user
+    @site.member_id = @current_member.id if @current_member
 
     respond_to do |format|
       if @site.save
@@ -102,7 +111,7 @@ class SitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:user_id, :template_id, :short_title, :title, :description, :domain, :status, :is_publiched, :is_comment_show, :updated_by, :note)
+      params.require(:site).permit(:user_id, :member_id, :template_id, :short_title, :title, :description, :domain, :status, :is_publiched, :is_comment_show, :updated_by, :note)
     end
 
     #expired, we used QRcode API to generate qrcode

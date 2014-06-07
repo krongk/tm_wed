@@ -1,4 +1,5 @@
 class SiteImagesController < ApplicationController
+  before_filter :authenticate_auth
   before_action :set_site_image, only: [:show, :edit, :update, :destroy]
   layout 'simple'
 

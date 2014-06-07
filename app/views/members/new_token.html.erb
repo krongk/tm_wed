@@ -1,0 +1,18 @@
+<h1>身份确认</h1>
+<p>我们为你发送了一条验证码短信，请注意查收。</p>
+
+<%= form_tag(verify_token_members_path) do |f| %>
+  <%= hidden_field_tag :id, session[:token] %>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="input-group">
+        <%=text_field_tag :auth_token, nil, class: 'form-control', placeholder: "请输入验证码" %>
+        <div class="input-group-btn">
+          <%= submit_tag '验 证', :class => 'btn btn-danger' %>
+        </div>
+      </div>
+      <span class="help-block">* 请确保你输入的手机号能收到验证码，如果5分钟内还没有收到短信，请同时检查一下手机垃圾短信箱.</span>
+      <br/><br/>
+    </div>
+  </div>
+<% end %>

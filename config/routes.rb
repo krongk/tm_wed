@@ -6,6 +6,11 @@ TmCard::Application.routes.draw do
     collection {post :sort}
   end
 
+  resources :members do
+    collection{get :new_token}
+    collection{post :verify_token}
+  end
+
   resources :site_comments
   resources :site_pages
  

@@ -1,5 +1,6 @@
 class SiteStepsController < ApplicationController
   include Wicked::Wizard
+  before_filter :authenticate_auth
   prepend_before_filter :set_steps
   before_filter :set_site
 

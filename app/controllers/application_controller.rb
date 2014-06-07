@@ -13,4 +13,16 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
   
+  def authenticate_auth
+    puts "sesson............................"
+    if session[:member].nil?
+      puts "new session"
+      before_filter :authenticate_user!
+    else
+      puts session[:member]
+      current_member
+      redirect_to(root_path, notice: '请登录') and return if current_member.nil?
+    end
+  end
+
 end

@@ -20,6 +20,7 @@ gem 'rolify'
 gem 'simple_form'
 gem 'acts-as-taggable-on'
 gem 'rqrcode_png'
+gem 'alipay'
 gem 'therubyracer', :platform=>:ruby
 
 #for sortable

@@ -1,5 +1,6 @@
 <%# add navigation links to this file %>
-<% if user_signed_in? %>
+<%= current_member.try(:id) %>|<%= user_signed_in?%>
+<% if user_signed_in? || current_member %>
   <li><%= link_to '我的', sites_path  %></li>
 <% else %>
   <li><%= link_to '登录', new_user_session_path %></li>
@@ -8,5 +9,11 @@
 <% if user_signed_in? %>
   <span style="float: right; position: relative; margin-left: -20px;">
     <%= link_to '退出', destroy_user_session_path, :method=>'delete' %>
+  </span>
+<% end %>
+
+<% if current_member %>
+  <span style="float: right; position: relative; margin-left: -20px;">
+    <%= link_to '退出', current_member, method: :delete %>
   </span>
 <% end %>
