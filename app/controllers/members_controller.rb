@@ -50,7 +50,7 @@ class MembersController < ApplicationController
       get_session(member)
       redirect_to sites_path, notice: '登录成功！'
     else
-      redirect_to new_user_session_path, notice: '短信验证失败，请重新登录！'
+      render new_token_members_path, id: member.id, notice: '短信验证失败，请重新登录！'
     end
   end
 

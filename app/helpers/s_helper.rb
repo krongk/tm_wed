@@ -60,13 +60,11 @@ module SHelper
     case obj.class.to_s
     when "Templates::Template"
       obj.send(img_col).to_s.split(ApplicationHelper::SPECIAL_SYMBO_REG).each do |img|
-        puts img
         next unless img =~ /\.(jpg|png|gif|jpeg)/i
         image_list << [ENV["ASSETS_HOST"], obj.base_url, img].join('/')
       end
     when "Templates::Page"
       obj.send(img_col).to_s.split(ApplicationHelper::SPECIAL_SYMBO_REG).each do |img|
-        puts img
         next unless img =~ /\.(jpg|png|gif|jpeg)/i
         image_list << [ENV["ASSETS_HOST"], obj.template.base_url, img].join('/')
       end

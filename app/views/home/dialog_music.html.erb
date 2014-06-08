@@ -2,54 +2,91 @@
   the Demo: http://kolber.github.io/audiojs/demos/test6.html
  -->
  <style>
-  ol { padding: 0px; margin: 0px; list-style: decimal-leading-zero inside; color: #ccc; width: 460px; border-top: 1px solid #ccc; font-size: 0.9em; }
-  ol li { position: relative; margin: 0px; padding: 9px 2px 10px; border-bottom: 1px solid #ccc; cursor: pointer; }
-  ol li a { display: block; text-indent: -3.3ex; padding: 0px 0px 0px 20px; }
-  li.playing { color: #aaa; text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3); }
-  li.playing a { color: #000; }
-  li.playing:before { content: '♬'; width: 14px; height: 14px; padding: 3px; line-height: 14px; margin: 0px; position: absolute; left: -24px; top: 9px; color: #000; font-size: 13px; text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2); }
-
-  @media screen and (max-device-width: 480px) {
-    #wrapper { position: relative; left: -3%; }
+  #dialog-wrapper ol { padding: 0px 0px 0px 5px; margin: 0px; list-style: decimal-leading-zero inside; color: #ccc; border-top: 1px solid #ccc; font-size: 0.9em; }
+  #dialog-wrapper ol li { position: relative; margin: 0px; padding: 9px 2px 10px; border-bottom: 1px solid #ccc; cursor: pointer; }
+  #dialog-wrapper ol li a { display: block; text-indent: -3.3ex; padding: 0px 0px 0px 20px; }
+  #dialog-wrapper li.playing { color: #aaa; text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3); }
+  #dialog-wrapper li.playing a { color: #000; }
+  #dialog-wrapper li.playing:before { content: '♬'; width: 14px; height: 14px; padding: 3px; line-height: 14px; margin: 0px; position: absolute; left: -24px; top: 9px; color: #000; font-size: 13px; text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2); }
+  #dialog-wrapper ol{
+    max-height: 300px;
+    overflow: scroll;
+  }
+  #dialog-wrapper{
+      width: 70%;
+    margin: 0px auto;
+  }
+  @media screen and (max-device-width: 320px) {
+    #dialog-wrapper { position: relative; left: 3%; }
+  }
+  @media (max-width: 767px) {
+    #dialog-wrapper{
+      width: 90%;
+    }
   }
 </style>
 
-<div id="wrapper">
+
+<div id="dialog-wrapper">
   <div class="row">
-    <div class="col-md-8">
-      <h1>婚庆喜乐音乐系列<em>(2014)</em></h1>
-      <p><em>&rarr;</em> 键盘左右键切换 <em>&larr;</em></p>
-      <audio preload></audio>
-      <ol>
-        <% get_musics.each do |item| %>
-          <li><a href="#" data-src="<%= item %>"><%= item.sub(/\/musics\/mp3\//, '') %></a></li>
-        <% end %>
-        <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/02-juicy-r.mp3">juicy-r</a></li>
-        <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/03-its-all-about-the-crystalizabeths.mp3">it's all about the crystalizabeths</a></li>
-        <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/04-islands-is-the-limit.mp3">islands is the limit</a></li>
-        <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/05-one-more-chance-for-a-heart-to-skip-a-beat.mp3">one more chance for a heart to skip a beat</a></li>
-        <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/06-suicidal-fantasy.mp3">suicidal fantasy</a></li>
-        <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/07-everyday-shelter.mp3">everyday shelter</a></li>
-        <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/08-basic-hypnosis.mp3">basic hypnosis</a></li>
-        <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/09-infinite-victory.mp3">infinite victory</a></li>
-        <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/10-the-curious-incident-of-big-poppa-in-the-nighttime.mp3">the curious incident of big poppa in the nighttime</a></li>
-        <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/11-mo-stars-mo-problems.mp3">mo stars mo problems</a></li>
-      </ol>
+    <div class="col-md-6 col-sm-12">
+      <div class="">
+        <h4>添加外部链接</h4>
+        <div class="input-group">
+          <input autofocus="autofocus" class="form-control col-md-6" id="outlink_input" name="outlink_input" type="input" value="" placeholder="请在这里粘贴外部音乐链接地址">
+          <div class="input-group-btn">
+            <input class="btn btn-info" id="btn_outlink" name="commit" type="submit" value="确 定">
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <h4>或在列表中选择</h4>
+        <audio preload></audio>
+        <ol>
+          <% get_musics.each do |item| %>
+            <li><a href="#" data-src="<%= item %>"><%= item.sub(/\/musics\/mp3\//, '') %></a></li>
+          <% end %>
+          <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/02-juicy-r.mp3">juicy-r</a></li>
+          <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/03-its-all-about-the-crystalizabeths.mp3">it's all about the crystalizabeths</a></li>
+          <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/04-islands-is-the-limit.mp3">islands is the limit</a></li>
+          <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/05-one-more-chance-for-a-heart-to-skip-a-beat.mp3">one more chance for a heart to skip a beat</a></li>
+          <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/06-suicidal-fantasy.mp3">suicidal fantasy</a></li>
+          <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/07-everyday-shelter.mp3">everyday shelter</a></li>
+          <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/08-basic-hypnosis.mp3">basic hypnosis</a></li>
+          <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/09-infinite-victory.mp3">infinite victory</a></li>
+          <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/10-the-curious-incident-of-big-poppa-in-the-nighttime.mp3">the curious incident of big poppa in the nighttime</a></li>
+          <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/11-mo-stars-mo-problems.mp3">mo stars mo problems</a></li>
+        </ol>
+        <div class="hidden-sm hidden-xs"><em>&rarr;</em> 键盘左右键切换 <em>&larr;</em></div>
+      </div>
     </div>
-    <div class="col-md-4">
-      <p id="current-select"> 请点击左侧乐单选择</p>
-      <button type="button" class="btn btn-active" data-dismiss="modal" aria-hidden="true">保存并关闭</button>
+    <div class="col-md-6 col-sm-12">
+      <p id="music-selected">&nbsp;</p>
+      <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" aria-hidden="true">保存并关闭</button>
     </div>
   </div>
 </div>
 
-<script src="/musics/audiojs/audio.js"></script>
+<script src="/musics/audiojs/audio.min.js"></script>
 <script>
+  
+  /*======================================
+  下面是audiojs=======*/
+  $(function () {
+    $('#btn_outlink').click(function(){
+      var music_src = $('#outlink_input').val();
+      //assign src to form input
+      $('#site_page_music').val(music_src);
+      //update notice
+      $('#music-selected').html("你选择的音乐：<br/>"+ music_src);
+    })
+  })
+
   $(function() { 
     // Setup the player to autoplay the next track
     var a = audiojs.createAll({
       trackEnded: function() {
-        var next = $('ol li.playing').next();
+        var next = $('#dialog-wrapper ol li.playing').next();
         if (!next.length) next = $('ol li').first();
         next.addClass('playing').siblings().removeClass('playing');
         audio.load($('a', next).attr('data-src'));
@@ -60,11 +97,11 @@
     // Load in the first track
     var audio = a[0];
         first = $('ol a').attr('data-src');
-    $('ol li').first().addClass('playing');
+    $('#dialog-wrapper ol li').first().addClass('playing');
     audio.load(first);
 
     // Load in a track on click
-    $('ol li').click(function(e) {
+    $('#dialog-wrapper ol li').click(function(e) {
       e.preventDefault();
       $(this).addClass('playing').siblings().removeClass('playing');
       var music_src = $('a', this).attr('data-src')
@@ -73,7 +110,7 @@
       //assign src to form input
       $('#site_page_music').val(music_src);
       //update notice
-      $('#current-select').html("你选择的音乐：<br/>"+ music_src);
+      $('#music-selected').html("你选择的音乐：<br/>"+ music_src);
     });
     // Keyboard shortcuts
     $(document).keydown(function(e) {

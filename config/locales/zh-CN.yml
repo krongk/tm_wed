@@ -7,8 +7,8 @@ zh-CN:
   notice:
     site:
       choose_template: "还没有选择模板，请选择一个你中意的模板！"
-      created: "应用创建成功，请根据提示完成下一步操作！"
-      updated: "应用修改成功，请根据提示完成下一步操作！"
+      created: "应用创建成功，进入下一步！"
+      updated: "应用修改成功，进入下一步！"
     site_steps:
       finished: "恭喜你，应用创建完成。"
     site_comment:

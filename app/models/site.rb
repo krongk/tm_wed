@@ -5,6 +5,9 @@ class Site < ActiveRecord::Base
   has_many :site_comments, -> { order("updated_at DESC") }, :dependent => :destroy
   before_create :create_unique_short_title
 
+  #empty
+  validates :title, presence: true
+
   private
     def create_unique_short_title
       begin

@@ -40,7 +40,7 @@ class SitesController < ApplicationController
   def create
     @site = Site.new(site_params)
     @site.user_id = current_user.id if current_user
-    @site.member_id = @current_member.id if @current_member
+    @site.member_id = current_member.id if current_member
 
     respond_to do |format|
       if @site.save

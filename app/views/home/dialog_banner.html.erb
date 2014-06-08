@@ -1,25 +1,27 @@
  <style>
-  ol {}
-  ol li { float: left; position: relative; margin: 0px; padding: 9px 2px 10px; border-bottom: 1px solid #ccc; cursor: pointer; }
-  ol li a { display: block; text-indent: -3.3ex; padding: 0px 0px 0px 20px; }
-  li.playing { color: #aaa; text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3); background-color: #36D9C3;}
-  li.playing a { color: #000; }
-  li.playing:before { content: '♬'; width: 14px; height: 14px; padding: 3px; line-height: 14px; margin: 0px; position: absolute; left: -24px; top: 9px; color: #000; font-size: 13px; text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2); }
+  #bannerWarpper ol {}
+  #bannerWarpper ol li { float: left; position: relative; margin: 0px; padding: 9px 2px 10px; border-bottom: 1px solid #ccc; cursor: pointer; }
+  #bannerWarpper ol li a { display: block; text-indent: -3.3ex; padding: 0px 0px 0px 20px; }
+  #bannerWarpper li.playing { color: #aaa; text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3); background-color: #36D9C3;}
+  #bannerWarpper li.playing a { color: #000; }
+  #bannerWarpper li.playing:before { content: '♬'; width: 14px; height: 14px; padding: 3px; line-height: 14px; margin: 0px; position: absolute; left: -24px; top: 9px; color: #000; font-size: 13px; text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2); }
 
   @media screen and (max-device-width: 480px) {
-    #wrapper { position: relative; left: -3%; }
+    #bannerWarpper  { position: relative; left: -3%; }
   }
 </style>
 
-<div class="row">
+<div class="row" id="bannerWarpper">
   <div class="col-md-8 col-sm-12">
-    <ol>
+    <div class="row">
       <% get_banners.each do |img| %>
-        <li>
-          <img src="<%= img %>" width="120px">
-        </li>
+        <div class="col-xs-6 col-md-3">
+          <a href="#" class="thumbnail">
+            <img data-src="<%= img %>" src="<%= img %>" alt="<%= img %>" width="120px">
+          </a>
+        </div>
       <% end %>
-    </ol>
+    </div>
   </div>
   <div class="col-md-4 col-sm-12">
     <p id="current-select"> 请点击左侧图片选择</p>
@@ -37,7 +39,7 @@
   // });
 
   // Load in a track on click
-  $('ol li').click(function(e) {
+  $('#bannerWarpper .thumbnail').click(function(e) {
     e.preventDefault();
     $(this).addClass('playing').siblings().removeClass('playing');
     var img = $('img', this).attr('src')

@@ -44,9 +44,9 @@ PORTFOLIO
         >
           <%= raw template.description %>
           <div class="">
-            <h3 class="bottom_bordered">真实案例展示</h3>
+            <h3 class="bottom_bordered">最新发布</h3>
             <div class="row">
-              <% template.sites.each do |site| %>
+              <% template.sites.limit(4).each do |site| %>
                 <div class="col-sm-6 col-md-3">
                   <div class="thumbnail">
                     <img src="http://qrickit.com/api/qr?d=<%=get_site_url(site)%>&fgdcolor=000000&bgdcolor=F1678D&qrsize=120&t=p&e=m">

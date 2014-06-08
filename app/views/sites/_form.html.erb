@@ -3,11 +3,11 @@
   <%= f.error_notification %>
   <div class="form-inputs">
     <%= f.input :template_id, as: :hidden, input_html: {value: params[:template_id] || @site.template.id} %>
-    <%= f.input :title, as: :text, input_html: {value: @site.title || '江哥和兰妞的喜帖邀请', style: 'width: 300px;'} %>
-    <%= f.input :description, as: :text, input_html: {value: @site.description || '我们定于2014年5月25日举行婚礼，香格里拉大草原，敬邀您参加！', style: "width: 300px;"} %>
+    <%= f.input :title, hint: '*标题将显示在分享朋友圈中', input_html: {value: @site.title, style: 'width: 300px;'} %>
+    <%= f.input :description, as: :text, hint: '*描述将显示在发送给微信朋友的时候', input_html: {value: @site.description, style: "width: 300px;"} %>
   </div>
   <br/>
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-meflat' %>
+    <%= f.button :submit, class: 'btn btn-meflat icon-left', data: {disable_with: '正在保存...'} %>
   </div>
 <% end %>
