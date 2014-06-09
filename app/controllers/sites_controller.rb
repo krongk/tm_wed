@@ -16,10 +16,15 @@ class SitesController < ApplicationController
     end
   end
 
+  def preview
+    @site = Site.find(params[:site_id])
+    #@site_images = SiteImage.joins(:site_page).where("site_pages.site_id = ?", @site.id)
+  end
+
   # GET /sites/1
   # GET /sites/1.json
   def show
-    @site_images = SiteImage.joins(:site_page).where("site_pages.site_id = ?", @site.id)
+    
   end
 
   # GET /sites/new

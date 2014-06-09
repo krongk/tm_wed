@@ -42,7 +42,7 @@ class SiteStepsController < ApplicationController
 private
 
   def redirect_to_finish_wizard(params)
-    redirect_to @site, notice: t('notice.site_steps.finished')
+    redirect_to site_preview_path(@site), notice: t('notice.site_steps.finished')
   end
 
   def set_site

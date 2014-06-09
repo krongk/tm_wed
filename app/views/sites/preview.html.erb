@@ -1,0 +1,25 @@
+<% content_for :bg_css do %>
+color-bg
+<% end %>
+<div class="row">
+  <div class="col-sm-12 col-md-3 col-md-offset-1">
+    <div style="margin-top: 200px; align: right; text-align: right; ">
+      <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
+      <div style="margin-top: 60px; text-align: right;">
+        <%= link_to site_path(@site) do %>
+          <i class="fa fa-arrow-left"></i> 返回
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-2 col-md-offset-1 hidden-sm hidden-xs">
+    <div style="margin-top: 240px; margin-right: 20px; color: #f2f2f2;">
+      <i class="fa fa-arrow-right fa-5x"></i>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-5 hidden-sm">
+    <div class="iphone-bg">
+      <iframe id="preview" src="<%= get_site_url(@site) %>" width="225px" height="410px" frameBorder="0" scrolling="no"></iframe>
+    </div>
+  </div>
+</div>

@@ -15,8 +15,9 @@ TmCard::Application.routes.draw do
   resources :site_pages
  
   resources :sites do 
-    resources :site_steps  
+    resources :site_steps
     collection {post :send_sms}
+    get 'preview'
   end
   namespace :sites do
     post "temp_form_update"

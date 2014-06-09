@@ -6,7 +6,8 @@
         <h3 class="panel-title"><%= @site.title %></h3>
       </div>
       <div class="panel-body">
-        <%= link_to '修改', edit_site_path(@site), class: 'btn btn-default' %> <%= link_to '预览', get_site_url(@site), target: '_blank', class: 'btn btn-default' %>
+        <%= link_to '修改', edit_site_path(@site), class: 'btn btn-default' %> 
+        <%= link_to '预览', site_preview_path(@site), class: 'btn btn-default' %>
       </div>
     </div>
     <!-- site info -->
@@ -15,10 +16,6 @@
         <h3 class="panel-title">喜帖唯一二维码&固定访问地址：</h3>
       </div>
       <div class="panel-body">
-        <div class="thumbnail text-center">
-          <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=120&t=p&e=m">
-          <div class="caption"><p>扫一扫在手机上查看</p></div>
-        </div>
         <a href="<%= get_site_url(@site) %>" target="_blank"><%= get_site_url(@site) %></a>
       </div>
     </div>
@@ -48,11 +45,7 @@
   <div class="col-sm-12 col-md-4 hidden-sm">
     &nbsp;
   </div>
-  <div class="col-sm-12 col-md-4 hidden-sm">
-    <div class="iphone-bg">
-      <iframe id="preview" src="<%= get_site_url(@site) %>" width="225px" height="410px" frameBorder="0" scrolling="no"></iframe>
-    </div>
-  </div>
+  
 </div>
 
 

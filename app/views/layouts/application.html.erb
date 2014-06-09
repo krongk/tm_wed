@@ -33,7 +33,7 @@
     <!-- ==============================================
     SERVICES
     =============================================== -->
-    <section id="<%= params[:container] %>" class="white-bg padding-top-bottom">
+    <section id="<%= params[:container] %>" class="<%= content_for?(:bg_css) ? yield(:bg_css) : 'white-bg' %> padding-top-bottom">
         <div class="container">
             <%= yield %>
         </div>
