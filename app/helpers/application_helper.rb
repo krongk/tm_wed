@@ -40,4 +40,8 @@ module ApplicationHelper
     return if sess.nil?
     Member.find(sess)
   end
+  #user_signed_in? || member login
+  def signed_in?
+    current_user || current_member
+  end
 end

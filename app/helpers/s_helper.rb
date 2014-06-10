@@ -1,4 +1,5 @@
 module SHelper
+
   #
   def get_temp_base_url(template)
     return if template.nil?
@@ -72,8 +73,6 @@ module SHelper
     end
     return image_list
   end
- 
-
 
   #获取应用的菜单
   def get_menu(site)

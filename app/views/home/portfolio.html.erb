@@ -47,11 +47,16 @@ PORTFOLIO
             <h3 class="bottom_bordered">最新发布</h3>
             <div class="row">
               <% template.sites.limit(4).each do |site| %>
+                <% next if get_first_site_image_url(site).nil? %>
                 <div class="col-sm-6 col-md-3">
                   <div class="thumbnail">
-                    <img src="http://qrickit.com/api/qr?d=<%=get_site_url(site)%>&fgdcolor=000000&bgdcolor=F1678D&qrsize=120&t=p&e=m">
+                    <img src="<%= get_first_site_image_url(site) %>" />
+                    <!--<img src="http://qrickit.com/api/qr?d=<%=get_site_url(site)%>&fgdcolor=000000&bgdcolor=F1678D&qrsize=120&t=p&e=m"> -->
                     <div class="caption text-center">
-                      <p><small><a href="<%= get_site_url(site)%>" target="_blank"><%= site.title.to_s.truncate(10) %></a></small></br><%= distance_of_time_in_words_to_now(site.updated_at) %>前</p>
+                      <p><small><a href="<%= site_preview_path(site)%>" target="_blank"><%= site.title.to_s.truncate(10) %></a></small></br><%= distance_of_time_in_words_to_now(site.updated_at) %>前</p>
+                      <p>
+                        <a href="<%= site_preview_path(site)%>" target="_blank" class="btn btn-default">预览</a>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -94,7 +99,7 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
               <div class="image-wrapper">
-                <img class="img-responsive" src="assets/chrome.png" alt="">
+                <img class="img-responsive" src="/assets/chrome.png" alt="">
                 <div class="loader"></div>
                 <div class="screen"></div>
               </div>

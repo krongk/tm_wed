@@ -2,7 +2,7 @@
   <div class="col-sm-6 text-col">
     <div class="authform">
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
-        <h3 class="bottom_bordered">会员登录</h3>
+        <h3 class="bottom_bordered">用户登录</h3>
 
         <%= devise_error_messages! %>
         <div class="form-group col-md-10">
@@ -15,12 +15,7 @@
           <%= f.label :password %>
           <%= f.password_field :password, class: 'form-control' %>
         </div>
-          <%= f.submit '提 交', :class => 'btn btn-meflat' %>
-          <% if devise_mapping.rememberable? -%>
-            <div class="checkbox">
-              <%= f.check_box :remember_me %> <%= f.label :remember_me %>
-            </div>
-          <% end -%>
+          <%= f.submit '登 录', :class => 'btn btn-meflat' %>
       <% end %>
     </div>
   </div>
@@ -34,7 +29,7 @@
           <div class="input-group">
             <%= f.telephone_field :auth_id, name: "member[auth_id]", class: 'form-control', placeholder: "请输入你的手机号" %>
             <div class="input-group-btn">
-              <%= f.submit '提 交', :class => 'btn btn-danger' %>
+              <%= f.submit '登 录', :class => 'btn btn-danger' %>
             </div>
           </div>
           <span class="help-block">* 请确保你输入的手机号能收到验证码.</span>

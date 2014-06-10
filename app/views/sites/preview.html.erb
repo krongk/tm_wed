@@ -6,7 +6,7 @@ color-bg
     <div style="margin-top: 200px; align: right; text-align: right; ">
       <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
       <div style="margin-top: 60px; text-align: right;">
-        <%= link_to site_path(@site) do %>
+        <%= link_to signed_in? ? site_path(@site) : portfolio_path do %>
           <i class="fa fa-arrow-left"></i> 返回
         <% end %>
       </div>

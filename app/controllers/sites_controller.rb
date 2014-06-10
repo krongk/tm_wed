@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   include SHelper
-  before_filter :authenticate_auth
+  before_filter :authenticate_auth, except: [:preview]
   before_action :set_site, only: [:show, :edit, :update, :destroy]
 
   #skip CSRF on update from tempp form.
@@ -56,8 +56,10 @@ class SitesController < ApplicationController
             template_page_id: temp_page.id,
             title: temp_page.title)
         end
-        #send to admin
-        SmsSendWorker.perform_async(ENV['ADMIN_PHONE'], "新增应用：#{get_site_url(@site)}")
+        #send notice to admin
+        if Rails.env == 'production'
+          SmsSendWorker.perform_async(ENV['ADMIN_PHONE'], "#{@site.user.try(:email) || @site.member.try(:auth_id)}创建了应用：#{get_site_url(@site)}")
+        end
         #redirect
         format.html { redirect_to site_site_steps_path(@site), notice: t('notice.site.created') }
         format.json { render action: 'show', status: :created, location: @site }

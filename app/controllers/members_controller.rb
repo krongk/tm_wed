@@ -17,15 +17,20 @@ class MembersController < ApplicationController
         session[:token] = member.id
         #send token
         TokenSendWorker.perform_async(member.auth_id, generate_token(member))
-        return render new_token_members_path, id: member.id
+        return render new_token_members_path, id: member.id, notice: '验证码已发送！'
       else
         get_session(member)
       end
+      redirect_to portfolio_path, notice: '登录成功！请选择一个喜欢的模板' and return
     else #new user
-      member = Member.create(member_params)
-      get_session(member)
+      member = Member.new(member_params)
+      if member.save
+        get_session(member)
+        redirect_to portfolio_path, notice: '注册成功！请选择一个喜欢的模板'
+      else
+        redirect_to new_user_session_path, alert: '注册或登录失败，请检查你的输入是否正确。'
+      end
     end
-    redirect_to('/portfolio')
   end
 
   def edit
@@ -46,9 +51,13 @@ class MembersController < ApplicationController
   #"id"=>"3", "auth_token"=>"ewf",
   def verify_token
     member = Member.find(params[:id])
-    if member.auth_token == params[:auth_token]
+    if member.auth_token.to_s.downcase == params[:auth_token].to_s.strip.downcase
       get_session(member)
-      redirect_to sites_path, notice: '登录成功！'
+      if member.sites.any?
+        redirect_to sites_path, notice: '登录成功！'
+      else
+        redirect_to portfolio_path, notice: '登录成！请选择一个喜欢的模板'
+      end
     else
       render new_token_members_path, id: member.id, notice: '短信验证失败，请重新登录！'
     end

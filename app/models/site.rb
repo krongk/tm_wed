@@ -1,5 +1,6 @@
 class Site < ActiveRecord::Base
   belongs_to :user
+  belongs_to :member
   belongs_to :template, class_name: 'Templates::Template'
   has_many :site_pages, :dependent => :destroy
   has_many :site_comments, -> { order("updated_at DESC") }, :dependent => :destroy

@@ -1,5 +1,15 @@
 ready = function() {
-	
+	/*============================================
+	Footer pop Weixin
+	==============================================*/
+	$('#icon-weixin2').popover({
+      html: true,
+      placement: 'top',
+      title: '扫描二维码加微信',
+      content: function(){
+        return $('#weixin-qrcode2').html();
+      }
+  });
 	/*============================================
 	Navigation Functions
 	==============================================*/

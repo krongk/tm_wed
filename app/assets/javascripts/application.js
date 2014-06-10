@@ -17,5 +17,4 @@
 //= require bootstrap
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
-//= require jquery.maskedinput
 //= require_tree .

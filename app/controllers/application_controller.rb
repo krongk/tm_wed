@@ -8,6 +8,14 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => exception.message
   end
 
+  #Override the devise default redirect path
+  def after_sign_in_path_for(resource)
+    if resource.sites.any?
+      sites_path
+    else
+      portfolio_path
+    end
+  end
   #render 404 error
   def not_found
     raise ActionController::RoutingError.new('Not Found')
