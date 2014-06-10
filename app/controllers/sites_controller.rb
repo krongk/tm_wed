@@ -56,6 +56,8 @@ class SitesController < ApplicationController
             template_page_id: temp_page.id,
             title: temp_page.title)
         end
+        #send to admin
+        SmsSendWorker.perform_async(ENV['ADMIN_PHONE'], "新增应用：#{get_site_url(@site)}")
         #redirect
         format.html { redirect_to site_site_steps_path(@site), notice: t('notice.site.created') }
         format.json { render action: 'show', status: :created, location: @site }
