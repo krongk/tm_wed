@@ -1,0 +1,4 @@
+<%# if has theme, add theme css here %>
+<% if @site && @site.theme_id %>
+  <link href="<%= [get_temp_base_url(@site.template), @site.theme.css_url].join %>" rel="stylesheet" type="text/css">
+<% end %>

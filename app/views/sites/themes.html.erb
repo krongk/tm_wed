@@ -1,0 +1,56 @@
+<style type="text/css">
+  .btn-radio {
+    width: 100%;
+  }
+  .img-radio {
+    opacity: 0.5;
+    margin-bottom: 5px;
+  }
+
+  .space-20 {
+      margin-top: 20px;
+  }
+</style>
+
+
+  <div class="row">
+    <div class="col-md-8">
+      <%= form_tag site_set_theme_path, {class: 'form-horizontal'} do %>
+        <%= hidden_field_tag 'theme_id', '' %>
+        <div class="row well">
+          <% @themes.each do |theme| %>
+            <div class="col-xs-4">
+              <button type="button" class="btn btn-default btn-radio" style="background-color: <%= theme.css_color %>;" data-preview="<%= get_demo_image_list(theme, 'preview_images') %>" data-theme="<%= theme.id %>"><%= theme.title %></button>
+            </div>
+          <% end %>
+        </div>
+        <div class="row space-20">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <div class="col-sm-10">
+                <input type="submit" class="form-control btn btn-lg btn-block btn-meflat" value="保存所选">
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <div class="iphone-bg">
+        <img id="preview-image" src="http://placehold.it/225x400" class="img-responsive">
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  //see: http://bootsnipp.com/snippets/featured/image-checkbox-buttons
+  $(function () {
+    $('.btn-radio').click(function(e) {
+      $('.btn-radio').not(this).removeClass('active')
+      $(this).addClass('active')
+
+      $('#preview-image').attr("src", $(this).data("preview"));
+      $('#theme_id').val($(this).data("theme"));
+    });
+  });
+</script>

@@ -1,7 +1,19 @@
 <% content_for :bg_css do %>
 color-bg
 <% end %>
-<div class="row">
+
+<div class="row hidden-md hidden-lg">
+  <div class="col-sm-12 text-center">
+    <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
+    <p>
+      <%= link_to signed_in? ? site_path(@site) : portfolio_path do %>
+        <i class="fa fa-arrow-left"></i> 返回
+      <% end %>
+    </p>
+  </div>
+</div>
+
+<div class="row hidden-sm hidden-xs">
   <div class="col-sm-12 col-md-3 col-md-offset-1">
     <div style="margin-top: 200px; align: right; text-align: right; ">
       <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">

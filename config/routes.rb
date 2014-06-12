@@ -18,6 +18,8 @@ TmCard::Application.routes.draw do
     resources :site_steps
     collection {post :send_sms}
     get 'preview'
+    get 'themes'
+    post 'set_theme'
   end
   namespace :sites do
     post "temp_form_update"

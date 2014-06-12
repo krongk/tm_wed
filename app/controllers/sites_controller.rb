@@ -1,7 +1,7 @@
 class SitesController < ApplicationController
   include SHelper
   before_filter :authenticate_auth, except: [:preview]
-  before_action :set_site, only: [:show, :edit, :update, :destroy]
+  before_action :set_site, only: [:show, :edit, :update, :destroy, :preview, :themes, :set_theme]
 
   #skip CSRF on update from tempp form.
   # skip_before_filter :verify_authenticity_token, :only => [:temp_form_update]
@@ -17,8 +17,21 @@ class SitesController < ApplicationController
   end
 
   def preview
-    @site = Site.find(params[:site_id])
+    #@site = Site.find(params[:site_id])
     #@site_images = SiteImage.joins(:site_page).where("site_pages.site_id = ?", @site.id)
+  end
+
+  #show themes list
+  def themes
+    #@site = Site.find(params[:site_id])
+    @themes = Templates::Template.find_by(id: @site.template_id).try(:themes)
+  end
+  #set theme for this site
+  #{"theme_id"=>"2", "action"=>"set_theme", "controller"=>"sites", "site_id"=>"8"}
+  def set_theme
+    @site.theme_id = params[:theme_id]
+    @site.save
+    redirect_to site_path(@site), notice: t('notice.site.set_theme')
   end
 
   # GET /sites/1
@@ -111,7 +124,9 @@ class SitesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_site
-      @site = Site.find(params[:id])
+      @site = Site.find_by(id: params[:id])
+      #for preview/themes/set_theme
+      @site ||= Site.find_by(id: params[:site_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -2,6 +2,7 @@ class Site < ActiveRecord::Base
   belongs_to :user
   belongs_to :member
   belongs_to :template, class_name: 'Templates::Template'
+  belongs_to :theme, class_name: 'Templates::Theme'
   has_many :site_pages, :dependent => :destroy
   has_many :site_comments, -> { order("updated_at DESC") }, :dependent => :destroy
   before_create :create_unique_short_title

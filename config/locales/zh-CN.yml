@@ -9,6 +9,7 @@ zh-CN:
       choose_template: "还没有选择模板，请选择一个你中意的模板！"
       created: "应用创建成功，进入下一步！"
       updated: "应用修改成功，进入下一步！"
+      set_theme: "主题更改成功！"
     site_steps:
       finished: "恭喜你，应用创建完成。"
     site_comment:

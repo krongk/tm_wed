@@ -64,7 +64,7 @@ module SHelper
         next unless img =~ /\.(jpg|png|gif|jpeg)/i
         image_list << [ENV["ASSETS_HOST"], obj.base_url, img].join('/')
       end
-    when "Templates::Page"
+    when "Templates::Page", "Templates::Theme"
       obj.send(img_col).to_s.split(ApplicationHelper::SPECIAL_SYMBO_REG).each do |img|
         next unless img =~ /\.(jpg|png|gif|jpeg)/i
         image_list << [ENV["ASSETS_HOST"], obj.template.base_url, img].join('/')
