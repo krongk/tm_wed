@@ -30,6 +30,10 @@ class SiteImagesController < ApplicationController
   # 见：app/assets/javascripts/site_images.js.coffee
   def create
     @site_image = SiteImage.create(site_image_params)
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   # PATCH/PUT /site_images/1

@@ -5,7 +5,9 @@ color-bg
 <div class="row hidden-md hidden-lg">
   <div class="col-sm-12 text-center">
     <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
-    <p>
+    <br/>
+    <a href="<%= get_site_url(@site) %>" target="_blank">点击预览</a>
+    <p><br/>
       <%= link_to signed_in? ? site_path(@site) : portfolio_path do %>
         <i class="fa fa-arrow-left"></i> 返回
       <% end %>

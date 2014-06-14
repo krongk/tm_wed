@@ -19,6 +19,7 @@ TmCard::Application.routes.draw do
     collection {post :send_sms}
     get 'preview'
     get 'themes'
+    get 'payment'
     post 'set_theme'
   end
   namespace :sites do

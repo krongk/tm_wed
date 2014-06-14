@@ -1,7 +1,7 @@
 class SitesController < ApplicationController
   include SHelper
   before_filter :authenticate_auth, except: [:preview]
-  before_action :set_site, only: [:show, :edit, :update, :destroy, :preview, :themes, :set_theme]
+  before_action :set_site, only: [:show, :edit, :update, :destroy, :preview, :payment, :themes, :set_theme]
 
   #skip CSRF on update from tempp form.
   # skip_before_filter :verify_authenticity_token, :only => [:temp_form_update]
@@ -16,9 +16,12 @@ class SitesController < ApplicationController
     end
   end
 
+  #支付页面
+  def payment
+
+  end
+
   def preview
-    #@site = Site.find(params[:site_id])
-    #@site_images = SiteImage.joins(:site_page).where("site_pages.site_id = ?", @site.id)
   end
 
   #show themes list
