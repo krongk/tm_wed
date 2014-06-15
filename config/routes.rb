@@ -21,6 +21,7 @@ TmCard::Application.routes.draw do
     get 'themes'
     get 'payment'
     post 'set_theme'
+    post 'verify_payment_token'
   end
   namespace :sites do
     post "temp_form_update"

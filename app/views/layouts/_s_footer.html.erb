@@ -1,5 +1,16 @@
 <footer style="text-align:center; color:#ffd800;margin-right:20px">
   <div style="margin-top: 40px;" class="text-center">
     <a href="http://wedxt.com" target="_blank"><img src="/assets/logo.png" width="80px" /></a>
+    <span style="position: relative; font-size: 1px; width: 2px; height: 2px; display: none;"><%= render 'layouts/cnzz' %></span>
   </div>
 </footer>
+
+<% unless @site.active? %>     
+  <!--Style Switcher-->
+  <script src="/alert/style-switcher.js"></script>
+  <div id="style-switcher">
+    <div id="toggle-switcher"><img src="/alert/wedxt.png" alt="支付提示"/></div>
+    <h1>你还未付款</h1>
+    <a href="/sites/<%= @site.id %>/payment"><img src="/alert/btn-pay.png" alt="点击这里马上支付" /></a>
+  </div><!--End Style Switcher-->
+<% end %>

@@ -1,7 +1,7 @@
 class SitesController < ApplicationController
   include SHelper
   before_filter :authenticate_auth, except: [:preview]
-  before_action :set_site, only: [:show, :edit, :update, :destroy, :preview, :payment, :themes, :set_theme]
+  before_action :set_site, only: [:show, :edit, :update, :destroy, :preview, :payment, :themes, :set_theme, :verify_payment_token]
 
   #skip CSRF on update from tempp form.
   # skip_before_filter :verify_authenticity_token, :only => [:temp_form_update]
@@ -16,12 +16,40 @@ class SitesController < ApplicationController
     end
   end
 
-  #支付页面
-  def payment
-
+  def preview
   end
 
-  def preview
+  #支付页面
+  def payment
+  end
+
+  #验证激活码
+  #1. 激活码是否有效
+  #2. 
+  def verify_payment_token
+    #render text: params and return
+    #{"code"=>"2faff2f", "commit"=>"验 证", "action"=>"verify_payment_token", "controller"=>"sites", "site_id"=>"21"}
+    if payment_token = Payment::Token.active.where("code = ?", params[:code].strip).first
+      #update payment_token
+      payment_token.actived_by = current_session.id
+      payment_token.actived_site_id = @site.id
+      payment_token.status = 'inactive'
+      payment_token.save
+      #update site_payment
+      site_payment = @site.site_payment
+      site_payment.status = 'SUCCESS'
+      site_payment.pay_type = 'token'
+      site_payment.pay_at = Time.now
+      site_payment.updated_by = current_session.id
+      site_payment.note = "网站前台验证"
+      site_payment.save
+
+      redirect_to site_path(@site), notice: t('notice.site.active_token')
+    elsif Payment::Token.inactive.where("code = ?", params[:code].strip).first
+      redirect_to site_payment_path(@site), alert: t('notice.site.inactive_token')
+    else
+      redirect_to site_payment_path(@site), alert: t('notice.site.invalid_token')
+    end
   end
 
   #show themes list
@@ -111,14 +139,10 @@ class SitesController < ApplicationController
   end
 
   def send_sms   
-    #render text: params and return
-
     if ENV['SMS_BAO_USER'].nil? || ENV['SMS_BAO_PASSWORD'].nil? || ENV['SMS_MAX_CHARACTER_COUNT'].nil?
       raise "请配置短信发送接口的环境变量"
     end
-
     SmsSendWorker.perform_async(params[:mobile_phone], params[:content])
-
     respond_to do |format|
       format.js {}
     end

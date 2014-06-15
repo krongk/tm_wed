@@ -3,7 +3,7 @@
     <h2 id="sdbr-title">维斗喜帖</h2>
     <p id="sdbr-category"><%= @post.keywords %></p>
     <p id="sdbr-date"><%= get_date(@post.updated_at) %></p>
-    <p id="sdbr-link"><a href="/post/<%= @post.short_title %>" target="_blank"><%= ENV["HOST_NAME"] + "/post/#{@post.short_title}" %></a></p>
+    <p id="sdbr-link"><a href="/blog" target="_blank">返回</a></p>
   </div>
   <div id="project-content" class="col-md-8 col-md-offset-1">
     <h1><%= @post.title %></h1>

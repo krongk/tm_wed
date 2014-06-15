@@ -2,3 +2,7 @@
 <% if @site && @site.theme_id %>
   <link href="<%= [get_temp_base_url(@site.template), @site.theme.css_url].join %>" rel="stylesheet" type="text/css">
 <% end %>
+
+<% unless @site.active? %>
+  <link rel="stylesheet" href="/alert/style-switcher.css">
+<% end %>

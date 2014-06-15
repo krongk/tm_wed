@@ -1,20 +1,15 @@
 <ol class="breadcrumb">
   <li><a href="/">首页</a></li>
   <li><a href="/sites">后台</a></li>
-  <li class="active">我的应用</li>
+  <li class="active"><%= @site.title %></li>
 </ol>
-
-<header class="section-header text-center">
-  <h1 class="scrollimation scale-in"><%= @site.title %></h1>
-  <p><%= @site.description %></p>
-</header>
 
 <div class="row">
   <div class="col-sm-12 col-md-4">
     <!-- site info -->
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title">管理应用</h3>
+        <h3 class="panel-title">编辑管理</h3>
       </div>
       <div class="panel-body">
         <%= link_to '修改', edit_site_path(@site), class: 'btn btn-default' %>
@@ -27,10 +22,10 @@
     <!-- site info -->
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title">应用状态</h3>
+        <h3 class="panel-title">支付状态</h3>
       </div>
-      <div class="panel-body">
-        <%= link_to '进入支付页面', site_payment_path(@site), class: 'btn btn-active' %>
+      <div class="panel-body text-center">
+        <%= render partial: 'site_payment', locals: {site: @site} %>
       </div>
     </div>
   </div>
