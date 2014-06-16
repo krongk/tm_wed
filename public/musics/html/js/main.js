@@ -231,15 +231,17 @@ var car2 = {
             preload: "auto",
             src: car2._audioNode.attr('data-src')
 		}
-		
-        car2._audio = new Audio(); 
 
-        for(var key in options_audio){
-            if(options_audio.hasOwnProperty(key) && (key in car2._audio)){
-                car2._audio[key] = options_audio[key];
-            }
+    car2._audio = new Audio(); 
+
+    for(var key in options_audio){
+        if(options_audio.hasOwnProperty(key) && (key in car2._audio)){
+            car2._audio[key] = options_audio[key];
         }
-        car2._audio.load();
+    }
+    car2._audio.load();
+    //auto play
+    car2._audio.play();
  	},
 
  	// 声音事件绑定
@@ -377,13 +379,12 @@ var car2 = {
 
 		// 播放声音
 		if(!car2._audio) return;
-		car2._audioNode.removeClass('f-hide');
 		car2._audio.play();
 
 		// 声音启动
 		$(document).one("touchstart", function(){
-            car2._audio.play();
-        });
+        car2._audio.play();
+    });
 	}
 };
 
