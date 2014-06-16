@@ -1,0 +1,34 @@
+
+/*sprite图片合并*/
+.css_sprite01 { background-image:url(../img/css_sprite01.png)!important;  background-repeat: no-repeat!important; } 
+
+/**
+ * 声音元件
+ * -u-audio
+ */
+.u-audio { position: absolute; top: 40px; right: 0; width: 132px; height: 73px; z-index: 200; }
+.u-audio .res_audio { position: absolute; top: 0; left: 0; opacity: 0; height: 0; width: 0; }
+.u-audio .btn_audio { width: 100%; padding-top: 29px; height: 44px; }
+.u-audio .btn_audio strong,
+.u-audio .btn_audio .audio_open { display: inline-block; height: 44px; line-height: 44px; vertical-align: middle; }
+.u-audio .btn_audio strong { width: 57px; font-size: 24px; color: #fff; opacity: 1; }
+.u-audio .btn_audio .audio_open { position: absolute; bottom: 0; left: 56px; width: 44px; }
+.u-audio .btn_audio strong.z-hide { opacity: 0; }
+.u-audio .btn_audio strong.z-move { 
+  -webkit-transition:opacity 0.5s;
+       -moz-transition:opacity 0.5s;
+      -ms-transition:opacity 0.5s;
+       -o-transition:opacity 0.5s;
+          transition:opacity 0.5s;
+}
+.u-audio.z-low { z-index: 1; }
+/**
+ * loading
+ * -u-pageLoading
+ */
+.u-pageLoading { display:none; position:fixed; top:0; left:0; z-index:99999; height:100%; width:100%; background:rgba(0,0,0,0.6); }
+.u-pageLoading img { position:absolute; top:40%; left:50%; height:100px; width:100px; margin:-50px 0 0 -50px; }
+
+/*声音*/
+.coffee-steam-box { display: none; }
+

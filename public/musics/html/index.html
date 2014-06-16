@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <title>高大上微信电子请柬,维斗喜帖出品</title>
+  <meta charset="utf-8" />
+  <meta name="apple-touch-fullscreen" content="YES" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta http-equiv="Expires" content="-1" />
+  <meta http-equiv="pragram" content="no-cache" />
+  <!-- 声音样式 start-->
+  <link rel="stylesheet" type="text/css" href="css/audio.css" />
+  <!-- 声音样式 end-->
+  <script type="text/javascript">
+    var phoneWidth =  parseInt(window.screen.width);
+    var phoneScale = phoneWidth/640;
+    var ua = navigator.userAgent;
+    if (/Android (\d+\.\d+)/.test(ua)){
+      var version = parseFloat(RegExp.$1);
+      // andriod 2.3
+      if(version>2.3){
+        document.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+      // andriod 2.3以上
+      }else{
+        document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+      }
+      // 其他系统
+    } else {
+      document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+    }
+  </script>
+  <!--移动端版本兼容 end -->
+</head>
+
+<body>  
+  <!-- 声音控件 -->
+  <section class='u-audio' data-src='../mp3/hunli-san-bao.mp3'>
+    <p id='coffee_flow' class="btn_audio">
+      <strong class='txt_audio z-hide'>关闭</strong>
+      <span class='css_sprite01 audio_open'></span>
+    </p>
+  </section>
+  <!-- 声音控件 end-->
+
+  <!--音乐脚本加载-->
+  <script src="http://wedxt.com/musics/html/js/init.mix.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://wedxt.com/musics/html/js/coffee.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://wedxt.com/musics/html/js/main.js" type="text/javascript" charset="utf-8" defer＝'defer'></script>
+  <!--音乐脚本加载 end--> 
+</body>
+</html>
+
+
