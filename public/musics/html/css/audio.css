@@ -6,7 +6,7 @@
  * 声音元件
  * -u-audio
  */
-.u-audio { position: absolute; top: 40px; right: 0; width: 132px; height: 73px; z-index: 200; }
+.u-audio { position: absolute; top: 20px; right: 0; width: 132px; height: 73px; z-index: 200; }
 .u-audio .res_audio { position: absolute; top: 0; left: 0; opacity: 0; height: 0; width: 0; }
 .u-audio .btn_audio { width: 100%; padding-top: 29px; height: 44px; }
 .u-audio .btn_audio strong,
