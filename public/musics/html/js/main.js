@@ -257,9 +257,9 @@ var car2 = {
 
  			audio_txt(txt,true,time_txt);
 
- 			// 开启音符冒泡
- 			$.fn.coffee.start();
- 			$('.coffee-steam-box').show(500);
+ 			// 开启音符冒泡 -- 么有成功
+ 			//$.fn.coffee.start();
+ 			//$('.coffee-steam-box').show(500);
  		})
 
  		// 声音关闭事件
@@ -267,8 +267,8 @@ var car2 = {
  			audio_txt(txt,false,time_txt)
 
  			// 关闭音符冒泡
- 			$.fn.coffee.stop();
- 			$('.coffee-steam-box').hide(500);
+ 			//$.fn.coffee.stop();
+ 			//$('.coffee-steam-box').hide(500);
  		})
 
  		function audio_txt(txt,val,time_txt){
