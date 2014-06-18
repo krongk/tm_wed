@@ -19,15 +19,22 @@
             </h3>
         </div>
         <div class="panel-body">
-          <a href="<%= get_site_url(site) %>" target="_blank" class="thumbnail pull-left">
-            <img src="<%= get_first_site_image_url(site) %>" alt="<%= site.title %>" width="160px;" class="img-responsive">
-          </a>
-          <br/>
-          <%= link_to site.status || '免费', 'javascript: void(0);', class: 'btn btn-default' %>
-          <%= link_to '预览', site_preview_path(site), target: '_blank', class: 'btn btn-default' %>
-          <%= link_to '详细', site, class: 'btn btn-default' %>
-          <%= link_to '修改', edit_site_path(site), class: 'btn btn-default' %>
-          <%= link_to '删除', site, method: :delete, data: { confirm: '确定要删除?' }, class: 'btn btn-default' %>
+          <table class="table">
+            <tr><td>
+              <a href="<%= get_site_url(site) %>" target="_blank" class="thumbnail pull-left">
+                <img src="<%= get_first_site_image_url(site) %>" alt="<%= site.title %>" width="160px;" class="img-responsive">
+              </a>
+            </td><td>
+              <%= link_to '预览', site_preview_path(site), class: 'btn btn-default' %>
+              <%= link_to '分享', site, class: 'btn btn-default' %>
+              <%= link_to '编辑', edit_site_path(site), class: 'btn btn-default' %>
+              <% if  site.template.themes.any? %>
+                <%= link_to '主题', site_themes_path(site), class: 'btn btn-default' %>
+              <% end %>
+              <%= link_to '删除', site, method: :delete, data: { confirm: '删除以后，你所有的数据将丢失，而且无法找回，确定要删除?' }, class: 'btn btn-default' %>
+            </td></tr>
+          </table>
+          <%= render partial: 'site_payment', locals: {site: site} %>
         </div>
       </div>
     </div>

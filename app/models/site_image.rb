@@ -12,10 +12,10 @@ class SiteImage < ActiveRecord::Base
   #validates_attachment_presence :image
 
   #update to version 4.0
-  validates_attachment_content_type :image, :content_type => /\Aimage/
+  #validates_attachment_content_type :image, :content_type => /\Aimage/
 
   # Explicitly do not validate
-  do_not_validate_attachment_file_type :image
+  #do_not_validate_attachment_file_type :image
 
   #
   acts_as_list

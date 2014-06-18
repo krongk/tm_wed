@@ -2,7 +2,7 @@
   <div class="col-sm-6 text-col">
     <div class="authform">
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
-        <h3 class="bottom_bordered">用户登录</h3>
+        <h3 class="bottom_bordered">用户登录<small>(首次使用请先注册)</small></h3>
 
         <%= devise_error_messages! %>
         <div class="form-group col-md-10">
@@ -40,9 +40,9 @@
   </div>
 
   <div class="col-sm-6 text-col">
-    <h3 class="bottom_bordered">新用户注册</h3>
+    <h3 class="bottom_bordered">需要帮助？</h3>
     <%- if devise_mapping.registerable? %>
-      <p><%= link_to '点击这里注册', new_registration_path(resource_name), class: 'right'  %></p>
+      <p><%= link_to '新用户注册', new_registration_path(resource_name), class: 'right'  %></p>
     <% end -%>
     <%- if devise_mapping.recoverable? %>
       <p><%= link_to "忘记密码?", new_password_path(resource_name), class: 'right' %></p>
