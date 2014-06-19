@@ -30,6 +30,7 @@ module ApplicationHelper
   end
 
   def get_date(date)
+    return if date.blank?
     date.strftime("%Y-%m-%d")
   end
 
