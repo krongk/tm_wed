@@ -11,8 +11,8 @@ class HomeController < ApplicationController
 
   def case
     @templates = Templates::Template.where("cate_id in (1,2)").order("updated_at DESC")
-    @last_template = @templates.pop
-    @sites = Site.order("updated_at DESC").paginate(page: params[:page] || 1, per_page: 16)
+    @last_template = @templates.pop #use for filter style
+    @sites = Site.order("updated_at DESC").paginate(page: params[:page] || 1, per_page: 9)
   end
 
   def pricing

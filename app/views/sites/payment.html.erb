@@ -1,62 +1,89 @@
 <ol class="breadcrumb">
   <li><a href="/">首页</a></li>
   <li><a href="/sites">后台</a></li>
-  <li><%= link_to @site.title, site_path(@site) %></li>
-  <li class="active">选择支付方式</li>
+  <li class="active">支付</li>
 </ol>
 
 <div class="row">
-  <div class="col-sm-12 col-md-4">
-    <!-- site info -->
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="bottom_bordered">方式一、支付宝支付</h3>
-      </div>
-      <div class="panel-body">
-        <img src="/assets/alipay.gif" /> 
-        <%=link_to @site.site_payment.pay_url(@site) do %>
-          去支付
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-12 col-md-4">
-    <!-- site info -->
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="bottom_bordered">方式二、激活码支付</h3>
-      </div>
-      <div class="panel-body">
-        <%= form_tag(site_verify_payment_token_path) do |f| %>
-          <p>你的应用编号： <span class="label label-success"><%= @site.short_title %></span></p>
-          <div class="input-group">
-            <%=text_field_tag :code, nil, class: 'form-control', placeholder: "请输入6位数激活码" %>
-            <div class="input-group-btn">
-              <%= submit_tag '验 证', :class => 'btn btn-danger' %>
-            </div>
-          </div>
-        <% end %>
-        <br/>
-        <h4>可以从哪里获取激活码？</h4>
-        <ul>
-          <li>我们会给[商户版]会员发放激活码。</li>
-          <li>我们会给合作婚庆公司发放激活码。</li>
-          <li>我们会特定合作代理商发放激活码。</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-12 col-md-4">
-    <!-- site info -->
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="bottom_bordered">方式三、微信AA付款</h3>
-      </div>
-      <div class="panel-body text-center">
-        <p><img alt="维斗喜帖微信二维码" border="0" src="/assets/weixin-qrcode.png" /></p>
-        扫一扫上面的二维码，添加为好友<br/>
-        发送你的应用编号： <span class="label label-success"><%= @site.short_title %></span> 即可获得AA支付链接。
-      </div>
-    </div>
+  <div class="col-md-12">
+    <table class="table table-bordered table-striped">
+      <tr><td>应用名称：</td><td><%= @site.title %> </td></tr>
+      <tr><td>应用编号：</td><td><span class="label label-success"><%= @site.short_title %></span></td></tr>
+      <tr><td>应用价格：</td><td><%= @site.site_payment.price %> </td></tr>
+      <tr><td>支付状态：</td><td><%= payment_state(@site) %> </td></tr>
+    </table>
   </div>
 </div>
+
+<% unless @site_payment.state == 'completed' %>
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <!-- site info -->
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="bottom_bordered">方式一、在线支付</h3>
+        </div>
+        <div class="panel-body">
+          <%= form_tag(@site.site_payment.pay_url(@site), method: 'get') do |f| %>
+            <p>选择支付类型： <img src="/assets/alipay.gif" /> </p>
+            <div class="input-group">
+              <%=text_field_tag :code, nil, class: 'form-control', value: "￥#{@site_payment.price}", readonly: true %>
+              <div class="input-group-btn">
+                <%= link_to '支 付', @site.site_payment.pay_url(@site), :class => 'btn btn-danger' %>
+              </div>
+            </div>
+          <% end %>
+          <br/>
+          <h4>支付宝支付注意事项：</h4>
+          <ul>
+            <li>请选择【即时到帐】支付方式</li>
+            <li>支付成功后，应用自动激活</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <!-- site info -->
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="bottom_bordered">方式二、激活码支付</h3>
+        </div>
+        <div class="panel-body">
+          <%= form_tag(site_verify_payment_token_path) do |f| %>
+            <p>你的应用编号： <span class="label label-success"><%= @site.short_title %></span></p>
+            <div class="input-group">
+              <%=text_field_tag :code, nil, class: 'form-control', placeholder: "请输入6位数激活码" %>
+              <div class="input-group-btn">
+                <%= submit_tag '验 证', :class => 'btn btn-danger' %>
+              </div>
+            </div>
+          <% end %>
+          <br/>
+          <h4>哪里可以获取激活码？</h4>
+          <ul>
+            <li>我们会给[商户版]会员发放激活码</li>
+            <li>我们会给合作婚庆公司发放激活码</li>
+            <li>我们会特定合作代理商发放激活码</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <!-- site info -->
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="bottom_bordered">方式三、微信AA付款</h3>
+        </div>
+        <div class="panel-body">
+          <p class="text-center"><img alt="维斗喜帖微信二维码" border="0" src="/assets/weixin-qrcode.png" /></p>
+          <h4>操作流程：</h4>
+          <ul>
+            <li>打开微信扫描二维码，添加微信好友</li>
+            <li>或添加微信号：<span class="label label-info">xuejiang_song</span></li>
+            <li>发送应用编号即可获得AA支付链接</li>
+          </ul>          
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

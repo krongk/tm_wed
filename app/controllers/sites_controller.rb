@@ -2,11 +2,9 @@ class SitesController < ApplicationController
   include SHelper
   #alipay notify 获得alipay返回过来的异步调用，添加下面一行，否则422错误
   skip_before_filter :verify_authenticity_token, :only => [:alipay_notify]
+  #权限验证过滤掉alipay_notify
   before_filter :authenticate_auth, except: [:preview, :alipay_notify]
   before_action :set_site, only: [:show, :edit, :update, :destroy, :preview, :payment, :themes, :set_theme, :verify_payment_token]
-
-  #skip CSRF on update from tempp form.
-  # skip_before_filter :verify_authenticity_token, :only => [:temp_form_update]
 
   # GET /sites
   # GET /sites.json
@@ -22,34 +20,28 @@ class SitesController < ApplicationController
     
   end
 
-  #支付页面
-  def payment
-    logger.debug "Person attributes hash: "
-    @site_payment = @site.site_payment
-    callback_params = params.except(*request.path_parameters.keys)
-    if callback_params.any? && Alipay::Sign.verify?(callback_params)
-      render text: callback_params and return
-      if @site_payment.paid? || @site_payment.completed?
-        flash[:notice] = '成功支付'
-      elsif @site_payment.pending?
-        flash[:alert] = '支付失败'
-      end
-    end
-  end
-  
-  # 支付宝异步消息接口
+  #用户付款页面
+  #同时也用于支付宝回调，带参数。
   #  Parameters: {"id"=>"9", "buyer_email"=>"180xxxx0818", "buyer_id"=>"2081804692", "exterface"=>"trade_create_by_buyer", 
   # "is_success"=>"T", "logistics_fee"=>"0.00", "logistics_payment"=>"SELLER_PAY", "logistics_type"=>"DIRECT", 
   # "notify_id"=>"RqPnCoPT3K9%2FL4GdP4QUlJPCi0i", "notify_time"=>"2014-06-19 15:59:38", \
   # "notify_type"=>"trade_status_sync", "out_trade_no"=>"9", "payment_type"=>"1", "receive_address"=>"null", 
   # "seller_email"=>"kenrxxx@xx.com", "seller_id"=>"208566fwef3013", "subject"=>"账户充值：1.0", "total_fee"=>"1.00",
   #  "trade_no"=>"201407xx90469", "trade_status"=>"TRADE_FINISHED", "sign"=>"112e39xx9c059ea12210fe4b2", "sign_type"=>"MD5", "site_id"=>"8"}
+  def payment
+    @site_payment = @site.site_payment
+    # callback_params = params.except(*request.path_parameters.keys)
+    # if callback_params.any?
+    #   render site_payment_path(@site), notice: "支付宝支付状态: #{callback_params[:trade_status]}" and return
+    # end
+  end
+  
+  # 支付宝异步消息接口
+  # 注意：必须在服务器上正常运行才能测试，本地localhost阿里是不会自动post这个接口的
   def alipay_notify
-    puts "------------------------------------------"
     notify_params = params.except(*request.path_parameters.keys)
     # 先校验消息的真实性
     if Alipay::Notify.verify?(notify_params)
-      puts "..........................#{notify_params}"
       # 获取交易关联的订单
       @payment = SitePayment.find params[:out_trade_no]
 

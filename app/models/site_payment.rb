@@ -1,3 +1,13 @@
+#encoding: utf-8
+## 实现支付宝支付功能
+#参考教程：http://chloerei.com/2013/08/01/alipay-payment-in-ruby/
+#
+#绑定接口： 双接口
+#以下是‘担保付款’交易流程：
+# users/account => 提交充值表单
+# payments#create => 生成订单，并跳转到支付宝支付页面（@payment.pay_url(current_user)）
+# 用户支付成功，商家到支付宝‘发货’ => payments#alipay_notify (1. 调用发货地址：@payment.send_good,  2. 改变订单状态)
+# 发货成功，用户到支付宝‘确认收货’ => payments#alipay_notify 改变订单状态
 class SitePayment < ActiveRecord::Base
   belongs_to :site
   validates  :site_id, :uniqueness => {:scope => [:site_id], :message => "已经存在"}
@@ -56,17 +66,16 @@ class SitePayment < ActiveRecord::Base
   end
 
   def add_plan
-    puts "add plan .........................."
-    # start_at = (space.plan_expired_at && space.plan_expired_at > Time.now.utc) ? space.plan_expired_at : Time.now.utc
+    start_at = (site.plan_expired_at && site.plan_expired_at > Time.now.utc) ? site.plan_expired_at : Time.now.utc
 
-    # update_attributes(
-    #   :start_at    => start_at
-    # )
+    update_attributes(
+      :start_at    => start_at
+    )
 
-    # space.update_attributes(
-    #   :plan => plan,
-    #   :plan_expired_at => start_at + quantity.months
-    # )
+    site.update_attributes(
+      :plan => 'professional',
+      :plan_expired_at => start_at + 12.months
+    )
   end
 
   def remove_plan
@@ -123,7 +132,6 @@ class SitePayment < ActiveRecord::Base
   end
 
   def send_good
-    puts "send good..............."
     Alipay::Service.send_goods_confirm_by_platform(:trade_no => trade_no, :logistics_name => ENV["SITE_NAME"], :transport_type => 'DIRECT')
   end
 end

@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
   <li><a href="/">首页</a></li>
   <li><a href="/sites">后台</a></li>
-  <li class="active"><%= @site.title %></li>
+  <li class="active">分享</li>
 </ol>
 
 <div class="row">
@@ -9,7 +9,7 @@
     <!-- site info -->
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title">唯一二维码和固定访问地址：</h3>
+        <h3 class="panel-title">应用二维码：</h3>
       </div>
       <div class="panel-body text-center">
         <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
@@ -36,7 +36,7 @@
     <!-- site info -->
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title">分享喜帖：</h3>
+        <h3 class="panel-title">分享到社交网络：</h3>
       </div>
       <div class="panel-body">
         <p>
