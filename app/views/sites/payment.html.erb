@@ -13,7 +13,10 @@
         <h3 class="bottom_bordered">方式一、支付宝支付</h3>
       </div>
       <div class="panel-body">
-        <img src="/assets/alipay.gif" /> 正在集成中...
+        <img src="/assets/alipay.gif" /> 
+        <%=link_to @site.site_payment.pay_url(@site) do %>
+          去支付
+        <% end %>
       </div>
     </div>
   </div>

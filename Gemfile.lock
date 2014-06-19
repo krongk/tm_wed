@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/chloerei/alipay.git
+  revision: 89f0f5d266f05af7e7f8f30fc5cdfb5ff16c4bcc
+  specs:
+    alipay (0.1.0)
+
+GIT
   remote: git@github.com:galetahub/ckeditor.git
   revision: 7e61c976e13e29524adee76355e34e525905c582
   specs:
@@ -37,7 +43,6 @@ GEM
       rails (>= 3, < 5)
     acts_as_list (0.3.0)
       activerecord (>= 3.0)
-    alipay (0.0.4)
     arel (4.0.2)
     bcrypt (3.1.7)
     bcrypt (3.1.7-x86-mingw32)
@@ -240,6 +245,7 @@ GEM
     wicked (1.0.0)
       rails (>= 3.0.7)
     will_paginate (3.0.5)
+    win32console (1.3.2)
     win32console (1.3.2-x86-mingw32)
 
 PLATFORMS
@@ -249,7 +255,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   acts_as_list
-  alipay
+  alipay!
   better_errors
   binding_of_caller
   bootstrap-sass (~> 2.3.2.2)

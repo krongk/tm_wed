@@ -17,10 +17,68 @@ class SitesController < ApplicationController
   end
 
   def preview
+    
   end
 
   #支付页面
   def payment
+    @site_payment = @site.site_payment
+    callback_params = params.except(*request.path_parameters.keys)
+    if callback_params.any? && Alipay::Sign.verify?(callback_params)
+      if @site_payment.paid? || @site_payment.completed?
+        flash[:notice] = '成功支付'
+      elsif @site_payment.pending?
+        flash[:alert] = '支付失败'
+      end
+    end
+  end
+  
+  # 支付宝异步消息接口
+  #  Parameters: {"id"=>"9", "buyer_email"=>"180xxxx0818", "buyer_id"=>"2081804692", "exterface"=>"trade_create_by_buyer", 
+  # "is_success"=>"T", "logistics_fee"=>"0.00", "logistics_payment"=>"SELLER_PAY", "logistics_type"=>"DIRECT", 
+  # "notify_id"=>"RqPnCoPT3K9%2FL4GdP4QUlJPCi0i", "notify_time"=>"2014-06-19 15:59:38", \
+  # "notify_type"=>"trade_status_sync", "out_trade_no"=>"9", "payment_type"=>"1", "receive_address"=>"null", 
+  # "seller_email"=>"kenrxxx@xx.com", "seller_id"=>"208566fwef3013", "subject"=>"账户充值：1.0", "total_fee"=>"1.00",
+  #  "trade_no"=>"201407xx90469", "trade_status"=>"TRADE_FINISHED", "sign"=>"112e39xx9c059ea12210fe4b2", "sign_type"=>"MD5", "site_id"=>"8"}
+  def alipay_notify
+    notify_params = params.except(*request.path_parameters.keys)
+    # 先校验消息的真实性
+    if Alipay::Notify.verify?(notify_params)
+      # 获取交易关联的订单
+      @payment = SitePayment.find params[:out_trade_no]
+
+      case params[:trade_status]
+      when 'WAIT_BUYER_PAY'
+        # 交易开启
+        @payment.update_attribute :trade_no, params[:trade_no]
+        @payment.pend
+      when 'TRADE_FINISHED'
+        # 交易完成
+        need_mail = @payment.pending?
+        @payment.complete
+        #SystemMailer.delay.payment_payment_success(@payment.id.to_s) if need_mail
+      when 'TRADE_CLOSED'
+        # 交易被关闭
+        @payment.cancel
+        #SystemMailer.delay.payment_cancel(@payment.id.to_s)
+      when 'WAIT_SELLER_SEND_GOODS'
+        # 买家完成支付
+        @payment.pay
+        # 虚拟物品无需发货，所以立即调用发货接口
+        @payment.send_good
+        #SystemMailer.delay.payment_payment_success(@payment.id.to_s)
+      else
+        # do nothing
+      end
+
+      @payment.payment_notifies.create!(verify: true, payment_number: "p#{@payment.id}r#{rand(30034)}", payment_count: @payment.price, state: 'income', cate: '在线充值', status: params[:trade_status])
+      # 成功接收消息后，需要返回纯文本的 ‘success’，否则支付宝会定时重发消息，最多重试7次。 
+      render :text => 'success'
+    else
+      @payment.payment_notifies.create!(verify: false, payment_number: "p#{@payment.id}r#{rand(30034)}", payment_count: @payment.price, state: 'income', cate: '在线充值', status: params[:trade_status])
+
+      render :text => 'error'
+    end
   end
 
   #验证激活码

@@ -13,7 +13,7 @@ TmCard::Application.routes.draw do
 
   resources :site_comments
   resources :site_pages
- 
+
   resources :sites do 
     resources :site_steps
     collection {post :send_sms}
@@ -22,6 +22,7 @@ TmCard::Application.routes.draw do
     get 'payment'
     post 'set_theme'
     post 'verify_payment_token'
+    post :alipay_notify
   end
   namespace :sites do
     post "temp_form_update"

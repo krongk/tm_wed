@@ -5,13 +5,13 @@
   <p class="p-payment-status-block">&nbsp;<br/>&nbsp;</p>
 <% when 'PENDING' %>
   <span class="label label-warning">等待付款</span>
-  <%= link_to '点击这里支付', site_payment_path(site), class: 'btn btn-active' %>
+  <%= link_to '进入支付页面', site_payment_path(site), class: 'btn btn-active' %>
 <% when 'FAILURE' %>
   <span class="label label-warning">支付失败</span>
   <%= link_to '点击这里重新支付', site_payment_path(site), class: 'btn btn-active' %>
 <% when 'SUCCESS' %>
   <span class="label label-success">付款成功</span>
-  <p class="p-payment-status-block">你已成功付款了！ <br/> 付款时间：<%= get_date(site.site_payment.pay_at) %></p>
+  <p class="p-payment-status-block">你已成功付款了！ <br/> 付款时间：<%= get_date(site.site_payment.paid_at) %></p>
 <% when 'EXPIRED' %>
   <span class="label label-danger">已经过期</span>
   <%= link_to '点击这里续费', site_payment_path(site), class: 'btn btn-active' %>
