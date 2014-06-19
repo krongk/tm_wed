@@ -24,6 +24,7 @@ class SitesController < ApplicationController
 
   #支付页面
   def payment
+    logger.debug "Person attributes hash: "
     @site_payment = @site.site_payment
     callback_params = params.except(*request.path_parameters.keys)
     if callback_params.any? && Alipay::Sign.verify?(callback_params)
@@ -76,11 +77,11 @@ class SitesController < ApplicationController
         # do nothing
       end
 
-      @payment.payment_notifies.create!(verify: true, payment_number: "p#{@payment.id}r#{rand(30034)}", payment_count: @payment.price, state: 'income', cate: '在线充值', status: params[:trade_status])
+      #@payment.payment_notifies.create!(verify: true, payment_number: "p#{@payment.id}r#{rand(30034)}", payment_count: @payment.price, state: 'income', cate: '在线充值', status: params[:trade_status])
       # 成功接收消息后，需要返回纯文本的 ‘success’，否则支付宝会定时重发消息，最多重试7次。 
       render :text => 'success'
     else
-      @payment.payment_notifies.create!(verify: false, payment_number: "p#{@payment.id}r#{rand(30034)}", payment_count: @payment.price, state: 'income', cate: '在线充值', status: params[:trade_status])
+      #@payment.payment_notifies.create!(verify: false, payment_number: "p#{@payment.id}r#{rand(30034)}", payment_count: @payment.price, state: 'income', cate: '在线充值', status: params[:trade_status])
 
       render :text => 'error'
     end
