@@ -8,10 +8,16 @@ color-bg
     <br/>
     <a href="<%= get_site_url(@site) %>" target="_blank">点击预览</a>
     <p><br/>
-      <a href="javascript:history.go(-1);">
-        <i class="fa fa-arrow-left"></i> 返回
-      </a>
-    </p>
+      <% if signed_in? %>
+        <a href="/sites">
+          <i class="fa fa-arrow-left"></i> 返回
+        </a>
+      <% else %>
+        <a href="/portfolio">
+          <i class="fa fa-arrow-left"></i> 返回
+        </a>
+      <% end %>
+  </p>
   </div>
 </div>
 
@@ -20,9 +26,15 @@ color-bg
     <div style="margin-top: 200px; align: right; text-align: right; ">
       <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
       <div style="margin-top: 60px; text-align: right;">
-        <a href="javascript:history.go(-1);">
-          <i class="fa fa-arrow-left"></i> 返回
-        </a>
+        <% if signed_in? %>
+          <a href="/sites">
+            <i class="fa fa-arrow-left"></i> 返回
+          </a>
+        <% else %>
+          <a href="/portfolio">
+            <i class="fa fa-arrow-left"></i> 返回
+          </a>
+        <% end %>
       </div>
     </div>
   </div>
@@ -32,8 +44,8 @@ color-bg
     </div>
   </div>
   <div class="col-sm-12 col-md-5 hidden-sm">
-    <div class="iphone-bg">
-      <iframe id="preview" src="<%= get_site_url(@site) %>" width="225px" height="410px" frameBorder="0" scrolling="no"></iframe>
+    <div class="iphone-bg-white">
+      <iframe id="preview" src="<%= get_site_url(@site) %>" width="315px" height="482px" frameBorder="0" scrolling="no"></iframe>
     </div>
   </div>
 </div>

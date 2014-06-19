@@ -62,7 +62,7 @@ class SitesController < ApplicationController
   def set_theme
     @site.theme_id = params[:theme_id]
     @site.save
-    redirect_to site_path(@site), notice: t('notice.site.set_theme')
+    redirect_to sites_path, notice: t('notice.site.set_theme')
   end
 
   # GET /sites/1

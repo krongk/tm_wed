@@ -1,9 +1,14 @@
 <div class="row">
   <div id="project-sidebar" class="col-md-3 hidden-xs">
-    <h2 id="sdbr-title">维斗喜帖</h2>
+    <h2 id="sdbr-title">
+      <img src="http://qrickit.com/api/qr?d=<%="http://wedxt.com/post/#{@post.short_title}"%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
+      <br/><small>扫一扫，在手机上浏览</small>
+    </h2>
+
     <p id="sdbr-category"><%= @post.keywords %></p>
     <p id="sdbr-date"><%= get_date(@post.updated_at) %></p>
-    <p id="sdbr-link"><a href="/blog" target="_blank">返回</a></p>
+    <p id="sdbr-link"><a href="/blog">返回</a></p>
+    <%= render partial: 'layouts/duoshuo', locals: {post: @post} %>
   </div>
   <div id="project-content" class="col-md-8 col-md-offset-1">
     <h1><%= @post.title %></h1>

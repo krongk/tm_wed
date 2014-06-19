@@ -9,37 +9,11 @@
     <!-- site info -->
     <div class="panel panel-info">
       <div class="panel-heading">
-        <h3 class="panel-title">编辑管理</h3>
-      </div>
-      <div class="panel-body">
-        <%= link_to '修改', edit_site_path(@site), class: 'btn btn-default' %>
-        <%= link_to '预览', site_preview_path(@site), class: 'btn btn-default' %>
-        <%= link_to_if @site.template.themes.any?, '主题', site_themes_path(@site), class: 'btn btn-default' %>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-12 col-md-4">
-    <!-- site info -->
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title">支付状态</h3>
-      </div>
-      <div class="panel-body text-center">
-        <%= render partial: 'site_payment', locals: {site: @site} %>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-12 col-md-4">
-    <!-- site info -->
-    <div class="panel panel-info">
-      <div class="panel-heading">
         <h3 class="panel-title">唯一二维码和固定访问地址：</h3>
       </div>
       <div class="panel-body text-center">
         <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
-        <p>
-          <a href="<%= get_site_url(@site) %>" target="_blank"><%= get_site_url(@site) %></a>
-        </p>
+        <br/><small>扫一扫，在手机上查看</small>
       </div>
     </div>
   </div>
@@ -65,6 +39,9 @@
         <h3 class="panel-title">分享喜帖：</h3>
       </div>
       <div class="panel-body">
+        <p>
+          <a href="<%= get_site_url(@site) %>" target="_blank"><%= get_site_url(@site) %></a>
+        </p>
         <%= render 'layouts/baidu_share' %>
       </div>
     </div>
