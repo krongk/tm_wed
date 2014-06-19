@@ -16,7 +16,9 @@ TmCard::Application.routes.draw do
 
   resources :sites do 
     resources :site_steps
-    collection {post :send_sms}
+    collection do
+      post :send_sms
+    end
     get 'preview'
     get 'themes'
     get 'payment'

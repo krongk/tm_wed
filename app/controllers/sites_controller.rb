@@ -25,6 +25,7 @@ class SitesController < ApplicationController
     @site_payment = @site.site_payment
     callback_params = params.except(*request.path_parameters.keys)
     if callback_params.any? && Alipay::Sign.verify?(callback_params)
+      render text: callback_params and return
       if @site_payment.paid? || @site_payment.completed?
         flash[:notice] = '成功支付'
       elsif @site_payment.pending?
@@ -41,9 +42,11 @@ class SitesController < ApplicationController
   # "seller_email"=>"kenrxxx@xx.com", "seller_id"=>"208566fwef3013", "subject"=>"账户充值：1.0", "total_fee"=>"1.00",
   #  "trade_no"=>"201407xx90469", "trade_status"=>"TRADE_FINISHED", "sign"=>"112e39xx9c059ea12210fe4b2", "sign_type"=>"MD5", "site_id"=>"8"}
   def alipay_notify
+    puts "------------------------------------------"
     notify_params = params.except(*request.path_parameters.keys)
     # 先校验消息的真实性
     if Alipay::Notify.verify?(notify_params)
+      puts "..........................#{notify_params}"
       # 获取交易关联的订单
       @payment = SitePayment.find params[:out_trade_no]
 
