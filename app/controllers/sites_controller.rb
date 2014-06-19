@@ -1,6 +1,8 @@
 class SitesController < ApplicationController
   include SHelper
-  before_filter :authenticate_auth, except: [:preview]
+  #alipay notify 获得alipay返回过来的异步调用，添加下面一行，否则422错误
+  skip_before_filter :verify_authenticity_token, :only => [:alipay_notify]
+  before_filter :authenticate_auth, except: [:preview, :alipay_notify]
   before_action :set_site, only: [:show, :edit, :update, :destroy, :preview, :payment, :themes, :set_theme, :verify_payment_token]
 
   #skip CSRF on update from tempp form.
