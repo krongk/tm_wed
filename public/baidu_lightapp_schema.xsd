@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xsd:element name="urlset">
+<xsd:annotation>
+    <xsd:documentation>
+        urlset用来标记整个文档的开头
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element name="url"  minOccurs="0"  maxOccurs="50000" type="tUrl"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:complexType name="tUrl">
+<xsd:annotation>
+    <xsd:documentation>
+        url标记每条信息的开始和结束
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:sequence>
+<xsd:element name="loc"   type="tLoc"/>
+<xsd:element name="lastmod"  minOccurs="0"  type="tLastmod"/>
+<xsd:element name="changefreq"  minOccurs="0"  type="tChangefreq"/>
+<xsd:element name="priority"  minOccurs="0"  type="tPriority"/>
+<xsd:element name="data"   type="tData"/>
+</xsd:sequence>
+</xsd:complexType>
+
+<xsd:simpleType name="tLoc">
+<xsd:annotation>
+    <xsd:documentation>
+        该条数据的存放地址
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:restriction base="xsd:anyURI">
+<xsd:whiteSpace value="collapse"/>
+<xsd:maxLength value="256"/>
+<xsd:minLength value="1"/>
+<xsd:pattern value="(http://)(.+)"/>
+
+</xsd:restriction>
+
+</xsd:simpleType>
+
+<xsd:simpleType name="tLastmod">
+<xsd:annotation>
+    <xsd:documentation>
+        指该条数据的最新一次更新时间
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:union>
+    <xsd:simpleType>
+        <xsd:restriction base="xsd:date"/>
+    </xsd:simpleType>
+    <xsd:simpleType>
+        <xsd:restriction base="xsd:dateTime"/>
+    </xsd:simpleType>
+</xsd:union>
+
+</xsd:simpleType>
+
+<xsd:simpleType name="tChangefreq">
+<xsd:annotation>
+    <xsd:documentation>
+        指该条数据的更新频率
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="always"/>
+<xsd:enumeration value="hourly"/>
+<xsd:enumeration value="daily"/>
+<xsd:enumeration value="weekly"/>
+<xsd:enumeration value="monthly"/>
+<xsd:enumeration value="yearly"/>
+<xsd:enumeration value="never"/>
+
+</xsd:restriction>
+
+</xsd:simpleType>
+
+<xsd:simpleType name="tPriority">
+<xsd:annotation>
+    <xsd:documentation>
+        用来指定此链接相对于其他链接的优先权比值，此值定于0.0-1.0之间
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:restriction base="xsd:decimal">
+<xsd:maxInclusive value="1.0"/>
+<xsd:minInclusive value="0.0"/>
+
+</xsd:restriction>
+
+</xsd:simpleType>
+
+<xsd:complexType name="tData">
+<xsd:sequence>
+<xsd:element name="display"   type="tDisplay"/>
+</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="tDisplay">
+<xsd:sequence>
+<xsd:element name="name"  minOccurs="1"  maxOccurs="1" type="tName"/>
+<xsd:element name="alias"  minOccurs="0"  maxOccurs="1" type="tAlias"/>
+<xsd:element name="description"  minOccurs="1"  maxOccurs="1" type="tDescription"/>
+<xsd:element name="brand"  minOccurs="0"  maxOccurs="1" type="tBrand"/>
+<xsd:element name="function"  minOccurs="1"  maxOccurs="1" type="tFunction"/>
+<xsd:element name="imageUrl"  minOccurs="1"  maxOccurs="1" type="tImageUrl"/>
+<xsd:element name="url"  minOccurs="1"  maxOccurs="1" type="t1Url"/>
+<xsd:element name="category"  minOccurs="1"  maxOccurs="1" type="tCategory"/>
+<xsd:element name="subcate"  minOccurs="1"  maxOccurs="1" type="tSubcate"/>
+</xsd:sequence>
+</xsd:complexType>
+
+<xsd:simpleType name="tName">
+<xsd:annotation>
+    <xsd:documentation>
+        支持查询的名称
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:restriction base="xsd:string">
+
+</xsd:restriction>
+
+</xsd:simpleType>
+
+<xsd:simpleType name="tAlias">
+<xsd:annotation>
+    <xsd:documentation>
+        查询名称的别名
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:restriction base="xsd:string">
+
+</xsd:restriction>
+
+</xsd:simpleType>
+
+<xsd:simpleType name="tDescription">
+<xsd:annotation>
+    <xsd:documentation>
+        应用简介
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:restriction base="xsd:string">
+
+</xsd:restriction>
+
+</xsd:simpleType>
+
+<xsd:simpleType name="tBrand">
+<xsd:annotation>
+    <xsd:documentation>
+        开发者品牌
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:restriction base="xsd:string">
+
+</xsd:restriction>
+
+</xsd:simpleType>
+
+<xsd:simpleType name="tFunction">
+<xsd:annotation>
+    <xsd:documentation>
+        可使用的功能
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:restriction base="xsd:string">
+
+</xsd:restriction>
+
+</xsd:simpleType>
+
+<xsd:simpleType name="tImageUrl">
+<xsd:annotation>
+    <xsd:documentation>
+        应用代表性的图片
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:restriction base="xsd:string">
+
+</xsd:restriction>
+
+</xsd:simpleType>
+
+<xsd:simpleType name="t1Url">
+<xsd:annotation>
+    <xsd:documentation>
+        应用的url地址
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:restriction base="xsd:string">
+
+</xsd:restriction>
+
+</xsd:simpleType>
+
+<xsd:simpleType name="tCategory">
+<xsd:annotation>
+    <xsd:documentation>
+        一级目录
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:restriction base="xsd:string">
+
+</xsd:restriction>
+
+</xsd:simpleType>
+
+<xsd:simpleType name="tSubcate">
+<xsd:annotation>
+    <xsd:documentation>
+        二级目录
+    </xsd:documentation>
+</xsd:annotation>
+<xsd:restriction base="xsd:string">
+
+</xsd:restriction>
+
+</xsd:simpleType>
+
+</xsd:schema>
