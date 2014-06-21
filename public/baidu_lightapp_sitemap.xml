@@ -10,6 +10,7 @@
                 <name>电子喜帖</name>
                 <alias>电子请帖,电子请柬,微信请帖,二维码请帖</alias>
                 <description>在线制作漂亮的电子喜帖，微信请柬，微信相册,生成二维码请帖；微信分享请帖</description>
+                <city>成都</city>
                 <function>我要制作</function>
                 <subFunction>用户登录</subFunction>
                 <imageUrl>http://tm-admin.qiniudn.com/ckeditor/pictures/21/original.</imageUrl>
@@ -29,6 +30,9 @@
                 <name>模板</name>
                 <alias>电子请帖模板,电子请柬模板,微信请帖模板,二维码请帖</alias>
                 <description>选择一个漂亮的电子请柬模板，在线制作漂亮的电子喜帖，微信请柬，微信相册；电子请帖模板，微信请帖分享</description>
+                <city>成都</city>
+                <function>我要制作</function>
+                <subFunction>用户登录</subFunction>
                 <imageUrl>http://wedxt.cn/templates/wed/responsive-onepage-wed/previews/thumb.png</imageUrl>
                 <url>http://wedxt.com/portfolio</url>
                 <category>生活工具</category>
@@ -46,6 +50,9 @@
                 <name>案例</name>
                 <alias>电子请帖案例,电子请柬案例,微信请帖案例,二维码请帖</alias>
                 <description>电子请帖成功案例，电子喜帖样例展示，微相册预览，二维码请帖</description>
+                <city>成都</city>
+                <function>我要制作</function>
+                <subFunction>用户登录</subFunction>
                 <imageUrl>http://wedxt.cn/templates/gallery/scrolling/previews/thumb.png</imageUrl>
                 <url>http://wedxt.com/case</url>
                 <category>生活工具</category>
