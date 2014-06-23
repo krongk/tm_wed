@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   helper :all
   before_filter :prepare_for_mobile
 
