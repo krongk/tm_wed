@@ -812,7 +812,7 @@ a:focus,
 #filter-works ul li.active a,
 #filter-works ul li:hover a{
     color:#fff;
-    background:#1D2026;
+    background: $theme_color;
 }
 
 .masonry-wrapper{
@@ -874,7 +874,7 @@ a:focus,
     height:100%;
     top:0;
     left:0;
-    background:#1D2026;
+    background: #1D2026;
     -webkit-transform:translateX(-100%);
     transform:translateX(-100%);
     -webkit-transition:all 0.4s ease-out;

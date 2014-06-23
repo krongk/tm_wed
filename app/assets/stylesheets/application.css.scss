@@ -14,6 +14,8 @@
  *= require_tree .
  *= require_self
  */
+$theme_color: #F1678D;
+$active_color: #94DAF0;
 
 
 .alert {
@@ -22,3 +24,16 @@
 .hidden{
   display: none;
 }
+
+/**********will_paginate start***************/
+.pagination>li>a, .pagination>li>span {
+  color: $theme_color;
+}
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+  z-index: 2;
+  color: #fff;
+  background-color: $theme_color;
+  border-color: $theme_color;
+  cursor: default;
+}
+/**********will_paginate end***************/

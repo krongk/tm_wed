@@ -15,7 +15,7 @@ Blog
             <% end %>
           </div>        
           <h2><%= link_to post.title, "/post/#{post.short_title}" %></h2>
-          <p class="hidden-xs"><%= get_short_content(post.description, 100)%></p>      
+          <p class="hidden-xs text-left"><%= get_short_content(post.description, 100)%></p>      
         </div>
       <% end %>    
     </div>  
