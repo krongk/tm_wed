@@ -3,13 +3,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Language" content="zh-CN" />
-    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="robots" content="ALL,FOLLOW" />
     <meta name="author" content="master@inruby.com" />
-    <link rel="author" href="humans.txt" />
+    <link type="text/plain" rel="author" href="http://www.wedxt.com/humans.txt" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="vKiLlD9zCh" />
+    <meta name="baidu_union_verify" content="12cbe2e3b4013182407aa39d53b4be23">
     <title><%= content_for?(:title) ? yield(:title) : ENV["SITE_NAME"] %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : ENV["SITE_NAME"] %>">
+    <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : ENV["SITE_NAME"] %>">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
