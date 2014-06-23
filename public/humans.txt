@@ -3,10 +3,9 @@
 
 
 /* TEAM */
-  <your title>: <your name>
-  Site:
-  Twitter:
-  Location:
+  Site: Wedxt.com
+  Weixin: xuejiang_song
+  Location: China
 
 /* THANKS */
   Daniel Kehoe (@rails_apps) for the RailsApps project
