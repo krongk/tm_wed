@@ -93,11 +93,11 @@ class SitesController < ApplicationController
       payment_token.save
       #update site_payment
       site_payment = @site.site_payment
-      site_payment.status = 'SUCCESS'
+      site_payment.state = 'completed'
       site_payment.pay_type = 'token'
-      site_payment.pay_at = Time.now
+      site_payment.completed_at = Time.now
       site_payment.updated_by = current_session.id
-      site_payment.note = "网站前台验证"
+      site_payment.note = "激活码验证"
       site_payment.save
 
       redirect_to site_path(@site), notice: t('notice.site.active_token')
@@ -214,7 +214,7 @@ class SitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:user_id, :member_id, :template_id, :short_title, :title, :description, :domain, :status, :is_publiched, :is_comment_show, :updated_by, :note)
+      params.require(:site).permit(:user_id, :member_id, :template_id, :short_title, :title, :description, :domain, :is_publiched, :is_comment_show, :updated_by, :note)
     end
 
     #expired, we used QRcode API to generate qrcode
