@@ -158,7 +158,7 @@ class SitesController < ApplicationController
         end
         #send notice to admin
         if Rails.env == 'production'
-          SmsSendWorker.perform_async(ENV['ADMIN_PHONE'], "#{@site.user.try(:email) || @site.member.try(:auth_id)}创建了应用：#{get_site_url(@site)}")
+          SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "#{@site.user.try(:email) || @site.member.try(:auth_id)}创建了应用：#{get_site_url(@site)}")
         end
         #redirect
         format.html { redirect_to site_site_steps_path(@site), notice: t('notice.site.created') }
