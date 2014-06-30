@@ -3,7 +3,7 @@ class SiteImage < ActiveRecord::Base
 
   has_attached_file :image,
                     :path => ":class/:id/:style.:extension",
-                    :styles => {:original => '320x480#'} #override the original file
+                    :styles => {:original => '640x960#'} #override the original file
                     #:styles => { :content => '640x960>' } #standerd mobile size: 320*480 480*800 640*960
 
   validates_attachment_size :image, :less_than => 8.megabytes
