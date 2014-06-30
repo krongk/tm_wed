@@ -7,7 +7,7 @@ class SController < ApplicationController
   def index
     @site = Site.find_by(short_title: params[:site_id])
     @site_page = SitePage.find_by(short_title: params[:id])
-    raise "can not found site with params: #{params}" if @site.nil?
+    not_found if @site.nil?
     @site_page ||= @site.site_pages.first
     @template = @site.template
     @base_url = get_temp_base_url(@template)

@@ -26,7 +26,7 @@
     <div class="col-sm-6 text-col">
       <div class="authform">
         <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
-          <h3 class="bottom_bordered">用户登录<small>(首次使用请先注册)</small></h3>
+          <h3 class="bottom_bordered">电子邮箱登录<small>(首次使用请先注册)</small></h3>
 
           <%= devise_error_messages! %>
           <div class="form-group col-md-10">
