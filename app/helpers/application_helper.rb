@@ -37,6 +37,11 @@ module ApplicationHelper
   end
 
   #session for member
+  def get_session(member)
+    session[:member] = nil
+    session[:member] = member.id
+  end
+    
   def current_member(sess = session[:member])
     return if sess.nil?
     Member.find(sess)

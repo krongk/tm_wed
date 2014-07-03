@@ -1,5 +1,13 @@
 TmCard::Application.routes.draw do
 
+  namespace :app do
+    get "site/new"
+    post "site/create"
+    get "site/upload"
+    get "site/preview"
+
+  end
+  
   get '/home/dialog_banner'
   get '/home/dialog_music'
   resources :site_images do 

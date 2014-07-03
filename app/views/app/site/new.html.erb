@@ -1,0 +1,55 @@
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+  <h1>App::Site#new</h1>
+  <p>Find me in app/views/app/site/new.html.erb</p>
+
+  <%= form_tag({action: :create}, class: 'simple_form form-horizontal', role: "form") do %>
+    <%= hidden_field_tag("site[template_id]", params[:template_id]) %>
+    <div class="form-group">
+      <label for="member_auth_id" class="col-sm-2 control-label">*手机号码</label>
+      <div class="col-sm-10">
+        <%= hidden_field_tag("member[auth_type]", "phone") %>
+        <input id="member_auth_id" name="member[auth_id]" type="tel" class="form-control" placeholder="18080810818" />
+        <p class="help-block">*确保您的手机能够接收短信</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="site_title" class="col-sm-2 control-label">喜帖标题</label>
+      <div class="col-sm-10">
+        <input id="site_title" name="site[title]" type="text" class="form-control" placeholder="我们结婚啦/维宝宝的满月酒/" value="<%= params[:site].nil? ? '' : params[:site][:title] %>"/>
+      </div>
+    </div>
+<!--     <div class="form-group">
+      <label for="site_boy" class="col-sm-2 control-label">男方姓名</label>
+      <div class="col-sm-10">
+        <input id="site_boy" name="site[boy]" type="text" class="form-control" placeholder="梁山伯" value="<%# params[:site].nil? ? '' : params[:site][:boy] %>"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="site_girl" class="col-sm-2 control-label">女方姓名</label>
+      <div class="col-sm-10">
+        <input id="site_girl" name="site[girl]" type="text" class="form-control" placeholder="祝英台" value="<%#= params[:site].nil? ? '' : params[:site][:girl] %>"/>
+      </div>
+    </div> -->
+    <div class="form-group">
+      <label for="site_date" class="col-sm-2 control-label">宴请日期</label>
+      <div class="col-sm-10">
+        <input id="site_date" name="site[date]" type="date" class="form-control" value="<%= params[:site].nil? ? '' : params[:site][:date] %>"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="site_address" class="col-sm-2 control-label">宴请地址</label>
+      <div class="col-sm-10">
+        <input id="site_address" name="site[address]" type="address" class="form-control" placeholder="四川省成都市锦江区滨江东路9号.香格里拉大酒店" value="<%= params[:site].nil? ? '' : params[:site][:address] %>"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= submit_tag("保存，进入下一步", class: 'btn btn-meflat') %>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
+</div>

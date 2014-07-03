@@ -71,11 +71,6 @@ class MembersController < ApplicationController
       return token
     end
 
-    def get_session(member)
-      session[:member] = nil
-      session[:member] = member.id
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_member
       @member = SiteComment.find(params[:id])
