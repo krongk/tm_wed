@@ -12,7 +12,6 @@ class Site < ActiveRecord::Base
   #empty
   validates :title, presence: true
 
-  #STATE = %w(opening pending paid completed canceled)
   def active?
     ['completed'].include?(self.site_payment.state)
   end
@@ -23,10 +22,8 @@ class Site < ActiveRecord::Base
         self.short_title = SecureRandom.hex(2)
       end while self.class.exists?(:short_title => short_title)
     end
-    
-    #STATE = %w(opening pending paid completed canceled)
-    def create_site_payment
-      SitePayment.create!(site_id: id, state: 'opening', price: ENV["DEFAULT_PAYMENT_PRICE"])
+        def create_site_payment
+      SitePayment.create!(site_id: id, state: 'opening', price: ENV["PRICE_BASE"])
     end
 end
 

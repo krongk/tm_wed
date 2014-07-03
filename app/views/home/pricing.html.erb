@@ -6,7 +6,7 @@
   <div class="plan">
     <div class="plan-name">
       <h2>个人版</h2>
-      <span>￥60/个</span>
+      <span>￥<%= ENV["PRICE_BASE"] %>/个</span>
     </div>
     <ul>
       <li class="plan-feature">免费试用</li>
@@ -18,7 +18,7 @@
   <div class="plan">
     <div class="plan-name">
       <h2>定制版</h2>
-      <span>￥180/个</span>
+      <span>￥<%= ENV["PRICE_VIP"] %>/个</span>
     </div>
     <ul>
       <li class="plan-feature">个性修图</li>
@@ -31,7 +31,7 @@
   <div class="plan">
     <div class="plan-name">
       <h2>商户版</h2>
-      <span>￥2000/年</span>
+      <span>￥<%= ENV["PRICE_BIZ"] %>/年</span>
     </div>
     <ul>
       <li class="plan-feature">无限应用</li>
