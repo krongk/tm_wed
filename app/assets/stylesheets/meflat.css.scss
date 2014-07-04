@@ -871,7 +871,7 @@ a:focus,
     padding:0;
     padding-left:50px;
     width:100%;
-    height:66%;
+    height:100%;
     top:0;
     left:0;
     background: #1D2026;
@@ -1461,10 +1461,6 @@ hr.bordered{
 -----Media Queries------
 ------------------------*/    
 @media (max-width: 767px) {
-	body{
-      font-size: 80%;
-    }
-
     .navbar {
         padding:0 20px;
     }

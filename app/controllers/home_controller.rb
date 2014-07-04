@@ -5,8 +5,11 @@ class HomeController < ApplicationController
     #render text: params and return
   end
 
-  def portfolio
+  def templates
     @templates = Templates::Template.where("cate_id in (1,2)").order("updated_at DESC").paginate(page: params[:page] || 1, per_page: 6)
+  end
+  def template
+    @template = Templates::Template.find(params[:id])
   end
 
   def case

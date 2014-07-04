@@ -130,7 +130,7 @@ class SitesController < ApplicationController
   # GET /sites/new
   def new
     if params[:template_id].nil? || Templates::Template.find_by(id: params[:template_id]).nil?
-      redirect_to portfolio_path, notice: t('notice.site.choose_template')
+      redirect_to templates_path, notice: t('notice.site.choose_template')
       return
     end
     @site = Site.new

@@ -1,0 +1,32 @@
+<% title "模板-维斗喜帖模板|喜帖模板,请帖模板,请柬模板|二维码请柬模板|手机请帖模板|微信喜帖模板" %>
+<% meta_description "维斗喜帖提供数十款漂亮的结婚请帖模版，免费试用，支持手持互动，精美的微信请帖模版，手机动态请帖模版，微信电子相册。" %>
+
+<!-- ==============================================
+Blog
+=============================================== -->
+<section id="blog" class="white-bg padding-top-bottom">
+  <div class="container">
+    <header class="section-header text-center">
+      <h1 class="scrollimation scale-in">应用模板</h1>
+      <p>选择你喜欢的模板，点击查看详细案例.<br/> 每个模板都有不同的内容和风格要求，请按照每个模板的提示准备素材.</p>
+    </header>  
+    <div class="row blog">
+      <% @templates.each do |template| %>
+        <% demo_images = get_demo_image_list(template, 'demo_img') %>
+        <div class="col-md-4 col-sm-6 item scrollimation fade-up">
+          <div class="icon">
+            <%= link_to template_path(template) do %>
+              <img class="img-responsive img-center" src="<%= demo_images.shift %>" alt="<%= template.title %>" />
+            <% end %>
+          </div>        
+          <h2><%= link_to template.title, template_path(template) %></h2>
+          <div class="text-center">
+            <%= link_to app_site_new_path(template_id: template.id), class: 'btn btn-meflat icon-right' do %>
+              我要制作 <i class="fa fa-arrow-up"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>  
+  </div>
+</section>

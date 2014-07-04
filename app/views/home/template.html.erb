@@ -1,0 +1,96 @@
+<% title "#{@template.title}-维斗喜帖" %>
+<% meta_description "#{@template.title}|维斗喜帖，漂亮的电子请帖、微信请帖、二维码请柬。" %>
+
+<% demo_images = get_demo_image_list(@template, 'demo_img') %>
+<% demo_images.shift %>
+<!-- ==============================================
+PROJECT PREVIEW MODAL (Do not alter this markup)
+=============================================== --> 
+<div id="project-modal" class=" " >
+
+  <div class="modal-dialog">
+  
+    <div class="modal-content">
+    
+      <div class="modal-header">
+      
+        <div class="container">
+          <h1 id="hdr-title" class="text-center"><%= @template.title %></h1>
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+              <div class="image-wrapper">
+                <img class="img-responsive" src="/assets/chrome.png" alt="">
+                <div class="loader" ></div>
+                <div class="screen flexslider"><div class="flex-viewport" ><ul class="slides">
+                <% demo_images.each do |img| %>
+                  <li><img src="<%= img %>" alt="<%= @template.title %>" draggable="false"></li>
+                <% end %>
+                </ul></div><ul class="flex-direction-nav"><li><a class="flex-prev" href="#"><i class="fa fa-angle-left"></i></a></li><li><a class="flex-next" href="#"><i class="fa fa-angle-right"></i></a></li></ul></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div id="project-sidebar" class="col-md-3">
+              <h2 id="sdbr-title">
+                <%= link_to app_site_new_path(template_id: @template.id), class: 'btn btn-meflat icon-right' do %>
+                  快速制作 <i class="fa fa-arrow-right"></i>
+                <% end %>
+              </h2>
+              <p id="sdbr-category"><%= @template.cate.title %></p>
+              <p id="sdbr-date"><%= get_date(@template.updated_at) %></p>
+              <p id="sdbr-client"><%= @template.keywords %></p>
+              <p id="sdbr-descr"><%= @template.summary %></p>
+            </div>
+            <div id="project-content" class="col-md-8 col-md-offset-1">
+              <%= raw @template.description %>
+              <div class="">
+                <h3 class="bottom_bordered">最新案例</h3>
+                <div class="row">
+                  <% @template.recent_sites.each do |site| %>
+                    <div class="col-sm-6 col-md-3">
+                      <div class="thumbnail">
+                        <img src="<%= get_first_site_image_url(site) %>" />
+                        <!--<img src="http://qrickit.com/api/qr?d=<%=get_site_url(site)%>&fgdcolor=000000&bgdcolor=F1678D&qrsize=120&t=p&e=m"> -->
+                        <div class="caption text-center">
+                          <p><small><a href="<%= site_preview_path(site)%>" target="_blank"><%= site.title.to_s.truncate(10) %></a></small></br><%= distance_of_time_in_words_to_now(site.updated_at) %>前</p>
+                          <p>
+                            <a href="<%= site_preview_path(site)%>" target="_blank" class="btn btn-default">预览</a>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <p>怎么样，是不是觉得很赞？<br>其实制作很简单，填一个表格，传几张图即可完成，超级方便！</p>
+              <p class="text-right">
+                <%= link_to app_site_new_path(template_id: @template.id), class: 'btn btn-meflat icon-right' do %>
+                  我要制作[快速模式] <i class="fa fa-arrow-up"></i>
+                <% end %>
+                <a class="btn btn-meflat icon-right" data-confirm="确定要使用该模板？" href="/sites/new?template_id=2">
+                  我要制作[专业模式] <i class="fa fa-arrow-up"></i>
+                </a>          
+              </p>
+              <p class="text-right">
+                <%= link_to templates_path do%>
+                  <i class="fa fa-reply"></i> 返回
+                <% end %>
+              </p>
+            </div>
+          </div><!-- end row-->
+        </div>
+      </div><!-- End modal-body -->
+      
+    </div><!-- End modal-content -->
+    
+  </div><!-- End modal-dialog -->
+</div>
+<!-- ==============================================
+PROJECT PREVIEW MODAL END
+=============================================== --> 
