@@ -26,6 +26,7 @@ $(document).on 'ready page:load', ->
         alert("#{file.name} 大于4MB，无法上传到服务器，请通过图片压缩软件压缩后再上传。")
         return
       if types.test(file.type) || types.test(file.name)
+        $('#upload-help').hide()
         data.context = $(tmpl("template-upload", file))
         $('#updating').append(data.context)
         $('#current-select').html("已上传照片："+ count += 1);
