@@ -24,12 +24,24 @@
   <div class="col-sm-12 col-md-4 col-md-offset-4">
     <h2 class="text-center scrollimation fade-in">上传照片</h2>
     <div class="alert alert-info fade in">
-       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-       <ol>
-         <li>文件的大小不能超过2MB,请下载压缩软件自动压缩以后再上传大图。</li>
-         <li>可以选择多张图片同时上传.</li>
-         <li>上传完成以后，请点击‘下一步’</li>
-       </ol>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <div id="upload-help">
+        <ol>
+           <li>文件的大小不能超过2MB,请下载压缩软件自动压缩以后再上传大图。</li>
+           <li>可以选择多张图片同时上传.</li>
+           <li>上传完成以后，请点击‘下一步’</li>
+        </ol>
+      </div>
+      <div id="upload-progress">
+        <div id="updating">&nbsp;</div>
+        <script id="template-upload" type="text/x-tmpl">
+          <div class="upload">
+            {%=o.name%}
+            <div class="progress"><div class="bar" style="width: 0%"></div></div>
+          </div>
+        </script>
+      </div><!--End col -->
+
     </div>
     <%= form_for SiteImage.new do |f| %>
       <%= f.hidden_field :site_page_id, value: @site_page.id %>
@@ -46,12 +58,13 @@
         <div class="progress"><div class="bar" style="width: 0%"></div></div>
       </div>
     </script>
-  </div><!--End row -->
+  </div><!--End col -->
+  
 </div>
 
 
 <div class="row">
-  <div class="col-sm-12 col-md-8 col-md-offset-4">
+  <div class="col-sm-12 col-md-4 col-md-offset-4">
     <div id="site_images">
       <%= render @site_images %>
     </div>
