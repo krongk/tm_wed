@@ -1,7 +1,6 @@
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
-  <h1>App::Site#new</h1>
-  <p>Find me in app/views/app/site/new.html.erb</p>
+  <h3 class="bottom_bordered">1. 填写信息  <small> --- 2. 上传照片 --- 3. 生成应用</small></h1>
 
   <%= form_tag({action: :create}, class: 'simple_form form-horizontal', role: "form") do %>
     <%= hidden_field_tag("site[template_id]", params[:template_id]) %>

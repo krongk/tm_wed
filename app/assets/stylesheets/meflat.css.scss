@@ -1461,7 +1461,10 @@ hr.bordered{
 -----Media Queries------
 ------------------------*/    
 @media (max-width: 767px) {
-	
+	body{
+      font-size: 80%;
+    }
+
     .navbar {
         padding:0 20px;
     }
@@ -1509,6 +1512,17 @@ hr.bordered{
     
     .section-header h1{
         font-size:38px;
+    }
+
+    h3{
+        font-size: 18px;
+    }
+    /***project add quick-btn**/
+    #projects-wrapper{
+      margin-top: -180px;
+    }
+    .project-item-btn {
+      margin-top: 220px;
     }
 }
 

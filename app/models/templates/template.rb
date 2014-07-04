@@ -9,5 +9,9 @@ class Templates::Template < ActiveRecord::Base
   has_many :keystores
   
   acts_as_taggable
+
+  def recent_sites(count = 4)
+    Site.where(template_id: self.id).select { |s| s.site_pages.find{|p| p.site_images.any?} }[0..3]
+  end
 end
 
