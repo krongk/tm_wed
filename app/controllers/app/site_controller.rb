@@ -1,5 +1,6 @@
 #encoding: utf-8
 class App::SiteController < ApplicationController
+  include SHelper
   def new
     if params[:template_id].nil? || (@template = Templates::Template.find_by(id: params[:template_id])).nil?
       redirect_to portfolio_path, notice: t('notice.site.choose_template')
