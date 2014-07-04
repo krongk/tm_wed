@@ -22,7 +22,7 @@ class Site < ActiveRecord::Base
         self.short_title = SecureRandom.hex(2)
       end while self.class.exists?(:short_title => short_title)
     end
-        def create_site_payment
+    def create_site_payment
       SitePayment.create!(site_id: id, state: 'opening', price: ENV["PRICE_BASE"])
     end
 end

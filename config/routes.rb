@@ -5,13 +5,13 @@ TmCard::Application.routes.draw do
     post "site/create"
     get "site/upload"
     get "site/preview"
-
   end
   
   get '/home/dialog_banner'
   get '/home/dialog_music'
   resources :site_images do 
     collection {post :sort}
+    collection {get :app}
   end
 
   resources :members do

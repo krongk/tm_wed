@@ -1,7 +1,7 @@
 class SiteImagesController < ApplicationController
   before_filter :authenticate_auth
   before_action :set_site_image, only: [:show, :edit, :update, :destroy]
-  layout 'simple'
+  layout 'simple', except: [:app]
 
   # 图片上传页面
   # 1. 显示已上传图片
@@ -12,6 +12,13 @@ class SiteImagesController < ApplicationController
     @site_images = SiteImage.where(site_page_id: @site_page.id).order("position ASC").page(params[:page] || 1)
   end
 
+  #all copy from action :index
+  #use for app upload
+  def app
+    @site_page = SitePage.find_by(id: params[:site_page_id])
+    not_found if @site_page.nil?
+    @site_images = SiteImage.where(site_page_id: @site_page.id).order("position ASC").page(params[:page] || 1)
+  end
   # GET /site_images/1
   # GET /site_images/1.json
   def show
