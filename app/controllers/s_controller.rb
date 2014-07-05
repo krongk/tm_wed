@@ -8,6 +8,8 @@ class SController < ApplicationController
     @site = Site.find_by(short_title: params[:site_id])
     @site_page = SitePage.find_by(short_title: params[:id])
     not_found if @site.nil?
+    redirect_to root_path and return unless @site.is_published
+
     @site_page ||= @site.site_pages.first
     @template = @site.template
     @base_url = get_temp_base_url(@template)
