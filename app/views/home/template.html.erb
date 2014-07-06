@@ -73,9 +73,9 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
                 <%= link_to app_site_new_path(template_id: @template.id), class: 'btn btn-meflat icon-right' do %>
                   我要制作[快速模式] <i class="fa fa-arrow-up"></i>
                 <% end %>
-                <a class="btn btn-meflat icon-right" data-confirm="确定要使用该模板？" href="/sites/new?template_id=2">
+                <%= link_to new_site_path(template_id: @template.id), class: 'btn btn-meflat icon-right' do %>
                   我要制作[专业模式] <i class="fa fa-arrow-up"></i>
-                </a>          
+                <% end %>      
               </p>
               <p class="text-right">
                 <%= link_to templates_path do%>
