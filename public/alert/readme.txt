@@ -8,6 +8,7 @@
   <% end %>
 
 2. views/layouts/_s_footer.html.erb
+  这只是简单提示：
 
   <% unless @site.active? %>     
     <!--Style Switcher-->
@@ -18,3 +19,7 @@
       <a href="/sites/<%= @site.id %>/payment" class="btn btn-danger btn-block">点击这里马上支付</a>
     </div><!--End Style Switcher-->
   <% end %>
+
+  严重提示：
+
+  

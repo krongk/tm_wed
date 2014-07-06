@@ -6,10 +6,6 @@ Blog
 =============================================== -->
 <section id="blog" class="white-bg padding-top-bottom">
   <div class="container">
-    <header class="section-header text-center">
-      <h1 class="scrollimation scale-in">应用模板</h1>
-      <p>选择你喜欢的模板，点击查看详细案例.<br/> 每个模板都有不同的内容和风格要求，请按照每个模板的提示准备素材.</p>
-    </header>  
     <div class="row blog">
       <% @templates.each do |template| %>
         <% demo_images = get_demo_image_list(template, 'demo_img') %>

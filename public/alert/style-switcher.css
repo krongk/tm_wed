@@ -2,10 +2,10 @@
 	position:fixed;
 	z-index:1000;
 	top:250px;
-	right:-222px;
+	right:0px;
 	width:222px;
 	background:#fff;
-	padding:10px;
+	padding: -10px;
 	border:1px solid #ddd;
 }
 
