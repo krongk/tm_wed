@@ -36,6 +36,7 @@ class SiteCommentsController < ApplicationController
         #send notice to admin
         if Rails.env == 'production' && @site_comment.site_id == 1
           SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "#{@site_comment.mobile_phone}给你留言了：#{@site_comment.content}")
+          SmsSendWorker.perform_async(@site_comment.mobile_phone, "感谢你的留言！试试手机上创建喜帖：http://www.wedxt.com【维斗喜帖】")
         end
 
         format.html { render text: 'success' }
