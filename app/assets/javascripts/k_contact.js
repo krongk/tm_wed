@@ -25,6 +25,14 @@ ready = function() {
 					$(this).addClass('inputError');
 					hasError = true;
 				}
+			} else if($(this).is("input[type='mobile_phone']") || $(this).attr('name')==='mobile_phone') {
+				var phoneReg = /^(1[35789]\d{9})?$/;
+				if(!phoneReg.test($.trim($(this).val()))) {
+					var invalidPhone = $(this).data('error-invalid');
+					$(this).parents('.field-wrap').append('<span class="error-message" style="display:none;">'+invalidPhone+'.</span>').find('.error-message').fadeIn('fast');
+					$(this).addClass('inputError');
+					hasError = true;
+				}
 			}
 		});
 		

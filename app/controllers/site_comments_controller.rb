@@ -33,6 +33,11 @@ class SiteCommentsController < ApplicationController
 
     respond_to do |format|
       if @site_comment.save
+        #send notice to admin
+        if Rails.env == 'production' && @site_comment.site_id == 1
+          SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "#{@site_comment.mobile_phone}给你留言了：#{@site_comment.content}")
+        end
+
         format.html { render text: 'success' }
         format.json { render action: 'show', status: :created, location: @site_comment }
       else
