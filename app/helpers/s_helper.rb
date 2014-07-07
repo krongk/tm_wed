@@ -48,7 +48,7 @@ module SHelper
   end
   #
   def get_first_site_image_url(site)
-    site_iamges = SiteImage.joins(:site_page).where("site_pages.site_id = ?", site.id).limit(1)
+    site_iamges = SiteImage.joins(:site_page).where("site_pages.site_id = ?", site.id).order("position ASC").limit(1)
     site_iamges.first.try(:image).try(:url)
   end
    #Maybe image storeed in another host
