@@ -43,12 +43,9 @@
         <h4>或在列表中选择</h4>
         <audio preload></audio>
         <ol>
-          <% get_musics.each do |item| %>
-            <li><a href="#" data-src="<%= item %>"><%= item.sub(/\/musics\/mp3\//, '') %></a></li>
+          <% @musics.each do |item| %>
+            <li><a href="#" data-src="<%= item.url %>"><%= item.name %></a></li>
           <% end %>
-          <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/08-basic-hypnosis.mp3">basic hypnosis</a></li>
-          <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/09-infinite-victory.mp3">infinite victory</a></li>
-          <li><a href="#" data-src="http://kolber.github.io/audiojs/demos/mp3/11-mo-stars-mo-problems.mp3">mo stars mo problems</a></li>
         </ol>
         <div class="hidden-sm hidden-xs"><em>&rarr;</em> 键盘左右键切换 <em>&larr;</em></div>
       </div>

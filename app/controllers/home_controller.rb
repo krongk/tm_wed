@@ -41,6 +41,7 @@ class HomeController < ApplicationController
    #暂时不做
   end
   def dialog_music
+    @musics = Resource::Music.order("updated_at DESC").page(params[:page])
   end
 
   private
