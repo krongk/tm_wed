@@ -50,7 +50,7 @@ module SHelper
   def get_first_site_image_url(site)
     get_site_image_url(site, 'ASC')
   end
-  def get_first_site_image_url(site)
+  def get_last_site_image_url(site)
     get_site_image_url(site, 'DESC')
   end
   def get_site_image_url(site, order = 'ASC')
