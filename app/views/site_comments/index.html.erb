@@ -1,63 +1,45 @@
-<h1>Listing site_comments</h1>
+<h1>留言列表</h1>
 
-<table>
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Site</th>
-      <th>Template page</th>
-      <th>Name</th>
-      <th>Mobile phone</th>
-      <th>Tel phone</th>
-      <th>Email</th>
-      <th>Qq</th>
-      <th>Weixin</th>
-      <th>Weibo</th>
-      <th>Gender</th>
-      <th>Birth</th>
-      <th>Address</th>
-      <th>Hobby</th>
-      <th>Content</th>
-      <th>Content2</th>
-      <th>Content3</th>
-      <th>Status</th>
-      <th>Updated by</th>
-      <th>Note</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>姓名</th>
+      <th width="100px">电话</th>
+      <th>留言</th>
+      <th>其它</th>
+      <th width="100px">添加时间</th>
+      <th colspan="2">操作</th>
     </tr>
   </thead>
-
   <tbody>
     <% @site_comments.each do |site_comment| %>
       <tr>
-        <td><%= site_comment.site %></td>
-        <td><%= site_comment.template_page %></td>
         <td><%= site_comment.name %></td>
         <td><%= site_comment.mobile_phone %></td>
-        <td><%= site_comment.tel_phone %></td>
-        <td><%= site_comment.email %></td>
-        <td><%= site_comment.qq %></td>
-        <td><%= site_comment.weixin %></td>
-        <td><%= site_comment.weibo %></td>
-        <td><%= site_comment.gender %></td>
-        <td><%= site_comment.birth %></td>
-        <td><%= site_comment.address %></td>
-        <td><%= site_comment.hobby %></td>
         <td><%= site_comment.content %></td>
-        <td><%= site_comment.content2 %></td>
-        <td><%= site_comment.content3 %></td>
-        <td><%= site_comment.status %></td>
-        <td><%= site_comment.updated_by %></td>
-        <td><%= site_comment.note %></td>
-        <td><%= link_to 'Show', site_comment %></td>
-        <td><%= link_to 'Edit', edit_site_comment_path(site_comment) %></td>
-        <td><%= link_to 'Destroy', site_comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= [site_comment.tel_phone, ', '].join('') unless site_comment.tel_phone.blank? %>
+          <%= [site_comment.email, ', '].join('') unless site_comment.email.blank? %>
+          <%= [site_comment.qq, ', '].join('') unless site_comment.qq.blank? %>
+          <%= [site_comment.weixin, ', '].join('') unless site_comment.weixin.blank? %>
+          <%= [site_comment.gender, ', '].join('') unless site_comment.gender.blank? %>
+          <%= [site_comment.birth, ', '].join('') unless site_comment.birth.blank? %>
+          <%= [site_comment.address, ', '].join('') unless site_comment.address.blank? %>
+          <%= [site_comment.hobby, ', '].join('') unless site_comment.hobby.blank? %>
+          <%= [site_comment.content2, ', '].join('') unless site_comment.content2.blank? %>
+          <%= [site_comment.content3, ', '].join('') unless site_comment.content3.blank? %>
+        </td>
+        <td><%= distance_of_time_in_words_to_now(site_comment.created_at) %>前</td>
+        <td><%= link_to '修改', edit_site_comment_path(site_comment) %></td>
+        <td><%= link_to '删除', site_comment, method: :delete, data: { confirm: '删除以后不能再恢复了，你确定要删除吗?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<hr/>
+<%= will_paginate @site_comments %>
 <br>
-
-<%= link_to 'New Site comment', new_site_comment_path %>
+<%= link_to sites_path, class: 'btn btn-meflat icon-right' do %>
+  返回 <i class="fa fa-arrow-up"></i>
+<% end %>

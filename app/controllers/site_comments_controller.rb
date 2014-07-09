@@ -9,7 +9,10 @@ class SiteCommentsController < ApplicationController
   # GET /site_comments
   # GET /site_comments.json
   def index
-    @site_comments = SiteComment.all
+    @site = Site.find_by(id: params[:site_id])
+    redirect_to sites_url and return if @site.nil?
+    redirect_to sites_url and return unless can_access_site_comment?(@site)
+    @site_comments = @site.site_comments.order("updated_at DESC").page(params[:page])
   end
 
   # GET /site_comments/1
@@ -81,5 +84,11 @@ class SiteCommentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_comment_params
       params.require(:site_comment).permit(:site_id, :template_page_id, :name, :mobile_phone, :tel_phone, :email, :qq, :weixin, :gender, :birth, :address, :hobby, :content, :content2, :content3, :status, :updated_by, :note)
+    end
+
+    def can_access_site_comment?(site)
+      return true if site.user_id.present? && site.user_id == current_user.id
+      return true if site.member_id.present? && site.member_id == current_member.id
+      return false
     end
 end

@@ -19,11 +19,12 @@ TmCard::Application.routes.draw do
     collection{post :verify_token}
   end
 
-  resources :site_comments
+  resources :site_comments #for show on client
   resources :site_pages
 
   resources :sites do 
     resources :site_steps
+    resources :site_comments #for admin manage
     collection do
       post :send_sms
     end

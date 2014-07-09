@@ -19,21 +19,28 @@
             </h3>
         </div>
         <div class="panel-body">
-          <table class="table">
-            <tr><td width="100px;">
+          <div class="row">
+            <div class="col-md-6">
               <a href="<%= get_site_url(site) %>" target="_blank" class="thumbnail pull-left">
                 <img src="<%= get_first_site_image_url(site) %>" alt="<%= site.title %>" width="160px;" class="img-responsive">
               </a>
-            </td><td>
-              <%= link_to '预览', site_preview_path(site), class: 'btn btn-default margin-top-sm' %>
-              <%= link_to '分享', site, class: 'btn btn-default margin-top-sm' %>
+            </div>
+            <div class="col-md-6">
+             
               <%= link_to '编辑', edit_site_path(site), class: 'btn btn-default margin-top-sm' %>
               <% if  site.template.themes.any? %>
                 <%= link_to '主题', site_themes_path(site), class: 'btn btn-default margin-top-sm' %>
               <% end %>
               <%= link_to '删除', site, method: :delete, data: { confirm: '删除以后，你所有的数据将丢失，而且无法找回，确定要删除?' }, class: 'btn btn-default margin-top-sm' %>
-            </td></tr>
-          </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <%= link_to '预览', site_preview_path(site), class: 'btn btn-info margin-top-sm' %>
+              <%= link_to '分享', site, class: 'btn btn-info margin-top-sm' %>
+              <%= link_to '留言', site_site_comments_path(site), class: 'btn btn-info margin-top-sm' %>
+            </div>
+          </div>
           <%= render partial: 'site_payment', locals: {site: site} %>
         </div>
       </div>
