@@ -48,9 +48,16 @@ module SHelper
   end
   #
   def get_first_site_image_url(site)
-    site_iamges = SiteImage.joins(:site_page).where("site_pages.site_id = ?", site.id).order("position ASC").limit(1)
+    get_site_image_url(site, 'ASC')
+  end
+  def get_first_site_image_url(site)
+    get_site_image_url(site, 'DESC')
+  end
+  def get_site_image_url(site, order = 'ASC')
+    site_iamges = SiteImage.joins(:site_page).where("site_pages.site_id = ?", site.id).order("position #{order}").limit(1)
     site_iamges.first.try(:image).try(:url)
   end
+
    #Maybe image storeed in another host
   #demo_img like: "assets/previews/demo.png,assets/previews/demo2.png,assets/previews/mobile.png"
   #need to parse to: templates/simple_one/assets/previews/demo.png

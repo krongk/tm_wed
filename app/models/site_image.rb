@@ -1,6 +1,7 @@
 class SiteImage < ActiveRecord::Base
   belongs_to :site_page
-
+  default_scope order("position ASC")
+  
   has_attached_file :image,
                     :path => ":class/:id/:style.:extension",
                     :styles => {:original => '640x960#'} #override the original file
