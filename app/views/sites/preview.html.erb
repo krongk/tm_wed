@@ -1,40 +1,16 @@
-<% content_for :bg_css do %>
-color-bg
-<% end %>
+<% title "#{@site.title}-维斗喜帖出品|喜帖,请帖,请柬,二维码请柬案例,电子请帖案例,微信请帖案例" %>
+<% meta_description "#{@site.description}-维斗喜帖出品" %>
 
-<div class="row hidden-md hidden-lg">
-  <div class="col-sm-12 text-center">
-    <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
-    <p class="text-center">
-      <a href="<%= get_site_url(@site) %>" target="_blank" class="btn btn-meflat">点击预览</a>
-    </p>
-    <p><br/>
-      <% if signed_in? %>
-        <a href="/sites">
-          <i class="fa fa-arrow-left"></i> 进入后台
-        </a>
-      <% else %>
-        <a href="/templates">
-          <i class="fa fa-arrow-left"></i> 返回
-        </a>
-      <% end %>
-  </p>
-  </div>
-</div>
-
-<div class="row hidden-sm hidden-xs">
-  <div class="col-sm-12 col-md-3 col-md-offset-1">
+<div class="row">
+  <div class="col-sm-12 col-xs-12 col-md-3 col-md-offset-1">
     <div style="margin-top: 200px; align: right; text-align: right; ">
       <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
       <br/>
       <small>打开手机扫一扫，精彩呈现！</small>
       <div style="margin-top: 60px; text-align: right;">
+        <%= link_to '网页预览', get_site_url(@site), class: 'btn btn-meflat' %>
         <% if signed_in? %>
           <a href="/sites">
-            <i class="fa fa-arrow-left"></i> 返回
-          </a>
-        <% else %>
-          <a href="/templates">
             <i class="fa fa-arrow-left"></i> 返回
           </a>
         <% end %>
@@ -46,7 +22,7 @@ color-bg
       <i class="fa fa-arrow-right fa-5x"></i>
     </div>
   </div>
-  <div class="col-sm-12 col-md-5 hidden-sm">
+  <div class="col-sm-12 col-md-5 hidden-sm hidden-xs">
     <div class="iphone-bg-white">
       <iframe id="preview" src="<%= get_site_url(@site) %>" width="315px" height="482px" frameBorder="0" scrolling="no"></iframe>
     </div>

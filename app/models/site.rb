@@ -9,6 +9,7 @@ class Site < ActiveRecord::Base
   before_create :create_unique_short_title
   after_create :create_site_payment
 
+  scope :sites_has_images, ->{ joins(:site_pages =>:site_images).group("sites.id").order("updated_at DESC") }
   #empty
   validates :title, presence: true
 
@@ -26,4 +27,3 @@ class Site < ActiveRecord::Base
       SitePayment.create!(site_id: id, state: 'opening', price: ENV["PRICE_BASE"])
     end
 end
-

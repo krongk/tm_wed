@@ -11,7 +11,8 @@ class Templates::Template < ActiveRecord::Base
   acts_as_taggable
 
   def recent_sites(count = 4)
-    Site.where(template_id: self.id).select { |s| s.site_pages.find{|p| p.site_images.any?} }[0..3]
+    Site.sites_has_images.where(template_id: self.id).limit(count)
+    #Site.where(template_id: self.id).select { |s| s.site_pages.find{|p| p.site_images.any?} }[0..3]
   end
 end
 

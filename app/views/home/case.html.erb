@@ -1,4 +1,4 @@
-<% title "案例-维斗喜帖案例|喜帖案例,请帖案例,请柬案例|二维码请柬案例|手机请帖案例|微信请帖案例" %>
+<% title "案例-维斗喜帖案例|喜帖,请帖,请柬|二维码请柬案例|手机请帖案例|微信请帖案例" %>
 <% meta_description "维斗喜帖每天都有数十款喜帖案例生成，包括二维码请帖制作案例，微信喜帖案例，电子请帖案例，微相册案例；分分钟创建，惊艳朋友圈。" %>
 
 <!-- ==============================================
@@ -48,7 +48,12 @@ Case
             <p><%= template.title %></p>
 
             <!--Project Subtitle -->
-            <div class="text-center"><%= link_to '点击预览', '#', class: 'btn btn-meflat', onclick: "javascript:window.location='/sites/#{site.id}/preview';" %></div>
+            <div class="text-center">
+              <% if mobile_device? %>
+                <%= link_to '点击预览', '#', class: 'btn btn-meflat', onclick: "javascript:window.location='#{get_site_url(site)}';" %></div>
+              <% else %>
+                <%= link_to '点击预览', '#', class: 'btn btn-meflat', onclick: "javascript:window.location='/sites/#{site.id}/preview';" %></div>
+              <% end %>
             </div>
 
           <!--==== Project Preview HTML ====-->

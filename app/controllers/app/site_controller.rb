@@ -68,7 +68,8 @@ class App::SiteController < ApplicationController
             form_html = temp_form.value
             params[:site].each_pair do |key, value|
               if form_html =~ / name="site_page\[#{key}\]"/i
-                SitePageKeystore.put(site_page.id, key, params[:site].delete(key))
+                val = params[:site].delete(key)
+                SitePageKeystore.put(site_page.id, key, val) unless val.blank?
               end
             end
           end

@@ -91,7 +91,7 @@ module SHelper
     site_page.title
   end
   def get_seo_meta_keywords(site_page)
-    site_page.title
+    [site_page.site.try(:title), "维斗喜帖", "微信请帖", "二维码请帖", "电子喜帖","请柬", "请帖", "喜帖"].join(",")
   end
   def get_seo_meta_description(site_page)
     site_page.title
