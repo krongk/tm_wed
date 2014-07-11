@@ -26,7 +26,7 @@ Case
     
   </div><!--End portfolio header -->
   
-  <div class="container masonry-wrapper scrollimation fade-in">
+  <div class="container masonry-wrapper scrollimation <%= ie_browser? ? '' : 'fade-in' %>">
   
     <div id="projects-container">
       <% @sites.each do |site| %>
@@ -41,7 +41,7 @@ Case
           
           <img class="img-responsive project-image" src="<%= get_first_site_image_url(site) %>" alt="<%= site.title %>"><!--Project thumb -->
           
-          <div class="hover-mask">
+          <div class="hover-mask" <%= ie_browser? ? "" : "style='background: #94DAF0;'".html_safe %>>
             <h2 class="project-title">
               <%= site.title %>
             </h2><!--Project Title -->

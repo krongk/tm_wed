@@ -58,7 +58,7 @@
 <% end %> 
 
 <!-- show banner choose modal -->
-<div id="bannerModal" class="modal fade">
+<div id="bannerModal" class="modal <%= ie_browser? ? '' : 'fade' %>">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -75,7 +75,7 @@
 </div>
 
 <!-- show music choose modal -->
-<div id="musicModal" class="modal fade">
+<div id="musicModal" class="modal <%= ie_browser? ? '' : 'fade' %>">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -108,7 +108,7 @@
     });
   </script>
 
-  <div id="fileModal" class="modal fade">
+  <div id="fileModal" class="modal <%= ie_browser? ? '' : 'fade' %>">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

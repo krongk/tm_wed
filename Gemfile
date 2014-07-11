@@ -20,6 +20,7 @@ gem 'rolify'
 gem 'simple_form'
 gem 'acts-as-taggable-on'
 gem 'rqrcode_png'
+gem 'useragent'
 gem 'alipay', :github => 'chloerei/alipay'
 gem 'therubyracer', :platform=>:ruby
 

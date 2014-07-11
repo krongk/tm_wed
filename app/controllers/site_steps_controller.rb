@@ -32,7 +32,7 @@ class SiteStepsController < ApplicationController
     #store customer's input value
     if params[:site_page]
       params[:site_page].each_pair do |key, val|
-        next if val.blank?
+        #next if val.blank? -- xj: need to save blank value, to overwrite the original value
         SitePageKeystore.put(@site_page.id, key, val)
       end
     end

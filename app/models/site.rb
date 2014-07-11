@@ -1,4 +1,5 @@
 class Site < ActiveRecord::Base
+  self.per_page = 12
   belongs_to :user
   belongs_to :member
   belongs_to :template, class_name: 'Templates::Template'

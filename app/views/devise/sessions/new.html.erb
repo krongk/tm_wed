@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-sm-8">
           <div class="input-group">
-            <%= f.telephone_field :auth_id, name: "member[auth_id]", class: 'form-control', placeholder: "请输入你的手机号" %>
+            <%= f.telephone_field :auth_id, name: "member[auth_id]", class: 'form-control required', placeholder: "请输入你的手机号" %>
             <div class="input-group-btn">
               <%= f.submit '登 录', :class => 'btn btn-danger' %>
             </div>
@@ -32,12 +32,12 @@
           <div class="form-group col-md-10">
            
             <%= f.label :email %>
-            <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+            <%= f.email_field :email, :autofocus => true, class: 'form-control required' %>
           </div>
           <div class="form-group col-md-10">
             
             <%= f.label :password %>
-            <%= f.password_field :password, class: 'form-control' %>
+            <%= f.password_field :password, class: 'form-control required' %>
           </div>
             <%= f.submit '登 录', :class => 'btn btn-meflat' %>
         <% end %>
@@ -74,4 +74,8 @@
         }
     });
   });
+
+  $("#new_member").validate();
+  $("#new_user").validate();
+
 </script>

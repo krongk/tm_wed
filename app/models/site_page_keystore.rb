@@ -13,9 +13,18 @@ class SitePageKeystore < ActiveRecord::Base
   def self.put(site_page_id, key_name, value)
     key = CommonKey.get(key_name)
     return nil if key.nil?
+    return drop(site_page_id, key_name) if value.blank?
     ks = self.find_or_create_by(site_page_id: site_page_id, common_key_id: key.id)
     ks.value = value
     ks.save!
+    true
+  end
+
+  def self.drop(site_page_id, key_name)
+    key = CommonKey.get(key_name)
+    return nil if key.nil?
+    ks = self.find_by(site_page_id: site_page_id, common_key_id: key.id)
+    ks.destroy if ks
     true
   end
 

@@ -1,6 +1,6 @@
 module ApplicationHelper
   SPECIAL_SYMBO_REG = /(,|;|\||，|；|。|、| )/
-
+  
   def display_base_errors resource
     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
@@ -54,4 +54,13 @@ module ApplicationHelper
   def signed_in?
     current_user || current_member
   end
+
+  #judge browser
+  #BROWSER = ['Internet Explorer', 'Firefox', 'Chrome']
+  def ie_browser?
+    user_agent = UserAgent.parse(request.user_agent)
+    return true if user_agent.browser =~ /Internet/
+    return false
+  end
+  
 end
