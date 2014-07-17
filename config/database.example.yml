@@ -1,0 +1,21 @@
+# MySQL.  Versions 4.1 and 5.0 are recommended.
+base: &base
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  wait_timeout: 600
+  pool: 25
+  username: root
+  password: aaaa
+  host: 127.0.0.1
+  port: 3301
+
+development:
+  <<: *base
+  database: tm_dev
+test:
+  <<: *base
+  database: tm_dev
+production:
+  <<: *base
+  database: tm_pro
