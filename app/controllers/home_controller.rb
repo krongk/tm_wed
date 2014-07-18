@@ -6,6 +6,7 @@ class HomeController < ApplicationController
   end
 
   def templates
+    @cates = Templates::Cate.all
     @templates = Templates::Template.where("cate_id in (1,2)").order("updated_at DESC").paginate(page: params[:page] || 1, per_page: 6)
   end
   def template
@@ -16,6 +17,12 @@ class HomeController < ApplicationController
     @templates = Templates::Template.where("cate_id in (1,2)").order("updated_at DESC")
     @last_template = @templates.pop #use for filter style
     @sites = Site.sites_has_images.paginate(page: params[:page] || 1, per_page: 9)
+  end
+
+  def vip
+    @show_contact = false #this var is for turn off footer contact form, used in layouts/_contact.html.erb
+    @template = Templates::Template.find_by(id: params[:template_id])
+    #render text: params and return
   end
 
   def pricing

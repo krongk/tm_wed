@@ -41,6 +41,9 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
                 <%= link_to app_site_new_path(template_id: @template.id), class: 'btn btn-meflat icon-right' do %>
                   快速制作 <i class="fa fa-arrow-right"></i>
                 <% end %>
+                <%= link_to vip_path(template_id: @template.id), class: 'btn btn-meflat icon-right' do %>
+                  VIP 定制 <i class="fa fa-arrow-right"></i>
+                <% end %>
               </h2>
               <p id="sdbr-category"><%= @template.cate.title %></p>
               <p id="sdbr-date"><%= get_date(@template.updated_at) %></p>
@@ -60,7 +63,7 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
                         <div class="caption text-center">
                           <p><small><a href="<%= site_preview_path(site)%>" target="_blank"><%= site.title.to_s.truncate(10) %></a></small></br><%= distance_of_time_in_words_to_now(site.updated_at) %>前</p>
                           <p>
-                            <a href="<%= site_preview_path(site)%>" target="_blank" class="btn btn-default">预览</a>
+                            <a href="<%= site_preview_path(site)%>" target="_blank" class="btn btn-info">预览</a>
                           </p>
                         </div>
                       </div>

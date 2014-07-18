@@ -867,11 +867,12 @@ a:focus,
 
 
 .project-item .hover-mask {
+    background-color: $active_color;
     position:absolute;
     padding:0;
     padding-left:50px;
     width:100%;
-    height:100%;
+    height: 100%;
     top:0;
     left:0;
     -webkit-transform:translateX(-100%);
@@ -1201,7 +1202,6 @@ a:focus,
       outline: none;
       vertical-align:middle;
     }
-
 
     .lb_wrap .lb_label.top, .lb_wrap .lb_label.bottom {
       left: 15px !important;

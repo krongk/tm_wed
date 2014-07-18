@@ -10,9 +10,12 @@
       <div style="margin-top: 60px; text-align: right;">
         <%= link_to '网页预览', get_site_url(@site), class: 'btn btn-meflat' %>
         <% if signed_in? %>
-          <a href="/sites">
-            <i class="fa fa-arrow-left"></i> 返回
+          <a href="/sites" class='btn btn-meflat'>
+            进入后台
           </a>
+          <% if current_member %>
+            <p>快速创建的应用，还有许多高级功能可以进入后台完善的哟</p>
+          <% end %>
         <% end %>
       </div>
     </div>

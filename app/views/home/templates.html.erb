@@ -2,27 +2,70 @@
 <% meta_description "维斗喜帖提供数十款漂亮的结婚请帖模版，免费试用，支持手持互动，精美的微信请帖模版，手机动态请帖模版，微信电子相册。" %>
 
 <!-- ==============================================
-Blog
-=============================================== -->
-<section id="blog" class="white-bg padding-top-bottom">
+PORTFOLIO
+=============================================== --> 
+<section id="portfolio" class="gray-bg padding-top-bottom">
+  
   <div class="container">
-    <div class="row blog">
+  
+    <header class="section-header text-center">
+      <h1 class="scrollimation scale-in">选择模板</h1>
+      <p>所有的请帖都是基于模板生成，在制作之前，首先选择一个中意的模板.</p>
+    </header>
+    
+    <!--==== Portfolio Filters ====-->
+    <div id="filter-works">
+      <ul>
+        <li class="active scrollimation fade-right d1">
+          <a href="#" data-filter="*">全部</a>
+        </li>
+        <% @cates.each do |cate| %>
+          <li class="scrollimation fade-right">
+            <a href="#" data-filter=".cate<%= cate.id %>"><%= cate.title %></a>
+          </li>
+        <% end %>
+        <li class="scrollimation fade-left">
+          <a href="#" data-filter=".pay">付费</a>
+        </li>
+        <li class="scrollimation fade-left d1">
+          <a href="#" data-filter=".free">免费</a>
+        </li>
+      </ul>
+    </div><!--End portfolio filters -->
+  </div><!--End portfolio header -->
+  
+  <div class="container masonry-wrapper scrollimation fade-in">
+  
+    <div id="projects-container">
+    
+      <!-- ==============================================
+      SINGLE PROJECT ITEM
+      =============================================== --> 
       <% @templates.each do |template| %>
         <% demo_images = get_demo_image_list(template, 'demo_img') %>
-        <div class="col-md-4 col-sm-6 item scrollimation fade-up">
+        <div class="col-md-4 col-sm-6 scrollimation project-item cate<%= template.cate_id%> <%= template.property %>">
           <div class="icon">
             <%= link_to template_path(template) do %>
               <img class="img-responsive img-center" src="<%= demo_images.shift %>" alt="<%= template.title %>" />
             <% end %>
-          </div>        
-          <h2><%= link_to template.title, template_path(template) %></h2>
-          <div class="text-center">
-            <%= link_to app_site_new_path(template_id: template.id), class: 'btn btn-meflat icon-right' do %>
-              我要制作 <i class="fa fa-arrow-up"></i>
-            <% end %>
           </div>
+          <% unless ie_browser? %>
+            <div class="hover-mask">
+              <h2 class="project-title"><%= template.cate.title %></h2><!--Project Title -->
+              <p><%= template.cate.description %></p><!--Project Subtitle -->
+              <div class="text-center">
+                <%= link_to template_path(template), class: 'btn btn-meflat icon-bottom' do %>
+                  详细介绍
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+          <h2 class="text-center"><br/><%= link_to template.title, template_path(template) %></h2>
         </div>
       <% end %>
-    </div>  
+      <!-- ==============================================
+      END PROJECT ITEM
+      =============================================== -->           
+    </div>
   </div>
 </section>

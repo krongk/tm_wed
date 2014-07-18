@@ -1,0 +1,132 @@
+
+<div class="container">
+  
+  <header class="section-header text-center">
+    <h1 class="scrollimation scale-in">VIP定制流程</h1>
+    <p>所有的请帖都是基于模板生成，在制作之前，首先选择一个中意的模板.</p>
+  </header>
+    
+  <ul class="timeline-v2">
+    <li>
+      <time class="cbp_tmtime" datetime=""><span>步骤</span> <span>1</span></time>
+      <i class="cbp_tmicon rounded-x hidden-xs"></i>
+      <div class="cbp_tmlabel">
+        <h2>选择模板</h2>
+        <% if @template %>
+          <div class="row">
+            <div class="col-md-4">
+              <%= link_to template_path(@template) do %>
+                <% demo_images = get_demo_image_list(@template, 'demo_img') %>
+                <img class="img-responsive img-center" src="<%= demo_images.shift %>" alt="<%= @template.title %>" />
+              <% end %>
+              <div class="md-margin-bottom-20"></div>
+            </div>
+            <div class="col-md-8">    
+              <p>你已经选择了模板: <strong><%= link_to @template.title, template_path(@template), target: '_blank' %></strong></p>
+              <p>如果确定选择该模板，则可以进入下一步了</p>
+              <p>如果还没确定最终模板，在<%= link_to '点击这里', templates_path %>进入模板页面。</p>
+            </div>
+          </div>
+        <% else %>
+          <p><br/>
+          你还没有选择喜欢的模板。
+          </p>
+          <ol>
+            <li>你可以： <%= link_to '点击这里', templates_path %>进入模板页面进行选择。</li>
+            <li>你也可以： 直接在下面【步骤2】告诉我们你喜欢的模板，或者是在网上发现的漂亮链接。</li>
+          </ol>
+        <% end %>  
+      </div>
+    </li>
+    <li>
+      <time class="cbp_tmtime" datetime=""><span>步骤</span> <span>2</span></time>
+      <i class="cbp_tmicon rounded-x hidden-xs"></i>
+      <div class="cbp_tmlabel">
+          <h2>填写基本信息</h2>
+          <p>请将你的宴请信息提交给我们，同时我们会及时与您取得联系。</p>
+          <ol>
+            <li>你可以： <a href="http://www.wedxt.com/doc/wedxt.com.doc" target="_blank" title="下载婚礼客户信息表">点击这里</a>下载客户信息表，填写以后和照片一并发送邮件给我们。</li>
+            <li>你也可以： 直接填写下方的表格提交你的宴请基本信息给我们。</li>
+          </ol>
+          <p>&nbsp;</p>
+          <%= simple_form_for(SiteComment.new,  html: {id: "contact-form", class: "bl_form b2_form text-center", novalidate: true}) do |f| %>
+            <%= f.input :site_id, as: :hidden, input_html: {value: 1} %>
+            <%= f.input :template_page_id, as: :hidden, input_html: {value: 1} %>
+            <%= f.input :content3, as: :hidden, input_html: {value: @template.try(:id)} %>
+            <span class="field-wrap scrollimation fade-right">
+              <label class="control-label" for="contact-name">姓名</label>
+              <input id="contact-name" name="site_comment[name]" type="text" class="label_better requiredField" data-new-placeholder="姓名" placeholder="姓名" data-error-empty="*请输入你的姓名">
+            </span>
+            <span class="field-wrap scrollimation fade-in">
+              <label class="control-label" for="contact-phone">手机号码</label>
+              <input id="contact-phone" name="site_comment[mobile_phone]" type="mobile_phone" class="label_better requiredField" data-new-placeholder="手机号码" placeholder="手机号码" data-error-empty="*请输入手机号码" data-error-invalid="x 汗！这号码能收到短信吗">
+            </span>
+            <span class="field-wrap scrollimation fade-left">
+              <label class="control-label" for="contact-message">对请帖的要求说明</label>
+              <textarea id="contact-message" name="site_comment[content]" rows="4" class="label_better requiredField" data-new-placeholder="填写你的要求" placeholder="填写你的要求" data-error-empty="* 请描述你的需求"></textarea>
+            </span>
+
+            <span class="field-wrap scrollimation fade-in">
+              <label class="control-label" for="contact-birth">宴请日期</label>
+              <input id="contact-birth" name="site_comment[birth]" class="label_better" data-new-placeholder="宴请日期" placeholder="宴请日期" data-error-empty="*请输入宴请日期" data-error-invalid="x 宴请日期不对">
+            </span>
+            <span class="field-wrap scrollimation fade-in">
+              <label class="control-label" for="contact-address">宴请地址</label>
+              <input id="contact-address" name="site_comment[address]" class="label_better" data-new-placeholder="宴请地址" placeholder="宴请地址" data-error-empty="*请输入宴请地址" data-error-invalid="x 宴请地址不对">
+            </span>
+            <span class="field-wrap scrollimation fade-in">
+              <label class="control-label" for="contact-content2">邀请辞</label>
+              <textarea id="contact-content2" name="site_comment[content2]" rows="3" class="label_better" data-new-placeholder="邀请辞" placeholder="邀请辞" data-error-empty="*请输入邀请辞" data-error-invalid="x 邀请辞不对"></textarea>
+            </span>
+            
+            <p class="text-center"><button  name="submit" type="submit" class="btn btn-meflat icon-left" data-error-message="错误!" data-sending-message="发送中..." data-ok-message="发送成功"><i class="fa fa-location-arrow"></i>提交信息</button></p>
+            <input type="hidden" name="submitted" id="submitted" value="true" />
+            
+          <% end %>
+      </div>
+    </li>
+    <li>
+      <time class="cbp_tmtime" datetime=""><span>步骤</span> <span>3</span></time>
+      <i class="cbp_tmicon rounded-x hidden-xs"></i>
+      <div class="cbp_tmlabel">
+          <h2>发送照片</h2>
+          <p>准备10-15张精选照片，如果照片太大，则把照片压缩为1000px以内再发送； <a href="/doc/piczip.rar" taget="_blank">点击这里</a>下载压缩软件。</p>
+          <p>照片发送至邮箱： <mark> we@wedxt.com </mark> </p>
+      </div>
+    </li>
+    <li>
+      <time class="cbp_tmtime" datetime=""><span>24小时</span> <span>售后</span></time>
+      <i class="cbp_tmicon rounded-x hidden-xs"></i>
+      <div class="cbp_tmlabel">
+          <h2>联系我们</h2>
+          <p>随时与我们保持联络</p>
+
+          <div>
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes"><img border="0" src="/assets/icon-qq-boy.png" width="46px" /></a> 
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes"><img border="0" src="/assets/icon-qq-girl.png" width="46px" /></a>
+            <a id="icon-weixin" data-original-title="扫一扫加微信"><img alt="维斗喜帖微信" border="0" src="/assets/icon-weixin.png" width="46px" /></a>
+            <div id="weixin-qrcode" class="hidden"><img src="/assets/weixin-qrcode.png" align="维斗喜帖微信二维码" /></div>
+            <p><br/>热线电话：<a href="tel:18080810818">180-8081-0818</a></p>
+          </div>
+
+          <script type="text/javascript">
+            $(document).ready(function() {
+              $('#icon-weixin').popover({
+                html: true,
+                placement: 'right',
+                title: '扫描二维码加微信',
+                content: function(){
+                return $('#weixin-qrcode').html();
+                }
+              });
+            });
+          </script>
+      </div>
+    </li>
+    <li>
+      <i class="cbp_tmicon rounded-x hidden-xs"></i>
+    </li>
+    
+  </ul>
+</div>
+
