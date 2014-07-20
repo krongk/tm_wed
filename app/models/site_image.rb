@@ -24,12 +24,9 @@ class SiteImage < ActiveRecord::Base
   #init position
   before_create :assign_position
   def assign_position
-    self.position = get_next_position
-  end
-  def get_next_postion
     last_site_image = SiteImage.where(site_page_id: self.site_page_id).order("position ASC").pop
-    return 1 if last_site_image.nil?
-    return last_site_image.position.to_i + 1
+    self.position = 1 if last_site_image.nil?
+    self.position = last_site_image.position.to_i + 1
   end
 
 end
