@@ -5,7 +5,7 @@
 </ol>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6 col-md-offset-3">
     <table class="table table-bordered table-striped">
       <tr><td>应用名称：</td><td><%= @site.title %> </td></tr>
       <tr><td>应用编号：</td><td><span class="label label-success"><%= @site.short_title %></span></td></tr>
@@ -25,7 +25,7 @@
         </div>
         <div class="panel-body">
           <%= form_tag(@site.site_payment.pay_url(@site), method: 'get') do |f| %>
-            <p>选择支付类型： <img src="/assets/alipay.gif" /> </p>
+            <p>支付类型： <img src="/assets/alipay.gif" /> </p>
             <div class="input-group">
               <%=text_field_tag :code, nil, class: 'form-control', value: "￥#{@site_payment.price}", readonly: true %>
               <div class="input-group-btn">
@@ -36,7 +36,8 @@
           <br/>
           <h4>支付宝支付注意事项：</h4>
           <ul>
-            <li>请选择【即时到帐】支付方式</li>
+            <li>请选择<mark>【即时到帐】</mark>支付方式</li>
+            <li>支付成功后，应用自动激活</li>
             <li>支付成功后，应用自动激活</li>
           </ul>
         </div>

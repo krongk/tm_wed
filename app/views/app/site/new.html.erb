@@ -13,31 +13,32 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="site_title" class="col-sm-2 control-label">喜帖标题</label>
+      <label for="site_title" class="col-sm-2 control-label">*喜帖标题</label>
       <div class="col-sm-10">
         <input id="site_title" name="site[title]" type="text" class="form-control required" placeholder="我们结婚啦/维宝宝的满月酒/" value="<%= params[:site].nil? ? '' : params[:site][:title] %>"/>
       </div>
     </div>
-   <!--  <div class="form-group">
-      <label for="site_boy" class="col-sm-2 control-label">男方姓名</label>
+    <div class="form-group">
+      <label for="site_boy" class="col-sm-2 control-label">*新郎姓名</label>
       <div class="col-sm-10">
-        <input id="site_boy" name="site[boy]" type="text" class="form-control" placeholder="梁山伯" value="<%# params[:site].nil? ? '' : params[:site][:boy] %>"/>
+        <input id="site_boy" name="site[boy]" type="text" class="form-control required" placeholder="梁山伯" value="<%= params[:site].nil? ? '' : params[:site][:boy] %>"/>
+        <p class="help-block">*宝宝Show、生日宴请、寿宴、商务邀请等只需填写新郎姓名即可。</p>
       </div>
     </div>
     <div class="form-group">
-      <label for="site_girl" class="col-sm-2 control-label">女方姓名</label>
+      <label for="site_girl" class="col-sm-2 control-label">新娘姓名</label>
       <div class="col-sm-10">
-        <input id="site_girl" name="site[girl]" type="text" class="form-control" placeholder="祝英台" value="<%#= params[:site].nil? ? '' : params[:site][:girl] %>"/>
-      </div>
-    </div> -->
-    <div class="form-group">
-      <label for="site_date" class="col-sm-2 control-label">宴请日期</label>
-      <div class="col-sm-10">
-        <input id="site_date" name="site[date]" type="date" class="form-control required" value="<%= params[:site].nil? ? '' : params[:site][:date] %>"/>
+        <input id="site_girl" name="site[girl]" type="text" class="form-control" placeholder="祝英台" value="<%= params[:site].nil? ? '' : params[:site][:girl] %>"/>
       </div>
     </div>
     <div class="form-group">
-      <label for="site_address" class="col-sm-2 control-label">宴请地址</label>
+      <label for="site_date" class="col-sm-2 control-label">*宴请日期</label>
+      <div class="col-sm-10">
+        <input id="site_date" name="site[date]" type="text" class="form-control required" placeholder="2014年10月1日" value="<%= params[:site].nil? ? '' : params[:site][:date] %>"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="site_address" class="col-sm-2 control-label">*宴请地址</label>
       <div class="col-sm-10">
         <input id="site_address" name="site[address]" type="address" class="form-control required" placeholder="四川省成都市锦江区滨江东路9号.香格里拉大酒店" value="<%= params[:site].nil? ? '' : params[:site][:address] %>"/>
       </div>

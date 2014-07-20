@@ -44,9 +44,15 @@ class HomeController < ApplicationController
   
   #用于page_steps中对话框扩展： 选择封面、选择音乐。
   #这些特殊的内容，不放在tm_admin中。
+
+  #在弹出窗口的链接中如果想要显示该页面上传的图片，在需要传递site_page参数，用于获取site_page下面的图片列表：
+  #<a data-target="#bannerModal" data-toggle="modal" href="/home/dialog_banner?site_page_id=<%=@site_page.id%>">
   def dialog_banner
-   #暂时不做
+   site_page = SitePage.find_by(id: params[:site_page_id])
+   @site_images = site_page.site_images if site_page
+   @site_images ||= []
   end
+
   def dialog_music
     @musics = Resource::Music.order("updated_at DESC").page(params[:page])
   end

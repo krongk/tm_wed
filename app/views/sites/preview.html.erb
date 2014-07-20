@@ -1,5 +1,5 @@
 <% title "#{@site.title}-维斗喜帖出品|喜帖,请帖,请柬,二维码请柬案例,电子请帖案例,微信请帖案例" %>
-<% meta_description "#{@site.description}-维斗喜帖出品" %>
+<% meta_description "#{@site.title}的二维码请帖, #{@site.description}-维斗喜帖出品" %>
 
 <div class="row">
   <div class="col-sm-12 col-xs-12 col-md-3 col-md-offset-1">
@@ -8,7 +8,7 @@
       <br/>
       <small>打开手机扫一扫，精彩呈现！</small>
       <div style="margin-top: 60px; text-align: right;">
-        <%= link_to '网页预览', get_site_url(@site), class: 'btn btn-meflat' %>
+        <%= link_to '网页预览', get_site_url(@site), class: 'btn btn-meflat', target: '_blank' %>
         <% if signed_in? %>
           <a href="/sites" class='btn btn-meflat'>
             进入后台

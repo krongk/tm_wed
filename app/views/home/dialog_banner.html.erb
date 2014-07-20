@@ -14,6 +14,14 @@
 <div class="row" id="bannerWarpper">
   <div class="col-md-8 col-sm-12">
     <div class="row">
+      <% @site_images.each do |site_image| %>
+        <div class="col-xs-6 col-md-2">
+          <a href="#" class="thumbnail">
+            <%= qiniu_image_tag site_image.image.url, :thumbnail => '120x120>', :quality => 60, 'data-src' => site_image.image.url %>
+          </a>
+        </div>
+      <% end %>
+
       <% get_banners.each do |img| %>
         <div class="col-xs-6 col-md-3">
           <a href="#" class="thumbnail">
@@ -43,7 +51,7 @@
   $('#bannerWarpper .thumbnail').click(function(e) {
     e.preventDefault();
     $(this).addClass('playing').siblings().removeClass('playing');
-    var img = $('img', this).attr('src')
+    var img = $('img', this).attr('data-src')
     //assign src to form input
     $('#site_page_banner').val(img);
     //update notice

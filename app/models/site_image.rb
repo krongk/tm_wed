@@ -20,4 +20,21 @@ class SiteImage < ActiveRecord::Base
 
   #
   acts_as_list
+
+  #init position
+  before_create :assign_position
+  def assign_position
+    self.position = get_next_position
+  end
+  def get_next_postion
+    last_site_image = SiteImage.where(site_page_id: self.site_page_id).order("position ASC").pop
+    return 1 if last_site_image.nil?
+    return last_site_image.position.to_i + 1
+  end
+
 end
+
+# show image in your view
+#   <%= qiniu_image_tag @image.file.url, :thumbnail => '300x300>', :quality => 80 %>
+#   or
+#   <%= image_tag qiniu_image_path(@image.file.url, :thumbnail => '300x300>', :quality => 80) %>

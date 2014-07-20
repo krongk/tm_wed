@@ -20,7 +20,7 @@
         <div class="row">
            <h3 class="bottom_bordered">选择应用主题</h3>
           <% @themes.each do |theme| %>
-            <div class="col-xs-4">
+            <div class="col-xs-4" style="margin: 5px 0px;">
               <button type="button" class="btn btn-default btn-radio" style="background-color: <%= theme.css_color %>;" data-preview="<%= get_demo_image_list(theme, 'preview_images') %>" data-theme="<%= theme.id %>"><%= theme.title %></button>
             </div>
           <% end %>
