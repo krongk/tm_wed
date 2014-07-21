@@ -29,7 +29,8 @@
             <div class="input-group">
               <%=text_field_tag :code, nil, class: 'form-control', value: "￥#{@site_payment.price}", readonly: true %>
               <div class="input-group-btn">
-                <%= link_to '支 付', @site.site_payment.pay_url(@site), :class => 'btn btn-danger' %>
+                升级中...
+                <%#= link_to '支 付', @site.site_payment.pay_url(@site), :class => 'btn btn-danger' %>
               </div>
             </div>
           <% end %>
