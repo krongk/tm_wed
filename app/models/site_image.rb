@@ -25,8 +25,11 @@ class SiteImage < ActiveRecord::Base
   before_create :assign_position
   def assign_position
     last_site_image = SiteImage.where(site_page_id: self.site_page_id).order("position ASC").pop
-    self.position = 1 if last_site_image.nil?
-    self.position = last_site_image.position.to_i + 1
+    if last_site_image.nil?
+      self.position = 1
+    else
+      self.position = last_site_image.position.to_i + 1
+    end
   end
 
 end
