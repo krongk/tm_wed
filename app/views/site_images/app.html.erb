@@ -46,7 +46,7 @@
       </div><!--End col -->
 
     </div>
-    <% unless @site_images.size > ENV["MAX_IMAGE_COUNT"] %>
+    <% unless @site_images.size > ENV["MAX_IMAGE_COUNT"].to_i %>
       <%= form_for SiteImage.new do |f| %>
         <%= f.hidden_field :site_page_id, value: @site_page.id %>
         <div class="fileUpload btn btn-info icon-right btn-lg btn-block">
