@@ -19,6 +19,11 @@ TmCard::Application.configure do
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
+  #bug fix: Refused to display 'http://wedxt.com/s-1d0c' in a frame because it set 'X-Frame-Options' to 'SAMEORIGIN'.
+  #the reason is different domain from www.wedxt.com and wedxt.com
+  config.action_dispatch.default_headers[:'X-Frame-Options'] = "ALLOW-FROM http://wedxt.com"
+  config.action_dispatch.default_headers[:'X-Frame-Options'] = "ALLOW-FROM http://www.wedxt.com"
+
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = false
 
@@ -82,7 +87,7 @@ TmCard::Application.configure do
     password: ENV["GMAIL_PASSWORD"]
   }
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => 'example.com' }
+  config.action_mailer.default_url_options = { :host => 'wedxt.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
