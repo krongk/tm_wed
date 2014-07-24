@@ -42,7 +42,7 @@
       <%= f.hidden_field :site_page_id, value: @site_page.id %>
       <div class="fileUpload btn btn-meflat icon-right btn-lg">
         <span>点击这里添加照片</span>
-        <%= f.file_field :image, multiple: true, name: "site_image[image]", class: 'file' %>
+        <%= f.file_field :image, multiple: true, name: "site_image[image]", class: 'file', id: 'btn-file-upload' %>
         <i class="fa fa-arrow-right"></i>
       </div>
     <% end %>

@@ -46,16 +46,18 @@
       </div><!--End col -->
 
     </div>
+
     <% unless @site_images.size > ENV["MAX_IMAGE_COUNT"].to_i %>
       <%= form_for SiteImage.new do |f| %>
         <%= f.hidden_field :site_page_id, value: @site_page.id %>
         <div class="fileUpload btn btn-info icon-right btn-lg btn-block">
           <span>点击这里上传图片</span>
-          <%= f.file_field :image, multiple: true, name: "site_image[image]", class: 'file' %>
+          <%= f.file_field :image, multiple: true, name: "site_image[image]", class: 'file', id: 'btn-file-upload' %>
           <i class="fa fa-arrow-right"></i>
         </div>
       <% end %>
     <% end %>
+
     <script id="template-upload" type="text/x-tmpl">
       <div class="upload">
         {%=o.name%}
