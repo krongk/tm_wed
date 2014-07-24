@@ -1,6 +1,6 @@
 <% if @site_image.new_record? %>
   alert("上传失败: <%= j @site_image.errors.full_messages.join(', ').html_safe %>");
-<% elsif @ste_image.position > ENV["MAX_IMAGE_COUNT"].to_i %>
+<% elsif @site_image.position > ENV["MAX_IMAGE_COUNT"].to_i %>
   alert("提示： 一个应用最多只允许上传20张照片！");
 <% else %>
   $("#site_images").append("<%= j render(@site_image) %>");
