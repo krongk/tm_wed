@@ -68,9 +68,6 @@
 
 <div class="row">
   <div class="col-sm-12 col-md-6 col-md-offset-3">
-    <% if @site_images.size > ENV["MAX_IMAGE_COUNT"].to_i %>
-      <div class="alert alert-danger" role="alert">维斗喜帖允许最多上传20张照片，以避免应用打开速度过慢。</div>
-    <% end %>
     <ul id="site_images" data-update-url="<%= sort_site_images_url %>">
       <%= render @site_images %>
     </ul>
