@@ -25,7 +25,7 @@ $(document).on 'ready page:load', ->
       if file.size > 4000000
         alert("#{file.name} 大于4MB，无法上传到服务器，请通过图片压缩软件压缩后再上传.")
         return
-      if count > 20
+      if count > 3
         alert("维斗喜帖允许最多上传20张照片，以避免应用打开速度过慢.")
         return
       if types.test(file.type) || types.test(file.name)

@@ -65,12 +65,14 @@
   
 </div>
 
-
 <div class="row">
   <div class="col-sm-12 col-md-6 col-md-offset-3">
-    <div id="site_images">
+    <% if @site_images.size > 2 %>
+      <b>维斗喜帖允许最多上传20张照片，以避免应用打开速度过慢</b>
+    <% end %>
+    <ul id="site_images" data-update-url="<%= sort_site_images_url %>">
       <%= render @site_images %>
-    </div>
+    </ul>
     <%= will_paginate @site_images %>
   </div><!--End row -->
 </div>

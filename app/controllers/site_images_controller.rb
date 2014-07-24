@@ -41,8 +41,7 @@ class SiteImagesController < ApplicationController
     @site_image = SiteImage.create(site_image_params)
     respond_to do |format|
       if @site_image.save && @site_image.position > 2
-        format.js { alert("维斗喜帖允许最多上传20张照片，以避免应用打开速度过慢.") }
-        format.html
+        raise "维斗喜帖允许最多上传20张照片，以避免应用打开速度过慢."and return
       else
         format.js
         format.html
