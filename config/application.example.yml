@@ -55,3 +55,6 @@ ALIPAY_SELLER_EMAIL: kenrfwef@.com
 PRICE_BASE: 60
 PRICE_VIP: 180
 PRICE_BIZ: 2000
+
+#the max upload image count
+MAX_IMAGE_COUNT: 20

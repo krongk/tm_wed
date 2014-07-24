@@ -46,15 +46,16 @@
       </div><!--End col -->
 
     </div>
-    <%= form_for SiteImage.new do |f| %>
-      <%= f.hidden_field :site_page_id, value: @site_page.id %>
-      <div class="fileUpload btn btn-info icon-right btn-lg btn-block">
-        <span>点击这里上传图片</span>
-        <%= f.file_field :image, multiple: true, name: "site_image[image]", class: 'file' %>
-        <i class="fa fa-arrow-right"></i>
-      </div>
+    <% unless @site_images.size > ENV["MAX_IMAGE_COUNT"] %>
+      <%= form_for SiteImage.new do |f| %>
+        <%= f.hidden_field :site_page_id, value: @site_page.id %>
+        <div class="fileUpload btn btn-info icon-right btn-lg btn-block">
+          <span>点击这里上传图片</span>
+          <%= f.file_field :image, multiple: true, name: "site_image[image]", class: 'file' %>
+          <i class="fa fa-arrow-right"></i>
+        </div>
+      <% end %>
     <% end %>
-
     <script id="template-upload" type="text/x-tmpl">
       <div class="upload">
         {%=o.name%}
@@ -67,7 +68,7 @@
 
 <div class="row">
   <div class="col-sm-12 col-md-6 col-md-offset-3">
-    <% if @site_images.size > 2 %>
+    <% if @site_images.size > ENV["MAX_IMAGE_COUNT"] %>
       <div class="alert alert-danger" role="alert">维斗喜帖允许最多上传20张照片，以避免应用打开速度过慢。</div>
     <% end %>
     <ul id="site_images" data-update-url="<%= sort_site_images_url %>">

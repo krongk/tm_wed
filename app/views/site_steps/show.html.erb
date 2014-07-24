@@ -23,6 +23,9 @@
           <h3 class="bottom_bordered">第二步. 添加照片</h3>
             <% @image_count = @site_page.template_page.image_count %>
             <% if @image_count > 0 %>
+              <% if @site_images.size > ENV["MAX_IMAGE_COUNT"] %>
+                <div class="alert alert-danger" role="alert">维斗喜帖允许最多上传20张照片，以避免应用打开速度过慢。</div>
+              <% end %>
               <ul id="site_images" data-update-url="<%= sort_site_images_url %>">
                 <%= render @site_images %>
               </ul>
