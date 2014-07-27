@@ -1,8 +1,5 @@
 <% title "#{@template.title}-维斗喜帖" %>
 <% meta_description "#{@template.title}|维斗喜帖，漂亮的电子请帖、微信请帖、二维码请柬。" %>
-
-<% demo_images = get_demo_image_list(@template, 'demo_img') %>
-<% demo_images.shift %>
 <!-- ==============================================
 PROJECT PREVIEW MODAL (Do not alter this markup)
 =============================================== --> 
@@ -22,7 +19,7 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
                 <img class="img-responsive" src="/assets/chrome.png" alt="">
                 <div class="loader" ></div>
                 <div class="screen flexslider"><div class="flex-viewport" ><ul class="slides">
-                <% demo_images.each do |img| %>
+                <% get_demo_image_list(@template, 'demo_img', 'index').each do |img| %>
                   <li><img src="<%= img %>" alt="<%= @template.title %>" draggable="false"></li>
                 <% end %>
                 </ul></div><ul class="flex-direction-nav"><li><a class="flex-prev" href="#"><i class="fa fa-angle-left"></i></a></li><li><a class="flex-next" href="#"><i class="fa fa-angle-right"></i></a></li></ul></div>
