@@ -62,19 +62,19 @@ module SHelper
   #demo_img like: "assets/previews/demo.png,assets/previews/demo2.png,assets/previews/mobile.png"
   #need to parse to: templates/simple_one/assets/previews/demo.png
   #eg: get_host_image_list(@template, 'domo_img')
-  def get_demo_image_list(obj, img_col)
+  def get_demo_image_list(obj, img_col, typo='index')
     image_list = []
 
     case obj.class.to_s
     when "Templates::Template"
       obj.send(img_col).to_s.split(ApplicationHelper::SPECIAL_SYMBO_REG).each do |img|
         next unless img =~ /\.(jpg|png|gif|jpeg)/i
-        image_list << [ENV["ASSETS_HOST"], obj.base_url, img].join('/')
+        image_list << [ENV["ASSETS_HOST"], obj.base_url, img].join('/') if img =~ /#{typo}.*/i
       end
     when "Templates::Page", "Templates::Theme"
       obj.send(img_col).to_s.split(ApplicationHelper::SPECIAL_SYMBO_REG).each do |img|
         next unless img =~ /\.(jpg|png|gif|jpeg)/i
-        image_list << [ENV["ASSETS_HOST"], obj.template.base_url, img].join('/')
+        image_list << [ENV["ASSETS_HOST"], obj.template.base_url, img].join('/') if img =~ /#{typo}.*/i
       end
     else
     end

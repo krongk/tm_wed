@@ -37,14 +37,13 @@ Case
         SINGLE PROJECT ITEM
         =============================================== --> 
         <article class="project-item t<%= site.template.id%>">
-          
-          <img class="img-responsive project-image" src="<%= get_first_site_image_url(site) %>" alt="<%= site.title %>"><!--Project thumb -->
-          
+          <%= image_tag qiniu_image_path(get_first_site_image_url(site), :thumbnail => '320x480>', :quality => 80), class: "img-responsive project-image",  alt: site.title %>
+         
           <div class="hover-mask" <%= ie_browser? ? "" : "style='background: #94DAF0;'".html_safe %>>
             <h2 class="project-title">
               <%= site.title %>
             </h2><!--Project Title -->
-            <p><%= template.title %></p>
+            <p><%= template.title %><br/><small><%= distance_of_time_in_words_to_now(site.updated_at) %>前</small></p>
 
             <!--Project Subtitle -->
             <div class="text-center">

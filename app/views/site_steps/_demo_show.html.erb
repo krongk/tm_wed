@@ -19,7 +19,7 @@
         <div id="myCarousel" class="carousel slide vertical">
             <!-- Carousel items -->
             <div class="carousel-inner">
-              <% get_demo_image_list(site_page.template_page, 'demo_img').each_with_index do |img_url, index| %>
+              <% get_demo_image_list(site_page.template_page, 'demo_img', 'demo').each_with_index do |img_url, index| %>
                 <div class="<%= if index == 0 then 'active' end %> item">
                     <img src="<%= img_url %>" class='img-responsive' />
                 </div>

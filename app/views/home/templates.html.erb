@@ -42,7 +42,7 @@ PORTFOLIO
       SINGLE PROJECT ITEM
       =============================================== --> 
       <% @templates.each do |template| %>
-        <% demo_images = get_demo_image_list(template, 'demo_img') %>
+        <% demo_images = get_demo_image_list(template, 'demo_img', 'thumb') %>
         <div class="col-md-4 col-sm-6 scrollimation project-item cate<%= template.cate_id%> <%= template.property %>">
           <div class="icon">
             <%= link_to template_path(template) do %>

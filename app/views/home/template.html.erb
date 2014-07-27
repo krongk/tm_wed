@@ -39,16 +39,19 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
             <div id="project-sidebar" class="col-md-3">
               <h2 id="sdbr-title">
                 <%= link_to app_site_new_path(template_id: @template.id), class: 'btn btn-meflat icon-right' do %>
-                  快速制作 <i class="fa fa-arrow-right"></i>
+                  快速制作<i class="fa fa-arrow-right"></i>
+                  <small>￥<%= ENV["PRICE_BASE"] %></small>
                 <% end %>
                 <%= link_to vip_path(template_id: @template.id), class: 'btn btn-meflat icon-right' do %>
-                  VIP 定制 <i class="fa fa-arrow-right"></i>
+                  VIP 定制<i class="fa fa-arrow-right"></i>
+                  <small>￥<%= ENV["PRICE_VIP"] %></small>
                 <% end %>
               </h2>
               <p id="sdbr-category"><%= @template.cate.title %></p>
               <p id="sdbr-date"><%= get_date(@template.updated_at) %></p>
               <p id="sdbr-client"><%= @template.keywords %></p>
               <p id="sdbr-descr"><%= @template.summary %></p>
+              <p id="sdbr-price"><a href="/pricing">价格说明</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/users/sign_in">会员通道</a></p>
             </div>
             <div id="project-content" class="col-md-8 col-md-offset-1">
               <%= raw @template.description %>
