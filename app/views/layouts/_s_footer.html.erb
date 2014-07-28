@@ -5,12 +5,13 @@
   </div>
 </footer>
 
-<% unless @site.active? %>     
+<% if !@site.active? || @site.created_at < 1.days.ago %>     
   <!--Style Switcher-->
   <script src="/alert/style-switcher.js"></script>
   <div id="style-switcher">
     <div id="toggle-switcher"><img src="/alert/wedxt.png" alt="支付提示"/></div>
     <h1>你还未付款</h1>
     <a href="/sites/<%= @site.id %>/payment"><img src="/alert/btn-pay.png" alt="点击这里马上支付" /></a>
-  </div><!--End Style Switcher-->
+  </div>
+  <!--End Style Switcher-->
 <% end %>
