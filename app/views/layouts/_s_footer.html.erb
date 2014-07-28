@@ -1,11 +1,14 @@
-<footer style="text-align:center; color:#ffd800;margin-right:20px">
-  <div style="margin-top: 40px;" class="text-center">
-    <a href="http://wedxt.com" target="_blank"><img src="/assets/logo.png" width="80px" alt="维斗喜帖" /></a>
-    <span style="position: relative; font-size: 1px; width: 2px; height: 2px; display: none;"><%= render 'layouts/cnzz' %></span>
-  </div>
-</footer>
-
-<% if @site.created_at < 1.days.ago || !@site.active? %>     
+<% if @site.vip? %>
+  <span style="position: relative; font-size: 1px; width: 2px; height: 2px; display: none;"><%= render 'layouts/cnzz' %></span>
+<% else %>
+  <footer style="text-align:center; color:#ffd800;margin-right:20px">
+    <div style="margin-top: 40px;" class="text-center">
+      <a href="http://wedxt.com" target="_blank"><img src="/assets/logo.png" width="80px" alt="维斗喜帖" /></a>
+      <span style="position: relative; font-size: 1px; width: 2px; height: 2px; display: none;"><%= render 'layouts/cnzz' %></span>
+    </div>
+  </footer>
+<% end %>
+<% unless @site.created_at > 1.days.ago || @site.active? %>    
   <!--Style Switcher-->
   <script src="/alert/style-switcher.js"></script>
   <div id="style-switcher">

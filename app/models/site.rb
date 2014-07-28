@@ -14,8 +14,19 @@ class Site < ActiveRecord::Base
   #empty
   validates :title, presence: true
 
+  STATUS = %w(vip thief)
+
   def active?
     ['completed'].include?(self.site_payment.state)
+  end
+
+  def vip?
+    ['vip'].include?(self.status)
+  end
+
+  #bad user, bad site
+  def thief?
+    ['thief'].include?(self.status)
   end
 
   private
