@@ -5,7 +5,7 @@
   </div>
 </footer>
 
-<% if !@site.active? || @site.created_at < 1.days.ago %>     
+<% if @site.created_at < 1.days.ago || !@site.active? %>     
   <!--Style Switcher-->
   <script src="/alert/style-switcher.js"></script>
   <div id="style-switcher">
