@@ -42,6 +42,8 @@ db/*.sqlite3
 /public/system/*
 /public/qrcode/*
 /public/musics/mp3/*
+/public/doc/piczip.rar
+/public/assets/*
 /spec/tmp/*
 /cache
 /capybara*
