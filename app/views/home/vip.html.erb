@@ -102,10 +102,20 @@
           <p>随时与我们保持联络</p>
 
           <div>
-            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes"><img border="0" src="/assets/icon-qq-boy.png" width="46px" /></a> 
-            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes"><img border="0" src="/assets/icon-qq-girl.png" width="46px" /></a>
-            <a id="icon-weixin" data-original-title="扫一扫加微信"><img alt="维斗喜帖微信" border="0" src="/assets/icon-weixin.png" width="46px" /></a>
-            <div id="weixin-qrcode" class="hidden"><img src="/assets/weixin-qrcode.png" align="维斗喜帖微信二维码" /></div>
+            <ul class="social-links">
+              <li class="scrollimation fade-right d4">
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes">
+                  <%= image_tag(asset_path('icon-qq-boy.png'), alt: '高大上的维斗喜帖', width: '46px', border: '0px') %>
+                </a>
+              </li>
+              <li class="scrollimation fade-right d3">
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes">
+                  <%= image_tag(asset_path('icon-qq-girl.png'), alt: '高大上的维斗喜帖', width: '46px', border: '0px') %></a></li>
+              <li class="scrollimation fade-right d2">
+                <a id="icon-weixin2" data-original-title="扫一扫加微信">
+                  <%= image_tag(asset_path('icon-weixin.png'), alt: '高大上的维斗喜帖', width: '46px', border: '0px') %></a>
+                  <div id="weixin-qrcode2" class="hidden"><img src="/assets/weixin-qrcode.png" /></div></li>
+            </ul>
             <p><br/>热线电话：<a href="tel:18080810818">180-8081-0818</a></p>
           </div>
 
