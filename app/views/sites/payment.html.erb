@@ -25,7 +25,7 @@
         </div>
         <div class="panel-body">
           <%= form_tag(@site.site_payment.pay_url(@site), method: 'get') do |f| %>
-            <p>支付类型： <img src="/assets/alipay.gif" /> </p>
+            <p>支付类型： <%= image_tag('alipay.gif', alt: '支付宝', class: "img-responsive") %></p>
             <div class="input-group">
               <%=text_field_tag :code, nil, class: 'form-control', value: "￥#{@site_payment.price}", readonly: true %>
               <div class="input-group-btn">
@@ -64,7 +64,7 @@
           <ul>
             <li>我们会给[商户版]会员发放激活码</li>
             <li>我们会给合作婚庆公司发放激活码</li>
-            <li>我们会特定合作代理商发放激活码</li>
+            <li>我们会给个人定制用户发放激活码</li>
           </ul>
         </div>
       </div>
@@ -76,7 +76,9 @@
           <h3 class="bottom_bordered">方式三、微信AA付款</h3>
         </div>
         <div class="panel-body">
-          <p class="text-center"><img alt="维斗喜帖微信二维码" border="0" src="/assets/weixin-qrcode.png" /></p>
+          <p class="text-center">
+            <%= image_tag('weixin-qrcode.png', alt: '维斗喜帖微信二维码', class: "img-responsive") %>
+          </p>
           <h4>操作流程：</h4>
           <ul>
             <li>打开微信扫描二维码，添加微信好友</li>
