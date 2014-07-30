@@ -1,5 +1,5 @@
-<% title "#{@template.title}-维斗喜帖" %>
-<% meta_description "#{@template.title}|维斗喜帖，漂亮的电子请帖、微信请帖、二维码请柬。" %>
+<% title "#{@template.title}-微信请帖模板,维斗喜帖出品" %>
+<% meta_description "#{@template.title}|维斗喜帖，漂亮的商务请帖、微信请帖、二维码请柬。" %>
 <!-- ==============================================
 PROJECT PREVIEW MODAL (Do not alter this markup)
 =============================================== --> 
@@ -16,7 +16,7 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
               <div class="image-wrapper">
-                <img class="img-responsive" src="/assets/chrome.png" alt="">
+                <%= image_tag('chrome.png', alt: '维斗喜帖桌面背景', class: "img-responsive") %>
                 <div class="loader" ></div>
                 <div class="screen flexslider"><div class="flex-viewport" ><ul class="slides">
                 <% get_demo_image_list(@template, 'demo_img', 'index').each do |img| %>
@@ -36,11 +36,11 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
             <div id="project-sidebar" class="col-md-3">
               <h2 id="sdbr-title">
                 <%= link_to app_site_new_path(template_id: @template.id), class: 'btn btn-meflat icon-right' do %>
-                  快速制作<i class="fa fa-arrow-right"></i>
+                  个人制作<i class="fa fa-arrow-right"></i>
                   <small>￥<%= ENV["PRICE_BASE"] %></small>
                 <% end %>
                 <%= link_to vip_path(template_id: @template.id), class: 'btn btn-meflat icon-right' do %>
-                  VIP 定制<i class="fa fa-arrow-right"></i>
+                  商务定制<i class="fa fa-arrow-right"></i>
                   <small>￥<%= ENV["PRICE_VIP"] %></small>
                 <% end %>
               </h2>
