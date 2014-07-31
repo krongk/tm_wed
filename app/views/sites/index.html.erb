@@ -36,7 +36,11 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <%= link_to '预览', site_preview_path(site), class: 'btn btn-info margin-top-sm' %>
+              <% if mobile_device? %>
+                <%= link_to '预览', get_site_url(site), class: 'btn btn-info margin-top-sm' %>
+              <% else %>
+                <%= link_to '预览', site_preview_path(site), class: 'btn btn-info margin-top-sm' %>
+              <% end %>
               <%= link_to '分享', site, class: 'btn btn-info margin-top-sm' %>
               <%= link_to '留言', site_site_comments_path(site), class: 'btn btn-info margin-top-sm' %>
             </div>

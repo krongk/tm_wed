@@ -37,11 +37,9 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
               <h2 id="sdbr-title">
                 <%= link_to app_site_new_path(template_id: @template.id), class: 'btn btn-meflat icon-right' do %>
                   个人制作<i class="fa fa-arrow-right"></i>
-                  <small>￥<%= ENV["PRICE_BASE"] %></small>
                 <% end %>
                 <%= link_to vip_path(template_id: @template.id), class: 'btn btn-meflat icon-right' do %>
                   商务定制<i class="fa fa-arrow-right"></i>
-                  <small>￥<%= ENV["PRICE_VIP"] %></small>
                 <% end %>
               </h2>
               <p id="sdbr-category"><%= @template.cate.title %></p>

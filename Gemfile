@@ -23,6 +23,7 @@ gem 'rqrcode_png'
 gem 'useragent'
 gem 'alipay', :github => 'chloerei/alipay'
 gem 'therubyracer', :platform=>:ruby
+gem 'sitemap_generator'
 
 #for sortable
 gem 'acts_as_list'
