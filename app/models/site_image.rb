@@ -18,8 +18,8 @@ class SiteImage < ActiveRecord::Base
   # Explicitly do not validate
   do_not_validate_attachment_file_type :image
 
-  #
-  acts_as_list
+  #sort by position
+  acts_as_list :scope => :site_page
 
   #init position
   before_create :assign_position
