@@ -32,6 +32,10 @@ class SiteCommentsController < ApplicationController
   # POST /site_comments
   # POST /site_comments.json
   def create
+    unless check_token
+      render text: '不能重复提交' and return
+    end
+
     @site_comment = SiteComment.new(site_comment_params)
 
     respond_to do |format|

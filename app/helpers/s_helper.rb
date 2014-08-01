@@ -88,13 +88,13 @@ module SHelper
 
   #SEO generate ###########################
   def get_seo_title(site_page)
-    site_page.title
+    [site_page.site.try(:title), site_page.title, '维斗喜帖出品'].join("-")
   end
   def get_seo_meta_keywords(site_page)
-    [site_page.site.try(:title), "维斗喜帖", "微信请帖", "二维码请帖", "电子喜帖","请柬", "请帖", "喜帖"].join(",")
+    [site_page.site.try(:title), "维斗喜帖", "微信请帖", "二维码请帖", "电子喜帖","商务请柬", "结婚请帖", "喜帖"].join(",")
   end
   def get_seo_meta_description(site_page)
-    site_page.title
+    [site_page.site.try(:title), ', ', site_page.title, '的微信请帖', ' - 维斗喜帖出品'].join
   end
 
   #SitePageKeystore.value_for(@site_page, 'text1')

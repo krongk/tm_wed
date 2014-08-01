@@ -62,5 +62,12 @@ module ApplicationHelper
     return true if user_agent.browser =~ /Internet/
     return false
   end
+
+  #bugfix multi submit form
+  #see: http://qiezi.iteye.com/blog/37781
+  def token_field
+    hidden_field_tag(:__token__, (@__token__ ||= (session[:__token__] = 
+      Digest::SHA1.hexdigest((Time.now.to_i + rand(0xffffff)).to_s)[0..39])))  
+  end  
   
 end

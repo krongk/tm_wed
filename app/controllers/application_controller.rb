@@ -41,4 +41,15 @@ class ApplicationController < ActionController::Base
     def prepare_for_mobile
       session[:mobile_param] = params[:mobile] if params[:mobile]
     end
+
+    #bugfix multi submit form
+    #http://qiezi.iteye.com/blog/37781
+    def check_token
+      if session[:__token__] == params[:__token__]  
+        session[:__token__] = nil  
+        # session.update  
+        return true  
+      end  
+      false  
+    end
 end

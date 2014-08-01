@@ -49,10 +49,15 @@ ready = function() {
 			var formInput = $(this).serialize();
 			$.post($(this).attr('action'),formInput, function(data){
 				$('#contact-form button').html('<i class="fa fa-check"></i>'+okMessage);
+				$('#contact-form button').attr('disabled','disabled');
+				$('.requiredField').each(function() {
+					$(this).val('');
+				});
 				setTimeout(function(){
 					$('#contact-form button').html(buttonCopy);
 					$('#contact-form button').width('auto');
-				},2000);
+					$('#contact-form button').removeAttr('disabled');
+				}, 6000);
 				
 			});
 		}
