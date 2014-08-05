@@ -2,31 +2,29 @@
     FOOTER
     =============================================== --> 
 <footer id="main-footer" class="dark-bg light-typo">
-
   <div class="container">
     <hr>
     <div class="row">
-    
       <div class="col-sm-6">
         <ul class="social-links">
           <li class="scrollimation fade-right d4">
             <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes">
-              <%= image_tag('icon-qq-boy.png', alt: '高大上的维斗喜帖', width: '46px', border: '0px') %>
+              <%= image_tag('icon-qq-boy.png', alt: '维斗喜帖联系QQ', width: '46px', border: '0px') %>
             </a>
           </li>
           <li class="scrollimation fade-right d3">
             <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes">
-              <%= image_tag('icon-qq-girl.png', alt: '高大上的维斗喜帖', width: '46px', border: '0px') %></a></li>
+              <%= image_tag('icon-qq-girl.png', alt: '高大上的维斗喜帖客服', width: '46px', border: '0px') %></a></li>
           <li class="scrollimation fade-right d2">
             <a id="icon-weixin2" data-original-title="扫一扫加微信">
-              <%= image_tag('icon-weixin.png', alt: '高大上的维斗喜帖', width: '46px', border: '0px') %></a>
+              <%= image_tag('icon-weixin.png', alt: '高大上的维斗喜帖微信客服', width: '46px', border: '0px') %></a>
               <div id="weixin-qrcode2" class="hidden"><%= image_tag('weixin-qrcode.png', alt: '高大上的维斗喜帖', width: '46px', border: '0px') %></div></li>
         </ul>
       </div>
       
       <div class="col-sm-6 text-right scrollimation fade-in">
         <p>
-          <span class="hidden-xs hidden-sm">&copy;2014 专业微信喜帖/二维码请帖/微相册制作</span>&nbsp; 
+          <span class="hidden-xs hidden-sm">&copy;2014 在线微信喜帖/二维码请帖/微相册制作</span>&nbsp; 
           <a href="tel:18080810818"><i class="fa fa-phone-square"></i> 180-8081-0818</a>
           <span style="position: relative; font-size: 1px; width: 2px; height: 2px; display: none;"><%= render 'layouts/cnzz' %></span>
         </p>
@@ -34,3 +32,23 @@
     </div>
   </div>
 </footer>
+
+<% unless mobile_device? %>
+<div class="white-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+          <%= image_tag 'anquan.jpg', class: 'img-responsive img-center' %>
+          <p>
+            <b>地址：</b><addr>成都市二环路东二段龙湖三千星座A座2801号</addr>&nbsp;&nbsp;
+            <b>邮编: </b> 610000&nbsp;&nbsp;
+            <b>电话: </b> 028-85218320
+          <br/>
+            &copy;维斗喜帖-版权所有  &nbsp;&nbsp;&nbsp;&nbsp;
+            备案号:  <a href="http://www.miibeian.gov.cn" target="_blank">蜀ICP备11016427号-4</a>
+          </p>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
