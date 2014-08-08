@@ -42,17 +42,6 @@ class App::SiteController < ApplicationController
   18:30  新人敬酒<br/>
   19:40  婚礼仪式结束，客人茶歇时间<br/>
           })
-        params[:site].merge!(content:  %{
-这是一个微相册示例，你可以通过手机简单创建，适用于照片分享，电子请帖，活动邀请，报名等各种应用场景。
-制作喜帖+QQ：77632132
-+微信：xuejiang_song    
-官网访问地址: www.WedXT.com
-
-高大上的结婚喜帖
-私人定制，打造属于你的真挚邀请
-一生一次，再一次引爆你的朋友圈
-          })
-
         #build site_page via template_page
         first_site_page = nil
         Templates::Page.where(template_id: @site.template_id).order("position ASC").each do |temp_page|
@@ -80,7 +69,7 @@ class App::SiteController < ApplicationController
         # if Rails.env == 'production'
         #   SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "#{@site.user.try(:email) || @site.member.try(:auth_id)}创建了应用：#{get_site_url(@site)}")
         # end
-        
+
         #redirect
         format.html { redirect_to app_site_images_path(site_page_id: first_site_page.id), notice: t('notice.site.created') }
         format.json { render action: 'show', status: :created, location: @site }
