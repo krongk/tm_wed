@@ -77,9 +77,10 @@ class App::SiteController < ApplicationController
           first_site_page ||= site_page
         end
         #send notice to admin
-        if Rails.env == 'production'
-          SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "#{@site.user.try(:email) || @site.member.try(:auth_id)}创建了应用：#{get_site_url(@site)}")
-        end
+        # if Rails.env == 'production'
+        #   SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "#{@site.user.try(:email) || @site.member.try(:auth_id)}创建了应用：#{get_site_url(@site)}")
+        # end
+        
         #redirect
         format.html { redirect_to app_site_images_path(site_page_id: first_site_page.id), notice: t('notice.site.created') }
         format.json { render action: 'show', status: :created, location: @site }
