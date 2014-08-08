@@ -11,10 +11,14 @@ class Site < ActiveRecord::Base
   after_create :create_site_payment
 
   scope :sites_has_images, ->{ joins(:site_pages =>:site_images).group("sites.id").order("updated_at DESC") }
+  scope :sites_has_images, ->{ joins(:site_pages =>:site_images).group("sites.id").order("updated_at DESC") }
   #empty
   validates :title, presence: true
 
-  STATUS = %w(vip thief)
+  #thief: bad user, bad site -> not allow showing in case and template
+  #recommend: good site -> show in template 
+  #vip: payed site -> not show in case (if user ask for)
+  STATUS = %w(vip recommend thief)
 
   def active?
     ['completed'].include?(self.site_payment.state)

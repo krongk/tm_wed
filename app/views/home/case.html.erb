@@ -39,7 +39,6 @@ Case
   
     <div id="projects-container">
       <% @sites.each do |site| %>
-        <% next if get_first_site_image_url(site).nil? || site.vip? %>
         <% template = site.template %>
         <% site_page = site.site_pages.first %>
         <% next if site_page.nil? %>

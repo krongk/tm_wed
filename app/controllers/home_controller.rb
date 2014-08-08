@@ -16,7 +16,7 @@ class HomeController < ApplicationController
   def case
     @templates = Templates::Template.where("cate_id in (1,2)").order("updated_at DESC")
     @last_template = @templates.pop #use for filter style
-    @sites = Site.sites_has_images.paginate(page: params[:page] || 1, per_page: 9)
+    @sites = Site.sites_has_images.where("sites.status IS NULL OR sites.status not in('vip', 'thief')").paginate(page: params[:page] || 1, per_page: 9)
   end
 
   def vip
