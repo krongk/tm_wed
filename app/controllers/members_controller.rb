@@ -16,8 +16,10 @@ class MembersController < ApplicationController
         session[:token] = nil
         session[:token] = member.id
         #send token
-        TokenSendWorker.perform_async(member.auth_id, generate_token(member))
-        return render new_token_members_path, id: member.id, notice: '验证码已发送！'
+        if Rails.env == 'production'
+          TokenSendWorker.perform_async(member.auth_id, generate_token(member))
+        end
+        return redirect_to new_token_members_path(id: member.id), notice: '验证码已发送到你手机，请注意查收！'
       else
         get_session(member)
       end
@@ -45,7 +47,6 @@ class MembersController < ApplicationController
   end
 
   def new_token
-
   end
 
   #"id"=>"3", "auth_token"=>"ewf",

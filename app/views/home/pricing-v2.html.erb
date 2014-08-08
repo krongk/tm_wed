@@ -24,7 +24,7 @@
   <div class="plan">
     <div class="plan-name">
       <h2>商务版</h2>
-      <span>￥<%= ENV["PRICE_VIP"] %>/个</span>
+      <span>￥<%= ENV["PRICE_VIP"] %>/年</span>
     </div>
     <ul>
       <li class="plan-feature">免费试用</li>
@@ -37,15 +37,24 @@
       <li class="plan-feature">去维斗LOGO</li>
       <li class="plan-feature">无限群发</li>
       <li class="plan-feature">无限存储/流量</li>
-      <li class="plan-feature">保存时间：1年</li>
-      <li class="plan-feature">第二年续费： 5折于原来的价格</li>
       <li class="plan-feature"><a href="/vip" class="btn btn-meflat btn-block btn-plan-select"> 开始定制 </a></li>
     </ul>
   </div>
+  <div class="plan">
+    <div class="plan-name">
+      <h2>商户版</h2>
+      <span>￥<%= ENV["PRICE_BIZ"] %>/年</span>
+    </div>
+    <ul>
+      <li class="plan-feature">用于企业/代理</li>
+      <li class="plan-feature">无限创建应用</li>
+      <li class="plan-feature">品牌合作宣传</li>
+      <li class="plan-feature">专业技术培训</li>
+      <li class="plan-feature">定制商户模板</li>
+      <li class="plan-feature">整合运营指导</li>
+      <li class="plan-feature">灵活的支付方式</li>
+      <li class="plan-feature"><a href="/users/sign_in" class="btn btn-meflat btn-block btn-plan-select"> 在线购买 </a></li>
+    </ul> 
+  </div>
 </div>
 <!-- END 3 column variable height pricing table(Min-Max) -->
-<div class="text-right" style="margin-top: 80px; margin-right: 50px;">
-  <%= link_to '/post/help', class: 'btn btn-meflat icon-right' do %>
-    查看使用帮助说明 <i class="fa fa-arrow-right"></i>
-  <% end %>
-</div>

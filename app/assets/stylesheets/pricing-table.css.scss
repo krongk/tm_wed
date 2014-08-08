@@ -8,7 +8,8 @@ $theme_color: #F1678D;
 $active_color: #36D9C3;
 
 .pricing-table .plan {
-  width: 31%;
+  width: 45%;
+  min-width: 300px;
   padding: 0px;
   border-radius: 5px;
   text-align: center;
