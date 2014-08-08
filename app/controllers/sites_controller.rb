@@ -69,6 +69,11 @@ class SitesController < ApplicationController
         # do nothing
       end
 
+      #send notice to admin
+      if Rails.env == 'production' && current_session.id > 5
+        SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "支付状态：#{@payment.state}, 应用: http://www.wedxt.com/sites/#{@payment.site_id}/preview")
+      end
+
       #@payment.payment_notifies.create!(verify: true, payment_number: "p#{@payment.id}r#{rand(30034)}", payment_count: @payment.price, state: 'income', cate: '在线充值', status: params[:trade_status])
       # 成功接收消息后，需要返回纯文本的 ‘success’，否则支付宝会定时重发消息，最多重试7次。 
       render :text => 'success'
@@ -99,6 +104,11 @@ class SitesController < ApplicationController
       site_payment.updated_by = current_session.id
       site_payment.note = "激活码验证"
       site_payment.save
+
+      #send notice to admin
+      if Rails.env == 'production' && current_session.id > 5
+        SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "#{current_session.try(:email) || current_session.try(:auth_id)}激活了应用：#{get_site_url(@site)}")
+      end
 
       redirect_to site_path(@site), notice: t('notice.site.active_token')
     elsif Payment::Token.inactive.where("code = ?", params[:code].strip).first
@@ -210,6 +220,7 @@ class SitesController < ApplicationController
       @site = Site.find_by(id: params[:id])
       #for preview/themes/set_theme
       @site ||= Site.find_by(id: params[:site_id])
+      not_found if @site.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
