@@ -1,6 +1,7 @@
 #encoding: utf-8
 class App::SiteController < ApplicationController
   include SHelper
+
   def new
     if params[:template_id].nil? || (@template = Templates::Template.find_by(id: params[:template_id])).nil?
       redirect_to portfolio_path, notice: t('notice.site.choose_template')
@@ -8,6 +9,7 @@ class App::SiteController < ApplicationController
     end
     
   end
+
   #"member"=>{"phone"=>"18080801080"}, 
   #"site"=>{"boy"=>"梁山伯", "girl"=>"祝英台", "date"=>"2014-07-18", "address"=>"成都锦江区滨江东路9号"}}
   def create
@@ -80,7 +82,21 @@ class App::SiteController < ApplicationController
     end
   end
 
-  def upload
+  def ajax_get_member
+    auth_id = params[:auth_id].to_s.strip
+    if auth_id.match(/^1[3456789]\d{9}$/)
+      member = Member.find_by(auth_id: auth_id)
+      if member.present?
+        txt = %{
+          <div class="alert alert-info alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+            <p>你已经创建了#{member.sites.size.to_s}个应用，避免重复创建，请<a href="/users/sign_in"><strong>点击这里</strong></a>登录后台管理你的应用.</p>
+          </div
+        }
+        render text: txt and return
+      end
+    end
+    render text: ''
   end
 
   def preview
@@ -98,7 +114,8 @@ class App::SiteController < ApplicationController
       end
       member
     end
-    def create_member(member_params)
+
+    def test_create_member(member_params)
       member = Member.find_by(auth_type: member_params[:auth_type], auth_id: member_params[:auth_id])
       if member
         #old user, judge if he has any sites, redirect to send_token
@@ -125,6 +142,7 @@ class App::SiteController < ApplicationController
     def member_params
       params.require(:member).permit(:auth_type, :auth_id)
     end
+
     def site_params
       params.require(:site).permit(:template_id, :title, :boy, :girl, :date, :address)
     end

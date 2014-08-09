@@ -3,7 +3,7 @@ TmCard::Application.routes.draw do
   namespace :app do
     get "site/new"
     post "site/create"
-    get "site/upload"
+    get "site/ajax_get_member"
     get "site/preview"
   end
   
