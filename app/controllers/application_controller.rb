@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     if resource.sites.any?
       sites_path
     else
-      portfolio_path
+      new_site_path
     end
   end
   #render 404 error
