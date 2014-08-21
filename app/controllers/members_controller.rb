@@ -64,36 +64,6 @@ class MembersController < ApplicationController
     end
   end
 
-  def qc_callback
-    puts request
-    # app_id = '101148468'
-    # app_key = '861e30f9adefb07ea5485ecd0f3308a9'
-    # redirect_uri = 'http://www.wedxt.com/members/qc_callback'
-
-    # #Step1：获取Authorization Code
-    # # param = {'response_type' => 'code', 
-    # #   'client_id' => app_id,
-    # #   'redirect_uri' => URI.encode(redirect_uri),
-    # #   'state' => 'test'
-    # # }.map{|k,v| "#{k}=#{v}"}.join('&')
-    # # if open('https://graph.qq.com/oauth2.0/authorize?' + param).read =~ /\?code=(.*)&state=/i
-    # #   code = $1
-    # # end
-   
-    # #Step2：通过Authorization Code获取Access Token
-    # @token ||= open('https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id=' + app_id + 
-    #   '&client_secret=' + app_key + 
-    #   '&code=' + params[:code].to_s + '&redirect_uri='+ redirect_uri).read[/(?<=access_token=)\w{32}/]
-    # #获取Openid
-    # @openid ||= open('https://graph.qq.com/oauth2.0/me?access_token=' + @token).read[/\w{32}/]    
-    # #获取通用验证参数
-    # @auth ||= '?access_token=' + @token + '&oauth_consumer_key=' + app_id + '&openid=' + @openid
-
-    # back=open("https://graph.qq.com/user/get_user_info" + @auth ).read.force_encoding('utf-8')
-
-    # puts back 
-  end
-
   private
     def generate_token(member)
       #token = SecureRandom.hex(2) => 4 chars lime '43a5'
