@@ -19,6 +19,14 @@
           </ul>
           <br/><br/>
         </div>
+        <div class="col-sm-8"><!-- QQ login -->
+          <span id="qq_login_btn"></span>
+          <script type="text/javascript">
+            QC.Login({//按默认样式插入QQ登录按钮
+              btnId:"qq_login_btn"  //插入按钮的节点id
+            });
+          </script>
+        </div>
       </div>
     <% end %>
   </div>
@@ -64,6 +72,7 @@
   </div>
 </div>
 
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101148468" data-redirecturi="http://www.wedxt.com/qc_callback.html" charset="utf-8"></script>
 <script type="text/javascript">
   $(document).ready(function() {
     $('#icon-weixin').popover({
