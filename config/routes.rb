@@ -15,8 +15,9 @@ TmCard::Application.routes.draw do
   end
 
   resources :members do
-    collection{get :new_token}
-    collection{post :verify_token}
+    collection {get :new_token}
+    collection {post :verify_token}
+    collection {get :qc_callback}
   end
 
   resources :site_comments #for show on client

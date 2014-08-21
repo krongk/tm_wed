@@ -64,6 +64,10 @@ class MembersController < ApplicationController
     end
   end
 
+  def qc_callback
+    render text: parmas and return
+  end
+
   private
     def generate_token(member)
       #token = SecureRandom.hex(2) => 4 chars lime '43a5'
