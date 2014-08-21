@@ -65,7 +65,7 @@ class MembersController < ApplicationController
   end
 
   def qc_callback
-    render text: parmas and return
+    render text: params and return
   end
 
   private
