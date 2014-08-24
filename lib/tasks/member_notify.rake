@@ -9,7 +9,7 @@ namespace :member_notify do
     #debug
     #count = 0
     while true do
-      puts "\ndo while condition.........................."
+      puts "\ndo while condition..........................#{Time.now.to_s}"
       
       #do not send at night.
       if ("07:00"..."22:00").include?(Time.now.strftime("%H:%M"))
