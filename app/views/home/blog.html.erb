@@ -15,8 +15,7 @@ Blog
               <img class="img-responsive img-center" src="<%= post.image_path %>" alt="<%= post.title %>" />
             <% end %>
           </div>        
-          <h2><%= link_to get_short_content(post.title, 18), "/post/#{post.short_title}" %></h2>
-          <p class="hidden-xs text-left"><%= get_short_content(post.description, 60)%></p>      
+          <h2><%= link_to get_short_content(post.title, 18), "/post/#{post.short_title}" %></h2> 
         </div>
       <% end %>    
     </div>  
