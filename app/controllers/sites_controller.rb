@@ -167,9 +167,9 @@ class SitesController < ApplicationController
             title: temp_page.title)
         end
         #send notice to admin
-        # if Rails.env == 'production'
-        #   SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "#{@site.user.try(:email) || @site.member.try(:auth_id)}创建了应用：#{get_site_url(@site)}")
-        # end
+        if Rails.env == 'production'
+          SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "#{@site.user.try(:email) || @site.member.try(:auth_id)}创建了应用：#{get_site_url(@site)}")
+        end
         #redirect
         format.html { redirect_to site_site_steps_path(@site), notice: t('notice.site.created') }
         format.json { render action: 'show', status: :created, location: @site }
