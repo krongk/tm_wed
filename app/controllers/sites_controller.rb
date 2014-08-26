@@ -166,6 +166,9 @@ class SitesController < ApplicationController
             template_page_id: temp_page.id,
             title: temp_page.title)
         end
+        #add a comment
+        SiteComment.create(site_id: @site.id, name: '维斗喜帖', content: '小维斗来过，提前送上一声祝福~')
+        
         #send notice to admin
         if Rails.env == 'production'
           SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "#{@site.user.try(:email) || @site.member.try(:auth_id)}创建了应用：#{get_site_url(@site)}")

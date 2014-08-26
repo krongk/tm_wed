@@ -60,7 +60,7 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
                     <div class="col-sm-6 col-md-3">
                       <div class="thumbnail">
                         <img src="<%= get_first_site_image_url(site) %>" />
-                        <!--<img src="http://qrickit.com/api/qr?d=<%=get_site_url(site)%>&fgdcolor=000000&bgdcolor=F1678D&qrsize=120&t=p&e=m"> -->
+                        <!--<img src="http://qrickit.com/api/qr?d=<%# =get_site_url(site)%>&fgdcolor=000000&bgdcolor=F1678D&qrsize=120&t=p&e=m"> -->
                         <div class="caption text-center">
                           <p><a href="<%= site_preview_path(site)%>" target="_blank"><%= site.title.to_s.truncate(10) %></a></p>
                           <p>
