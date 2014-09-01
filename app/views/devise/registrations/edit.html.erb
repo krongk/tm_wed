@@ -24,12 +24,15 @@
         <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
     </fieldset>
-    <fieldset>
-      <div class="form-group">
-        <%= f.label :current_password %>
-        <%= f.password_field :current_password, class: 'form-control' %>
-      </div>
-    </fieldset>
+    <% if f.object.encrypted_password.present? %>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :current_password %>
+          <%= f.password_field :current_password, class: 'form-control' %>
+        </div>
+      </fieldset>
+    <% end %>
+    
     <%= f.submit '提 交', :class => 'button right' %>
   <% end %>
 </div>

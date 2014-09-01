@@ -9,8 +9,8 @@ zh-CN:
       already_confirmed: "已经激活，请重新登录."
       not_locked: "未锁定"
       not_saved:
-        one: "因为 1 个错误导致此 %{resource}保存失败:"
-        other: "因为 %{count}个错误导致此 %{resource}保存失败:"
+        one: "亲，你还需要完善以下信息:"
+        other: "亲，你还需要完善以下信息:"
 
   devise:
     failure:

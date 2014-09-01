@@ -6,21 +6,24 @@
         <hr/>
         <%= devise_error_messages! %>
         <div class="form-group col-md-6">
-          <%= f.label :name %>
-          <%= f.text_field :name, :autofocus => true, class: 'required form-control' %>
-        </div>
-        <div class="form-group col-md-6">
           <%= f.label :email %>
-          <%= f.email_field :email, class: 'required form-control' %>
+          <%= f.email_field :email, :autofocus => true, class: 'required form-control' %>
         </div>
         <div class="form-group col-md-6">
-          <%= f.label :password %>
-          <%= f.password_field :password, class: 'required form-control' %>
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'required form-control' %>
         </div>
-        <div class="form-group col-md-6">
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, class: 'required form-control' %>
-        </div>
+
+        <% if f.object.password_required? %>
+          <div class="form-group col-md-6">
+            <%= f.label :password %>
+            <%= f.password_field :password, class: 'required form-control' %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, class: 'required form-control' %>
+          </div>
+        <% end %>
          <%= f.submit '提 交 注 册', :class => 'btn btn-meflat' %>
          <hr/>
          我已经有账号了，<a href="/users/sign_in">点击这里登录</a>

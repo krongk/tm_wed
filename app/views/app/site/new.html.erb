@@ -1,59 +1,94 @@
-<div class="row">
-<div class="col-md-8 col-md-offset-2">
-  <h3 class="bottom_bordered">1. 填写信息  <small> --- 2. 上传照片 --- 3. 生成应用</small></h1>
+<ul class="timeline-v2">
+  <li>
+    <time class="cbp_tmtime" datetime=""><span>步骤</span> <span>1</span></time>
+    <i class="cbp_tmicon rounded-x hidden-xs"></i>
+    <div class="cbp_tmlabel">
+      <h2>选择模板</h2>
+      <% if @template %>
+        <div class="row">
+          <div class="col-md-4">
+            <%= link_to template_path(@template) do %>
+              <% demo_images = get_demo_image_list(@template, 'demo_img') %>
+              <img class="img-responsive img-center" src="<%= demo_images.shift %>" alt="<%= @template.title %>" />
+            <% end %>
+            <div class="md-margin-bottom-20"></div>
+          </div>
+          <div class="col-md-8">    
+            <p>你当前选择的模板是: <strong><%= link_to @template.title, template_path(@template), target: '_blank' %></strong></p>
+            <p>&nbsp;</p>
+            <p><%= link_to '点击这里', templates_path %> 重新选择</p>
+          </div>
+        </div>
+      <% else %>
+        <p><br/>
+        你还没有选择喜欢的模板。
+        </p>
+        <ol>
+          <li>你可以： <%= link_to '点击这里', templates_path %>进入模板页面进行选择。</li>
+          <li>你也可以： 直接在下面【步骤2】告诉我们你喜欢的模板，或者是在网上发现的漂亮链接。</li>
+        </ol>
+      <% end %>  
+    </div>
+  </li>
+  <li>
+    <time class="cbp_tmtime" datetime=""><span>步骤</span> <span>2</span></time>
+    <i class="cbp_tmicon rounded-x hidden-xs"></i>
+    <div class="cbp_tmlabel">
+      
+        <h3 class="bottom_bordered">1. 填写信息  <small> --- 2. 上传照片 --- 3. 生成应用</small></h3>
 
-  <%= form_tag({action: :create}, class: 'simple_form form-horizontal', id: 'app_form', role: "form") do %>
-    <%= hidden_field_tag("site[template_id]", params[:template_id]) %>
-    <div class="form-group">
-      <label for="member_auth_id" class="col-sm-2 control-label">*手机号码</label>
-      <div class="col-sm-10">
-        <%= hidden_field_tag("member[auth_type]", "phone") %>
-        <input id="member_auth_id" name="member[auth_id]" type="tel" class="form-control required"  />
-        <div id="member_sites"></div>
-        <p class="help-block">* 确保您的手机能够接收到短信</p>
-        <p class="help-block">* 此手机号将会成为你的<strong>登录账号</strong>使用，可以通过此手机号登录后台管理已创建的应用。</p>
-      </div>
+        <%= form_tag({action: :create}, class: 'simple_form form-horizontal', id: 'app_form', role: "form") do %>
+          <%= hidden_field_tag("site[template_id]", params[:template_id]) %>
+          <div class="form-group">
+            <label for="member_auth_id" class="col-sm-2 control-label">*手机号码</label>
+            <div class="col-sm-10">
+              <%= hidden_field_tag("member[auth_type]", "phone") %>
+              <input id="member_auth_id" name="member[auth_id]" type="tel" class="form-control required"  />
+              <div id="member_sites"></div>
+              <p class="help-block">* 确保您的手机能够接收到短信</p>
+              <p class="help-block">* 此手机号将会成为你的<strong>登录账号</strong>使用，可以通过此手机号登录后台管理已创建的应用。</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="site_title" class="col-sm-2 control-label">*喜帖标题</label>
+            <div class="col-sm-10">
+              <input id="site_title" name="site[title]" type="text" class="form-control required" placeholder="我们结婚啦/维宝宝的满月酒/" value="<%= params[:site].nil? ? '' : params[:site][:title] %>"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="site_boy" class="col-sm-2 control-label">*新郎姓名</label>
+            <div class="col-sm-10">
+              <input id="site_boy" name="site[boy]" type="text" class="form-control required" placeholder="梁山伯" value="<%= params[:site].nil? ? '' : params[:site][:boy] %>"/>
+              <p class="help-block">* 宝宝Show、生日宴请、寿宴、商务邀请等只需填写新郎姓名即可。</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="site_girl" class="col-sm-2 control-label">新娘姓名</label>
+            <div class="col-sm-10">
+              <input id="site_girl" name="site[girl]" type="text" class="form-control" placeholder="祝英台" value="<%= params[:site].nil? ? '' : params[:site][:girl] %>"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="site_date" class="col-sm-2 control-label">*宴请日期</label>
+            <div class="col-sm-10">
+              <input id="site_date" name="site[date]" type="text" class="form-control required" placeholder="2014年10月1日" value="<%= params[:site].nil? ? '' : params[:site][:date] %>"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="site_address" class="col-sm-2 control-label">*宴请地址</label>
+            <div class="col-sm-10">
+              <input id="site_address" name="site[address]" type="address" class="form-control required" placeholder="四川省成都市锦江区滨江东路9号.香格里拉大酒店" value="<%= params[:site].nil? ? '' : params[:site][:address] %>"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <%= submit_tag("保存，进入下一步", data: { disable_with: "正在保存..." }, class: 'btn btn-meflat', id: 'submit') %>
+            </div>
+          </div>
+        <% end %>
     </div>
-    <div class="form-group">
-      <label for="site_title" class="col-sm-2 control-label">*喜帖标题</label>
-      <div class="col-sm-10">
-        <input id="site_title" name="site[title]" type="text" class="form-control required" placeholder="我们结婚啦/维宝宝的满月酒/" value="<%= params[:site].nil? ? '' : params[:site][:title] %>"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="site_boy" class="col-sm-2 control-label">*新郎姓名</label>
-      <div class="col-sm-10">
-        <input id="site_boy" name="site[boy]" type="text" class="form-control required" placeholder="梁山伯" value="<%= params[:site].nil? ? '' : params[:site][:boy] %>"/>
-        <p class="help-block">* 宝宝Show、生日宴请、寿宴、商务邀请等只需填写新郎姓名即可。</p>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="site_girl" class="col-sm-2 control-label">新娘姓名</label>
-      <div class="col-sm-10">
-        <input id="site_girl" name="site[girl]" type="text" class="form-control" placeholder="祝英台" value="<%= params[:site].nil? ? '' : params[:site][:girl] %>"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="site_date" class="col-sm-2 control-label">*宴请日期</label>
-      <div class="col-sm-10">
-        <input id="site_date" name="site[date]" type="text" class="form-control required" placeholder="2014年10月1日" value="<%= params[:site].nil? ? '' : params[:site][:date] %>"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="site_address" class="col-sm-2 control-label">*宴请地址</label>
-      <div class="col-sm-10">
-        <input id="site_address" name="site[address]" type="address" class="form-control required" placeholder="四川省成都市锦江区滨江东路9号.香格里拉大酒店" value="<%= params[:site].nil? ? '' : params[:site][:address] %>"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <%= submit_tag("保存，进入下一步", data: { disable_with: "正在保存..." }, class: 'btn btn-meflat', id: 'submit') %>
-      </div>
-    </div>
-  <% end %>
-
-</div>
-</div>
+  </li>
+</ul>
 
 <script type="text/javascript">
   $("#app_form").validate();

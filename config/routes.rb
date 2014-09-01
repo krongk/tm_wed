@@ -38,6 +38,7 @@ TmCard::Application.routes.draw do
   namespace :sites do
     post "temp_form_update"
   end
+  
   match '/s-:site_id(/p-:id)', to: "s#index", via: :get
   match '/templates(/page/:page)', to: "home#templates", via: :get, as: 'templates'
   match '/templates/:id', to: "home#template", via: :get, as: 'template'
@@ -48,6 +49,8 @@ TmCard::Application.routes.draw do
   match '/pricing', to: "home#pricing", via: :get, as: 'pricing'
   match '/vip', to: "home#vip", via: :get, as: 'vip'
   root :to => "home#index"
-  devise_for :users, :controllers => {:registrations => "registrations"}
+
+  devise_for :users, :controllers => {:registrations => "registrations", omniauth_callbacks: "omniauth_callbacks"}
+
   resources :users
 end

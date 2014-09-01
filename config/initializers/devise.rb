@@ -1,3 +1,7 @@
+require 'omniauth/strategies/tqq'
+require 'omniauth/strategies/douban'
+require 'omniauth/strategies/weibo'
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -230,7 +234,10 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-
+  config.omniauth :tqq, '101148468', '861e30f9adefb07ea5485ecd0f3308a9'
+  config.omniauth :douban, '0274327485d6e040075c975d9184a0c0', '1418e19127eff6b7'
+  config.omniauth :weibo, '1246564545', '8260eabda40382558c997c969d618c78'
+  
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

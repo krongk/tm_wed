@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140523064121) do
+ActiveRecord::Schema.define(version: 20140901130310) do
 
   create_table "admin_channels", force: true do |t|
     t.integer  "user_id"
@@ -97,6 +97,66 @@ ActiveRecord::Schema.define(version: 20140523064121) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
+  create_table "common_keys", force: true do |t|
+    t.string   "name"
+    t.string   "typo"
+    t.string   "title"
+    t.string   "placeholder"
+    t.string   "hint"
+    t.string   "default_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "members", force: true do |t|
+    t.string   "auth_type",                          null: false
+    t.string   "auth_id",                            null: false
+    t.string   "auth_token"
+    t.time     "token_created_at"
+    t.boolean  "token_confirmed"
+    t.time     "current_sign_in_at"
+    t.string   "last_sign_in_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "payment_notify_count",   default: 0, null: false
+    t.datetime "payment_notify_send_at"
+    t.integer  "festival_notify_count",  default: 0, null: false
+    t.integer  "promote_notify_count",   default: 0, null: false
+  end
+
+  add_index "members", ["auth_type", "auth_id"], name: "uniq__auth_type", unique: true, using: :btree
+
+  create_table "payment_coupons", force: true do |t|
+    t.string   "code"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.decimal  "price",      precision: 8, scale: 2
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payment_tokens", force: true do |t|
+    t.string   "code"
+    t.integer  "user_id"
+    t.integer  "created_by"
+    t.string   "status",          default: "active", null: false
+    t.string   "note"
+    t.integer  "actived_by"
+    t.integer  "actived_site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payment_tokens", ["user_id"], name: "index_payment_tokens_on_user_id_id", using: :btree
+
+  create_table "resource_musics", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", force: true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -136,8 +196,12 @@ ActiveRecord::Schema.define(version: 20140523064121) do
 
   create_table "site_images", force: true do |t|
     t.integer  "site_page_id"
-    t.string   "file"
-    t.string   "title"
+    t.integer  "position"
+    t.string   "image"
+    t.string   "image_file_name"
+    t.string   "image_file_size"
+    t.string   "image_content_type"
+    t.string   "name"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -146,14 +210,13 @@ ActiveRecord::Schema.define(version: 20140523064121) do
   add_index "site_images", ["site_page_id"], name: "index_site_images_on_site_page_id", using: :btree
 
   create_table "site_page_keystores", force: true do |t|
-    t.integer  "site_page_id"
-    t.string   "key"
+    t.integer  "site_page_id",  null: false
+    t.integer  "common_key_id", null: false
     t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "site_page_keystores", ["site_page_id", "key"], name: "index_site_page_keystores_on_site_page_id_and_key", unique: true, using: :btree
   add_index "site_page_keystores", ["site_page_id"], name: "index_site_page_keystores_on_site_page_id", using: :btree
 
   create_table "site_pages", force: true do |t|
@@ -169,22 +232,48 @@ ActiveRecord::Schema.define(version: 20140523064121) do
   add_index "site_pages", ["site_id"], name: "index_site_pages_on_site_id", using: :btree
   add_index "site_pages", ["template_page_id"], name: "index_site_pages_on_template_page_id", using: :btree
 
+  create_table "site_payments", force: true do |t|
+    t.string   "trade_no",     limit: 50
+    t.integer  "site_id",                                                       null: false
+    t.decimal  "price",                   precision: 8, scale: 2,               null: false
+    t.string   "pay_type"
+    t.string   "state",        limit: 32
+    t.datetime "pending_at"
+    t.datetime "completed_at"
+    t.datetime "canceled_at"
+    t.datetime "paid_at"
+    t.datetime "start_at"
+    t.integer  "updated_by"
+    t.string   "note"
+    t.string   "is_processed",                                    default: "n"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "site_payments", ["is_processed"], name: "idx__processed", using: :btree
+  add_index "site_payments", ["site_id"], name: "unq__site_id", unique: true, using: :btree
+
   create_table "sites", force: true do |t|
     t.integer  "user_id"
+    t.integer  "member_id"
     t.integer  "template_id"
+    t.integer  "theme_id"
     t.string   "short_title"
     t.string   "title"
     t.string   "description"
     t.string   "domain"
     t.string   "status"
-    t.boolean  "is_published",    default: true
-    t.boolean  "is_comment_show", default: true
+    t.boolean  "is_published",               default: true
+    t.boolean  "is_comment_show",            default: true
+    t.string   "plan",            limit: 50
+    t.datetime "plan_expired_at"
     t.integer  "updated_by"
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "sites", ["member_id"], name: "idx__member", using: :btree
   add_index "sites", ["short_title"], name: "index_sites_on_short_title", unique: true, using: :btree
   add_index "sites", ["template_id"], name: "index_sites_on_template_id", using: :btree
   add_index "sites", ["user_id"], name: "index_sites_on_user_id", using: :btree
@@ -214,21 +303,21 @@ ActiveRecord::Schema.define(version: 20140523064121) do
   add_index "template_cates", ["title"], name: "index_template_cates_on_title", unique: true, using: :btree
 
   create_table "template_keystores", force: true do |t|
-    t.string   "template_type", limit: 50, null: false
-    t.integer  "template_id",              null: false
-    t.string   "key",                      null: false
+    t.string   "source_type", limit: 50,  null: false
+    t.integer  "source_id",               null: false
+    t.string   "key",         limit: 128, null: false
     t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "template_keystores", ["template_id", "key"], name: "index_template_keystores_on_template_id_and_key", unique: true, using: :btree
-  add_index "template_keystores", ["template_id"], name: "index_template_keystores_on_template_id", using: :btree
+  add_index "template_keystores", ["source_id"], name: "index_template_keystores_on_template_id", using: :btree
 
   create_table "template_pages", force: true do |t|
     t.integer  "template_id"
-    t.integer  "sort_id"
+    t.integer  "position"
     t.string   "title"
+    t.integer  "image_count", default: 0, null: false
     t.string   "demo_img"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -240,6 +329,7 @@ ActiveRecord::Schema.define(version: 20140523064121) do
   create_table "template_themes", force: true do |t|
     t.integer "template_id"
     t.string  "title"
+    t.string  "css_color",      limit: 8
     t.string  "css_url"
     t.string  "preview_images"
     t.string  "preview_url"
@@ -253,8 +343,10 @@ ActiveRecord::Schema.define(version: 20140523064121) do
     t.string   "base_url"
     t.string   "title",       limit: 128
     t.string   "keywords"
+    t.text     "summary"
     t.text     "description"
-    t.string   "demo_img"
+    t.string   "demo_img",    limit: 1024
+    t.string   "demo_url",    limit: 1024
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -279,6 +371,8 @@ ActiveRecord::Schema.define(version: 20140523064121) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "provider"
+    t.integer  "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
