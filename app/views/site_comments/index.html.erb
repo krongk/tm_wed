@@ -30,7 +30,6 @@
           <%= [site_comment.content3, ', '].join('') unless site_comment.content3.blank? %>
         </td>
         <td><%= distance_of_time_in_words_to_now(site_comment.created_at) %>前</td>
-        <td><%= link_to '修改', edit_site_comment_path(site_comment) %></td>
         <td><%= link_to '删除', site_comment, method: :delete, data: { confirm: '删除以后不能再恢复了，你确定要删除吗?' } %></td>
       </tr>
     <% end %>

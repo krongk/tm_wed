@@ -12,13 +12,13 @@ namespace :member_notify do
       puts "\ndo while condition..........................#{Time.now.to_s}"
       
       #do not send at night.
-      if ("07:00"..."22:00").include?(Time.now.strftime("%H:%M"))
+      if ("08:00"..."23:00").include?(Time.now.strftime("%H:%M"))
         Member.where("payment_notify_count < #{MAX_SEND_AMOUNT}").find_each do |member|
           
           #the first time 
           if member.payment_notify_count == 0
             if member.sites.find{|s| s.site_payment.state != 'completed'}
-              SmsSendWorker.perform_async(member.auth_id, "亲，你的请柬还差最后一步就可以开通了，请点击这里通过本手机号登录：http://t.cn/RPnVVlx【维斗喜帖】")
+              SmsSendWorker.perform_async(member.auth_id, "亲，你的请柬还差最后一步就开通了，请通过本手机号登录后台完成支付：http://t.cn/RPnVVlx【维斗喜帖】")
               member.payment_notify_count += 1
               member.payment_notify_send_at = Time.now
               member.save!
