@@ -6,7 +6,7 @@ class Member < ActiveRecord::Base
   validates_presence_of :auth_type, :auth_id
   validates_uniqueness_of :auth_id, scope: [:auth_type]
   validate do
-    (m = self.auth_type == 'phone' && !self.auth_id.to_s.strip.match(/^(1(([35][0-9])|(47)|[8][01236789]))\d{8}$/)) &&
+    (m = self.auth_type == 'phone' && !self.auth_id.to_s.strip.match(/^(1(([35][0-9])|(47)|[8][0123456789]))\d{8}$/)) &&
       errors.add(:base, "手机号码格式错误")
   end
 end
