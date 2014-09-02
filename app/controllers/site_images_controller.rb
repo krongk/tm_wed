@@ -23,14 +23,14 @@ class SiteImagesController < ApplicationController
   end
 
   #get 用于展示模态框
-  def meitu_new
+  def meitu_load
     @site_page = SitePage.find_by(id: params[:site_page_id])
     @site_image = SiteImage.find_by(id: params[:id])
     not_found if @site_page.nil?
   end
 
   #post 用于保存修改
-  def meitu_update
+  def meitu_upload
     @site_image = SiteImage.find_by(id: params[:id])
     not_found if @site_image.nil?
     #替换图片

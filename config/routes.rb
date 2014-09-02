@@ -12,8 +12,8 @@ TmCard::Application.routes.draw do
   resources :site_images do 
     collection {post :sort}
     collection {get :app}
-    collection {get :meitu_new}
-    collection {post :meitu_update}
+    collection {get :meitu_load}
+    collection {post :meitu_upload}
   end
 
   resources :members do
