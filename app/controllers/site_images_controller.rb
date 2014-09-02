@@ -1,9 +1,9 @@
 #encoding: utf-8
 
 class SiteImagesController < ApplicationController
-  #skip CSRF on create.
-  skip_before_filter :verify_authenticity_token, only: [:meitu_upload]
-  
+  #skip CSRF on create for Meitu show show
+  skip_before_filter :verify_authenticity_token, only: [:create, :meitu_upload]
+
   before_filter :authenticate_auth
   before_action :set_site_image, only: [:show, :edit, :update, :destroy]
   layout 'simple', except: [:app]
