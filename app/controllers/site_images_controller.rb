@@ -21,6 +21,28 @@ class SiteImagesController < ApplicationController
     not_found if @site_page.nil?
     @site_images = SiteImage.where(site_page_id: @site_page.id).order("position ASC").page(params[:page] || 1)
   end
+
+  #get 用于展示模态框
+  def meitu_new
+    @site_page = SitePage.find_by(id: params[:site_page_id])
+    @site_image = SiteImage.find_by(id: params[:id])
+    not_found if @site_page.nil?
+  end
+
+  #post 用于保存修改
+  def meitu_update
+    @site_image = SiteImage.find_by(id: params[:id])
+    not_found if @site_image.nil?
+    #替换图片
+    @site_image.image = params[:site_image][:image]
+    @site_image.save!
+    
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+
   # GET /site_images/1
   # GET /site_images/1.json
   def show

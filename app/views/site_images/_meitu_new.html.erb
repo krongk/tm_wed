@@ -1,0 +1,41 @@
+
+  <script type="text/javascript">
+    var ready2;
+    ready2 = function() {
+      xiuxiu.embedSWF("meituContent",1,"100%","100%");
+      /*第1个参数是加载编辑器div容器，第2个参数是编辑器类型，第3个参数是div容器宽，第4个参数是div容器高*/
+      <% if @site_image.present? %>
+        xiuxiu.setUploadURL("http://211.149.200.158:3000/page_images/meitu_update?id=<%= @site_image.id %>");//修改图片程序地址
+      <% else %>
+        xiuxiu.setUploadURL("http://211.149.200.158:3000/page_images");//上传图片程序地址
+      <% end %>
+      xiuxiu.setUploadType(2);
+      xiuxiu.setUploadDataFieldName("site_image[image]");
+      xiuxiu.onInit = function ()
+      {
+        <% if @site_image.present? %>
+          xiuxiu.loadPhoto("<%= @site_image.image.url %>");//修改为要处理的图片url
+        <% end %>
+      }
+      xiuxiu.onUploadResponse = function (data)
+      {
+        //alert("上传响应" + data); 可以开启调试
+      }
+      xiuxiu.onClose = function (id)
+      {
+        //关闭模态框
+        $('.modal.in').modal('hide');
+        $('.modal-backdrop.in').hide();
+        //清空modal数据
+        $('.meitu-body').html('');
+      }
+    };
+
+    //#turbolinks style
+    $(document).ready(ready2);
+    $(document).on('page:load', ready2);
+  </script>
+
+  <div id="meituContent">
+    <h1>美图秀秀内容加载中...</h1>
+  </div>

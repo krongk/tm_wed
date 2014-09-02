@@ -1,7 +1,7 @@
 <% if @site_image.new_record? %>
   alert("上传失败: <%= j @site_image.errors.full_messages.join(', ').html_safe %>");
 <% elsif @site_image.position > ENV["MAX_IMAGE_COUNT"].to_i %>
-  alert("提示： 建议一个ie应用最多上传20张照片， 以免打开速度过慢！");
+  alert("提示： 建议一个ie应用最多上传<%= ENV["MAX_IMAGE_COUNT"]%>张照片， 以免打开速度过慢！");
   $("#btn-file-upload").attr('disabled','disabled');
   $("#btn-file-upload").hide();
 <% else %>

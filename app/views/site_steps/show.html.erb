@@ -1,7 +1,4 @@
-<!-- <header class="section-header text-center">
-  <h1 class="scrollimation scale-in">编辑应用内容</h1>
-</header>
- -->
+
 <%= get_wizard_html(@site) %>
 
 <%= simple_form_for @site_page, url: wizard_path, html: {class: 'form-horizontal'} do |f| %>
@@ -10,7 +7,7 @@
       <div class="row">
         <div class="col-sm-12 col-md-6" id="template_form">
           <h3 class="bottom_bordered">第一步. 编辑内容</h3>
-          <div >
+          <div>
             <% temp_form = Templates::Keystore.value_for(@site_page.template_page, 'form') %>
             <% if temp_form %>
               <%= render inline:  temp_form, locals: {site_page_id: @site_page.id } %>
@@ -28,11 +25,13 @@
               </ul>
               <%= will_paginate @site_images %>
 
-              <% if @site_images.size > ENV["MAX_IMAGE_COUNT"].to_i %>
-                <div class="alert alert-danger" role="alert">维斗喜帖建议最多上传20张照片，以避免应用打开速度过慢。</div>
+              <% if false #@site_images.size > ENV["MAX_IMAGE_COUNT"].to_i %>
+                
               <% else %>
                 <div class="text-center">
-                  <%= link_to "点击这里上传#{@image_count}张照片", site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#fileModal', 'data-no-turbolink' => false  %>
+                  <%#= link_to "点击这里上传#{@image_count}张照片", site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#fileModal', 'data-no-turbolink' => false  %>
+                  <%= link_to "+ 点击这里上传图片", meitu_new_site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %>
+
                 </div>
               <% end %>
             <% else %>
@@ -128,4 +127,17 @@
       </div><!-- End modal-content -->
     </div><!-- End modal-dialog -->
   </div>
+  <!-- fileModal end -->
+
+  <!-- meituModal start-->
+  <div id="meituModal" class="modal <%= ie_browser? ? '' : 'fade' %>">
+    <div class="modal-dialog" style="width: 50%; margin: 0 auto;">
+      <div class="modal-content">
+        <div class="modal-body meitu-body"  style="height: 500px; padding-top: 0px;">
+         <p class="text-center"><i class="fa fa-spinner fa-spin"></i> 正在加载...</p>
+        </div><!-- End modal-body -->
+      </div><!-- End modal-content -->
+    </div><!-- End modal-dialog -->
+  </div>
+  <!-- meituModal end-->
 <% end %>
