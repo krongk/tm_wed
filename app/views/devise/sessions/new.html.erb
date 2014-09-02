@@ -27,7 +27,8 @@
     <div class="row">
       <div class="col-sm-12">
         <p><%= link_to user_omniauth_authorize_path(:weibo) do %> 
-          <%=image_tag 'login_with_weibo.png', title: '新浪微博账号登录' %>
+          <%#=image_tag 'login_with_weibo.png', title: '新浪微博账号登录' %>
+          <wb:login-button type="2,2" onlogin="login" onlogout="logout">微博登录按钮</wb:login-button>
         <% end %>&nbsp;&nbsp;
         <%= link_to user_omniauth_authorize_path(:tqq) do %> 
           <%=image_tag 'login_with_tqq.png',  title: 'QQ账号登录' %>

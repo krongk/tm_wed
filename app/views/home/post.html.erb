@@ -12,6 +12,7 @@
     <p id="sdbr-category"><%= @post.keywords %></p>
     <p id="sdbr-date"><%= get_date(@post.updated_at) %></p>
     <p id="sdbr-link"><a href="/blog">返回</a></p>
+    <a href="http://weibo.com/u/1728333857?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1728333857/b4ed5053/6.png"/></a>
     <%= render partial: 'layouts/duoshuo', locals: {post: @post} %>
   </div>
   <div id="project-content" class="col-md-8 col-md-offset-1">
