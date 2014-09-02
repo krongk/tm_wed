@@ -30,7 +30,7 @@
               <% else %>
                 <div class="text-center">
                   <%#= link_to "点击这里上传#{@image_count}张照片", site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#fileModal', 'data-no-turbolink' => false  %>
-                  <%= link_to "+ 点击这里上传图片", meitu_new_site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %>
+                  <%= link_to "+ 点击这里上传图片", meitu_load_site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %>
 
                 </div>
               <% end %>
