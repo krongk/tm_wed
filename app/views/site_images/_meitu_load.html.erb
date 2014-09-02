@@ -11,6 +11,7 @@
       <% end %>
       xiuxiu.setUploadType(2);
       xiuxiu.setUploadDataFieldName("site_image[image]");
+      xiuxiu.setUploadArgs({"site_image[site_page_id]": @site_page.id});
       xiuxiu.onInit = function ()
       {
         <% if @site_image.present? %>
