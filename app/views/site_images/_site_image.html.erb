@@ -1,9 +1,9 @@
 <li class="site_image" id="site_image_<%= site_image.id %>">
-  <table><tr><td>
+  <table><tr><td width="50%">
   <%= qiniu_image_tag site_image.image.url, :thumbnail => '120x120>', :quality => 80, class: 'img-responsive' %>
   <div class="text-center">
     <%= link_to "删除", site_image, data: { confirm: '确定要删除吗?' }, :method => :delete, :remote => true, class: "btn btn-warning btn-xs"%>
-    <%= link_to "美化", meitu_new_site_images_path(id: site_image.id, site_page_id: @site_page.id), class: 'btn btn-info btn-xs', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %>
+    <%= link_to "美化", meitu_load_site_images_path(id: site_image.id, site_page_id: @site_page.id), class: 'btn btn-info btn-xs', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %>
   </div>
   </td><td>
     <% unless mobile_device? %>
