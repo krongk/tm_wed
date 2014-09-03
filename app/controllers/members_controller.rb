@@ -16,7 +16,7 @@ class MembersController < ApplicationController
         session[:token] = nil
         session[:token] = member.id
         #send token &&  limit to send sms frequently
-        if Rails.env == 'production' && member.token_created_at > 5.minutes.ago
+        if Rails.env == 'production' && member.token_created_at < 5.minutes.ago
           TokenSendWorker.perform_async(member.auth_id, generate_token(member))
         end
         return redirect_to new_token_members_path(id: member.id), notice: '验证码已发送到你手机，请注意查收！'
