@@ -5,9 +5,9 @@
       xiuxiu.embedSWF("meituContent",<%= @editor_type %>,"100%","100%");
       /*第1个参数是加载编辑器div容器，第2个参数是编辑器类型(1为美化，2为拼图)，第3个参数是div容器宽，第4个参数是div容器高*/
       <% if @site_image.present? %>
-        xiuxiu.setUploadURL("http://211.149.200.158:3000/site_images/meitu_upload?id=<%= @site_image.id %>");//修改图片程序地址
+        xiuxiu.setUploadURL("http://www.wedxt.com/site_images/meitu_upload?id=<%= @site_image.id %>");//修改图片程序地址
       <% else %>
-        xiuxiu.setUploadURL("http://211.149.200.158:3000/site_images");//上传图片程序地址
+        xiuxiu.setUploadURL("http://www.wedxt.com/site_images");//上传图片程序地址
       <% end %>
       //设置裁剪时候比例可见
       xiuxiu.setLaunchVars("sizeTipVisible", 1);
