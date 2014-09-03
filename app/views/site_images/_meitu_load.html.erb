@@ -2,15 +2,21 @@
   <script type="text/javascript">
     var ready2;
     ready2 = function() {
-      xiuxiu.embedSWF("meituContent",1,"100%","100%");
-      /*第1个参数是加载编辑器div容器，第2个参数是编辑器类型，第3个参数是div容器宽，第4个参数是div容器高*/
+      xiuxiu.embedSWF("meituContent",<%= @editor_type %>,"100%","100%");
+      /*第1个参数是加载编辑器div容器，第2个参数是编辑器类型(1为美化，2为拼图)，第3个参数是div容器宽，第4个参数是div容器高*/
       <% if @site_image.present? %>
         xiuxiu.setUploadURL("http://211.149.200.158:3000/site_images/meitu_upload?id=<%= @site_image.id %>");//修改图片程序地址
       <% else %>
         xiuxiu.setUploadURL("http://211.149.200.158:3000/site_images");//上传图片程序地址
       <% end %>
+      //设置裁剪时候比例可见
+      xiuxiu.setLaunchVars("sizeTipVisible", 1);
+      //显示‘打开图片’按钮
+      xiuxiu.setLaunchVars("subBrowseBtnVisible", 1);
+      //设置以Form形式上传数据
       xiuxiu.setUploadType(2);
       xiuxiu.setUploadDataFieldName("site_image[image]");
+      //设置额外参数
       xiuxiu.setUploadArgs({ "site_image[site_page_id]": <%= @site_page.id %> });
       xiuxiu.onInit = function ()
       {
@@ -20,17 +26,30 @@
       }
       xiuxiu.onUploadResponse = function (data)
       {
-        //alert("上传响应" + data); 可以开启调试
+        //alert(data); 
+        <% if @site_image.present? %>
+          //alert('[' + data + ']');
+          $("#site_image_" + data + " img")[0].src = 'http://tm-card.qiniudn.com/site_images/' + data + '/original.jpg?imageMogr/thumbnail/120x120%3E/quality/80" thumbnail="120x120&gt;';
+          $("#site_image_alert_" + data).html("更新成功！");
+        <% else %>
+          $("#site_images").append('<li class="site_image" id="site_image_' + data + '"> <table> <tr> <td width="50%"> <img alt="Original" class="img-responsive" quality="80" src="http://tm-card.qiniudn.com/site_images/' + data + '/original.jpg?imageMogr/thumbnail/120x120%3E/quality/80" thumbnail="120x120&gt;" /> </td> <td> <span class="handle"><i class="fa fa-long-arrow-up"> </i>上下排序<i class="fa fa-long-arrow-down"> </i></span> </td> </tr> <tr> <td> <a class="btn btn-danger btn-xs" data-confirm="确定要删除吗?" data-method="delete" data-remote="true" href="/site_images/' + data + '" rel="nofollow">删除</a> <a class="btn btn-warning btn-xs" data-remote="true" data-target="#meituModal" data-toggle="modal" href="/site_images/meitu_load?id=' + data + '&editor_type=1">美化</a><a class="btn btn-warning btn-xs" data-remote="true" data-target="#meituModal" data-toggle="modal" href="/site_images/meitu_load?id=' + data + '&editor_type=2">拼图</a> </td> <td> <span id="site_image_alert_' + data + '"></span> </td> </tr> </table></li>');
+        <% end %>
+        //关闭模态框
+        close_modal();
       }
       xiuxiu.onClose = function (id)
       {
-        //关闭模态框
-        $('.modal.in').modal('hide');
-        $('.modal-backdrop.in').hide();
-        //清空modal数据
-        $('.meitu-body').html('');
+        close_modal();
       }
     };
+
+    function close_modal(){
+      //关闭模态框
+      $('.modal.in').modal('hide');
+      $('.modal-backdrop.in').hide();
+      //清空modal数据
+      $('.meitu-body').html('');
+    }
 
     //#turbolinks style
     $(document).ready(ready2);

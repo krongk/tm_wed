@@ -7,7 +7,9 @@ class App::SiteController < ApplicationController
       redirect_to portfolio_path, notice: t('notice.site.choose_template')
       return
     end
-    
+    if current_session
+      redirect_to new_site_path(template_id: params[:template_id])
+    end
   end
 
   #"member"=>{"phone"=>"18080801080"}, 
@@ -91,9 +93,10 @@ class App::SiteController < ApplicationController
       member = Member.find_by(auth_id: auth_id)
       if member.present?
         txt = %{
+          <script>$('#memberModal').modal('toggle');</script>
           <div class="alert alert-info alert-dismissible fade in" role="alert">
             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-            <p>你已经创建了#{member.sites.size.to_s}个应用，避免重复创建，请<a href="/users/sign_in"><strong>点击这里</strong></a>登录后台管理你的应用.</p>
+            <p>亲，小维斗检测到您已经在该网站创建了 <strong>#{member.sites.size.to_s}</strong> 个应用，为避免重复创建，请首先登录网站后台，然后再添加新应用.</p>
           </div
         }
         render text: txt and return

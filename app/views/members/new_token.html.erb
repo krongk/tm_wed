@@ -4,11 +4,11 @@
 <%= form_tag(verify_token_members_path) do |f| %>
   <%= hidden_field_tag :id, session[:token] %>
   <div class="row">
-    <div class="col-md-1 color-bg text-center">
+    <div class="col-md-1 col-sm-2 color-bg text-center">
       <h1 id="countdown"></h1>
     </div>
-    <div class="col-md-11 col-sm-8">
-      <div class="input-group">
+    <div class="col-md-11 col-sm-8 ">
+      <div class="input-group" style="max-width: 300px;">
         <%=text_field_tag :auth_token, nil, class: 'form-control', placeholder: "请输入验证码" %>
         <div class="input-group-btn">
           <%= submit_tag '验 证', :class => 'btn btn-danger' %>

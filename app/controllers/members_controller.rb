@@ -9,14 +9,14 @@ class MembersController < ApplicationController
   #{"auth_type"=>"phone", "auth_id"=>"12588885556"}
   def create
     member = Member.find_by(auth_type: member_params[:auth_type], auth_id: member_params[:auth_id])
-    if member
-      #old user, judge if he has any sites, redirect to send_token
+    if member #old user
+      #judge if he has any sites, redirect to send_token
       #else like a new user
       if member.try(:sites)
         session[:token] = nil
         session[:token] = member.id
-        #send token
-        if Rails.env == 'production'
+        #send token &&  limit to send sms frequently
+        if Rails.env == 'production' && member.token_created_at > 5.minutes.ago
           TokenSendWorker.perform_async(member.auth_id, generate_token(member))
         end
         return redirect_to new_token_members_path(id: member.id), notice: '验证码已发送到你手机，请注意查收！'
@@ -57,10 +57,10 @@ class MembersController < ApplicationController
       if member.sites.any?
         redirect_to sites_path, notice: '登录成功！'
       else
-        redirect_to portfolio_path, notice: '登录成！请选择一个喜欢的模板'
+        redirect_to portfolio_path, notice: '登录成功！请选择一个喜欢的模板创建应用。'
       end
     else
-      render new_token_members_path, id: member.id, notice: '短信验证失败，请重新登录！'
+      redirect_to new_user_session_path, notice: '短信验证失败，请重新登录！'
     end
   end
 
@@ -69,6 +69,7 @@ class MembersController < ApplicationController
       #token = SecureRandom.hex(2) => 4 chars lime '43a5'
       token = SecureRandom.random_number.to_s[2..7]
       member.auth_token = token
+      member.token_created_at = Time.now
       member.save
       return token
     end

@@ -27,9 +27,11 @@ class SiteImagesController < ApplicationController
 
   #get 用于展示模态框
   def meitu_load
-    @site_page = SitePage.find_by(id: params[:site_page_id])
     @site_image = SiteImage.find_by(id: params[:id])
-    not_found if @site_page.nil?
+    @site_page ||=  @site_image.site_page
+    #editorType int， 为要嵌入的编辑器类型（1为轻量编辑，2为轻量拼图，3为完整版，5为头像编辑器，默认值1）
+    @editor_type = params[:editor_type]
+    @editor_type ||= 1
   end
 
   #post 用于保存修改
@@ -39,7 +41,8 @@ class SiteImagesController < ApplicationController
     #替换图片
     @site_image.image = params[:site_image][:image]
     @site_image.save!
-    
+    @site_image.reload
+
     respond_to do |format|
       format.js
       format.html

@@ -1,14 +1,26 @@
 <li class="site_image" id="site_image_<%= site_image.id %>">
-  <table><tr><td width="50%">
-  <div class="text-center">
-    <%= qiniu_image_tag site_image.image.url, :thumbnail => '120x120>', :quality => 80, class: 'img-responsive' %><br/>
-  
-    <%= link_to "删除", site_image, data: { confirm: '确定要删除吗?' }, :method => :delete, :remote => true, class: "btn btn-warning btn-xs"%>
-    <%= link_to "美化", meitu_load_site_images_path(id: site_image.id, site_page_id: site_image.site_page_id), class: 'btn btn-success btn-xs', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %>
-  </div>
-  </td><td>
-    <% unless mobile_device? %>
-      <span class="handle"><i class="fa fa-long-arrow-up"> </i>上下排序<i class="fa fa-long-arrow-down"> </i></span>
-    <% end %>
-  </td></tr></table>
+  <table>
+    <tr>
+      <td width="50%">
+        <%=qiniu_image_tag site_image.image.url, :thumbnail=>'180x180>', :quality => 80, class: 'img-responsive' %>
+      </td>
+      <td>
+        <% unless mobile_device? %>
+          <span class="handle"><i class="fa fa-long-arrow-up"> </i>上下排序<i class="fa fa-long-arrow-down"> </i></span>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%=link_to "删除", site_image, data: { confirm: '确定要删除吗?' }, :method=>:delete, :remote => true, class: "btn btn-danger btn-xs"%>
+        <% unless mobile_device? %>
+          <%=link_to "美化", meitu_load_site_images_path(id: site_image.id, editor_type: 1), class: 'btn btn-warning btn-xs', 'data-toggle'=>'modal', 'data-target' =>'#meituModal', :remote => true %>
+          <%=link_to "拼图", meitu_load_site_images_path(id: site_image.id, editor_type: 2), class: 'btn btn-warning btn-xs', 'data-toggle'=>'modal', 'data-target' =>'#meituModal', :remote => true %>
+        <% end %>
+      </td>
+      <td>
+        <span id="site_image_alert_<%= site_image.id %>"></span>
+      </td>
+    </tr>
+  </table>
 </li>
