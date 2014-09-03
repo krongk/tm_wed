@@ -374,6 +374,17 @@ a:focus,
     font-size:14px;
 }
 
+#main-nav .dropdown-menu li{
+    margin: 0 10px;
+}
+#main-nav .dropdown-menu li a,
+#main-nav .dropdown-menu li a:active,
+#main-nav .dropdown-menu li a:hover,{
+    color: $theme_color;
+    line-height: 25px;
+    text-align: left;
+}
+
 #main-nav .nav a:before {
     display:block;
     position:absolute;

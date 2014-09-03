@@ -27,8 +27,7 @@
     <div class="row">
       <div class="col-sm-12">
         <p><%= link_to user_omniauth_authorize_path(:weibo) do %> 
-          <%#=image_tag 'login_with_weibo.png', title: '新浪微博账号登录' %>
-          <wb:login-button type="2,2" onlogin="login" onlogout="logout">微博登录按钮</wb:login-button>
+          <%=image_tag 'login_with_weibo.png', title: '新浪微博账号登录' %>
         <% end %>&nbsp;&nbsp;
         <%= link_to user_omniauth_authorize_path(:tqq) do %> 
           <%=image_tag 'login_with_tqq.png',  title: 'QQ账号登录' %>
@@ -38,36 +37,33 @@
         <% end %></p>
       </div>
     </div>
-
-   
   </div><!-- end col-sm-6 -->
-
-  <div id="auth-login" class="collapse">
-    <div class="col-sm-6 text-col">
-      <div class="authform">
-        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
-          <h3 class="bottom_bordered">电子邮箱登录<small>(首次使用请先注册)</small></h3>
-
-          <%= devise_error_messages! %>
-          <div class="form-group col-md-10">
-           
-            <%= f.label :email %>
-            <%= f.email_field :email, :autofocus => true, class: 'form-control required' %>
-          </div>
-          <div class="form-group col-md-10">
-            
-            <%= f.label :password %>
-            <%= f.password_field :password, class: 'form-control required' %>
-          </div>
-            <%= f.submit '登 录', :class => 'btn btn-meflat' %>
-        <% end %>
-      </div>
-    </div> 
-  </div>
 
   <div class="col-sm-4 text-col">
     <h3 class="bottom_bordered">需要帮助？</h3>
     <p><a href="#" class="" data-toggle="collapse" data-target="#auth-login">通过电子邮箱登录</a></p>
+
+    <div id="auth-login" class="collapse">
+      <div class="col-sm-12 text-col">
+        <div class="authform">
+          <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+
+            <%= devise_error_messages! %>
+            <div class="form-group col-md-10">
+             
+              <%= f.label :email %>
+              <%= f.email_field :email, :autofocus => true, class: 'form-control required' %>
+            </div>
+            <div class="form-group col-md-10">
+              
+              <%= f.label :password %>
+              <%= f.password_field :password, class: 'form-control required' %>
+            </div>
+              <%= f.submit '登 录', :class => 'btn btn-meflat' %>
+          <% end %>
+        </div>
+      </div> 
+    </div>
     <%- if devise_mapping.registerable? %>
       <p><%= link_to '电子邮箱注册', new_registration_path(resource_name), class: 'right'  %></p>
     <% end -%>

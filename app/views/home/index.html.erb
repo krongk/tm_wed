@@ -6,31 +6,36 @@ HEADER
 =============================================== -->
 <%= content_for :header do %>
 <div class="row">
-<div class="col-sm-6 text-col">
-  <h1>高大上的结婚喜帖</h1>
-  <p>私人定制，打造属于你的真挚邀请</p>
-  <h1>这是微信电子请帖</h1>
-  <p>一生一次，再一次引爆你的朋友圈</p>
-  <p class="text-center"><a href="/app/site/new?template_id=2" class="btn btn-lg btn-active"><i class="fa fa-location-arrow"></i> 我要制作</a></p>
-</div>
-<div class="col-sm-6">
-  <div class="imac-frame">
-    <%= image_tag('imac.png', alt: '维斗喜帖背景', class: "img-responsive img-center") %>
-    <div class="imac-screen flexslider">
-      <ul class="slides">
-        <li>
-          <%= image_tag('banner1.jpg', alt: '维斗喜帖，时尚的体验') %>
-        </li>
-        <li>
-          <%= image_tag('banner2.jpg', alt: '维斗喜帖，制作如此简单') %>
-        </li>
-        <li>
-          <%= image_tag('banner3.jpg', alt: '维斗喜帖，分享如此方便') %>
-        </li>
-      </ul>
-    </div>
+  <div class="col-md-6 col-md-offset-4">
+    <wb:share-button appkey="20rxJL" addition="number" type="button"></wb:share-button>
   </div>
 </div>
+<div class="row">
+  <div class="col-sm-6 text-col">
+    <h1>高大上的结婚喜帖</h1>
+    <p>私人定制，打造属于你的真挚邀请</p>
+    <h1>这是微信电子请帖</h1>
+    <p>一生一次，再一次引爆你的朋友圈</p>
+    <p class="text-center"><a href="/app/site/new?template_id=2" class="btn btn-lg btn-active"><i class="fa fa-location-arrow"></i> 我要制作</a></p>
+  </div>
+  <div class="col-sm-6">
+    <div class="imac-frame">
+      <%= image_tag('imac.png', alt: '维斗喜帖背景', class: "img-responsive img-center") %>
+      <div class="imac-screen flexslider">
+        <ul class="slides">
+          <li>
+            <%= image_tag('banner1.jpg', alt: '维斗喜帖，时尚的体验') %>
+          </li>
+          <li>
+            <%= image_tag('banner2.jpg', alt: '维斗喜帖，制作如此简单') %>
+          </li>
+          <li>
+            <%= image_tag('banner3.jpg', alt: '维斗喜帖，分享如此方便') %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 <% end %>
 <!-- ==============================================
