@@ -2,15 +2,15 @@
 <% meta_keywords "#{@site.title},喜帖,请帖,请柬,漂亮微信请帖,商务请帖,二维码请柬,微信请柬,电子喜帖,结婚喜帖" %>
 <% meta_description "#{@site.title}的微信请帖, #{@site.description}-维斗喜帖出品" %>
 
-<div class="row">
-  <div class="col-sm-12 col-xs-12 col-md-3 col-md-offset-1">
-    <div style="margin-top: 100px; align: right; text-align: right; ">
-      <h2><%= @site.title %></h2>
+<% if mobile_device? %>
+  <div class="row">
+    <div class="col-sm-12 col-md-12 text-center">
+      <h3><%= @site.title %></h3>
       <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
       <br/>
-      <small>打开手机扫一扫，精彩呈现！</small>
-      <div style="margin-top: 60px; text-align: right;">
-        <%= link_to '网页预览', get_site_url(@site), class: 'btn btn-meflat', target: '_blank' %>
+      <small>唯一二维码，点击保存！</small>
+      <div style="margin-top: 20px; text-align: center;">
+        <%= link_to '点击预览', get_site_url(@site), class: 'btn btn-meflat', target: '_blank' %>
         <% if signed_in? %>
           <a href="/sites" class='btn btn-meflat'>
             进入后台
@@ -22,14 +22,36 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-2 col-md-offset-1 hidden-sm hidden-xs">
-    <div style="margin-top: 240px; margin-right: 20px; color: #f2f2f2;">
-      <i class="fa fa-arrow-right fa-5x"></i>
+<% else %>
+  <div class="row">
+    <div class="col-sm-12 col-xs-12 col-md-3 col-md-offset-1">
+      <div style="margin-top: 100px; align: right; text-align: right; ">
+        <h2><%= @site.title %></h2>
+        <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
+        <br/>
+        <small>打开手机扫一扫，精彩呈现！</small>
+        <div style="margin-top: 60px; text-align: right;">
+          <%= link_to '网页预览', get_site_url(@site), class: 'btn btn-meflat', target: '_blank' %>
+          <% if signed_in? %>
+            <a href="/sites" class='btn btn-meflat'>
+              进入后台
+            </a>
+            <% if current_member %>
+              <p>快速创建的应用，还有许多高级功能可以进入后台完善的哟</p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-2 col-md-offset-1 hidden-sm hidden-xs">
+      <div style="margin-top: 240px; margin-right: 20px; color: #f2f2f2;">
+        <i class="fa fa-arrow-right fa-5x"></i>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-5 hidden-sm hidden-xs">
+      <div class="iphone-bg-white">
+        <iframe id="preview" src="<%= get_site_url(@site) %>" width="315px" height="482px" frameBorder="0" scrolling="no"></iframe>
+      </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-5 hidden-sm hidden-xs">
-    <div class="iphone-bg-white">
-      <iframe id="preview" src="<%= get_site_url(@site) %>" width="315px" height="482px" frameBorder="0" scrolling="no"></iframe>
-    </div>
-  </div>
-</div>
+<% end %>
