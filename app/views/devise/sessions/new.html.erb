@@ -2,7 +2,47 @@
 <div class="row">
   <div class="col-sm-8 text-col">
 
-   <h3 class="bottom_bordered">手机号登录<small>(免注册)</small></h3>
+    <h3 class="bottom_bordered">会员登录<small></small></h3>
+    <div class="row">
+      <div class="col-sm-12 col-md-6 text-col">
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+
+          <%= devise_error_messages! %>
+          <div class="form-group col-md-10">
+            <%= f.label :email %>
+            <%= f.email_field :email, :autofocus => true, class: 'form-control required' %>
+          </div>
+          <div class="form-group col-md-10">
+            <%= f.label :password %>
+            <%= f.password_field :password, class: 'form-control required' %>
+          </div>
+          <div class="form-group col-md-10">
+            <button name="submit" type="submit" class="btn btn-meflat icon-left" data-error-message="错误!" data-sending-message="发送中..." data-ok-message="发送成功"><i class="fa fa-location-arrow"></i>登 录</button>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <ul class="list-unstyled oauth-login-btn">
+          <li>
+            <%= link_to user_omniauth_authorize_path(:weibo) do %> 
+              <%=image_tag 'login_with_weibo.png', title: '新浪微博账号登录' %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to user_omniauth_authorize_path(:tqq) do %> 
+              <%=image_tag 'login_with_tqq.png',  title: 'QQ账号登录' %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to user_omniauth_authorize_path(:douban) do %> 
+              <%=image_tag 'login_with_douban.png', title: '豆瓣账号登录' %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="bottom_bordered">手机号登录<small>(免注册)</small></h3>
     <div class="row">
       <div class="col-sm-6">
         <%= form_for Member.new do |f| %>
@@ -15,57 +55,20 @@
           </div>
           <br/>
           <ul class="list-unstyled">
-          <li><small class="help-block">* 请输入你创建应用时候的手机号.</small></li>
+          <li><small class="help-block">* 请输入你首次创建应用时候的手机号.</small></li>
           <li><small class="help-block">* 请确保你输入的手机号能接收验证码.</small></li>
-          <li><small class="help-block">* 首次登录不需要验证码.</small></li>
+          <li><small class="help-block">* 首次使用手机登录网站不需要验证码.</small></li>
           </ul>  
         <% end %>
       </div>
     </div>
 
-    <h3 class="bottom_bordered">第三方账号登录<small>(审核中，暂不开放!)</small></h3>
-    <div class="row">
-      <div class="col-sm-12">
-        <p><%= link_to user_omniauth_authorize_path(:weibo) do %> 
-          <%=image_tag 'login_with_weibo.png', title: '新浪微博账号登录' %>
-        <% end %>&nbsp;&nbsp;
-        <%= link_to user_omniauth_authorize_path(:tqq) do %> 
-          <%=image_tag 'login_with_tqq.png',  title: 'QQ账号登录' %>
-        <% end %>&nbsp;&nbsp;
-        <%= link_to user_omniauth_authorize_path(:douban) do %> 
-          <%=image_tag 'login_with_douban.png', title: '豆瓣账号登录' %>
-        <% end %></p>
-      </div>
-    </div>
   </div><!-- end col-sm-6 -->
 
   <div class="col-sm-4 text-col">
     <h3 class="bottom_bordered">需要帮助？</h3>
-    <p><a href="#" class="" data-toggle="collapse" data-target="#auth-login">通过电子邮箱登录</a></p>
-
-    <div id="auth-login" class="collapse">
-      <div class="col-sm-12 text-col">
-        <div class="authform">
-          <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
-
-            <%= devise_error_messages! %>
-            <div class="form-group col-md-10">
-             
-              <%= f.label :email %>
-              <%= f.email_field :email, :autofocus => true, class: 'form-control required' %>
-            </div>
-            <div class="form-group col-md-10">
-              
-              <%= f.label :password %>
-              <%= f.password_field :password, class: 'form-control required' %>
-            </div>
-              <%= f.submit '登 录', :class => 'btn btn-meflat' %>
-          <% end %>
-        </div>
-      </div> 
-    </div>
     <%- if devise_mapping.registerable? %>
-      <p><%= link_to '电子邮箱注册', new_registration_path(resource_name), class: 'right'  %></p>
+      <p><%= link_to '新用户注册', new_registration_path(resource_name), class: 'right'  %></p>
     <% end -%>
     <%- if devise_mapping.recoverable? %>
       <p><%= link_to "忘记密码?", new_password_path(resource_name), class: 'right' %></p>

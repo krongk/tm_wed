@@ -1,9 +1,8 @@
 
 <% if user_signed_in? || current_member %>
-  <li><%= link_to '后台管理', sites_path  %></li>
+  <li><%= link_to '后台', sites_path  %></li>
 <% else %>
-  <li><%= link_to '手机号码登录', new_user_session_path %></li>
-  <li><%= link_to '电子邮件登录', new_user_session_path %></li>
+  <li><%= link_to '登录', new_user_session_path %></li>
 <% end %>
 
 <% if user_signed_in? %>
@@ -17,5 +16,3 @@
     <%= link_to '退出', current_member, method: :delete %>
   </span>
 <% end %>
-<li><%= link_to '电子邮箱注册', new_user_registration_path %></li>
-<li><%= link_to '联系客服', '/vip'  %></li>
