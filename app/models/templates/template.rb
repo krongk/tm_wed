@@ -16,6 +16,6 @@ class Templates::Template < ActiveRecord::Base
   end
 
   def recommend_sites(count = 4)
-    Site.where(template_id: self.id, status: 'recommend').limit(count)
+    Site.where(template_id: self.id).where("status in ('vip-recommend', 'recommend')").order("updated_at DESC").limit(count)
   end
 end

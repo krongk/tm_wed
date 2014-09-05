@@ -18,14 +18,15 @@ class Site < ActiveRecord::Base
   #thief: bad user, bad site -> not allow showing in case and template
   #recommend: good site -> show in template 
   #vip: payed site -> not show in case (if user ask for)
-  STATUS = %w(vip recommend thief)
+  #vip-recommend -> vip and can show in template examples
+  STATUS = %w(vip-recommend vip recommend thief)
 
   def active?
     ['completed'].include?(self.site_payment.state)
   end
 
   def vip?
-    ['vip'].include?(self.status)
+    ['vip', 'vip-recommend'].include?(self.status)
   end
 
   #bad user, bad site
