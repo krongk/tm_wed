@@ -67,7 +67,7 @@ class MembersController < ApplicationController
   private
     def generate_token(member)
       #token = SecureRandom.hex(2) => 4 chars lime '43a5'
-      token = SecureRandom.random_number.to_s[2..7]
+      token = SecureRandom.random_number.to_s[2..5]
       member.auth_token = token
       member.token_created_at = Time.now
       member.save
