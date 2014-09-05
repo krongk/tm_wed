@@ -94,7 +94,7 @@ class App::SiteController < ApplicationController
     auth_id = params[:auth_id].to_s.strip
     if auth_id.match(/^1[3456789]\d{9}$/)
       member = Member.find_by(auth_id: auth_id)
-      if member.present?
+      if member.present? && member.sites.any?
         txt = %{
           <script>$('#memberModal').modal('toggle');</script>
           <div class="alert alert-info alert-dismissible fade in" role="alert">
