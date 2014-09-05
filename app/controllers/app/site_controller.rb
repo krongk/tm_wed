@@ -77,8 +77,11 @@ class App::SiteController < ApplicationController
         #   SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "#{@site.user.try(:email) || @site.member.try(:auth_id)}创建了应用：#{get_site_url(@site)}")
         # end
 
-        #redirect
-        format.html { redirect_to app_site_images_path(site_page_id: first_site_page.id), notice: t('notice.site.created') }
+        if mobile_device?
+          format.html { redirect_to app_site_images_path(site_page_id: first_site_page.id), notice: t('notice.site.created') }
+        else
+          format.html { redirect_to site_site_steps_path(@site), notice: t('notice.site.created') }
+        end
         format.json { render action: 'show', status: :created, location: @site }
       else
         format.html { render action: 'new', alert: '应用创建失败，请检查输入是否正确' }
