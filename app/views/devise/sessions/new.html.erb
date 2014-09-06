@@ -1,6 +1,14 @@
+<% 
+  site = Site.find_by(id: params[:site_id]) if params[:site_id]
+  is_member = site.member if site
+%>
 
 <div class="row">
   <div class="col-sm-8 text-col">
+
+    <% if is_member %>
+      <%= render partial: "devise/sessions/member_login", locals: {autofocus: true} %>
+    <% end %>
 
     <h3 class="bottom_bordered">会员登录<small></small></h3>
     <div class="row">
@@ -42,27 +50,10 @@
       </div>
     </div>
 
-    <h3 class="bottom_bordered">手机号登录<small>(免注册)</small></h3>
-    <div class="row">
-      <div class="col-sm-6">
-        <%= form_for Member.new do |f| %>
-          <%= f.hidden_field :auth_type, value: 'phone' %>
-          <div class="input-group">
-          <%= f.telephone_field :auth_id, name: "member[auth_id]", class: 'form-control required', placeholder: "请输入你的手机号" %>
-          <div class="input-group-btn">
-            <%= f.submit '登 录', :class => 'btn btn-danger' %>
-          </div>
-          </div>
-          <br/>
-          <ul class="list-unstyled">
-          <li><small class="help-block">* 请输入你首次创建应用时候的手机号.</small></li>
-          <li><small class="help-block">* 请确保你输入的手机号能接收验证码.</small></li>
-          <li><small class="help-block">* 首次使用手机登录网站不需要验证码.</small></li>
-          </ul>  
-        <% end %>
-      </div>
-    </div>
-
+    <% unless is_member %>
+      <%= render partial: "devise/sessions/member_login", locals: {autofocus: false} %>
+    <% end %>
+    
   </div><!-- end col-sm-6 -->
 
   <div class="col-sm-4 text-col">
