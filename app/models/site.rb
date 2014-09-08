@@ -25,7 +25,7 @@ class Site < ActiveRecord::Base
   end
 
   def vip?
-    ['vip'].include?(self.status)
+    ['vip', 'vip-recommend'].include?(self.status)
   end
 
   #bad user, bad site
