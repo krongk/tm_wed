@@ -12,10 +12,10 @@ Blog
         <div class="col-md-4 col-sm-6 item scrollimation fade-up">
           <div class="icon">
             <%= link_to "/post/#{post.short_title}" do %>
-              <img class="img-responsive img-center" src="<%= post.image_path %>" alt="<%= post.title %>" />
+              <%= image_tag qiniu_image_path(post.image_path, :thumbnail => '300x300>', :quality => 80), class: 'img-responsive img-center', alt: "#{post.title}" %>
             <% end %>
           </div>        
-          <h2><%= link_to get_short_content(post.title, 18), "/post/#{post.short_title}" %></h2> 
+          <h2><%= link_to get_short_content(post.title, 38), "/post/#{post.short_title}" %></h2> 
         </div>
       <% end %>    
     </div>  

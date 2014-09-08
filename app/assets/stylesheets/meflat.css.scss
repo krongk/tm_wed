@@ -640,12 +640,16 @@ a:focus,
     margin:0 auto 30px;
     -webkit-transition:all .3s ease-out;
     transition:all .3s ease-out;
+    border: solid 2px #eee;
+    padding: 10px;
 }
 
 .blog .item h2{
-    font-size: 22px;
+    font-size: 18px;
     -webkit-transition:all .3s ease-out;
     transition:all .3s ease-out;
+    height: 40px;
+    max-height: 45px;
 }
 
 .blog .item h2 a{
