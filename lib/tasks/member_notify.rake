@@ -51,7 +51,8 @@ namespace :member_notify do
   task festival_notify: :environment do
     version_count = 1
     Member.find_each do |member|
-      SmsSendWorker.perform_async(member.auth_id, "月圆家圆人圆事圆团团圆圆，小维斗送给您的中秋祝福：http://t.cn/RPnVVlx【维斗喜帖】")
+
+      SmsSendWorker.perform_async(member.auth_id, "月圆家圆人圆事圆团团圆圆，小维斗送给您的中秋祝福来啦：http://www.wedxt.com/s-ce6c【维斗喜帖】")
       member.festival_notify_count = version_count
       member.save!
       print member.id
