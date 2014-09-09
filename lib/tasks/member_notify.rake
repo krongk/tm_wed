@@ -49,12 +49,13 @@ namespace :member_notify do
 
   desc "send notify when festival(节日)"
   task festival_notify: :environment do
-    version_count = 1
+    version_count = Member.first.festival_notify_count
+    version_count ||= 1
+    puts "startg...."
     Member.find_each do |member|
-
+      #exit if member.id > 6
       SmsSendWorker.perform_async(member.auth_id, "月圆家圆人圆事圆团团圆圆，小维斗送给您的中秋祝福来啦：http://www.wedxt.com/s-ce6c【维斗喜帖】")
-      member.festival_notify_count = version_count
-      member.save!
+      Member.update(member.id, festival_notify_count: version_count + 1)
       print member.id
       print ' '
     end

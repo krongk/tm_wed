@@ -12,7 +12,7 @@ class Member < ActiveRecord::Base
       errors.add(:base, "手机号码格式错误")
   end
 
-  self.increase_login_count(id)
+  def self.increase_login_count(id)
     begin
       member = Member.find(id)
       Member.update(id, sign_in_count: member.sign_in_count.to_i + 1)
