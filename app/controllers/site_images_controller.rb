@@ -14,6 +14,7 @@ class SiteImagesController < ApplicationController
   def index
     @site_page = SitePage.find_by(id: params[:site_page_id])
     not_found if @site_page.nil?
+    authorize!(@site_page.site)
     @site_images = SiteImage.where(site_page_id: @site_page.id).order("position ASC").page(params[:page] || 1)
   end
 
@@ -91,6 +92,7 @@ class SiteImagesController < ApplicationController
   # DELETE /site_images/1
   # DELETE /site_images/1.json
   def destroy
+    authorize!(@site_image.site_page.site)
     @site_image.destroy
     respond_to do |format|
       format.js { render 'destroy'}

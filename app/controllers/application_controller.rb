@@ -33,6 +33,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #obj = site/site_page
+  #call: authorize!(@site)
+  def authorize!(obj)
+    if ![obj.user_id, obj.member_id, obj.try(:site).try(:user_id), obj.try(:site).try(:member_id)].include?(current_session.id)
+      raise CanCan::AccessDenied.new('没有权限！' )
+    end
+  end
+
   private
     def mobile_device?
       request.user_agent =~ /Mobile|webOS/

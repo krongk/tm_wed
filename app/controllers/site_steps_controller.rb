@@ -29,6 +29,7 @@ class SiteStepsController < ApplicationController
     @site_page = SitePage.find(params[:id].sub(/site_page_/, ''))
     @site_images = SiteImage.where(site_page_id: @site_page.id).order("position ASC").page(params[:page] || 1)
 
+    authorize!(@site_page.site)
     #store customer's input value
     if params[:site_page]
       params[:site_page].each_pair do |key, val|

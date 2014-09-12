@@ -5,7 +5,7 @@ class SitePagesController < ApplicationController
   # GET /site_pages
   # GET /site_pages.json
   def index
-    @site_pages = SitePage.all
+    #@site_pages = SitePage.all
   end
 
   # GET /site_pages/1
@@ -44,6 +44,8 @@ class SitePagesController < ApplicationController
   # PATCH/PUT /site_pages/1
   # PATCH/PUT /site_pages/1.json
   def update
+    authorize!(@site_page.site)
+
     respond_to do |format|
       if @site_page.update(site_page_params)
         format.html { redirect_to @site_page, notice: 'Site page was successfully updated.' }
@@ -58,6 +60,8 @@ class SitePagesController < ApplicationController
   # DELETE /site_pages/1
   # DELETE /site_pages/1.json
   def destroy
+    authorize!(@site_page.site)
+    
     @site_page.destroy
     respond_to do |format|
       format.html { redirect_to site_pages_url }

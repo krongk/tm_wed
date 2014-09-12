@@ -11,7 +11,6 @@ class Site < ActiveRecord::Base
   after_create :create_site_payment
 
   scope :sites_has_images, ->{ joins(:site_pages =>:site_images).group("sites.id").order("updated_at DESC") }
-  scope :sites_has_images, ->{ joins(:site_pages =>:site_images).group("sites.id").order("updated_at DESC") }
   #empty
   validates :title, presence: true
 

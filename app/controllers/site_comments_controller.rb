@@ -11,7 +11,8 @@ class SiteCommentsController < ApplicationController
   def index
     @site = Site.find_by(id: params[:site_id])
     redirect_to sites_url and return if @site.nil?
-    redirect_to sites_url and return unless can_access_site_comment?(@site)
+    authorize!(@site)
+
     @site_comments = @site.site_comments.order("updated_at DESC").page(params[:page])
   end
 
@@ -60,6 +61,7 @@ class SiteCommentsController < ApplicationController
   # PATCH/PUT /site_comments/1
   # PATCH/PUT /site_comments/1.json
   def update
+    authorize!(@site_comment.site)
     respond_to do |format|
       if @site_comment.update(site_comment_params)
         format.html { redirect_to @site_comment, notice: 'Site comment was successfully updated.' }
@@ -74,6 +76,7 @@ class SiteCommentsController < ApplicationController
   # DELETE /site_comments/1
   # DELETE /site_comments/1.json
   def destroy
+    authorize!(@site_comment.site)
     @site_comment.destroy
     respond_to do |format|
       format.html { redirect_to site_comments_url }
@@ -90,11 +93,5 @@ class SiteCommentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_comment_params
       params.require(:site_comment).permit(:site_id, :template_page_id, :name, :mobile_phone, :tel_phone, :email, :qq, :weixin, :gender, :birth, :address, :hobby, :content, :content2, :content3, :status, :updated_by, :note)
-    end
-
-    def can_access_site_comment?(site)
-      return true if site.user_id.present? && site.try(:user_id) == current_user.try(:id)
-      return true if site.member_id.present? && site.try(:member_id) == current_member.try(:id)
-      return false
     end
 end

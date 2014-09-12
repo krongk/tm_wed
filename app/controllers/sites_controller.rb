@@ -126,6 +126,8 @@ class SitesController < ApplicationController
   #set theme for this site
   #{"theme_id"=>"2", "action"=>"set_theme", "controller"=>"sites", "site_id"=>"8"}
   def set_theme
+    authorize!(@site)
+
     @site.theme_id = params[:theme_id]
     @site.save
     redirect_to sites_path, notice: t('notice.site.set_theme')
@@ -186,6 +188,8 @@ class SitesController < ApplicationController
   # PATCH/PUT /sites/1
   # PATCH/PUT /sites/1.json
   def update
+    authorize!(@site)
+
     respond_to do |format|
       if @site.update(site_params)
         format.html { redirect_to site_site_steps_path(@site), notice: t('notice.site.updated') }
@@ -200,6 +204,8 @@ class SitesController < ApplicationController
   # DELETE /sites/1
   # DELETE /sites/1.json
   def destroy
+    authorize!(@site)
+
     @site.destroy
     respond_to do |format|
       format.html { redirect_to sites_url }
