@@ -54,6 +54,7 @@ class MembersController < ApplicationController
     member = Member.find(params[:id])
     if member.auth_token.to_s.downcase == params[:auth_token].to_s.strip.downcase
       get_session(member)
+      Member.increase_login_count(member.id)
       if member.sites.any?
         redirect_to sites_path, notice: '登录成功！'
       else

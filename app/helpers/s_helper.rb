@@ -110,14 +110,14 @@ module SHelper
     images += Dir.glob(File.join(Rails.root, 'public', 'banners', '*.jpg'))
     images += Dir.glob(File.join(Rails.root, 'public', 'banners', '*.png'))
     images += Dir.glob(File.join(Rails.root, 'public', 'banners', '*.gif'))
-    return images.map{|s| s.sub(/^.*\/public\b/i, '')}
+    return images.map{|s| URI.join(ENV['HOST_NAME'], '/', s.sub(/^.*\/public\b/i, '')).to_s}
   end
   #获取所有本地背景音乐
   def get_musics
     musics = []
     musics += Dir.glob(File.join(Rails.root, 'public', 'musics', 'mp3', '*.mp3'))
     musics += Dir.glob(File.join(Rails.root, 'public', 'musics', 'mp3', '*.m4a'))
-    return musics.map{|s| s.sub(/^.*\/public\b/i, '')}
+    return musics.map{|s| URI.join(ENV['HOST_NAME'], '/', s.sub(/^.*\/public\b/i, '')).to_s}
   end
 
 end
