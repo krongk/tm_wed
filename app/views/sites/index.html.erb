@@ -2,7 +2,7 @@
 <% if @sites.empty? %>
   <div class="alert alert-warning alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <strong>欢迎<%=current_user.try(:email) || current_member.try(:auth_id)%>!</strong> 你还没有添加应用哦，<a href="/portfolio">点击这里</a>选择个喜欢的模板创建吧.
+    <strong>欢迎<%=current_user.try(:email) || current_member.try(:auth_id)%>!</strong> 你还没有添加应用哦，<a href="/templates">点击这里</a>选择个喜欢的模板并创建.
   </div>
 <% end %>
 
