@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:new_token, :edit, :update, :destroy]
+  before_action :set_member, only: [:edit, :update, :destroy]
 
   def new
     @member = Member.new
@@ -16,10 +16,10 @@ class MembersController < ApplicationController
         session[:token] = nil
         session[:token] = member.id
         #send token &&  limit to send sms frequently
-        if Rails.env == 'production' && member.token_created_at < 5.minutes.ago
+        if Rails.env == 'production' && member.token_created_at < 2.minutes.ago
           TokenSendWorker.perform_async(member.auth_id, generate_token(member))
         end
-        return redirect_to new_token_members_path(id: member.id), notice: '验证码已发送到你手机，请注意查收！'
+        return redirect_to new_token_members_path, notice: '验证码已发送到你手机，请注意查收！'
       else
         get_session(member)
       end
@@ -28,7 +28,7 @@ class MembersController < ApplicationController
       member = Member.new(member_params)
       if member.save
         get_session(member)
-        redirect_to portfolio_path, notice: '注册成功！请选择一个喜欢的模板'
+        redirect_to templates_path, notice: '注册成功！请选择一个喜欢的模板'
       else
         redirect_to new_user_session_path, alert: '注册或登录失败，请检查你的输入是否正确。'
       end
@@ -51,8 +51,12 @@ class MembersController < ApplicationController
 
   #"id"=>"3", "auth_token"=>"ewf",
   def verify_token
+    if session[:token].nil?
+      redirect_to new_user_session_path, notice: '登录会话已过期，请重新登录！' and return
+    end
+    #
     member = Member.find(params[:id])
-    if member.auth_token.to_s.downcase == params[:auth_token].to_s.strip.downcase
+    if member.present? && member.auth_token.to_s.downcase == params[:auth_token].to_s.strip.downcase
       get_session(member)
       Member.increase_login_count(member.id)
       if member.sites.any?
@@ -60,7 +64,9 @@ class MembersController < ApplicationController
       else
         redirect_to portfolio_path, notice: '登录成功！请选择一个喜欢的模板创建应用。'
       end
+      session[:token] = nil
     else
+      session[:token] = nil
       redirect_to new_user_session_path, notice: '短信验证失败，请重新登录！'
     end
   end
