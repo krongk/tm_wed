@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   #obj = site/site_page
   #call: authorize!(@site)
   def authorize!(obj)
-    if ![obj.user_id, obj.member_id, obj.try(:site).try(:user_id), obj.try(:site).try(:member_id)].include?(current_session.id)
+    if current_session.id != 1 || ![obj.user_id, obj.member_id, obj.try(:site).try(:user_id), obj.try(:site).try(:member_id)].include?(current_session.id)
       raise CanCan::AccessDenied.new('没有权限！' )
     end
   end
