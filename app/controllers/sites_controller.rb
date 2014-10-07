@@ -10,7 +10,11 @@ class SitesController < ApplicationController
   # GET /sites.json
   def index
     if current_user
-      @sites = current_user.sites.page(params[:page] || 1)
+      if current_user.id == 1 && current_user.email == 'master@inruby.com'
+        @sites = Site.order("updated_at desc").page(params[:page] || 1)
+      else
+        @sites = current_user.sites.page(params[:page] || 1)
+      end
     elsif current_member
       @sites = current_member.sites.page(params[:page] || 1)
     end
