@@ -21,8 +21,12 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-md-6">
-              <a href="<%= get_site_url(site) %>" target="_blank" class="thumbnail pull-left">
-                <img src="<%= get_first_site_image_url(site) %>" alt="<%= site.title %>" width="160px;" class="img-responsive">
+              <a href="<%= edit_site_path(site) %>" class="thumbnail pull-left">
+                <% if img = get_first_site_image_url(site) %>
+                  <img src="<%= get_first_site_image_url(site) %>" alt="<%= site.title %>" width="160px;" class="img-responsive">
+                <% else %>
+                  <img src="/assets/placeholder.jpg" alt="请上传640x960px大小照片" width="160px;" class="img-responsive" />
+                <% end %>
               </a>
             </div>
             <div class="col-md-6">

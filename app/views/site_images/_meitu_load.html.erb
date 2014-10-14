@@ -29,7 +29,7 @@
       //上传完成后处理事件：1. ajax替换图片列表，2.关闭美图Modal窗
       //data的值为图片ID，由controller返回
       <% if @site_image.present? %>//如果是修改图片, 则替换原图片
-        $("#site_image_" + data + " img")[0].src = 'http://tm-card.qiniudn.com/site_images/' + data + '/original.jpg?imageMogr/thumbnail/120x120%3E/quality/80" thumbnail="120x120&gt;';
+        $("#site_image_" + data + " img")[0].src = 'http://tm-card.qiniudn.com/site_images/' + data + '/original.jpg?imageMogr/thumbnail/120x120%3E/quality/80" thumbnail="120x120";';
         $("#site_image_alert_" + data).html("更新成功！");
       <% else %>//如果是新添加图片，则将新图片追加到图片列表
         $("#site_images").append('<li class="site_image" id="site_image_' + data + '"> <table> <tr> <td width="50%"> <img alt="Original" class="img-responsive" quality="80" src="http://tm-card.qiniudn.com/site_images/' + data + '/original.jpg?imageMogr/thumbnail/120x120%3E/quality/80" thumbnail="120x120&gt;" /> </td> <td> <span class="handle"><i class="fa fa-long-arrow-up"> </i>上下排序<i class="fa fa-long-arrow-down"> </i></span> </td> </tr> <tr> <td> <a class="btn btn-danger btn-xs" data-confirm="确定要删除吗?" data-method="delete" data-remote="true" href="/site_images/' + data + '" rel="nofollow">删除</a> <a class="btn btn-warning btn-xs" data-remote="true" data-target="#meituModal" data-toggle="modal" href="/site_images/meitu_load?id=' + data + '&editor_type=1">美化</a><a class="btn btn-warning btn-xs" data-remote="true" data-target="#meituModal" data-toggle="modal" href="/site_images/meitu_load?id=' + data + '&editor_type=2">拼图</a> </td> <td> <span id="site_image_alert_' + data + '"></span> </td> </tr> </table></li>');
