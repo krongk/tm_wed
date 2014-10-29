@@ -1,18 +1,19 @@
 module SHelper
-
+  ASSETS_HOST = Rails.env == 'production' ? ENV['ASSETS_HOST'] : ENV['ASSETS_HOST_DEV'] 
+  HOST_NAME = Rails.env == 'production' ? ENV['HOST_NAME'] : ENV['HOST_NAME_DEV'] 
   #
   def get_temp_base_url(template)
     return if template.nil?
-    raise "请指定ASSETS_HOST" if ENV['ASSETS_HOST'].nil?
-    URI.join(ENV['ASSETS_HOST'], ['/', template.base_url, '/'].join('/').squeeze('/'))
+    raise "请指定ASSETS_HOST" if  ASSETS_HOST.nil?
+    URI.join( ASSETS_HOST, ['/', template.base_url, '/'].join('/').squeeze('/'))
   end
   #comment url/music url
   # temp_dir = comment => /public/templates/comment
   #call: get_base_url('comment', 'theme_one')
   def get_base_url(temp_dir, theme = nil)
     return if temp_dir.nil?
-    raise "请指定ASSETS_HOST" if ENV['ASSETS_HOST'].nil?
-    URI.join(ENV['ASSETS_HOST'], ['/', 'templates', temp_dir, theme, '/'].join('/').squeeze('/'))
+    raise "请指定ASSETS_HOST" if  ASSETS_HOST.nil?
+    URI.join( ASSETS_HOST, ['/', 'templates', temp_dir, theme, '/'].join('/').squeeze('/'))
   end
 
   #Site URL generate ###########################
