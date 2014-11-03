@@ -18,7 +18,8 @@ Blog
           <h2><%= link_to get_short_content(post.title, 38), "/post/#{post.short_title}" %></h2> 
         </div>
       <% end %>    
-    </div>  
+    </div>
+    <%= will_paginate @posts %>
   </div>
 </section>
 
