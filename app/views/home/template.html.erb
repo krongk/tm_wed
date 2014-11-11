@@ -56,13 +56,13 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
               <div class="">
                 <h3 class="bottom_bordered">案例展示</h3>
                 <div class="row">
-                  <% @template.recommend_sites.each do |site| %>
+                  <% @template.recommend_sites(11).each do |site| %>
                     <div class="col-sm-6 col-md-3">
                       <div class="thumbnail">
                         <img src="<%= get_first_site_image_url(site) %>" />
                         <!--<img src="http://qrickit.com/api/qr?d=<%# =get_site_url(site)%>&fgdcolor=000000&bgdcolor=F1678D&qrsize=120&t=p&e=m"> -->
                         <div class="caption text-center">
-                          <p><a href="<%= site_preview_path(site)%>" target="_blank"><%= site.title.to_s.truncate(10) %></a></p>
+                          <p><a href="<%= site_preview_path(site)%>" target="_blank"><%= site.title.to_s.truncate(9) %></a></p>
                           <p>
                             <a href="<%= site_preview_path(site)%>" target="_blank" class="btn btn-info">点击预览</a>
                           </p>
@@ -70,6 +70,18 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
                       </div>
                     </div>
                   <% end %>
+                    <div class="col-sm-6 col-md-3">
+                      <div class="thumbnail">
+                        <%= image_tag asset_path('placeholder1.jpg') %>
+                        <!--<img src="http://qrickit.com/api/qr?d=<%# =get_site_url(site)%>&fgdcolor=000000&bgdcolor=F1678D&qrsize=120&t=p&e=m"> -->
+                        <div class="caption text-center">
+                          <p><a href="/case">更多案例...</a></p>
+                          <p>
+                            <a href="/case" class="btn btn-info">点击查看</a>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                 </div>
               </div>
               <p>怎么样，是不是觉得很赞？<br>其实制作很简单，填一个表格+传几张图即可完成，还可以通过手机登录后台不断完善，超级方便！</p>
