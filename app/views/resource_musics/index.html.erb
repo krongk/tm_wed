@@ -1,0 +1,31 @@
+<h1>Listing resource_musics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Url</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resource_musics.each do |resource_music| %>
+      <tr>
+        <td><%= resource_music.user %></td>
+        <td><%= resource_music.name %></td>
+        <td><%= resource_music.url %></td>
+        <td><%= link_to 'Show', resource_music %></td>
+        <td><%= link_to 'Edit', edit_resource_music_path(resource_music) %></td>
+        <td><%= link_to 'Destroy', resource_music, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Resource music', new_resource_music_path %>

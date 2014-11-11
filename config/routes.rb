@@ -1,5 +1,7 @@
 TmCard::Application.routes.draw do
 
+  resources :resource_musics
+
   namespace :app do
     get "site/new"
     post "site/create"

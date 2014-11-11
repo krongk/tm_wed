@@ -1,0 +1,15 @@
+<%= simple_form_for(@resource_music, html: { :multipart => true }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :site_page_id, as: :hidden, input_html: { value: params[:site_page_id]} %>
+    <%= f.input :name %>
+    <%= f.input :asset, as: :file, label: false %>
+  </div>
+
+  <div class="form-actions">
+    <%= button_tag(type: 'submit', data: { disable_with: "正在上传,请耐心等待..." }, class: "btn btn-meflat icon-left") do %>
+      <i class="fa fa-location-arrow"></i> 上 传
+    <% end %>       
+  </div>
+<% end %>

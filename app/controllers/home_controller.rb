@@ -47,6 +47,7 @@ class HomeController < ApplicationController
 
   #在弹出窗口的链接中如果想要显示该页面上传的图片，在需要传递site_page参数，用于获取site_page下面的图片列表：
   #<a data-target="#bannerModal" data-toggle="modal" href="/home/dialog_banner?site_page_id=<%=@site_page.id%>">
+  # url: '/home/dialog_banner?site_page_id=' + @site_page.id.to_s
   def dialog_banner
    site_page = SitePage.find_by(id: params[:site_page_id])
    @site_images = site_page.site_images if site_page
@@ -54,7 +55,8 @@ class HomeController < ApplicationController
   end
 
   def dialog_music
-    @musics = Resource::Music.order("updated_at DESC").page(params[:page])
+    @musics = ResourceMusic.order("updated_at DESC").page(params[:page])
+    @my_musics = ResourceMusic.get_my_musics(current_session)
   end
 
   private

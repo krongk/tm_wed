@@ -30,8 +30,8 @@
 <div id="dialog-wrapper">
   <div class="row">
     <div class="col-md-6 col-sm-12">
-      <div class="">
-        <h4>添加外部链接</h4>
+      <div class="" style="margin-bottom: 10px;">
+        <h3>1.添加外部链接</h3>
         <div class="input-group">
           <input autofocus="autofocus" class="form-control col-md-6" id="outlink_input" name="outlink_input" type="input" value="" placeholder="请在这里粘贴外部音乐链接地址">
           <div class="input-group-btn">
@@ -39,15 +39,25 @@
           </div>
         </div>
       </div>
-      <div class="">
-        <h4>或在列表中选择</h4>
+      <div class="" style="margin-bottom: 10px;">
+        <h3>2.或在列表中选择</h3>
         <audio preload></audio>
         <ol>
+          <% @my_musics.each do |item| %>
+            <li><a href="#" data-src="<%= item.url %>">[私有库] <%= item.name %></a></li>
+          <% end %>
           <% @musics.each do |item| %>
             <li><a href="#" data-src="<%= item.url %>"><%= item.name %></a></li>
           <% end %>
         </ol>
         <div class="hidden-sm hidden-xs"><em>&rarr;</em> 键盘左右键切换 <em>&larr;</em></div>
+      </div>
+      <div class="" style="margin-bottom: 10px;">
+        <h3>3.或上传本地音乐</h3>
+        <div class="input-group">
+          本地上传的音乐要求不能大于5MB， 音乐文件太大将影响到应用的打开速度。 你可以使用<a href="http://www.baidu.com/s?ie=utf-8&word=mp3%20%E5%89%AA%E5%88%87&tn=94634239_hao_pg" target="_blank">MP3剪接器</a>剪接一部分。
+          <p><br/><strong><%=link_to '点击这里进入本地上传', new_resource_music_path(site_page_id: params[:site_page_id]), target: '_blank' %></strong></p>
+        </div>
       </div>
     </div>
     <div class="col-md-6 col-sm-12">
