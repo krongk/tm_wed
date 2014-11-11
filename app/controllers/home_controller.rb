@@ -55,7 +55,7 @@ class HomeController < ApplicationController
   end
 
   def dialog_music
-    @musics = ResourceMusic.order("updated_at DESC").page(params[:page])
+    @musics = ResourceMusic.where("user_id is null and member_id is null").order("updated_at DESC").page(params[:page])
     @my_musics = ResourceMusic.get_my_musics(current_session)
   end
 

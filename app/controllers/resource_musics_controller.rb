@@ -85,6 +85,6 @@ class ResourceMusicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resource_music_params
-      params.require(:resource_music).permit(:site_page_id, :name, :url, :asset)
+      params.require(:resource_music).permit(:name, :url, :asset)
     end
 end
