@@ -48,6 +48,7 @@ TmCard::Application.routes.draw do
   match '/templates/:id', to: "home#template", via: :get, as: 'template'
   match '/search(/page/:page)', to: "home#search", via: :get, as: 'search'
   match '/case(/page/:page)', to: "home#case", via: :get, as: 'case'
+  match '/top(/page/:page)', to: "home#top", via: :get, as: 'top'
   match '/blog(/page/:page)', to: "home#blog", via: :get, as: 'blog'
   match '/post/:id', to: "home#post", via: :get, as: 'post'
   match '/pricing', to: "home#pricing", via: :get, as: 'pricing'

@@ -1,0 +1,39 @@
+<% title "精选案例-维斗喜帖案例|喜帖,请帖,请柬|二维码请柬案例|手机请帖案例|微信请帖案例" %>
+<% meta_keywords "喜帖案例,请帖案例,请柬案例,漂亮微信请帖案例,商务请帖案例,二维码请柬案例,微信请柬案例,电子喜帖案例,结婚喜帖案例" %>
+<% meta_description "维斗喜帖每天都有数十款喜帖案例生成，包括二维码请帖制作案例，微信喜帖案例，电子请帖案例，微相册案例；分分钟创建，惊艳朋友圈。" %>
+
+<!-- ==============================================
+Top
+=============================================== --> 
+<section id="top">
+  
+  <div class="container">
+    <div class="row">
+      <% @sites.each do |site| %>
+        <% template = site.template %>
+        <div class="col-sm-6 col-md-3">
+          <div class="thumbnail">
+            <%= image_tag qiniu_image_path(get_first_site_image_url(site), :thumbnail => '200x300>', :quality => 80), class: "img-responsive project-image",  alt: site.title %>
+            <div class="caption text-center" id="caption_<%=site.id%>">
+              <p>
+                <a href="<%= site_preview_path(site)%>" target="_blank"><%= site.title.to_s.truncate(9) %></a>
+                【<%= link_to template.title, "/templates/#{template.id}" %>】
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+        <div class="col-sm-6 col-md-3">
+          <div class="thumbnail">
+            <%= image_tag asset_path('placeholder1.jpg'), width: '200px' %>
+            <div class="caption text-center">
+              <p><a href="/case">更多案例...</a></p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="text-right">
+    <%= will_paginate @sites %>
+  </div>
+</section>

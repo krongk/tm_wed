@@ -19,6 +19,12 @@ class HomeController < ApplicationController
     @sites = Site.sites_has_images.where("sites.status IS NULL OR sites.status not in('vip', 'thief')").paginate(page: params[:page] || 1, per_page: 9)
   end
 
+  def top
+    @templates = Templates::Template.where("cate_id in (1,2)").order("updated_at DESC")
+    @last_template = @templates.pop #use for filter style
+    @sites = Site.joins(:site_payment).where("sites.status in('vip', 'vip-recommend', 'recommend') OR (site_payments.price > 80 AND site_payments.state = 'complete')").order("updated_at DESC").paginate(page: params[:page] || 1, per_page: 15)
+  end
+
   def vip
     @show_contact = false #this var is for turn off footer contact form, used in layouts/_contact.html.erb
     @template = Templates::Template.find_by(id: params[:template_id])
