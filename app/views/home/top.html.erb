@@ -13,10 +13,12 @@ Top
         <% template = site.template %>
         <div class="col-sm-6 col-md-3">
           <div class="thumbnail">
-            <%= image_tag qiniu_image_path(get_first_site_image_url(site), :thumbnail => '200x300>', :quality => 80), class: "img-responsive project-image",  alt: site.title %>
+            <a href="<%= site_preview_path(site)%>" target="_blank">
+              <%= image_tag qiniu_image_path(get_first_site_image_url(site), :thumbnail => '200x300>', :quality => 80), class: "img-responsive project-image",  alt: site.title %>
+            </a>
             <div class="caption text-center" id="caption_<%=site.id%>">
               <p>
-                <a href="<%= site_preview_path(site)%>" target="_blank"><%= site.title.to_s.truncate(9) %></a>
+                <a href="<%= site_preview_path(site)%>" target="_blank"><%= site.title.to_s.truncate(12) %></a><br/>
                 【<%= link_to template.title, "/templates/#{template.id}" %>】
               </p>
             </div>
