@@ -22,7 +22,11 @@ class HomeController < ApplicationController
   def top
     @templates = Templates::Template.where("cate_id in (1,2)").order("updated_at DESC")
     @last_template = @templates.pop #use for filter style
-    @sites = Site.joins(:site_payment).where("sites.status in('vip', 'vip-recommend', 'recommend') OR (site_payments.price > 80 AND site_payments.state = 'complete')").order("updated_at DESC").paginate(page: params[:page] || 1, per_page: 15)
+    if params[:q] == 'wed'
+      @sites = Site.joins(:site_payment).where("site_payments.price <= 60 AND (sites.status in('vip', 'vip-recommend', 'recommend') OR site_payments.state = 'complete')").order("updated_at DESC").paginate(page: params[:page] || 1, per_page: 15)
+    else
+      @sites = Site.joins(:site_payment).where("site_payments.price > 60 AND (sites.status in('vip', 'vip-recommend', 'recommend') OR site_payments.state = 'complete')").order("updated_at DESC").paginate(page: params[:page] || 1, per_page: 15)
+    end
   end
 
   def vip
