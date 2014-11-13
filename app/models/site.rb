@@ -11,6 +11,9 @@ class Site < ActiveRecord::Base
   after_create :create_site_payment
 
   scope :sites_has_images, ->{ joins(:site_pages =>:site_images).group("sites.id").order("updated_at DESC") }
+  scope :business, -> { where(cate: 'business') }
+  scope :personal, -> { where(cate: 'personal') }
+  
   #empty
   validates :title, presence: true
 
