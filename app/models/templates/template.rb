@@ -15,7 +15,11 @@ class Templates::Template < ActiveRecord::Base
     #Site.where(template_id: self.id).select { |s| s.site_pages.find{|p| p.site_images.any?} }[0..3]
   end
 
-  def recommend_sites(count = 4)
-    Site.where(template_id: self.id).where("status in ('vip-recommend', 'recommend')").order("updated_at DESC").limit(count)
+  def recommend_sites(count = 4, opts)
+    if opts[:typo]
+      Site.where(template_id: self.id).where("typo = '#{opts[:typo]}' AND status in ('vip-recommend', 'recommend')").order("updated_at DESC").limit(count)
+    else
+      Site.where(template_id: self.id).where("status in ('vip-recommend', 'recommend')").order("updated_at DESC").limit(count)
+    end
   end
 end

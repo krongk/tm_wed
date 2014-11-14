@@ -1,0 +1,1133 @@
+.clearHight{
+	width: 100%;
+	height: auto;
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+.article_border {
+	width: 100%;
+	height: auto;
+	overflow: hidden; 
+	position: relative;
+	z-index: 0;
+}
+html,body {
+	height: 100%;
+	background: #000;
+}
+.wrap {
+	position: relative;
+	height: 100%;
+	max-width: 640px;
+	overflow: hidden;
+	margin:0 auto;
+}
+body, p, h1, h2, dl, dt, dd {
+	margin: 0;
+	padding: 0;
+	font-size: 1rem;
+	color: #5b5b5b;
+}
+ol, ul {
+	list-style: none;
+}
+img {
+	border: 0;
+}
+.eraserBorder {
+	z-index: 1;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+#robot {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+}
+#redux {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 2;
+}
+#loding{
+	width: 124px;
+	height: 124px; 
+	background:url(http://img.zbird.cn/ww3/weixin/2014shiyi/load.gif) no-repeat left top;
+	position: absolute;
+	left: 50%;
+	top: 10%;
+	margin-left: -62px;
+	z-index: 5;
+}
+section{
+	width:100%;
+	overflow: hidden;
+	position:relative;
+}
+.sec {
+	z-index: 1;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-transition: all 0.3s linear;
+	-webkit-transform: translateY(0px);
+	transition: all 0.3s linear;
+	transform: translateY(0px);
+	-webkit-backface-visibility: hidden;
+}
+.sec_level_border{
+	z-index: 1;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-transition: all 0.3s linear;
+	-webkit-transform: translateX(0px);
+	transition: all 0.3s linear;
+	transform: translateX(0px);
+	-webkit-backface-visibility: hidden;
+}
+.drag {
+	-webkit-transition: none;
+	transition: none;
+}
+.sec_level{
+	width:100%;
+	height:100%;
+	float:left;
+	position:relative;
+}
+.sec_level{
+	font-size:50px;	
+}
+.layer span{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	display: inline-block;
+	-moz-border-radius:50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	opacity: 0.5;
+}
+.layer_span01{
+	left: 5%;
+	top: 10%;
+	background: #fbcabb;
+
+}
+.layer_span02{
+	right: 11%;
+	top: 32%;
+	background: #ffffff;
+}
+.layer_span03{
+	right: 10%;
+	top: 60%;
+	background: #d7f49e;
+}
+.layer_span04{
+	left: 20%;
+	top: 70%;
+	background: #ffffff;
+}
+.layer_span05{
+	left: 12%;
+	top: 39%;
+	background: #d7f49e;
+}
+.layer_span06{
+	left: 50%;
+	top: 5%;
+	background: #fbcabb;
+}
+/***********************音乐***************************/
+#audio{
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	opacity: 0;
+}
+#music{
+	width: 12%;
+	display: block;
+	position: fixed;
+	right: 7%;
+	top:18px;
+	z-index: 999;
+}
+.music_on{
+	
+}
+.music_off{
+	display: none;
+}
+.music_animate{
+	-webkit-animation: proSaleRotate .3s 1 linear;
+	animation: proSaleRotate .3s 1 linear;
+}
+/***********************动画开始***************************/
+img{
+	display: block;
+}
+.bg_img{
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+#aside {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 999;
+}
+.logo{
+	width: 20%;
+	position: fixed;
+	left: 7%;
+	top:30px;
+}
+
+/***********************sec01***************************/
+.sec01 .img_1{
+	width: 85%;
+	position: absolute;
+	top: 50px;
+	left: 8%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-300%, 0);
+	transform: translate(-300%, 0);
+}
+.sec01_show .img_1{
+	opacity: 1;
+	-webkit-animation: img_1_animate_in 1.5s linear;
+	animation: img_1_animate_in 1.5s linear;
+	-webkit-transform: translate(-250%, 0);
+	transform: translate(-250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.sec01_show .arrow{
+	width: 45px;
+	height: 20px;
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	margin-left: -22px;
+	background:url(http://img.zbird.cn/ww3/moblie/danshenjie2014/1-2.png) no-repeat left top;
+	z-index: 0;
+	-webkit-animation: arrow_animate 1s infinite ease-in-out;
+	animation: arrow_animate 1s infinite ease-in-out;
+	-webkit-animation-delay: .5s;
+	animation-delay: .5s
+}
+
+/***********************sec02***************************/
+.sec02_show .arrow{
+	width: 45px;
+	height: 20px;
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	margin-left: -22px;
+	background:url(http://img.zbird.cn/ww3/moblie/danshenjie2014/1-2.png) no-repeat left top;
+	z-index: 0;
+	-webkit-animation: arrow_animate 1s infinite ease-in-out;
+	animation: arrow_animate 1s infinite ease-in-out;
+	-webkit-animation-delay: 3.2s;
+	animation-delay: 3.2s
+}
+.sec02 .bottom_img{
+	width: 68%;
+	position: absolute;
+	bottom: 12%;
+	left: 16%;
+	opacity: 0;
+	z-index: 0;
+}
+
+.sec02_show .bottom_img{
+	opacity: 1;
+	-webkit-animation: bg_img_animate 1s linear;
+	animation: bg_img_animate 1s linear;
+}
+
+.sec02 .img_1{
+	width: 56%;
+	position: absolute;
+	top: 33%;
+	left: 8%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-300%, 0);
+	transform: translate(-300%, 0);
+}
+.sec02_show .img_1{
+	opacity: 1;
+	-webkit-animation: img_1_animate_in 1s linear;
+	animation: img_1_animate_in 1s linear;
+	-webkit-transform: translate(-250%, 0);
+	transform: translate(-250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.sec02 .img_2{
+	width: 75%;
+	position: absolute;
+	top: 45%;
+	left: 8.5%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-350%, 0);
+	transform: translate(-350%, 0);
+}
+.sec02_show .img_2{
+	opacity: 1;
+	-webkit-animation: img_2_animate_in 1s linear;
+	animation: img_2_animate_in 1s linear;
+	-webkit-transform: translate(250%, 0);
+	transform: translate(250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-delay: .3s;
+	animation-delay: .3s
+}
+
+.sec02 .img_3{
+	width: 77%;
+	position: absolute;
+	top: 56%;
+	left: 9%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-350%, 0);
+	transform: translate(-350%, 0);
+}
+.sec02_show .img_3{
+	opacity: 1;
+	-webkit-animation: img_3_animate_in 1s ease-out;
+	animation: img_3_animate_in 1s ease-out;
+	-webkit-transform: translate(-250%, 0);
+	transform: translate(-250, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s
+}
+
+
+/***********************sec03***************************/
+.sec03_show .arrow{
+	width: 45px;
+	height: 20px;
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	margin-left: -22px;
+	background:url(http://img.zbird.cn/ww3/moblie/danshenjie2014/1-2.png) no-repeat left top;
+	z-index: 0;
+	-webkit-animation: arrow_animate 1s infinite ease-in-out;
+	animation: arrow_animate 1s infinite ease-in-out;
+	-webkit-animation-delay: 3.2s;
+	animation-delay: 3.2s
+}
+.sec03 .bottom_img{
+	width: 68%;
+	position: absolute;
+	bottom: 12%;
+	left: 16%;
+	opacity: 0;
+	z-index: 0;
+}
+
+.sec03_show .bottom_img{
+	opacity: 1;
+	-webkit-animation: bg_img_animate 1s linear;
+	animation: bg_img_animate 1s linear;
+}
+
+.sec03 .img_1{
+	width: 31%;
+	position: absolute;
+	top: 10%;
+	left: 8%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-300%, 0);
+	transform: translate(-300%, 0);
+}
+.sec03_show .img_1{
+	opacity: 1;
+	-webkit-animation: img_1_animate_in 1s linear;
+	animation: img_1_animate_in 1s linear;
+	-webkit-transform: translate(-250%, 0);
+	transform: translate(-250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.sec03 .img_2{
+	width: 88%;
+	position: absolute;
+	top: 44%;
+	left: 5.5%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-350%, 0);
+	transform: translate(-350%, 0);
+}
+.sec03_show .img_2{
+	opacity: 1;
+	-webkit-animation: img_2_animate_in 1s linear;
+	animation: img_2_animate_in 1s linear;
+	-webkit-transform: translate(250%, 0);
+	transform: translate(250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-delay: .5s;
+	animation-delay: .5s
+}
+
+.sec03 .img_3{
+	width: 25%;
+	position: absolute;
+	top: 1%;
+	left: 42%;
+	z-index: 0;
+	opacity: 0;
+}
+.sec03_show .img_3{
+	-webkit-animation: img_show 1s;
+	animation: img_show 1s;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-delay: 3.5s;
+	animation-delay: 3.5s
+}
+
+/***********************sec04***************************/
+.sec04_show .arrow{
+	width: 45px;
+	height: 20px;
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	margin-left: -22px;
+	background:url(http://img.zbird.cn/ww3/moblie/danshenjie2014/1-2.png) no-repeat left top;
+	z-index: 0;
+	-webkit-animation: arrow_animate 1s infinite ease-in-out;
+	animation: arrow_animate 1s infinite ease-in-out;
+	-webkit-animation-delay: 3.2s;
+	animation-delay: 3.2s
+}
+.sec04 .bottom_img{
+	width: 68%;
+	position: absolute;
+	bottom: 12%;
+	left: 16%;
+	opacity: 0;
+	z-index: 0;
+}
+
+.sec04_show .bottom_img{
+	opacity: 1;
+	-webkit-animation: bg_img_animate 1s linear;
+	animation: bg_img_animate 1s linear;
+}
+
+.sec04 .img_1{
+	width: 73%;
+	position: absolute;
+	top: 5%;
+	left: 15%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-300%, 0);
+	transform: translate(-300%, 0);
+}
+.sec04_show .img_1{
+	opacity: 1;
+	-webkit-animation: img_1_animate_in 1s linear;
+	animation: img_1_animate_in 1s linear;
+	-webkit-transform: translate(-250%, 0);
+	transform: translate(-250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+/***********************sec05***************************/
+.sec05_show .arrow{
+	width: 45px;
+	height: 20px;
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	margin-left: -22px;
+	background:url(http://img.zbird.cn/ww3/moblie/danshenjie2014/1-2.png) no-repeat left top;
+	z-index: 0;
+	-webkit-animation: arrow_animate 1s infinite ease-in-out;
+	animation: arrow_animate 1s infinite ease-in-out;
+	-webkit-animation-delay: 3.2s;
+	animation-delay: 3.2s
+}
+.sec05 .bottom_img{
+	width: 68%;
+	position: absolute;
+	bottom: 12%;
+	left: 16%;
+	opacity: 0;
+	z-index: 0;
+}
+
+.sec05_show .bottom_img{
+	opacity: 1;
+	-webkit-animation: bg_img_animate 1s linear;
+	animation: bg_img_animate 1s linear;
+}
+
+.sec05 .img_1{
+	width: 61%;
+	position: absolute;
+	top: 6%;
+	left: 8%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-300%, 0);
+	transform: translate(-300%, 0);
+}
+.sec05_show .img_1{
+	opacity: 1;
+	-webkit-animation: img_1_animate_in 1s linear;
+	animation: img_1_animate_in 1s linear;
+	-webkit-transform: translate(-250%, 0);
+	transform: translate(-250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.sec05 .img_2{
+	width: 75%;
+	position: absolute;
+	top: 14%;
+	left: 8.5%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-350%, 0);
+	transform: translate(-350%, 0);
+}
+.sec05_show .img_2{
+	opacity: 1;
+	-webkit-animation: img_2_animate_in 1s linear;
+	animation: img_2_animate_in 1s linear;
+	-webkit-transform: translate(250%, 0);
+	transform: translate(250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-delay: .5s;
+	animation-delay: .5s
+}
+
+/***********************sec06***************************/
+.sec06_show .arrow{
+	width: 45px;
+	height: 20px;
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	margin-left: -22px;
+	background:url(http://img.zbird.cn/ww3/moblie/danshenjie2014/1-2.png) no-repeat left top;
+	z-index: 0;
+	-webkit-animation: arrow_animate 1s infinite ease-in-out;
+	animation: arrow_animate 1s infinite ease-in-out;
+	-webkit-animation-delay: 3.2s;
+	animation-delay: 3.2s
+}
+.sec06 .bottom_img{
+	width: 68%;
+	position: absolute;
+	bottom: 12%;
+	left: 16%;
+	opacity: 0;
+	z-index: 0;
+}
+
+.sec06_show .bottom_img{
+	opacity: 1;
+	-webkit-animation: bg_img_animate 1s linear;
+	animation: bg_img_animate 1s linear;
+}
+
+.sec06 .img_1{
+	width: 71%;
+	position: absolute;
+	top: 6%;
+	left: 8%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-300%, 0);
+	transform: translate(-300%, 0);
+}
+.sec06_show .img_1{
+	opacity: 1;
+	-webkit-animation: img_1_animate_in 1s linear;
+	animation: img_1_animate_in 1s linear;
+	-webkit-transform: translate(-250%, 0);
+	transform: translate(-250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.sec06 .img_2{
+	width: 63%;
+	position: absolute;
+	top: 16%;
+	left: 8%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-350%, 0);
+	transform: translate(-350%, 0);
+}
+.sec06_show .img_2{
+	opacity: 1;
+	-webkit-animation: img_2_animate_in 1s linear;
+	animation: img_2_animate_in 1s linear;
+	-webkit-transform: translate(250%, 0);
+	transform: translate(250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-delay: .5s;
+	animation-delay: .5s
+}
+
+
+
+/***********************sec07***************************/
+.sec07_show .arrow{
+	width: 45px;
+	height: 20px;
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	margin-left: -22px;
+	background:url(http://img.zbird.cn/ww3/moblie/danshenjie2014/1-2.png) no-repeat left top;
+	z-index: 0;
+	-webkit-animation: arrow_animate 1s infinite ease-in-out;
+	animation: arrow_animate 1s infinite ease-in-out;
+	-webkit-animation-delay: 2.2s;
+	animation-delay: 2.2s
+}
+.sec07 .bottom_img{
+	width: 68%;
+	position: absolute;
+	bottom: 12%;
+	left: 16%;
+	opacity: 0;
+	z-index: 0;
+}
+
+.sec07_show .bottom_img{
+	opacity: 1;
+	-webkit-animation: bg_img_animate 1s linear;
+	animation: bg_img_animate 1s linear;
+}
+
+.sec07 .img_1{
+	width: 30%;
+	position: absolute;
+	top: 8%;
+	right: 8%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-300%, 0);
+	transform: translate(-300%, 0);
+}
+.sec07_show .img_1{
+	opacity: 1;
+	-webkit-animation: img_1_animate_in 1s linear;
+	animation: img_1_animate_in 1s linear;
+	-webkit-transform: translate(-250%, 0);
+	transform: translate(-250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.sec07 .img_2{
+	width: 55%;
+	position: absolute;
+	top: 48%;
+	left: 19.5%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-350%, 0);
+	transform: translate(-350%, 0);
+}
+.sec07_show .img_2{
+	opacity: 1;
+	-webkit-animation: img_2_animate_in 1s linear;
+	animation: img_2_animate_in 1s linear;
+	-webkit-transform: translate(250%, 0);
+	transform: translate(250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s
+}
+
+.sec07 .img_3{
+	width: 56%;
+	position: absolute;
+	top: 65%;
+	left: 20%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-350%, 0);
+	transform: translate(-350%, 0);
+}
+.sec07_show .img_3{
+	opacity: 1;
+	-webkit-animation: img_3_animate_in 1s ease-out;
+	animation: img_3_animate_in 1s ease-out;
+	-webkit-transform: translate(-250%, 0);
+	transform: translate(-250, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-delay: 2s;
+	animation-delay: 2s
+}
+
+/***********************sec08***************************/
+.sec08_show .arrow{
+	width: 45px;
+	height: 20px;
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	margin-left: -22px;
+	background:url(http://img.zbird.cn/ww3/moblie/danshenjie2014/1-2.png) no-repeat left top;
+	z-index: 0;
+	-webkit-animation: arrow_animate 1s infinite ease-in-out;
+	animation: arrow_animate 1s infinite ease-in-out;
+	-webkit-animation-delay: 1.2s;
+	animation-delay: 1.2s
+}
+.sec08 .bottom_img{
+	width: 68%;
+	position: absolute;
+	bottom: 12%;
+	left: 16%;
+	opacity: 0;
+	z-index: 0;
+}
+
+.sec08_show .bottom_img{
+	opacity: 1;
+	-webkit-animation: bg_img_animate 1s linear;
+	animation: bg_img_animate 1s linear;
+}
+
+.sec08 .img_1{
+	width: 7%;
+	position: absolute;
+	top: 13%;
+	left: 18%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-300%, 0);
+	transform: translate(-300%, 0);
+}
+.sec08_show .img_1{
+	opacity: 1;
+	-webkit-animation: img_1_animate_in .5s linear;
+	animation: img_1_animate_in .5s linear;
+	-webkit-transform: translate(-250%, 0);
+	transform: translate(-250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.sec08 .img_2{
+	width: 55%;
+	position: absolute;
+	top: 48%;
+	left: 19.5%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-350%, 0);
+	transform: translate(-350%, 0);
+}
+.sec08_show .img_2{
+	opacity: 1;
+	-webkit-animation: img_2_animate_in 1s linear;
+	animation: img_2_animate_in 1s linear;
+	-webkit-transform: translate(250%, 0);
+	transform: translate(250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-delay: .5s;
+	animation-delay: .5s
+}
+
+
+/***********************sec09***************************/
+.sec09_show .arrow{
+	width: 45px;
+	height: 20px;
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	margin-left: -22px;
+	background:url(http://img.zbird.cn/ww3/moblie/danshenjie2014/1-2.png) no-repeat left top;
+	z-index: 0;
+	-webkit-animation: arrow_animate 1s infinite ease-in-out;
+	animation: arrow_animate 1s infinite ease-in-out;
+	-webkit-animation-delay: 3.5s;
+	animation-delay: 3.5s
+}
+.sec09 .bottom_img{
+	width: 68%;
+	position: absolute;
+	bottom: 12%;
+	left: 16%;
+	opacity: 0;
+	z-index: 0;
+}
+
+.sec09_show .bottom_img{
+	opacity: 1;
+	-webkit-animation: bg_img_animate 1s linear;
+	animation: bg_img_animate 1s linear;
+}
+
+.sec09 .img_1{
+	width: 40%;
+	position: absolute;
+	top: 9%;
+	left: 30%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-300%, 0);
+	transform: translate(-300%, 0);
+}
+.sec09_show .img_1{
+	opacity: 1;
+	-webkit-animation: img_1_animate_in 1s linear;
+	animation: img_1_animate_in 1s linear;
+	-webkit-transform: translate(-250%, 0);
+	transform: translate(-250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+.sec09 .img_border .img_x{ 
+	width: 69%;
+	position: absolute;
+	top: -5%;
+	left: 13.5%;
+	z-index: 0;	
+}
+.sec09 .img_border .img_2{
+	width: 86%;
+	position: absolute;
+	top: 10%;
+	left: 5.5%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-350%, 0);
+	transform: translate(-350%, 0);
+}
+.sec09_show .img_border .img_2{
+	opacity: 1;
+	-webkit-animation: img_2_animate_in 1s linear;
+	animation: img_2_animate_in 1s linear;
+	-webkit-transform: translate(250%, 0);
+	transform: translate(250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-delay: .5s;
+	animation-delay: .5s
+}
+
+.sec09 .img_border .img_3{
+	width: 44%;
+	position: absolute;
+	top: 34.5%;
+	left: 27%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-300%, 0);
+	transform: translate(-300%, 0);
+}
+.sec09_show .img_border .img_3{
+	opacity: 1;
+	-webkit-animation: img_1_animate_in 1s linear;
+	animation: img_1_animate_in 1s linear;
+	-webkit-transform: translate(-250%, 0);
+	transform: translate(-250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-delay: 1.5s;
+	animation-delay: 1.5s
+}
+.sec09 .img_border .img_4{
+	width: 51%;
+	position: absolute;
+	top: 65%;
+	left: 23.5%;
+	z-index: 0;
+	opacity: 0;
+	-webkit-transform: translate(-350%, 0);
+	transform: translate(-350%, 0); 
+}
+.sec09_show .img_border .img_4{
+	opacity: 1;
+	-webkit-animation: img_2_animate_in 1s linear;
+	animation: img_2_animate_in 1s linear;
+	-webkit-transform: translate(250%, 0);
+	transform: translate(250%, 0);
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-delay: 2.5s;
+	animation-delay: 2.5s
+}
+.sec09 .img_border .img_6{
+	width: 19%;
+	position: absolute;
+	top: 113%;
+	left: 38.5%;
+	z-index: 0; 
+}
+.sec09 .img_border{
+	position: absolute;
+	width: 500px;
+	height: 200px;
+	left: 50%;
+	top: 50%;
+	margin-left: -250px;
+	margin-top: 85px;
+	z-index: 0;
+}
+
+@media only screen and (max-height: 1000px) {
+	.sec09 .img_border{
+		position: absolute;
+		width: 500px;
+		height: 200px;
+		left: 50%;
+		top: 50%;
+		margin-left: -250px;
+		margin-top: 105px;
+		z-index: 0;
+	}
+}  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@-webkit-keyframes dajiang_animate 
+{
+	0%{-webkit-transform:scale(0.8);}
+	50%{-webkit-transform:scale(1);}
+	100%{-webkit-transform:scale(0.8);}
+}
+@keyframes dajiang_animate 
+{
+	0%{transform:scale(0.8);}
+	50%{transform:scale(1);}
+	100%{transform:scale(0.8);}
+}
+@-webkit-keyframes text_animate_in 
+{
+0%{
+	opacity: 0;
+}
+100%{
+	opacity: 1;
+}
+}
+@keyframes text_animate_in 
+{
+0%{
+	opacity: 0;
+}
+100%{
+	opacity: 1;
+}
+}
+@-webkit-keyframes text_animate_out 
+{
+0%{
+	opacity: 1;
+}
+100%{
+	opacity: 0;
+}
+}
+@keyframes text_animate_out
+{
+0%{
+	opacity: 1;
+}
+100%{
+	opacity: 0;
+}
+}
+@-webkit-keyframes bg_img_animate 
+{
+0%{
+	opacity: 0;
+	-webkit-transform:scale(0);
+}
+100%{
+	opacity: 1;
+	-webkit-transform:scale(1);
+}
+}
+@keyframes bg_img_animate 
+{
+0%{
+	opacity: 0;
+	transform:scale(0);
+}
+100%{
+	opacity: 1;
+	transform:scale(1);
+}
+}
+@-webkit-keyframes arrow_animate {
+	0%{
+		opacity: 0;
+		-webkit-transform: translate(0, 0px);
+	}
+	30% {
+		opacity: 1;
+		-webkit-transform: translate(0, -10px);
+	}
+	100%{
+		opacity: 0;
+		-webkit-transform: translate(0, 5px);
+	}
+}
+@keyframes arrow_animate {
+	0%{
+		opacity: 0;
+		-webkit-transform: translate(0, 0px);
+	}
+	30% {
+		opacity: 1;
+		-webkit-transform: translate(0, -10px);
+	}
+	100%{
+		opacity: 0;
+		-webkit-transform: translate(0, 5px);
+	}
+}
+@-webkit-keyframes img_1_animate_in
+{
+	100%{-webkit-transform: translate(0, 0);}
+}
+@keyframes img_1_animate_in
+{
+	100%{transform: translate(0, 0);}
+}
+
+@-webkit-keyframes img_1_animate_out
+{
+	100%{-webkit-transform: translate(-400%, 0);}
+}
+@keyframes img_1_animate_out
+{
+	100%{transform: translate(-400%, 0);}
+}
+@-webkit-keyframes img_2_animate_in
+{
+	100%{-webkit-transform: translate(0, 0);}
+}
+@keyframes img_2_animate_in
+{
+	100%{transform: translate(0, 0);}
+}
+
+@-webkit-keyframes img_2_animate_out
+{
+	100%{-webkit-transform: translate(400%, 0);}
+}
+@keyframes img_2_animate_out
+{
+	100%{transform: translate(400%, 0);}
+}
+@-webkit-keyframes img_3_animate_in
+{
+	100%{-webkit-transform: translate(0, 0);}
+}
+@keyframes img_3_animate_in
+{
+	100%{transform: translate(0, 0);}
+}
+
+@-webkit-keyframes img_3_animate_out
+{
+	100%{-webkit-transform: translate(-400%, 0);}
+}
+@keyframes img_3_animate_out
+{
+	100%{transform: translate(-400%, 0);}
+}
+@-webkit-keyframes proSaleRotate{
+	0%{-webkit-transform:rotate(-1.6deg);}
+	50%{-webkit-transform:rotate(1.6deg);}
+	100%{-webkit-transform:rotate(-1.6deg);}
+}
+@keyframes proSaleRotate{
+	0%{transform:rotate(-1.6deg);}
+	50%{transform:rotate(.1.6deg);}
+	100%{transform:rotate(-1.6deg);}
+}
+
+@-webkit-keyframes img_show
+{
+	0%{opacity: 1}
+	100%{opacity: 1}
+}
+@keyframes img_show
+{
+	0%{opacity: 1}
+	100%{opacity: 1}
+}

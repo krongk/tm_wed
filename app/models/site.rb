@@ -43,6 +43,6 @@ class Site < ActiveRecord::Base
       end while self.class.exists?(:short_title => short_title)
     end
     def create_site_payment
-      SitePayment.create!(site_id: id, state: 'opening', price: ENV["PRICE_PERSONAL"])
+      SitePayment.create!(site_id: id, state: 'opening', price: typo == 'business' ? ENV["PRICE_BUSINESS"] : ENV["PRICE_PERSONAL"])
     end
 end

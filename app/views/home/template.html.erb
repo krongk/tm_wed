@@ -36,13 +36,13 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
           <div class="row">
             <div id="project-sidebar" class="col-md-3">
               <h2 id="sdbr-title">
-                <%= link_to app_site_new_path(template_id: @template.id), class: 'btn btn-meflat icon-right', style: 'height: 80px' do %>
-                  我要制作<i class="fa fa-arrow-right"></i><br/>
-                  <small>￥<%= ENV['PRICE_BASE'] %>/个/年</small>
+                <%= link_to app_site_new_path(template_id: @template.id), class: 'btn btn-meflat icon-right', style: 'height: 70px' do %>
+                  个人版制作<i class="fa fa-arrow-right"></i><br/>
+                  <small>￥<%= ENV['PRICE_PERSONAL'] %>/个/年</small>
                 <% end %>
-                <%= link_to vip_path(template_id: @template.id), class: 'btn btn-meflat icon-right', style: 'height: 80px' do %>
-                  商务定制<i class="fa fa-arrow-right"></i><br/>
-                  <small>￥<%= ENV['PRICE_VIP'] %>/个/年</small>
+                <%= link_to vip_path(template_id: @template.id), class: 'btn btn-meflat icon-right', style: 'height: 70px' do %>
+                  商务版制作<i class="fa fa-arrow-right"></i><br/>
+                  <small>￥<%= ENV['PRICE_BUSINESS'] %>/个/年</small>
                 <% end %>
               </h2>
               <p id="sdbr-category"><%= @template.cate.title %></p>
@@ -54,9 +54,9 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
             <div id="project-content" class="col-md-8 col-md-offset-1">
               <%= raw @template.description %>
               <div class="">
-                <h3 class="bottom_bordered">案例展示</h3>
+                <h3 class="bottom_bordered">个人版案例展示</h3>
                 <div class="row">
-                  <% @template.recommend_sites(11).each do |site| %>
+                  <% @template.recommend_sites(4, typo: 'personal').each do |site| %>
                     <div class="col-sm-6 col-md-3">
                       <div class="thumbnail">
                       <%= image_tag qiniu_image_path(get_first_site_image_url(site), :thumbnail => '200x300>', :quality => 80), class: "img-responsive",  alt: site.title %>
@@ -68,21 +68,28 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
                           </p>
                         </div>
                       </div>
-                    </div>
+                  </div>
                   <% end %>
-                    <div class="col-sm-6 col-md-3">
-                      <div class="thumbnail">
-                        <%= image_tag asset_path('placeholder1.jpg') %>
-                        <!--<img src="http://qrickit.com/api/qr?d=<%# =get_site_url(site)%>&fgdcolor=000000&bgdcolor=F1678D&qrsize=120&t=p&e=m"> -->
-                        <div class="caption text-center">
-                          <p><a href="/case">更多案例...</a></p>
-                          <p>
-                            <a href="/case" class="btn btn-info">点击查看</a>
-                          </p>
+                </div>
+                <% if @template.recommend_sites(4, typo: 'business').any? %>
+                  <h3 class="bottom_bordered">商务版案例展示</h3>
+                  <div class="row">
+                    <% @template.recommend_sites(4, typo: 'business').each do |site| %>
+                      <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                        <%= image_tag qiniu_image_path(get_first_site_image_url(site), :thumbnail => '200x300>', :quality => 80), class: "img-responsive",  alt: site.title %>
+                          <!--<img src="http://qrickit.com/api/qr?d=<%# =get_site_url(site)%>&fgdcolor=000000&bgdcolor=F1678D&qrsize=120&t=p&e=m"> -->
+                          <div class="caption text-center">
+                            <p><a href="<%= site_preview_path(site)%>" target="_blank"><%= site.title.to_s.truncate(9) %></a></p>
+                            <p>
+                              <a href="<%= site_preview_path(site)%>" target="_blank" class="btn btn-info">点击预览</a>
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                </div>
+                    <% end %>
+                  </div>
+                <% end %>
               </div>
               <p>怎么样，是不是觉得很赞？<br>其实制作很简单，填一个表格+传几张图即可完成，还可以通过手机登录后台不断完善，超级方便！</p>
               <p class="text-right">

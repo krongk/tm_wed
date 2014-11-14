@@ -164,7 +164,11 @@ class SitesController < ApplicationController
     @site.member_id = current_member.id if current_member
 
     respond_to do |format|
-      if @site.save
+      if @site.save!
+        if params[:typo] == 'business'
+          @site.site_payment.price = ENV["PRICE_BUSINESS"]
+          @site.site_payment.save!
+        end
         #build site_page via template_page
         Templates::Page.where(template_id: @site.template_id).order("position ASC").each do |temp_page|
           @site.site_pages.create(
@@ -238,7 +242,7 @@ class SitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_params
-      params.require(:site).permit(:user_id, :member_id, :template_id, :short_title, :title, :description, :domain, :is_publiched, :is_comment_show, :updated_by, :note)
+      params.require(:site).permit(:user_id, :member_id, :template_id, :short_title, :title, :description, :domain, :is_publiched, :is_comment_show, :updated_by, :note, :typo)
     end
 
     #expired, we used QRcode API to generate qrcode

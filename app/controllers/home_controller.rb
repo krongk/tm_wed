@@ -37,6 +37,10 @@ class HomeController < ApplicationController
   end
 
   def vip
+    if current_session
+      redirect_to new_site_path(template_id: params[:template_id], typo: 'business')
+    end
+
     @show_contact = false #this var is for turn off footer contact form, used in layouts/_contact.html.erb
     @template = Templates::Template.find_by(id: params[:template_id])
     #render text: params and return
