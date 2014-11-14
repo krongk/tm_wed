@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20141111050735) do
     t.string   "auth_token",             limit: 32
     t.datetime "token_created_at"
     t.boolean  "token_confirmed"
-    t.integer  "sign_in_count",                     default: 1, null: false
+    t.integer  "sign_in_count",                     default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "payment_notify_count",              default: 0, null: false
@@ -149,15 +149,9 @@ ActiveRecord::Schema.define(version: 20141111050735) do
 
   add_index "payment_tokens", ["user_id"], name: "index_payment_tokens_on_user_id_id", using: :btree
 
-  create_table "resouce_musics", force: true do |t|
-    t.string   "name"
-    t.string   "url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "resource_musics", force: true do |t|
     t.integer  "user_id"
+    t.integer  "member_id"
     t.string   "name"
     t.string   "url"
     t.datetime "created_at"
@@ -168,13 +162,19 @@ ActiveRecord::Schema.define(version: 20141111050735) do
     t.datetime "asset_updated_at"
   end
 
+  add_index "resource_musics", ["member_id"], name: "index_resource_musics_on_member_id", using: :btree
   add_index "resource_musics", ["user_id"], name: "index_resource_musics_on_user_id", using: :btree
 
   create_table "resource_musics-bak", force: true do |t|
+    t.integer  "user_id"
     t.string   "name"
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
   end
 
   create_table "roles", force: true do |t|
