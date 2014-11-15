@@ -17,7 +17,7 @@ Top
             </a>
             <div class="caption text-center" id="caption_<%= site.id %>">
               <p>
-                <a href="<%= site.url %>" target="_blank" onmouseover="javascript: show_qr();"><%= site.title.to_s.truncate(12) %></a><br/>
+                <a href="<%= site.url %>" id="<%= site.id %>" target="_blank" title="查看二维码" onmouseover="javascript: show_qr(<%= site.id %>);"><%= site.title.to_s.truncate(12) %></a><br/>
               </p>
             </div>
           </div>
@@ -30,8 +30,28 @@ Top
   </div>
 </section>
 
+<!-- meituModal start-->
+<div id="qrModal" class="modal <%= ie_browser? ? '' : 'fade' %>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="container">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h1 id="hdr-title" class="text-center">扫描二维码</h1>
+        </div>
+      </div>
+      <div class="modal-body text-center" id="qrBody">
+        
+      </div><!-- End modal-body -->
+    </div><!-- End modal-content -->
+  </div><!-- End modal-dialog -->
+</div>
+<!-- meituModal end-->
+
 <script language="javascript">
-  function show_qr(){
-    alert("fsdf");  
+  function show_qr(site_id){
+    var url = $('#' + site_id).attr('href');
+    $('#qrModal').modal('toggle');
+    $("#qrBody").html("<img src='http://qrickit.com/api/qr?d=" + url + "&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m' />");
   }
 </script>

@@ -13,8 +13,8 @@ class Site < ActiveRecord::Base
   after_create :init_typo
 
   scope :sites_has_images, ->{ joins(:site_pages =>:site_images).group("sites.id").order("updated_at DESC") }
-  scope :business, -> { where(cate: 'business') }
-  scope :personal, -> { where(cate: 'personal') }
+  scope :business, -> { where(typo: 'business') }
+  scope :personal, -> { where(typo: 'personal') }
   
   #empty
   validates :title, presence: true

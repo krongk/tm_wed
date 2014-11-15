@@ -10,11 +10,13 @@ Top
   <div class="container">
     <div class="row">
       <% @sites.each do |site| %>
+        <% img_url = get_first_site_image_url(site) %>
+        <% next if img_url.nil? %>
         <% template = site.template %>
         <div class="col-sm-6 col-md-3">
           <div class="thumbnail">
             <a href="<%= site_preview_path(site)%>" target="_blank">
-              <%= image_tag qiniu_image_path(get_first_site_image_url(site), :thumbnail => '200x300>', :quality => 80), class: "img-responsive project-image",  alt: site.title %>
+              <%= image_tag qiniu_image_path(img_url, :thumbnail => '320x480>', :quality => 80), class: "img-responsive project-image",  alt: site.title %>
             </a>
             <div class="caption text-center" id="caption_<%=site.id%>">
               <p>
