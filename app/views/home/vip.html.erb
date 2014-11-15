@@ -5,8 +5,8 @@
 <div class="container">
   
   <header class="section-header text-center">
-    <h1 class="scrollimation scale-in">VIP定制流程</h1>
-    <p>所有的请帖都是基于模板生成，在制作之前，首先选择一个中意的模板.</p>
+    <h1 class="scrollimation scale-in">VIP定制说明</h1>
+    <p>所有的应用都是基于模板生成，在制作之前，首先选择一个中意的模板.</p>
   </header>
     
   <ul class="timeline-v2">
@@ -15,30 +15,17 @@
       <i class="cbp_tmicon rounded-x hidden-xs"></i>
       <div class="cbp_tmlabel">
         <h2>选择模板</h2>
-        <% if @template %>
-          <div class="row">
-            <div class="col-md-4">
-              <%= link_to template_path(@template) do %>
-                <% demo_images = get_demo_image_list(@template, 'demo_img') %>
-                <img class="img-responsive img-center" src="<%= demo_images.shift %>" alt="<%= @template.title %>" />
-              <% end %>
-              <div class="md-margin-bottom-20"></div>
-            </div>
-            <div class="col-md-8">    
-              <p>你已经选择了模板: <strong><%= link_to @template.title, template_path(@template), target: '_blank' %></strong></p>
-              <p>如果确定选择该模板，则可以进入下一步了</p>
-              <p>如果还没确定最终模板，在<%= link_to '点击这里', templates_path %>进入模板页面。</p>
-            </div>
+        <div class="row">
+          <div class="col-md-8">
+            <ol>
+              <li>VIP微场景适用于政府、公司、品牌的微宣传和营销推广！</li>
+              <li>我们精心开发漂亮的模板，为高端客户定制专属微场景！</li>
+              <li>引爆微场景，势在必行！！</li>
+            </ol>
           </div>
-        <% else %>
-          <p><br/>
-          你还没有选择喜欢的模板。
-          </p>
-          <ol>
-            <li>你可以： <%= link_to '点击这里', templates_path %>进入模板页面进行选择。</li>
-            <li>你也可以： 直接在下面【步骤2】告诉我们你喜欢的模板，或者是在网上发现的漂亮链接。</li>
-          </ol>
-        <% end %>  
+          <div class="col-md-4 text-center">
+           <a href="/biz" target="_blank" class="btn btn-meflat btn-lg">选择VIP模板</a>
+          </div>
       </div>
     </li>
     <li>
