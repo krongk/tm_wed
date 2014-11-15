@@ -1,5 +1,5 @@
 class ResourceMusic < ActiveRecord::Base
-  belongs_to :site_page
+  belongs_to :site
 
   has_attached_file :asset, :path => "musics/:class/:attachment/:id.:extension"
   validates :asset, :attachment_presence => true

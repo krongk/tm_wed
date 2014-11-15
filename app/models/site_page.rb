@@ -2,7 +2,7 @@ class SitePage < ActiveRecord::Base
   belongs_to :site
   belongs_to :template_page, class_name: 'Templates::Page'
   has_many :site_page_keystores, :dependent => :destroy
-  has_many :resource_musics, :dependent => :destroy
+  
   has_many :site_images, -> { order("position ASC") }, :dependent => :destroy
   before_create :create_unique_short_title
 

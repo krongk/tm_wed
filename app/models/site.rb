@@ -6,6 +6,7 @@ class Site < ActiveRecord::Base
   belongs_to :theme, class_name: 'Templates::Theme'
   has_one :site_payment, :dependent => :destroy
   has_many :site_pages, :dependent => :destroy
+  has_many :resource_musics, :dependent => :destroy
   has_many :site_comments, -> { order("updated_at DESC") }, :dependent => :destroy
   before_create :create_unique_short_title
   after_create :create_site_payment

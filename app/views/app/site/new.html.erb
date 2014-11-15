@@ -3,7 +3,7 @@
     <time class="cbp_tmtime" datetime=""><span>步骤</span> <span>1</span></time>
     <i class="cbp_tmicon rounded-x hidden-xs"></i>
     <div class="cbp_tmlabel">
-      <h2>选择模板</h2>
+      <h2>1. 选择模板</h2>
       <% if @template %>
         <div class="row">
           <div class="col-md-4">
@@ -34,7 +34,7 @@
     <i class="cbp_tmicon rounded-x hidden-xs"></i>
     <div class="cbp_tmlabel">
       
-        <h3 class="bottom_bordered">1. 填写信息  <small> --- 2. 上传照片 --- 3. 生成应用</small></h3>
+        <h3 class="bottom_bordered">2. 填写信息  <small> --- 3. 上传照片 --- 4. 生成应用</small></h3>
 
         <%= form_tag({action: :create}, class: 'simple_form form-horizontal', id: 'app_form', role: "form") do %>
           <%= hidden_field_tag("site[template_id]", params[:template_id]) %>
@@ -50,34 +50,55 @@
           <div class="form-group">
             <label for="site_title" class="col-sm-2 control-label">*喜帖标题</label>
             <div class="col-sm-10">
-              <input id="site_title" name="site[title]" type="text" class="form-control required" placeholder="我们结婚啦/维宝宝的满月酒/" value="<%= params[:site].nil? ? '' : params[:site][:title] %>"/>
+              <input id="site_title" name="site[title]" type="text" class="form-control required" placeholder="我们结婚啦/维宝宝的满月酒/微相册/商务邀请" value="<%= params[:site].nil? ? '' : params[:site][:title] %>"/>
             </div>
           </div>
-          <div class="form-group">
-            <label for="site_boy" class="col-sm-2 control-label">*新郎姓名</label>
-            <div class="col-sm-10">
-              <input id="site_boy" name="site[boy]" type="text" class="form-control required" placeholder="梁山伯" value="<%= params[:site].nil? ? '' : params[:site][:boy] %>"/>
-              <p class="help-block">* 宝宝Show、生日宴请、寿宴、商务邀请等只需填写新郎姓名即可。</p>
-            </div>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="margin-left: 40px;">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <i class="fa fa-angle-double-right"></i> 点击填写更多信息(结婚/生日宴必填)
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <div class="form-group">
+          <label for="site_boy" class="col-sm-2 control-label">*新郎姓名</label>
+          <div class="col-sm-10">
+            <input id="site_boy" name="site[boy]" type="text" class="form-control" value="<%= params[:site].nil? ? '梁山伯' : params[:site][:boy] %>"/>
+            <p class="help-block">* 宝宝Show、生日宴请、寿宴、商务邀请等只需填写新郎姓名即可。</p>
           </div>
-          <div class="form-group">
-            <label for="site_girl" class="col-sm-2 control-label">新娘姓名</label>
-            <div class="col-sm-10">
-              <input id="site_girl" name="site[girl]" type="text" class="form-control" placeholder="祝英台" value="<%= params[:site].nil? ? '' : params[:site][:girl] %>"/>
-            </div>
+        </div>
+        <div class="form-group">
+          <label for="site_girl" class="col-sm-2 control-label">新娘姓名</label>
+          <div class="col-sm-10">
+            <input id="site_girl" name="site[girl]" type="text" class="form-control" placeholder="祝英台" value="<%= params[:site].nil? ? '' : params[:site][:girl] %>"/>
           </div>
-          <div class="form-group">
-            <label for="site_date" class="col-sm-2 control-label">*宴请日期</label>
-            <div class="col-sm-10">
-              <input id="site_date" name="site[date]" type="text" class="form-control required" placeholder="2014年10月1日" value="<%= params[:site].nil? ? '' : params[:site][:date] %>"/>
-            </div>
+        </div>
+        <div class="form-group">
+          <label for="site_date" class="col-sm-2 control-label">*宴请日期</label>
+          <div class="col-sm-10">
+            <input id="site_date" name="site[date]" type="text" class="form-control"  value="<%= params[:site].nil? ? '2015年10月1日' : params[:site][:date] %>"/>
           </div>
-          <div class="form-group">
-            <label for="site_address" class="col-sm-2 control-label">*宴请地址</label>
-            <div class="col-sm-10">
-              <input id="site_address" name="site[address]" type="address" class="form-control required" placeholder="四川省成都市锦江区滨江东路9号.香格里拉大酒店" value="<%= params[:site].nil? ? '' : params[:site][:address] %>"/>
-            </div>
+        </div>
+        <div class="form-group">
+          <label for="site_address" class="col-sm-2 control-label">*宴请地址</label>
+          <div class="col-sm-10">
+            <input id="site_address" name="site[address]" type="address" class="form-control required" value="<%= params[:site].nil? ? '四川省成都市锦江区滨江东路9号.香格里拉大酒店' : params[:site][:address] %>"/>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+            
+ 
+
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <%= submit_tag("保存，进入下一步", data: { disable_with: "正在保存..." }, class: 'btn btn-meflat', id: 'submit') %>
