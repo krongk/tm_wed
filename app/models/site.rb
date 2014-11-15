@@ -9,6 +9,7 @@ class Site < ActiveRecord::Base
   has_many :site_comments, -> { order("updated_at DESC") }, :dependent => :destroy
   before_create :create_unique_short_title
   after_create :create_site_payment
+  after_create :init_typo
 
   scope :sites_has_images, ->{ joins(:site_pages =>:site_images).group("sites.id").order("updated_at DESC") }
   scope :business, -> { where(cate: 'business') }
@@ -41,6 +42,10 @@ class Site < ActiveRecord::Base
       begin
         self.short_title = SecureRandom.hex(2)
       end while self.class.exists?(:short_title => short_title)
+    end
+    def init_typo
+      self.typo = 'personal' if typo.blank?
+      self.save
     end
     def create_site_payment
       SitePayment.create!(site_id: id, state: 'opening', price: typo == 'business' ? ENV["PRICE_BUSINESS"] : ENV["PRICE_PERSONAL"])
