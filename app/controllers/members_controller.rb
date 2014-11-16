@@ -17,7 +17,7 @@ class MembersController < ApplicationController
         session[:token] = member.id
         #send token &&  limit to send sms frequently
         puts "old member"
-        if member.token_created_at < 2.minutes.ago
+        if Time.now - member.token_created_at < 120
           puts "< 2 minutes"
           return redirect_to new_token_members_path, notice: '您在2分钟内已经提交过一次了，请检查手机是否已收到验证码！'
         else
