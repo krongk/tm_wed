@@ -16,12 +16,9 @@ class MembersController < ApplicationController
         session[:token] = nil
         session[:token] = member.id
         #send token &&  limit to send sms frequently
-        puts "old member"
         if Time.now - member.token_created_at < 120
-          puts "< 2 minutes"
           return redirect_to new_token_members_path, notice: '您在2分钟内已经提交过一次了，请检查手机是否已收到验证码！'
         else
-          puts "send sms"
           SmsSendWorker.perform_async(member.auth_id, "【维斗喜帖】登录验证码#{generate_token(member)}，请在10分钟内登录网站验证")
         end
         return redirect_to new_token_members_path, notice: '验证码已发送到你手机，请注意查收！'
