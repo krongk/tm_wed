@@ -74,7 +74,7 @@ class SitesController < ApplicationController
       end
 
       #send notice to admin
-      if Rails.env == 'production' && current_session.id > 5
+      if Rails.env == 'production'
         SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "支付状态：#{@payment.state}, 应用: http://www.wedxt.com/sites/#{@payment.site_id}/preview")
       end
 
