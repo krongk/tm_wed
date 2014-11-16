@@ -124,30 +124,6 @@ class App::SiteController < ApplicationController
       member
     end
 
-    def test_create_member(member_params)
-      member = Member.find_by(auth_type: member_params[:auth_type], auth_id: member_params[:auth_id])
-      if member
-        #old user, judge if he has any sites, redirect to send_token
-        #else like a new user
-        if member.try(:sites)
-          session[:token] = nil
-          session[:token] = member.id
-          #send token
-          TokenSendWorker.perform_async(member.auth_id, generate_token(member))
-          return render new_token_members_path, id: member.id, notice: '验证码已发送！'
-        else
-          get_session(member)
-        end
-      else #new user
-        member = Member.new(member_params)
-        if member.save
-          get_session(member)
-        else
-          redirect_to new_user_session_path, alert: '注册或登录失败，请检查你的输入是否正确。' and return
-        end
-      end
-    end
-
     def member_params
       params.require(:member).permit(:auth_type, :auth_id)
     end
