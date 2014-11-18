@@ -12,7 +12,7 @@ namespace :user_notify do
       puts "\ndo while condition..........................#{Time.now.to_s}"
       
       #do not send at night.
-      if ("08:00"..."23:00").include?(Time.now.strftime("%H:%M"))
+      if ("00:00"..."24:00").include?(Time.now.strftime("%H:%M"))
         User.where("payment_notify_count < #{MAX_SEND_AMOUNT}").order("id desc").find_each do |user|
           #sleep(1.minutes)         
           #the first time 
