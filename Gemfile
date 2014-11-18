@@ -56,6 +56,7 @@ gem 'sidekiq'
 
 #Send Mail
 #gem 'mailgun'
+gem 'rest_client' #use for sendcloud.org
 
 #Pinyin.t('中国', splitter: '-') => "zhong-guo"
 gem 'chinese_pinyin'

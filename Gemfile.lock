@@ -137,6 +137,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    netrc (0.7.9)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -206,6 +207,8 @@ GEM
     ref (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rest_client (1.8.2)
+      netrc (~> 0.7.7)
     rolify (3.4.0)
     rqrcode (0.4.2)
     rqrcode_png (0.1.2)
@@ -310,6 +313,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.0.2)
   rails_layout
+  rest_client
   rolify
   rqrcode_png
   sass-rails (~> 4.0.0)
