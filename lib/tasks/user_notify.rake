@@ -13,7 +13,7 @@ namespace :user_notify do
       
       #do not send at night.
       if ("00:00"..."24:00").include?(Time.now.strftime("%H:%M"))
-        User.where("payment_notify_count < #{MAX_SEND_AMOUNT}").order("id desc").find_each do |user|
+        User.where("payment_notify_count < #{MAX_SEND_AMOUNT}").order("id desc").each do |user|
           #sleep(1.minutes)         
           #the first time 
           if user.payment_notify_count == 0
