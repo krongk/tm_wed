@@ -4,7 +4,8 @@ class SiteImage < ActiveRecord::Base
   
   has_attached_file :image,
                     :path => ":class/:id/:style.:extension",
-                    :styles => {:original => '640x960#'} #override the original file
+                    :styles => {:original => '1000x1000>'} #crop on each show
+                    #:styles => {:original => '640x960#'} #override the original file
                     #:styles => { :content => '640x960>' } #standerd mobile size: 320*480 480*800 640*960
 
   validates_attachment_size :image, :less_than => 8.megabytes
@@ -38,3 +39,11 @@ end
 #   <%= qiniu_image_tag @image.file.url, :thumbnail => '300x300>', :quality => 80 %>
 #   or
 #   <%= image_tag qiniu_image_path(@image.file.url, :thumbnail => '300x300>', :quality => 80) %>
+
+#crop to 960
+  # <%= image_tag qiniu_image_path(@picture.asset.url,  
+  #   thumbnail: 'x960',
+  #   crop: '!640x-0a0',
+  #   quality: 85
+  # )
+  # %>

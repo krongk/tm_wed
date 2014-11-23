@@ -1,7 +1,7 @@
 
 <%= simple_form_for(@site) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :typo, as: :hidden, input_html: {value: params[:typo]} %>
+  <%= f.input :typo, as: :hidden, input_html: {value: params[:typo] || 'personal'} %>
   
   <div class="form-inputs">
     <%= f.input :template_id, as: :hidden, input_html: {value: params[:template_id] || @site.template.id} %>

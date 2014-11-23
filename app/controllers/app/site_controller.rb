@@ -27,6 +27,7 @@ class App::SiteController < ApplicationController
     @site.member_id = current_member.id if current_member
     @site.template_id = site_params[:template_id]
     @site.description = "我们定于#{params[:site][:date]}举行宴请典礼，敬请光临！"
+    @site.typo = ['personal', 'business'].delete(site_params[:typo].to_s.downcase) || 'personal'
 
     respond_to do |format|
       if @site.save
@@ -129,7 +130,7 @@ class App::SiteController < ApplicationController
     end
 
     def site_params
-      params.require(:site).permit(:template_id, :title, :boy, :girl, :date, :address)
+      params.require(:site).permit(:template_id, :typo, :title, :boy, :girl, :date, :address)
     end
 
 end
