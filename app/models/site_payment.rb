@@ -18,6 +18,7 @@ class SitePayment < ActiveRecord::Base
 
   validates_presence_of :price
   validates_inclusion_of :state, :in => STATE
+  after_save :update_site_status
 
   STATE.each do |state|
     define_method "#{state}?" do
@@ -133,5 +134,15 @@ class SitePayment < ActiveRecord::Base
 
   def send_good
     Alipay::Service.send_goods_confirm_by_platform(:trade_no => trade_no, :logistics_name => ENV["SITE_NAME"], :transport_type => 'DIRECT')
+  end
+
+  private
+
+  def update_site_status
+    if self.state == 'completed'
+      site = self.site
+      site.status = 'vip'
+      site.save
+    end
   end
 end
