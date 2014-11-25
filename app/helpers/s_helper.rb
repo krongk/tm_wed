@@ -55,7 +55,7 @@ module SHelper
     get_site_image_url(site, 'DESC')
   end
   def get_site_image_url(site, order = 'ASC')
-    site_iamges = SiteImage.joins(:site_page).where("site_pages.site_id = ?", site.id).order("position #{order}").limit(1)
+    site_iamges = SiteImage.unscoped.joins(:site_page).where("site_pages.site_id = ?", site.id).order("position #{order}, id #{order}").limit(1)
     site_iamges.first.try(:image).try(:url)
   end
 
