@@ -24,6 +24,12 @@ class Site < ActiveRecord::Base
   #vip-recommend -> vip and can show in template examples
   STATUS = %w(vip-recommend vip recommend thief)
 
+  def payed?
+    return true if vip?
+    return true if self.site_payment.state == 'completed'
+    return false
+  end
+
   def active?
     ['completed'].include?(self.site_payment.state)
   end

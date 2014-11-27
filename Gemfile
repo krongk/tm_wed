@@ -36,7 +36,10 @@ gem 'jquery-ui-rails'
 #add :git to bugfix open dialog error
 gem "ckeditor", :git => "git@github.com:galetahub/ckeditor.git"
 #File upload
-gem 'paperclip'
+
+#gem 'paperclip 4.0' will cause below error:
+# => en.activerecord.errors.models.submission_detail.attributes.attachment.spoofed_media_type
+gem "paperclip", "~> 3.5.3"
 gem 'paperclip-qiniu'
 gem 'jquery-fileupload-rails'
 #Excel processing
