@@ -6,19 +6,27 @@
 Top
 =============================================== --> 
 <section id="biz">
-  
+
   <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <% if mobile_device? %>
+          <p><a href="tel:18080810818" class="btn btn-success btn-lg btn-block">立即咨询：180-8081-0818</a></p>
+        <% else %>
+          <p><a href="#footer" class="btn btn-default btn-lg btn-block">高级模板定制，私人专享，价格2000起订， 详情请联系客服，咨询热线：180-8081-0818</a></p>
+        <% end %>
+      </div>
+    </div>
     <div class="row">
       <% @sites.each do |site| %>
         <div class="col-sm-6 col-md-3">
-          <div class="thumbnail">
+          <div class="thumbnail biz-thumbnail">
             <a href="<%= site.url %>" target="_blank">
               <%= image_tag site.thumb, class: "img-responsive project-image",  alt: site.title %>
             </a>
             <div class="caption text-center" id="caption_<%= site.id %>">
-              <p>
-                <a href="<%= site.url %>" id="<%= site.id %>" target="_blank" title="查看二维码" onmouseover="javascript: show_qr(<%= site.id %>);"><%= site.title.to_s.truncate(12) %></a><br/>
-              </p>
+              <a href="<%= site.url %>"><%= site.title.to_s.truncate(12) %></a><br/>
+              <a href="<%= site.url %>" id="<%= site.id %>" target="_blank" title="查看二维码" data-title="<%= site.title %>" onmouseover="javascript: show_qr(<%= site.id %>);" style="font-size: 24px; color: #94daf0;"> <i class="fa fa-qrcode"> </i> </a>
             </div>
           </div>
         </div>
@@ -30,7 +38,7 @@ Top
   </div>
 </section>
 
-<!-- meituModal start-->
+<!-- qrModal start-->
 <div id="qrModal" class="modal <%= ie_browser? ? '' : 'fade' %>">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -46,12 +54,12 @@ Top
     </div><!-- End modal-content -->
   </div><!-- End modal-dialog -->
 </div>
-<!-- meituModal end-->
+<!-- qrModal end-->
 
 <script language="javascript">
   function show_qr(site_id){
-    var url = $('#' + site_id).attr('href');
+    var site = $('#' + site_id);
     $('#qrModal').modal('toggle');
-    $("#qrBody").html("<img src='http://qrickit.com/api/qr?d=" + url + "&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m' />");
+    $("#qrBody").html("<img src='http://qrickit.com/api/qr?d=" + site.attr('href') + "&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m' /><br/>"  + site.data('title') + "" );
   }
 </script>

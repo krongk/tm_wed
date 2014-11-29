@@ -23,11 +23,11 @@ class HomeController < ApplicationController
   #params: personal, business
   def top
     if params[:q] == 'p' || params[:q] == 'personal'
-      @sites = Site.joins(:site_payment).personal.where("sites.status in('vip', 'vip-recommend') OR site_payments.state = 'completed'").page(params[:page])
+      @sites = Site.joins(:site_payment).personal.where("sites.status in('vip', 'vip-recommend') OR site_payments.state = 'completed'").order("id desc").page(params[:page])
     elsif params[:q] == 'b' || params[:q] == 'business'
-      @sites = Site.joins(:site_payment).business.where("sites.status in('vip', 'vip-recommend') OR site_payments.state = 'completed'").page(params[:page])
+      @sites = Site.joins(:site_payment).business.where("sites.status in('vip', 'vip-recommend') OR site_payments.state = 'completed'").order("id desc").page(params[:page])
     else
-      @sites = Site.joins(:site_payment).where("sites.status in('vip', 'vip-recommend') OR site_payments.state = 'completed'").page(params[:page])
+      @sites = Site.joins(:site_payment).where("sites.status in('vip', 'vip-recommend') OR site_payments.state = 'completed'").order("id desc").page(params[:page])
     end
   end
 

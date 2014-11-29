@@ -5,3 +5,11 @@
 .font-small{
   font-size: 80%;
 }
+
+.biz-thumbnail{
+  padding: 0px;
+}
+
+.biz-thumbnail>img, .biz-thumbnail a>img {
+  height: 320px;
+}
