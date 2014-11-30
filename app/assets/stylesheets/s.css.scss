@@ -13,3 +13,12 @@
 .biz-thumbnail>img, .biz-thumbnail a>img {
   height: 320px;
 }
+
+.recommend-thumbnail{
+  padding: 0px;
+}
+.recommend-thumbnail>img, .biz-thumbnail a>img {
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+}
