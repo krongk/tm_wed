@@ -27,6 +27,8 @@ gem 'alipay', :github => 'chloerei/alipay'
 gem 'therubyracer', :platform=>:ruby
 gem 'sitemap_generator'
 
+gem 'newrelic_rpm'
+
 #for sortable
 gem 'acts_as_list'
 #handle the error: couldn't find file 'jquery-ui'
