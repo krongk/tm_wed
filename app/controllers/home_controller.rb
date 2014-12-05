@@ -7,7 +7,7 @@ class HomeController < ApplicationController
 
   def templates
     @cates = Templates::Cate.all
-    @templates = Templates::Template.where("cate_id in (1,2)").order("updated_at DESC").paginate(page: params[:page] || 1, per_page: 6)
+    @templates = Templates::Template.where(is_published: true).order("id DESC").paginate(page: params[:page] || 1, per_page: 6)
   end
   def template
     @template = Templates::Template.find(params[:id])

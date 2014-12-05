@@ -40,7 +40,7 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
                   个人版制作<i class="fa fa-arrow-right"></i><br/>
                   <small>￥<%= ENV['PRICE_PERSONAL'] %>/个(免费试用)</small>
                 <% end %>
-                <%= link_to vip_path(template_id: @template.id, typo: 'business'), class: 'btn btn-meflat icon-right', style: 'height: 70px' do %>
+                <%= link_to app_site_new_path(template_id: @template.id, typo: 'business'), class: 'btn btn-meflat icon-right', style: 'height: 70px' do %>
                   商务版制作<i class="fa fa-arrow-right"></i><br/>
                   <small>￥<%= ENV['PRICE_BUSINESS'] %>/年(免费试用)</small>
                 <% end %>

@@ -891,6 +891,7 @@ a:focus,
     height: 100%;
     top:0;
     left:0;
+    background: $active_color;
     -webkit-transform:translateX(-100%);
     transform:translateX(-100%);
     -webkit-transition:all 0.4s ease-out;
