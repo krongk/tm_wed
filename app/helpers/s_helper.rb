@@ -31,9 +31,9 @@ module SHelper
   def get_site_page_url(site_page)
     return if site_page.nil?
     if site_page.template_page.position == 1
-      [ENV["HOST_NAME"], "s-#{site_page.site.short_title}"].join('/')
+      [HOST_NAME, "s-#{site_page.site.short_title}"].join('/')
     else
-      [ENV["HOST_NAME"], "s-#{site_page.site.short_title}", "p-#{site_page.short_title}"].join('/')
+      [HOST_NAME, "s-#{site_page.site.short_title}", "p-#{site_page.short_title}"].join('/')
     end
   end
    #
@@ -70,12 +70,12 @@ module SHelper
     when "Templates::Template"
       obj.send(img_col).to_s.split(ApplicationHelper::SPECIAL_SYMBO_REG).each do |img|
         next unless img =~ /\.(jpg|png|gif|jpeg)/i
-        image_list << [ENV["ASSETS_HOST"], obj.base_url, img].join('/') if img =~ /#{typo}.*/i
+        image_list << [ASSETS_HOST, obj.base_url, img].join('/') if img =~ /#{typo}.*/i
       end
     when "Templates::Page", "Templates::Theme"
       obj.send(img_col).to_s.split(ApplicationHelper::SPECIAL_SYMBO_REG).each do |img|
         next unless img =~ /\.(jpg|png|gif|jpeg)/i
-        image_list << [ENV["ASSETS_HOST"], obj.template.base_url, img].join('/') if img =~ /#{typo}.*/i
+        image_list << [ASSETS_HOST, obj.template.base_url, img].join('/') if img =~ /#{typo}.*/i
       end
     else
     end
@@ -111,14 +111,14 @@ module SHelper
     images += Dir.glob(File.join(Rails.root, 'public', 'banners', '*.jpg'))
     images += Dir.glob(File.join(Rails.root, 'public', 'banners', '*.png'))
     images += Dir.glob(File.join(Rails.root, 'public', 'banners', '*.gif'))
-    return images.map{|s| URI.join(ENV['HOST_NAME'], '/', s.sub(/^.*\/public\b/i, '')).to_s}
+    return images.map{|s| URI.join(HOST_NAME, '/', s.sub(/^.*\/public\b/i, '')).to_s}
   end
   #获取所有本地背景音乐
   def get_musics
     musics = []
     musics += Dir.glob(File.join(Rails.root, 'public', 'musics', 'mp3', '*.mp3'))
     musics += Dir.glob(File.join(Rails.root, 'public', 'musics', 'mp3', '*.m4a'))
-    return musics.map{|s| URI.join(ENV['HOST_NAME'], '/', s.sub(/^.*\/public\b/i, '')).to_s}
+    return musics.map{|s| URI.join(HOST_NAME, '/', s.sub(/^.*\/public\b/i, '')).to_s}
   end
 
 end

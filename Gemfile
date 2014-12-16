@@ -29,6 +29,8 @@ gem 'sitemap_generator'
 
 gem 'newrelic_rpm'
 
+gem 'actionpack-page_caching'
+
 #for sortable
 gem 'acts_as_list'
 #handle the error: couldn't find file 'jquery-ui'

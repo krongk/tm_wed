@@ -10,6 +10,7 @@ class Site < ActiveRecord::Base
   has_many :site_comments, -> { order("updated_at DESC") }, :dependent => :destroy
   before_create :create_unique_short_title
   after_create :create_site_payment
+  after_save :expire_cache
 
   scope :sites_has_images, ->{ joins(:site_pages =>:site_images).group("sites.id").order("updated_at DESC") }
   scope :business, -> { where(typo: 'business') }
@@ -41,6 +42,22 @@ class Site < ActiveRecord::Base
   #bad user, bad site
   def thief?
     ['thief'].include?(self.status)
+  end
+
+  #cache
+  def expire_cache
+    logger.info "Channel #{self.id} saved!"
+    cache_paths = []
+    cache_paths << File.join(Rails.root, 'public', 'page_cache', 's-' + self.short_title + '.html')
+    self.site_pages.each do |site_page|
+      cache_paths << File.join(Rails.root, 'public', 'page_cache', "s-#{self.short_title}", "p-#{site_page.short_title}.html")
+    end
+    cache_paths.each do |path|
+      if File.exist?(path)
+        FileUtils.rm_rf path
+        logger.info "cache expire page: #{path}, #{!File.exist?(path)}"
+      end
+    end
   end
 
   private
