@@ -25,9 +25,9 @@ PORTFOLIO
             <a href="#" data-filter=".cate<%= cate.id %>"><%= cate.title %></a>
           </li>
         <% end %>
-<!--         <li class="scrollimation fade-left">
-          <a href="#" data-filter=".pay">付费</a>
-        </li> -->
+        <li class="scrollimation fade-left">
+          <a href="#" data-filter=".free">免费</a>
+        </li>
         <li class="scrollimation fade-left d1">
           <a href="/biz" onclick="javascript: window.location = 'http://www.wedxt.com/biz'">高级定制</a>
         </li>
@@ -68,5 +68,6 @@ PORTFOLIO
       END PROJECT ITEM
       =============================================== -->           
     </div>
+    <%= will_paginate @templates %>
   </div>
 </section>

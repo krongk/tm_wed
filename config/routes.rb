@@ -45,6 +45,7 @@ TmCard::Application.routes.draw do
   
   match '/s-:site_id(/p-:id)', to: "s#index", via: :get
   match '/templates(/page/:page)', to: "home#templates", via: :get, as: 'templates'
+  match '/templates(/page/:page)', to: "home#templates", via: :get, as: 'ts'
   match '/templates/:id', to: "home#template", via: :get, as: 'template'
   match '/search(/page/:page)', to: "home#search", via: :get, as: 'search'
   match '/case(/page/:page)', to: "home#case", via: :get, as: 'case'

@@ -18,7 +18,7 @@ class SitePayment < ActiveRecord::Base
 
   validates_presence_of :price
   validates_inclusion_of :state, :in => STATE
-  after_save :update_site_status
+  after_save :update_site_status, :expire_cache
 
   STATE.each do |state|
     define_method "#{state}?" do
@@ -145,4 +145,21 @@ class SitePayment < ActiveRecord::Base
       site.save
     end
   end
+
+  #cache
+  def expire_cache
+    return unless self.state == 'completed'
+    site = self.site
+    cache_paths = []
+    cache_paths << File.join(Rails.root, 'public', 'page_cache', 's-' + site.short_title + '.html')
+    site.site_pages.each do |site_page|
+      cache_paths << File.join(Rails.root, 'public', 'page_cache', "s-#{site.short_title}", "p-#{site_page.short_title}.html")
+    end
+    cache_paths.each do |path|
+      if File.exist?(path)
+        FileUtils.rm_rf path
+      end
+    end
+  end
+
 end

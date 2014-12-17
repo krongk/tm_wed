@@ -44,22 +44,6 @@ class Site < ActiveRecord::Base
     ['thief'].include?(self.status)
   end
 
-  #cache
-  def expire_cache
-    logger.info "Channel #{self.id} saved!"
-    cache_paths = []
-    cache_paths << File.join(Rails.root, 'public', 'page_cache', 's-' + self.short_title + '.html')
-    self.site_pages.each do |site_page|
-      cache_paths << File.join(Rails.root, 'public', 'page_cache', "s-#{self.short_title}", "p-#{site_page.short_title}.html")
-    end
-    cache_paths.each do |path|
-      if File.exist?(path)
-        FileUtils.rm_rf path
-        logger.info "cache expire page: #{path}, #{!File.exist?(path)}"
-      end
-    end
-  end
-
   private
     def create_unique_short_title
       begin
@@ -69,5 +53,19 @@ class Site < ActiveRecord::Base
 
     def create_site_payment
       SitePayment.create!(site_id: id, state: 'opening', price: typo == 'business' ? ENV["PRICE_BUSINESS"] : ENV["PRICE_PERSONAL"])
+    end
+
+    #cache
+    def expire_cache
+      cache_paths = []
+      cache_paths << File.join(Rails.root, 'public', 'page_cache', 's-' + self.short_title + '.html')
+      self.site_pages.each do |site_page|
+        cache_paths << File.join(Rails.root, 'public', 'page_cache', "s-#{self.short_title}", "p-#{site_page.short_title}.html")
+      end
+      cache_paths.each do |path|
+        if File.exist?(path)
+          FileUtils.rm_rf path
+        end
+      end
     end
 end

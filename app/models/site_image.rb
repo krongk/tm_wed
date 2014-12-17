@@ -24,14 +24,33 @@ class SiteImage < ActiveRecord::Base
 
   #init position
   before_create :assign_position
-  def assign_position
-    last_site_image = SiteImage.where(site_page_id: self.site_page_id).order("position ASC").pop
-    if last_site_image.nil?
-      self.position = 1
-    else
-      self.position = last_site_image.position.to_i + 1
+  after_create :expire_cache
+  after_destroy :expire_cache
+
+  private
+    def assign_position
+      last_site_image = SiteImage.where(site_page_id: self.site_page_id).order("position ASC").pop
+      if last_site_image.nil?
+        self.position = 1
+      else
+        self.position = last_site_image.position.to_i + 1
+      end
     end
-  end
+
+    #cache
+    def expire_cache
+      site = self.site_page.site
+      cache_paths = []
+      cache_paths << File.join(Rails.root, 'public', 'page_cache', 's-' + site.short_title + '.html')
+      site.site_pages.each do |site_page|
+        cache_paths << File.join(Rails.root, 'public', 'page_cache', "s-#{site.short_title}", "p-#{site_page.short_title}.html")
+      end
+      cache_paths.each do |path|
+        if File.exist?(path)
+          FileUtils.rm_rf path
+        end
+      end
+    end
 
 end
 
