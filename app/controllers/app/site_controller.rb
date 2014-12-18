@@ -8,7 +8,7 @@ class App::SiteController < ApplicationController
       return
     end
     if current_session
-      redirect_to new_site_path(template_id: params[:template_id])
+      redirect_to new_site_path(template_id: params[:template_id], typo: params[:typo])
     end
   end
 
