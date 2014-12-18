@@ -8,7 +8,7 @@
     </div>
   </footer>
 <% end %>
-<% unless @site.created_at > 1.hours.ago || @site.active? %>    
+<% unless @site.active? %>
   <!--Style Switcher-->
   <script src="/alert/style-switcher.js"></script>
   <div id="style-switcher">

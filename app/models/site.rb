@@ -32,7 +32,7 @@ class Site < ActiveRecord::Base
   end
 
   def active?
-    ['completed'].include?(self.site_payment.state)
+    ['free', 'completed'].include?(self.site_payment.state)
   end
 
   def vip?

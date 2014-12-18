@@ -11,6 +11,7 @@ class SController < ApplicationController
     @site_page = SitePage.find_by(short_title: params[:id])
     not_found if @site.nil?
     redirect_to root_path and return unless @site.is_published
+    redirect_to root_path and return if @site.thief?
 
     @site_page ||= @site.site_pages.first
     @template = @site.template
