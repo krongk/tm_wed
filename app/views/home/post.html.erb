@@ -19,9 +19,6 @@
     <article>
       <h1><%= @post.title %></h1>
       <hr/>
-      <div class="text-center">
-        <%= image_tag qiniu_image_path(@post.image_path, :thumbnail => '600x600>', :quality => 100), class: 'img-responsive img-center', alt: "#{@post.title}" %>
-      </div>
       <%= raw @post.content %>
     </article>
     <p class="text-right"><a class="btn btn-meflat icon-right" href="/blog"><i class="fa fa-arrow-left"></i> 返回</a></p>
