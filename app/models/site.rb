@@ -47,6 +47,7 @@ class Site < ActiveRecord::Base
   def set_free
     self.site_payment.price = 0.00
     self.site_payment.state = 'completed'
+    self.site_payment.completed_at = Time.now
     self.site_payment.save!
     self.status = 'vip-recommend'
     self.save!

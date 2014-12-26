@@ -16,7 +16,7 @@
     <%= link_to '点击这里重新支付', site_payment_path(site), class: 'btn btn-active' %>
   <% when 'completed' %>
     <p><span class="label label-success">付款成功</span></p>
-    <p class="p-payment-status-block">你已成功付款了！ <br/> 付款时间：<%= get_date(site.site_payment.completed_at) %><br/> </p>
+    <p class="p-payment-status-block">付款费用：￥<%= site.site_payment.price %> <br/> 付款时间：<%= get_date(site.site_payment.completed_at) %><br/> </p>
   <% when 'expired' %>
     <span class="label label-danger">已经过期</span>
     <%= link_to '点击这里续费', site_payment_path(site), class: 'btn btn-active' %>
