@@ -31,6 +31,9 @@ class App::SiteController < ApplicationController
 
     respond_to do |format|
       if @site.save
+        if @site.template.property == 'free'
+          @site.set_free
+        end
         #initialize default key-value
         params[:site].merge!(boy_phone: member_params[:auth_id])
         params[:site].merge!(girl_phone: member_params[:auth_id])

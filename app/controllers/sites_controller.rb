@@ -170,6 +170,9 @@ class SitesController < ApplicationController
           @site.site_payment.price = ENV["PRICE_BUSINESS"]
           @site.site_payment.save!
         end
+        if @site.template.property == 'free'
+          @site.set_free
+        end
         #build site_page via template_page
         Templates::Page.where(template_id: @site.template_id).order("position ASC").each do |temp_page|
           @site.site_pages.create(

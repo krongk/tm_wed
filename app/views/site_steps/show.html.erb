@@ -26,17 +26,20 @@
               <%= will_paginate @site_images %>
 
               <div class="text-center">
-                <% if mobile_device? %>
-                  <%= link_to "点击这里上传#{@image_count}张照片", site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#fileModal', 'data-no-turbolink' => false  %>
+                <% if @image_count > @site_page.site_images.count %>
+                  <% if mobile_device? %>
+                    <%= link_to "点击这里上传#{@image_count}张照片", site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#fileModal', 'data-no-turbolink' => false  %>
+                  <% else %>
+                    <%= link_to "+ 点击这里添加图片", meitu_load_site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %>
+                  <% end %>
+                  <ul class="list-unstyled">
+                    <li>* <a href="http://www.wedxt.com/post/pic" target="_blank">先看看图片处理教程</a></li>
+                    <li>* 图片建议裁剪为640x960px大小</li>
+                    <li>* 美化和拼图后存在缓存延迟，点保存后按F5刷新</li>
+                  </ul>
                 <% else %>
-                  <%= link_to "+ 点击这里添加图片", meitu_load_site_images_path(site_page_id: @site_page.id), class: 'btn btn-active', 'data-toggle' => 'modal', 'data-target' =>'#meituModal', :remote => true  %>
+                  图片数量已达到上限
                 <% end %>
-                <ul class="list-unstyled">
-                  <li>* <a href="http://www.wedxt.com/post/pic" target="_blank">先看看图片处理教程</a></li>
-                  <li>* 图片建议裁剪为640x960px大小</li>
-                  <li>* 上传之前请压缩图片，<a href="/doc/piczip.rar" target="_blank">下载压缩软件</a></li>
-                  <li>* 美化和拼图后存在缓存延迟，点保存后按F5刷新</li>
-                </ul>
               </div>
             <% else %>
               <p>本页面没有需要添加的照片， 跳过此步</p>

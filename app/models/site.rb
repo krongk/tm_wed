@@ -44,6 +44,14 @@ class Site < ActiveRecord::Base
     ['thief'].include?(self.status)
   end
 
+  def set_free
+    self.site_payment.price = 0.00
+    self.site_payment.state = 'completed'
+    self.site_payment.save!
+    self.status = 'vip-recommend'
+    self.save!
+  end
+
   private
     def create_unique_short_title
       begin
