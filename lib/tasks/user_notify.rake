@@ -1,6 +1,6 @@
 #encoding: utf-8
 #usage:
-# => RAILS_ENV=production rake user_notify:payment_notify
+# => RAILS_ENV=production rake user_notify:recent_payment_notify
 
 namespace :user_notify do
   desc "send recent 20 notify when user not pay site one day long after created site."
@@ -17,7 +17,7 @@ namespace :user_notify do
           #sleep(1.minutes)         
           #the first time 
           if user.payment_notify_count == 0
-            if user.sites.find{|s| !['vip', 'vip-recommend'].include?(s.status) && s.site_payment.state != 'completed'}
+            if user.sites.find{|s| s.template.property != 'free' && !['vip', 'vip-recommend'].include?(s.status) && s.site_payment.state != 'completed'}
               MailSendWorker.perform_async(user.email, "【维斗喜帖】亲，你的请柬还差最后一步就开通了，请点击链接登录后台完成支付：<a href='http://t.cn/RPnVVlx'>http://www.wedxt.com</a>")
               user.payment_notify_count += 1
               user.payment_notify_send_at = Time.now

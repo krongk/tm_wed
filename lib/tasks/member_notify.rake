@@ -17,7 +17,7 @@ namespace :member_notify do
           #sleep(1.minutes)         
           #the first time 
           if member.payment_notify_count == 0
-            if member.sites.find{|s| s.site_payment.state != 'completed'}
+            if member.sites.find{|s| s.template.property != 'free' && s.site_payment.state != 'completed'}
               SmsSendWorker.perform_async(member.auth_id, "【维斗喜帖】亲，你的请柬还差最后一步就开通了，请通过本手机号登录后台完成支付：http://t.cn/RPnVVlx")
               member.payment_notify_count += 1
               member.payment_notify_send_at = Time.now
@@ -50,7 +50,7 @@ namespace :member_notify do
  	        #sleep(1.minutes)         
           #the first time 
           if member.payment_notify_count == 0
-            if member.sites.find{|s| s.site_payment.state != 'completed'}
+            if member.sites.find{|s| s.template.property != 'free' &&  s.site_payment.state != 'completed'}
               SmsSendWorker.perform_async(member.auth_id, "【维斗喜帖】亲，你的请柬还差最后一步就开通了，请通过本手机号登录后台完成支付：http://t.cn/RPnVVlx")
               member.payment_notify_count += 1
               member.payment_notify_send_at = Time.now

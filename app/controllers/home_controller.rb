@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   layout :resolve_layout
 
+  caches_page :index, :templates, :template, :pricing, :post
+  
   def index
     #render text: params and return
   end
