@@ -66,6 +66,6 @@ Top
   function show_qr(site_id){
     var site = $('#' + site_id);
     $('#qrModal').modal('toggle');
-    $("#qrBody").html("<img src='http://qrickit.com/api/qr?d=" + site.attr('href') + "&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m' /><br/>"  + site.data('title') + "" );
+    $("#qrBody").html("<img src='http://qr.liantu.com/api.php?text=" + site.attr('href') + "&w=200' /><br/>"  + site.data('title') + "" );
   }
 </script>

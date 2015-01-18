@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-12 text-center">
       <h3><%= @site.title %></h3>
-      <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
+      <img src="http://qr.liantu.com/api.php?text=<%=get_site_url(@site)%>&w=200" />
       <br/>
       <small>唯一二维码，点击保存！</small>
       <div style="margin-top: 20px; text-align: center;">
@@ -27,7 +27,7 @@
     <div class="col-sm-12 col-xs-12 col-md-3 col-md-offset-1">
       <div style="margin-top: 100px; align: right; text-align: right; ">
         <h2><%= @site.title %></h2>
-        <img src="http://qrickit.com/api/qr?d=<%=get_site_url(@site)%>&fgdcolor=F1678D&bgdcolor=f2f2f2&qrsize=200&t=p&e=m">
+        <img src="http://qr.liantu.com/api.php?text=<%=get_site_url(@site)%>&w=200" />
         <br/>
         <small>打开手机扫一扫，精彩呈现！</small>
         <div style="margin-top: 60px; text-align: right;">

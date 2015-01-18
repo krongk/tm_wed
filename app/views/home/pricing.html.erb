@@ -41,7 +41,13 @@
       <li class="plan-feature">无限存储/流量</li>
       <li class="plan-feature">保存时间：1年</li>
       <li class="plan-feature">第二年续费专享优惠</li>
-      <li class="plan-feature"><a href="/templates" class="btn btn-meflat btn-plan-select"> 在线制作 </a>&nbsp;&nbsp;<small><a href="/biz" class="btn btn-active btn-plan-select"> 高级定制 </a></small></li>
+      <li class="plan-feature">
+        <a href="/templates" class="btn btn-meflat btn-plan-select"> 在线制作 </a>&nbsp;&nbsp;
+        <small>
+          <button type="button" id="btn-biz" class="btn btn-active btn-plan-select" data-container="body" data-toggle="popover" data-placement="top" data-content="欢迎来电咨询： 180－8081－0818">
+            包年/团购
+          </button>
+        </small></li>
     </ul>
   </div>
 </div>
@@ -51,3 +57,10 @@
     查看使用帮助说明 <i class="fa fa-arrow-right"></i>
   <% end %>
 </div>
+
+<script language="javascript">
+  $('#btn-biz').popover({
+    html: true,
+    title: '欢迎机构／商家／代理合作咨询',
+    content: '电话：<a href="tel:18080810818">180-8081-0818</a><br/> Q Q： 77632132<br/>微信：xuejiang_song'});
+</script>

@@ -68,7 +68,7 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
                     <div class="col-sm-6 col-md-3">
                       <div class="thumbnail recommend-thumbnail">
                       <%= image_tag qiniu_image_path(img_url, :thumbnail => '200x300>', :quality => 80), class: "img-responsive",  alt: site.title %>
-                        <!--<img src="http://qrickit.com/api/qr?d=<%# =get_site_url(site)%>&fgdcolor=000000&bgdcolor=F1678D&qrsize=120&t=p&e=m"> -->
+
                         <div class="caption text-center">
                           <p><a href="<%= site_preview_path(site)%>" target="_blank"><%= site.title.to_s.truncate(9) %></a></p>
                           <p>
@@ -88,7 +88,7 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
                       <div class="col-sm-6 col-md-3">
                         <div class="thumbnail recommend-thumbnail">
                         <%= image_tag qiniu_image_path(img_url, :thumbnail => '200x300>', :quality => 80), class: "img-responsive",  alt: site.title %>
-                          <!--<img src="http://qrickit.com/api/qr?d=<%# =get_site_url(site)%>&fgdcolor=000000&bgdcolor=F1678D&qrsize=120&t=p&e=m"> -->
+                         
                           <div class="caption text-center">
                             <p><a href="<%= site_preview_path(site)%>" target="_blank"><%= site.title.to_s.truncate(9) %></a></p>
                             <p>
