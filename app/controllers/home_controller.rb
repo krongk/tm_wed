@@ -65,6 +65,9 @@ class HomeController < ApplicationController
   def post
     @post = Admin::Page.find_by(short_title: params[:id])
   end
+
+  def video
+  end
   
   #用于page_steps中对话框扩展： 选择封面、选择音乐。
   #这些特殊的内容，不放在tm_admin中。

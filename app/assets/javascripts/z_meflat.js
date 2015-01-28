@@ -123,10 +123,70 @@ ready = function() {
 		});
 	},1000);
 	/*============================================
-	Project Preview --xj removed
+	Project Preview --only use on /video
 	==============================================*/
-	
-	
+	$('.video-item').click(function(e){
+		e.preventDefault();
+
+		var elem = $(this),
+			title = elem.find('.project-title').text(),
+			descr = elem.find('.project-description').html(),
+			video = elem.find('.video-tag').html(),
+			elemDataCont = elem.find('.project-description');
+
+			// videojs(document.getElementsByClassName('.video-js')[0], {}, function() {
+			// });
+
+			elem.find('.video-tag').html("");
+
+		$('#project-modal').on('show.bs.modal', function () {
+			$(this).find('#hdr-title').text(title);
+			$(this).find('#sdbr-title').text(title);
+			$(this).find('#project-content').html(descr);
+			//$(this).find('.screen').addClass('flexslider').html(slidesHtml);
+			$(this).find('.screen').html(video);
+
+			if(elemDataCont.data('category')){
+				$(this).find('#sdbr-category').show().text(elemDataCont.data('category'))
+			}else{$(this).find('#sdbr-category').hide();}
+			
+			if(elemDataCont.data('date')){
+				$(this).find('#sdbr-date').show().text(elemDataCont.data('date'))
+			}else{$(this).find('#sdbr-date').hide();}
+			
+			if(elemDataCont.data('client')){
+				$(this).find('#sdbr-client').show().text(elemDataCont.data('client'))
+			}else{$(this).find('#sdbr-client').hide();}
+			
+			if(elemDataCont.data('link')){
+				var extLink = elemDataCont.data('link').split(',');
+				$(this).find('#sdbr-link').show().find('a').text(extLink[0]).attr('href',extLink[1]);
+			}else{$(this).find('#sdbr-link').hide();}
+			
+			if(elemDataCont.data('descr')){
+				$(this).find('#sdbr-descr').show().text(elemDataCont.data('descr'))
+			}else{$(this).find('#sdbr-descr').hide();}
+			
+			setTimeout(function(){
+				$('#project-modal .screen')
+						.addClass('done')
+						.prev('.loader').fadeOut();
+			},1000);
+		}).modal();
+		
+	});
+
+	$('#project-modal').on('hidden.bs.modal', function () {
+		//stop video
+		//$(this).find("video").attr("src", $(this).find('video').attr('src'));
+
+		$(this).find('.loader').show();
+		$(this).find('.screen')
+			.removeClass('flexslider')
+			.removeClass('done')
+			.html('')
+	});
+
 	/*============================================
 	ScrollTo Links
 	==============================================*/

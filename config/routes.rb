@@ -55,6 +55,7 @@ TmCard::Application.routes.draw do
   match '/post/:id', to: "home#post", via: :get, as: 'post'
   match '/pricing', to: "home#pricing", via: :get, as: 'pricing'
   match '/vip', to: "home#vip", via: :get, as: 'vip'
+  match '/video', to: "home#video", via: :get, as: 'video'
   root :to => "home#index"
 
   devise_for :users, :controllers => {:registrations => "registrations", omniauth_callbacks: "omniauth_callbacks"}
