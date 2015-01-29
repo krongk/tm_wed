@@ -67,6 +67,7 @@ class HomeController < ApplicationController
   end
 
   def video
+    @posts = Admin::Page.joins(:channel).where("admin_channels.short_title = ?", 'video').order("updated_at DESC").paginate(page: params[:page], per_page: 9)
   end
   
   #用于page_steps中对话框扩展： 选择封面、选择音乐。
