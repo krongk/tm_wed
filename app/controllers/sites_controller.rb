@@ -74,9 +74,9 @@ class SitesController < ApplicationController
       end
 
       #send notice to admin
-      #if Rails.env == 'production'
-      #SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "支付状态：#{@payment.state}, 应用: http://www.wedxt.com/sites/#{@payment.site_id}/preview")
-      #end
+      if Rails.env == 'production'
+        SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "【维斗喜帖】支付状态：#{@payment.state}, 应用: http://www.wedxt.com/sites/#{@payment.site_id}/preview")
+      end
 
       #@payment.payment_notifies.create!(verify: true, payment_number: "p#{@payment.id}r#{rand(30034)}", payment_count: @payment.price, state: 'income', cate: '在线充值', status: params[:trade_status])
       # 成功接收消息后，需要返回纯文本的 ‘success’，否则支付宝会定时重发消息，最多重试7次。 
@@ -111,7 +111,7 @@ class SitesController < ApplicationController
 
       #send notice to admin
       if Rails.env == 'production' && current_session.id > 5
-        SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "#{current_session.try(:email) || current_session.try(:auth_id)}激活了应用：#{get_site_url(@site)}")
+        SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "【维斗喜帖】#{current_session.try(:email) || current_session.try(:auth_id)}激活了应用：#{get_site_url(@site)}")
       end
 
       redirect_to site_path(@site), notice: t('notice.site.active_token')

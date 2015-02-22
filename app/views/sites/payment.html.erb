@@ -5,7 +5,7 @@
 </ol>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-10 col-md-offset-2 col-sm-12">
     <table class="table table-bordered table-striped">
       <tr><td>应用名称：</td><td><%= @site.title %> </td></tr>
       <tr><td>应用编号：</td><td><span class="label label-success"><%= @site.short_title %></span></td></tr>
@@ -21,25 +21,58 @@
       <!-- site info -->
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="bottom_bordered">方式一、在线支付</h3>
+          <h3 class="bottom_bordered">方式一、支付宝支付</h3>
+        </div>
+        <% if mobile_device? %>
+          <div class="panel-body">
+            <%= image_tag('qr-alipay.png', alt: '维斗喜帖支付宝扫码支付', class: "img-responsive img-center") %>
+            <br/>
+            <h4>支付宝支付注意事项：</h4>
+            <ul>
+              <li>长按上面二维码，保存到手机</li>
+              <li>请在手机上打开<mark>［支付宝钱包］</mark>，选择［扫一扫］，选择图片，选择保存的二维码</li>
+              <li>支付成功后，应用自动激活</li>
+              <li>没有安装支付宝钱包，可选择在电脑上支付</li>
+            </ul>
+          </div>
+        <% else %>
+          <div class="panel-body">
+            <%= form_tag(@site.site_payment.pay_url(@site), method: 'get') do |f| %>
+              <p>支付类型： <%= image_tag('alipay.gif', alt: '支付宝', class: "img-responsive") %></p>
+              <div class="input-group">
+                <%=text_field_tag :code, nil, class: 'form-control', value: "￥#{@site_payment.price}", readonly: true %>
+                <div class="input-group-btn">
+                  <%= link_to '支 付', @site.site_payment.pay_url(@site), :class => 'btn btn-danger' %>
+                </div>
+              </div>
+            <% end %>
+            <br/>
+            <h4>支付宝支付注意事项：</h4>
+            <ul>
+              <li>请选择<mark>【即时到帐】</mark>支付方式</li>
+              <li>支付成功后，不需要人工审核，应用自动激活</li>
+              <li><a href="/post/alipay" target="_blank">没有支付宝账号，怎么付款？</a></li>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <!-- site info -->
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="bottom_bordered">方式二、微信AA付款</h3>
         </div>
         <div class="panel-body">
-          <%= form_tag(@site.site_payment.pay_url(@site), method: 'get') do |f| %>
-            <p>支付类型： <%= image_tag('alipay.gif', alt: '支付宝', class: "img-responsive") %></p>
-            <div class="input-group">
-              <%=text_field_tag :code, nil, class: 'form-control', value: "￥#{@site_payment.price}", readonly: true %>
-              <div class="input-group-btn">
-                <%= link_to '支 付', @site.site_payment.pay_url(@site), :class => 'btn btn-danger' %>
-              </div>
-            </div>
-          <% end %>
-          <br/>
-          <h4>支付宝支付注意事项：</h4>
+          <p class="text-center">
+            <%= image_tag('weixin-qrcode.png', alt: '维斗喜帖微信二维码', class: "img-responsive") %>
+          </p>
+          <h4>操作流程：</h4>
           <ul>
-            <li>请选择<mark>【即时到帐】</mark>支付方式</li>
-            <li>支付成功后，应用自动激活</li>
-            <li><a href="/post/alipay" target="_blank">没有支付宝账号，怎么付款？</a></li>
-          </ul>
+            <li>扫描上方二维码，添加微信好友</li>
+            <li>或添加微信号：<span class="label label-info">xuejiang_song</span></li>
+            <li>发送应用编号即可获得AA支付链接</li>
+          </ul>          
         </div>
       </div>
     </div>
@@ -47,7 +80,7 @@
       <!-- site info -->
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="bottom_bordered">方式二、激活码支付</h3>
+          <h3 class="bottom_bordered">方式三、激活码支付</h3>
         </div>
         <div class="panel-body">
           <%= form_tag(site_verify_payment_token_path) do |f| %>
@@ -69,24 +102,6 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-12 col-md-4">
-      <!-- site info -->
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h3 class="bottom_bordered">方式三、微信AA付款</h3>
-        </div>
-        <div class="panel-body">
-          <p class="text-center">
-            <%= image_tag('weixin-qrcode.png', alt: '维斗喜帖微信二维码', class: "img-responsive") %>
-          </p>
-          <h4>操作流程：</h4>
-          <ul>
-            <li>扫描上方二维码，添加微信好友</li>
-            <li>或添加微信号：<span class="label label-info">xuejiang_song</span></li>
-            <li>发送应用编号即可获得AA支付链接</li>
-          </ul>          
-        </div>
-      </div>
-    </div>
+    
   </div>
 <% end %>

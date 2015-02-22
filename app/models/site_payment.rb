@@ -115,7 +115,11 @@ class SitePayment < ActiveRecord::Base
       :logistics_fee     => '0',
       :logistics_payment => 'SELLER_PAY',
       :return_url        => Rails.application.routes.url_helpers.site_payment_url(site_id: site.id, id: id, protocol: (ENV["SSL"] ? 'https' : 'http'), :host => ENV["HOST_NAME"]),
-      :notify_url        => Rails.application.routes.url_helpers.site_alipay_notify_url(site_id: site.id, protocol: (ENV["SSL"] ? 'https' : 'http'), :host => ENV["HOST_NAME"])
+      :notify_url        => Rails.application.routes.url_helpers.site_alipay_notify_url(site_id: site.id, protocol: (ENV["SSL"] ? 'https' : 'http'), :host => ENV["HOST_NAME"]),
+      :receive_name      => 'none', # 这里填写了收货信息，用户就不必填写
+      :receive_address   => 'none',
+      :receive_zip       => '100000',
+      :receive_mobile    => '100000000000'
     )
 
     #Wap pay
