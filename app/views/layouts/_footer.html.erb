@@ -9,12 +9,12 @@
       <div class="col-md-4 col-sm-6">
         <ul class="social-links">
           <li class="scrollimation fade-right d4">
-            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes">
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<%= ENV['CONTACT_QQ'] %>&site=qq&menu=yes">
               <%= image_tag('icon-qq-boy.png', alt: '维斗喜帖联系QQ', width: '46px', border: '0px') %>
             </a>
           </li>
           <li class="scrollimation fade-right d3">
-            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=77632132&site=qq&menu=yes">
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<%= ENV['CONTACT_QQ'] %>&site=qq&menu=yes">
               <%= image_tag('icon-qq-girl.png', alt: '高大上的维斗喜帖客服', width: '46px', border: '0px') %></a></li>
           <li class="scrollimation fade-right d2">
             <a id="icon-weixin2" data-original-title="扫一扫加微信">
@@ -29,8 +29,8 @@
       <div class="col-md-8 col-sm-6 text-right scrollimation fade-in">
         <p>
           <span class="hidden-xs hidden-sm">&copy;2015 微喜帖/微相册/微杂志/微邀请</span>&nbsp; &nbsp;
-          <a href="mailto:me@song.xj.cn"><i class="fa fa-envelope"></i> me@song.xj.cn</a>&nbsp;
-          <a href="tel:18080810818"><i class="fa fa-phone-square"></i> 180-8081-0818</a>
+          <a href="mailto:<%= ENV['CONTACT_EMAIL'] %>"><i class="fa fa-envelope"></i> <%= ENV['CONTACT_EMAIL'] %></a>&nbsp;
+          <a href="tel:<%= ENV['CONTACT_MOBILE'] %>"><i class="fa fa-phone-square"></i> <%= ENV['CONTACT_MOBILE'] %></a>
           <span style="position: relative; font-size: 1px; width: 2px; height: 2px; display: none;"><%= render 'layouts/cnzz' %></span>
         </p>
       </div>
@@ -47,10 +47,9 @@
           <p>
             <b>地址：</b><addr>成都市二环路东二段龙湖三千星座A座2801号</addr>&nbsp;&nbsp;
             <b>邮编: </b> 610000&nbsp;&nbsp;
-            <b>电话: </b> 028-85218320
           <br/>
             &copy;维斗喜帖-版权所有  &nbsp;&nbsp;&nbsp;&nbsp;
-            备案号:  <a href="http://www.miibeian.gov.cn" target="_blank">蜀ICP备11016427号-4</a>
+            备案号:  <a href="http://www.miibeian.gov.cn" target="_blank">蜀ICP备11016427号</a>
           </p>
       </div>
     </div>

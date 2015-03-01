@@ -25,13 +25,13 @@
         </div>
         <% if mobile_device? %>
           <div class="panel-body">
-            <%= image_tag('qr-alipay.png', alt: '维斗喜帖支付宝扫码支付', class: "img-responsive img-center") %>
+            <%= image_tag('qr-alipay-sxg.png', alt: '维斗喜帖支付宝扫码支付', class: "img-responsive img-center") %>
             <br/>
             <h4>支付宝支付注意事项：</h4>
             <ul>
               <li>长按上面二维码，保存到手机</li>
               <li>请在手机上打开<mark>［支付宝钱包］</mark>，选择［扫一扫］，选择图片，选择保存的二维码</li>
-              <li>支付成功后，应用自动激活</li>
+              <li>支付成功后，发送应用编号<span class="label label-success"><%= @site.short_title %></span>到手机：<span class="label label-info"><%= ENV['CONTACT_MOBILE'] %></span>，应用激活后会收到短信提示。</li>
               <li>没有安装支付宝钱包，可选择在电脑上支付</li>
             </ul>
           </div>
@@ -70,7 +70,7 @@
           <h4>操作流程：</h4>
           <ul>
             <li>扫描上方二维码，添加微信好友</li>
-            <li>或添加微信号：<span class="label label-info">xuejiang_song</span></li>
+            <li>或添加微信号：<span class="label label-info"><%= ENV['CONTACT_WECHAT'] %></span></li>
             <li>发送应用编号即可获得AA支付链接</li>
           </ul>          
         </div>
