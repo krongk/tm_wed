@@ -105,7 +105,7 @@ class SitePayment < ActiveRecord::Base
     # Alipay::Service#create_partner_trade_by_buyer_url # 担保交易
     # Alipay::Service#trade_create_by_buyer_url         # 标准双接口
     # Alipay::Service#create_direct_pay_by_user_url     # 即时到帐
-    Alipay::Service.trade_create_by_buyer_url(
+    Alipay::Service.create_partner_trade_by_buyer_url(
       :out_trade_no      => id.to_s,
       :price             => price,
       :quantity          => 1,
