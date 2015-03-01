@@ -71,7 +71,7 @@
                   <%= image_tag('icon-weixin.png', alt: '高大上的维斗喜帖', width: '46px', border: '0px') %></a>
                   <div id="weixin-qrcode2" class="hidden"><img src="/assets/weixin-qrcode.png" /></div></li>
             </ul>
-            <p><br/>热线电话：<a href="tel:18080810818">180-8081-0818</a></p>
+            <p><br/>热线电话：<a href="tel:<%= ENV['CONTACT_MOBILE'] %>"><%= ENV['CONTACT_MOBILE'] %></a></p>
             <p>在下方【联系我们】提交你的留言，我们会在15分钟内响应您的请求。</p>
           </div>
 
