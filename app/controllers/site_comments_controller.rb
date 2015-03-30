@@ -44,7 +44,7 @@ class SiteCommentsController < ApplicationController
     respond_to do |format|
       if @site_comment.save
         #send notice to admin
-        if Rails.env == 'production' && @site_comment.site_id == 1
+        if Rails.env == 'production' && @site_comment.site_id == 1 && filter_backlist(@site_comment)
           SmsSendWorker.perform_async(ENV['ADMIN_PHONE'].split('|').join(','), "【维斗喜帖】#{@site_comment.mobile_phone}给你留言了：#{@site_comment.content}")
           SmsSendWorker.perform_async(@site_comment.mobile_phone, "【维斗喜帖】感谢你的留言！试试手机上创建喜帖：http://www.wedxt.com")
         end
@@ -93,5 +93,12 @@ class SiteCommentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def site_comment_params
       params.require(:site_comment).permit(:site_id, :template_page_id, :name, :mobile_phone, :tel_phone, :email, :qq, :weixin, :gender, :birth, :address, :hobby, :content, :content2, :content3, :status, :updated_by, :note)
+    end
+
+    def filter_backlist(site_comment)
+      return false if site_comment.name.blank? || site_comment.mobile_phone.blank? || site_comment.content.blank?
+      return false if site_comment.mobile_phone !~ /^1\d{10}$/
+      return false if site_comment.content =~ /(http:|www)/i
+      return true
     end
 end
