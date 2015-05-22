@@ -56,6 +56,7 @@ TmCard::Application.routes.draw do
   match '/pricing', to: "home#pricing", via: :get, as: 'pricing'
   match '/vip', to: "home#vip", via: :get, as: 'vip'
   match '/video', to: "home#video", via: :get, as: 'video'
+  match '/zhuanpan_json/:id/:key', to: "home#zhuanpan_json", via: :get, as: 'zhuanpan_json'
   root :to => "home#index"
 
   devise_for :users, :controllers => {:registrations => "registrations", omniauth_callbacks: "omniauth_callbacks"}
