@@ -79,17 +79,6 @@ class HomeController < ApplicationController
     # 2 -> 活动进行中：抽奖未中奖
     # 3 -> 今日奖品已经领完，明天继续哦！
     # 4 -> 亲，活动已经结束啦!
-
-    # goods_id: 
-    # 8个值分别对应8格转盘的8个格子，其中3，7格为默认未中奖格，其他格为有奖格
-    # 1 -> 奖品1
-    # 2 -> 奖品2
-    # 3 -> 未中奖
-    # 4 -> 奖品3
-    # 5 -> 奖品4
-    # 6 -> 奖品5
-    # 7 -> 未中奖
-    # 8 -> 奖品6
     @site_page = SitePage.find(params[:id])
 
     #状态获取
@@ -106,8 +95,28 @@ class HomeController < ApplicationController
 
     #获取用户设定的奖品总数
     prize_obj = SitePageKeystore.get(@site_page.id, 'prize_count')
-    prize_count = prize_obj.value.to_i || 100
+    prize_count = prize_obj.value.to_i || 50
   
+    #获取预计抽奖人数
+    person_obj = SitePageKeystore.get(@site_page.id, 'person_count')
+    person_count = person_obj.value.to_i || 100
+
+    #计算中奖概率
+    rate = prize_count/(person_count + 0.1)
+
+    #获取已抽奖次数
+    zhuan_obj = SitePageKeystore.get(@site_page.id, 'zhuan_count')
+    if zhuan_obj.nil?
+      key = CommonKey.get('zhuan_count')
+      CommonKey.put('zhuan_count', 0) if key.nil?
+      SitePageKeystore.put(@site_page.id, 'zhuan_count', 0)
+      zhuan_obj = SitePageKeystore.get(@site_page.id, 'zhuan_count')
+    end
+    zhuan_count = zhuan_obj.value.to_i
+    SitePageKeystore.put(@site_page.id, 'zhuan_count', zhuan_count + 1)
+
+    status = 4 if zhuan_count >= person_count #次数已经抽完
+
     #获取中奖次数
     coupon_obj = SitePageKeystore.get(@site_page.id, 'coupon_count')
     if coupon_obj.nil?
@@ -118,10 +127,7 @@ class HomeController < ApplicationController
     end
     coupon_count = coupon_obj.value.to_i
 
-    status  = 3 if coupon_count >= prize_count #奖品已完
-
-    #binding.pry
-    puts "-----------> #{status} --> #{prize_count} --> #{coupon_count}"
+    status  = 3 if coupon_count >= prize_count && status != 4 #奖品已完
 
     # 奖项数组 
     # 是一个二维数组，记录了所有本次抽奖的奖项信息， 
@@ -130,6 +136,18 @@ class HomeController < ApplicationController
     # 数组中v的总和（基数），基数越大越能体现概率的准确性。 
     # 本例中v的总和为100，那么平板电脑对应的 中奖概率就是1%， 
     # 如果v的总和是10000，那中奖概率就是万分之一了。 
+
+    # goods_id: 
+    # 8个值分别对应8格转盘的8个格子，其中3，7格为默认未中奖格，其他格为有奖格
+    # 1 -> 奖品1
+    # 2 -> 奖品2
+    # 3 -> 未中奖
+    # 4 -> 奖品3
+    # 5 -> 奖品4
+    # 6 -> 奖品5
+    # 7 -> 未中奖
+    # 8 -> 奖品6
+    failed_count = (50/rate).to_i - 50 #预设中奖个数为50， 则根据中奖概率计算出未中奖个数
     prize_hash = {   
       0 => {'id'=>1,'prize'=> SitePageKeystore.value_for(@site_page, 'good1'),'v'=>1},   
       1 => {'id'=>2,'prize'=> SitePageKeystore.value_for(@site_page, 'good2'),'v'=>2},  
@@ -137,8 +155,8 @@ class HomeController < ApplicationController
       3 => {'id'=>4,'prize'=> SitePageKeystore.value_for(@site_page, 'good4'),'v'=>10},  
       4 => {'id'=>5,'prize'=> SitePageKeystore.value_for(@site_page, 'good5'),'v'=>12},  
       5 => {'id'=>6,'prize'=> SitePageKeystore.value_for(@site_page, 'good6'),'v'=>20},
-      6 => {'id'=>3,'prize'=> '没有抽中，感谢参与','v'=>20},
-      7 => {'id'=>7,'prize'=> '没有抽中，没准下次能抽到哦','v'=>30},  
+      6 => {'id'=>3,'prize'=> '没有抽中，感谢参与','v'=> failed_count/3},
+      7 => {'id'=>7,'prize'=> '没有抽中，没准下次能抽到哦','v'=> failed_count/3*2},  
     }
     
     # 每次前端页面的请求，PHP循环奖项设置数组， 
@@ -156,7 +174,7 @@ class HomeController < ApplicationController
       SitePageKeystore.put(@site_page.id, 'coupon_count', coupon_count + 1)
       status = 1
     end
-
+    
     if status == 1 #中奖了
       render json: {status: status, goods_id: coupon['id'], message: coupon['prize'], Coupon: {grade: coupon['id']}}
     else #没中奖
@@ -174,8 +192,7 @@ class HomeController < ApplicationController
   #  这样 筛选到最终，总会有一个数满足要求。 
   #  就相当于去一个箱子里摸东西， 
   #  第一个不是，第二个不是，第三个还不是，那最后一个一定是。 
-  #  这个算法简单，而且效率非常 高， 
-  #  关键是这个算法已在我们以前的项目中有应用，尤其是大数据量的项目中效率非常棒。 
+  #  这个算法简单，而且效率非常高， 
   #  pro_hash = {id => v, 1 => 1, 2 => 30} 
   def get_rand(pro_hash)
       result = nil
