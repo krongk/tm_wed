@@ -6,7 +6,7 @@
   <div class="form-inputs">
     <%= f.input :template_id, as: :hidden, input_html: {value: params[:template_id] || @site.template.id} %>
     <%= f.input :title, hint: '*标题将显示在分享朋友圈的时候', input_html: {value: @site.title, style: 'width: 300px;', class: 'required'} %>
-    <%= f.input :description, as: :text, hint: '*描述将显示在发送给微信朋友的时候', input_html: {value: @site.description, style: "width: 300px;", class: 'required'} %>
+    <%#= f.input :description, as: :text, hint: '*描述将显示在发送给微信朋友的时候', input_html: {value: @site.description, style: "width: 300px;", class: 'required'} %>
   </div>
   <br/>
   <div class="form-actions">
