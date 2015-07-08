@@ -1,10 +1,14 @@
 class SiteComment < ActiveRecord::Base
   belongs_to :site
   belongs_to :template_page, class_name: 'Templates::Page'
-
+  before_save :filter_hacker
   after_save :expire_cache
 
   private
+    def filter_hacker
+      content = nil if content =~ /(asdf|aaa|http|www|href|link|script|select|if|delay|sleep|wait|img|src|dir|file|prompt|alert|onmouseover|onclick)/i
+    end
+
     #cache
     def expire_cache
       site = self.site
