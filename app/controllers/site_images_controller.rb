@@ -71,7 +71,7 @@ class SiteImagesController < ApplicationController
     @site_image = SiteImage.create(site_image_params)
     respond_to do |format|
       format.js
-      format.html
+      format.html 
     end
   end
 
@@ -92,11 +92,12 @@ class SiteImagesController < ApplicationController
   # DELETE /site_images/1
   # DELETE /site_images/1.json
   def destroy
+    url = params[:url]
     authorize!(@site_image.site_page.site)
     @site_image.destroy
     respond_to do |format|
       format.js { render 'destroy'}
-      format.html 
+      format.html { redirect_to url, notice: '删除成功！'}
     end
   end
 
