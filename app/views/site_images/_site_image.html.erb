@@ -12,7 +12,7 @@
     </tr>
     <tr>
       <td>
-        <%=link_to "删除", site_image, data: { confirm: '确定要删除吗?' }, :method=>:delete, :remote => true, class: "btn btn-danger btn-xs"%>
+        <%=link_to "删除", site_image, data: { confirm: '你确定要删除吗?' }, :method=>:delete, :remote => true, class: "btn btn-danger btn-xs"%>
         <% unless mobile_device? %>
           <%=link_to "美化", meitu_load_site_images_path(id: site_image.id, editor_type: 1), class: 'btn btn-warning btn-xs', 'data-toggle'=>'modal', 'data-target' =>'#meituModal', :remote => true %>
           <%=link_to "拼图", meitu_load_site_images_path(id: site_image.id, editor_type: 2), class: 'btn btn-warning btn-xs', 'data-toggle'=>'modal', 'data-target' =>'#meituModal', :remote => true %>

@@ -96,6 +96,7 @@ class SiteImagesController < ApplicationController
     @site_image.destroy
     respond_to do |format|
       format.js { render 'destroy'}
+      format.html 
     end
   end
 
