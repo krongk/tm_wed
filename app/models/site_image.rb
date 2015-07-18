@@ -1,4 +1,5 @@
 class SiteImage < ActiveRecord::Base
+  self.per_page = 80
   belongs_to :site_page
   default_scope order("position ASC")
   

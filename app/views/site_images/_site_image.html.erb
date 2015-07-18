@@ -2,7 +2,7 @@
   <table>
     <tr>
       <td width="50%">
-        <%=qiniu_image_tag site_image.image.url, :thumbnail=>'180x180>', :quality => 80, class: 'img-responsive' %>
+        <%=qiniu_image_tag site_image.image.url, :thumbnail=>'90x90>', :quality => 80, class: 'img-responsive' %>
       </td>
       <td>
         <% unless mobile_device? %>
@@ -13,10 +13,10 @@
     <tr>
       <td>
         <%#=link_to "删除", site_image, data: { confirm: '你确定要删除吗?' }, :method=>:delete, :remote => true, class: "btn btn-danger btn-xs"%>
-        <%= link_to '删除', site_image_path(id: site_image.id, url: request.url), method: :delete, data: { confirm: '确定要删除?' }, class: "btn btn-warning btn-xs" %>
+        <%= link_to '删', site_image_path(id: site_image.id, url: request.url), method: :delete, data: { confirm: '确定要删除?' }, class: "btn btn-warning btn-xs" %>
         <% unless mobile_device? %>
-          <%=link_to "美化", meitu_load_site_images_path(id: site_image.id, editor_type: 1), class: 'btn btn-warning btn-xs', 'data-toggle'=>'modal', 'data-target' =>'#meituModal', :remote => true %>
-          <%=link_to "拼图", meitu_load_site_images_path(id: site_image.id, editor_type: 2), class: 'btn btn-warning btn-xs', 'data-toggle'=>'modal', 'data-target' =>'#meituModal', :remote => true %>
+          <%=link_to "美", meitu_load_site_images_path(id: site_image.id, editor_type: 1), class: 'btn btn-warning btn-xs', 'data-toggle'=>'modal', 'data-target' =>'#meituModal', :remote => true %>
+          <%=link_to "拼", meitu_load_site_images_path(id: site_image.id, editor_type: 2), class: 'btn btn-warning btn-xs', 'data-toggle'=>'modal', 'data-target' =>'#meituModal', :remote => true %>
         <% end %>
       </td>
       <td>
