@@ -31,6 +31,8 @@ gem 'newrelic_rpm'
 
 gem 'actionpack-page_caching'
 
+gem 'weixin_authorize', '~> 1.6.0'
+
 #for sortable
 gem 'acts_as_list'
 #handle the error: couldn't find file 'jquery-ui'
