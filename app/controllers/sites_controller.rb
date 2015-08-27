@@ -226,13 +226,15 @@ class SitesController < ApplicationController
   end
 
   def send_sms   
-    if ENV['SMS_BAO_USER'].nil? || ENV['SMS_BAO_PASSWORD'].nil? || ENV['SMS_MAX_CHARACTER_COUNT'].nil?
-      raise "请配置短信发送接口的环境变量"
-    end
-    SmsSendWorker.perform_async(params[:mobile_phone], params[:content])
-    respond_to do |format|
-      format.js {}
-    end
+    #因为短信账户老是被盗用，所以暂时停用！
+
+    # if ENV['SMS_BAO_USER'].nil? || ENV['SMS_BAO_PASSWORD'].nil? || ENV['SMS_MAX_CHARACTER_COUNT'].nil?
+    #   raise "请配置短信发送接口的环境变量"
+    # end
+    # SmsSendWorker.perform_async(params[:mobile_phone], params[:content])
+    # respond_to do |format|
+    #   format.js {}
+    # end
   end
 
   private
