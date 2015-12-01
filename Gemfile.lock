@@ -5,7 +5,7 @@ GIT
     alipay (0.3.0)
 
 GEM
-  remote: http://ruby.taobao.org/
+  remote: https://ruby.taobao.org/
   specs:
     actionmailer (4.0.2)
       actionpack (= 4.0.2)
