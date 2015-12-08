@@ -6,11 +6,11 @@
   <div class="plan">
     <div class="plan-name">
       <h2>个人版</h2>
-      <span>￥<%= ENV["PRICE_PERSONAL"] %>/个</span>
+      <span>60元/个</span>
     </div>
     <ul>
+      <li class="plan-feature">制作1个应用</li>
       <li class="plan-feature">免费试用</li>
-      <li class="plan-feature">用于个人活动</li>
       <li class="plan-feature">
         实用范围：<br/>
         结婚、生日宴<br/>
@@ -19,18 +19,17 @@
       <li class="plan-feature">去维斗LOGO</li>
       <li class="plan-feature">免费无限次修改</li>
       <li class="plan-feature">无限存储/流量</li>
-      <li class="plan-feature">默认保存时间：1年</li>
       <li class="plan-feature"><a href="/templates" class="btn btn-meflat btn-block btn-plan-select"> 在线制作 </a></li>
     </ul>
   </div>
   <div class="plan">
     <div class="plan-name">
       <h2>商务版</h2>
-      <span>￥<%= ENV["PRICE_BUSINESS"] %>/个</span>
+      <span>3000元/年</span>
     </div>
     <ul>
+      <li class="plan-feature">制作个数不限制</li>
       <li class="plan-feature">免费试用</li>
-      <li class="plan-feature">用于商业目的</li>
       <li class="plan-feature">
         实用范围：<br/>
         产品宣传、店庆<br/>
@@ -40,13 +39,12 @@
       <li class="plan-feature">免费无限次修改</li>
       <li class="plan-feature">无限群发</li>
       <li class="plan-feature">无限存储/流量</li>
-      <li class="plan-feature">保存时间：1年</li>
       <li class="plan-feature">第二年续费专享优惠</li>
       <li class="plan-feature">
         <a href="/templates" class="btn btn-meflat btn-plan-select"> 在线制作 </a>&nbsp;&nbsp;
         <small>
           <button type="button" id="btn-biz" class="btn btn-active btn-plan-select" data-container="body" data-toggle="popover" data-placement="top" data-content="欢迎来电咨询： 180－8081－0818">
-          团购/VIP/代理
+          团购/软件定制
           </button>
         </small></li>
     </ul>
@@ -62,6 +60,6 @@
 <script language="javascript">
   $('#btn-biz').popover({
     html: true,
-    title: '欢迎机构／商家／代理合作咨询',
+    title: '欢迎机构／商家／软件定制合作咨询',
     content: '电话：<a href="tel:<%= ENV['CONTACT_MOBILE'] %>"><%= ENV['CONTACT_MOBILE'] %></a><br/> Q Q： <%= ENV['CONTACT_QQ'] %><br/>微信：<%= ENV['CONTACT_WECHAT'] %>'});
 </script>
