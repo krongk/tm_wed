@@ -12,6 +12,7 @@ class SiteComment < ActiveRecord::Base
     #cache
     def expire_cache
       site = self.site
+      return if site.nil?
       cache_paths = []
       cache_paths << File.join(Rails.root, 'public', 'page_cache', 's-' + site.short_title + '.html')
       site.site_pages.each do |site_page|

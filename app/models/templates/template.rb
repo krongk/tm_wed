@@ -17,9 +17,9 @@ class Templates::Template < ActiveRecord::Base
 
   def recommend_sites(count = 4, opts = {typo: nil})
     if opts[:typo]
-      Site.where(template_id: self.id).where("typo = '#{opts[:typo]}' AND status in ('vip-recommend', 'recommend')").order("updated_at DESC").limit(count)
+      Site.where(template_id: self.id).where("typo = '#{opts[:typo]}' AND status in ('vip-recommend', 'recommend')").order("updated_at ASC").limit(count)
     else
-      Site.where(template_id: self.id).where("status in ('vip-recommend', 'recommend')").order("updated_at DESC").limit(count)
+      Site.where(template_id: self.id).where("status in ('vip-recommend', 'recommend')").order("updated_at ASC").limit(count)
     end
   end
 end

@@ -61,7 +61,7 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
                   <% @template.recommend_sites(6).each do |site| %>
                     <% img_url = get_first_site_image_url(site) %>
                     <% next if img_url.nil? %>
-                    <div class="col-sm-6 col-md-4">
+                    <div class="col-xs-6 col-md-4">
                       <div class="thumbnail recommend-thumbnail">
                       <%= image_tag qiniu_image_path(img_url, :thumbnail => '200x300>', :quality => 80), class: "img-responsive",  alt: site.title %>
 
