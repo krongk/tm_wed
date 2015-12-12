@@ -38,12 +38,8 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
               <h2 id="sdbr-title">
                 <% unless @template.property == 'free' %>
                   <%= link_to app_site_new_path(template_id: @template.id, typo: 'personal'), class: 'btn btn-meflat icon-right', style: 'height: 70px' do %>
-                    个人版制作<i class="fa fa-arrow-right"></i><br/>
-                    <small>￥<%= ENV['PRICE_PERSONAL'] %>/个(免费试用)</small>
-                  <% end %>
-                  <%= link_to app_site_new_path(template_id: @template.id, typo: 'business'), class: 'btn btn-meflat icon-right', style: 'height: 70px' do %>
-                    商务版制作<i class="fa fa-arrow-right"></i><br/>
-                    <small>￥<%= ENV['PRICE_BUSINESS'] %>/年(免费试用)</small>
+                    开始制作<i class="fa fa-arrow-right"></i><br/>
+                    <small>(免费试用)</small>
                   <% end %>
                 <% else %>
                   <%= link_to app_site_new_path(template_id: @template.id, typo: 'personal'), class: 'btn btn-meflat icon-right', style: 'height: 70px' do %>
@@ -60,12 +56,12 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
             <div id="project-content" class="col-md-8 col-md-offset-1">
               <%= raw @template.description %>
               <div class="">
-                <h3 class="bottom_bordered">个人版案例展示</h3>
+                <h3 class="bottom_bordered"><%= @template.title %>案例展示</h3>
                 <div class="row">
-                  <% @template.recommend_sites(4, typo: 'personal').each do |site| %>
+                  <% @template.recommend_sites(6).each do |site| %>
                     <% img_url = get_first_site_image_url(site) %>
                     <% next if img_url.nil? %>
-                    <div class="col-sm-6 col-md-3">
+                    <div class="col-sm-6 col-md-4">
                       <div class="thumbnail recommend-thumbnail">
                       <%= image_tag qiniu_image_path(img_url, :thumbnail => '200x300>', :quality => 80), class: "img-responsive",  alt: site.title %>
 
@@ -79,27 +75,6 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
                   </div>
                   <% end %>
                 </div>
-                <% if @template.recommend_sites(4, typo: 'business').any? %>
-                  <h3 class="bottom_bordered">商务版案例展示</h3>
-                  <div class="row">
-                    <% @template.recommend_sites(4, typo: 'business').each do |site| %>
-                      <% img_url = get_first_site_image_url(site) %>
-                      <% next if img_url.nil? %>
-                      <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail recommend-thumbnail">
-                        <%= image_tag qiniu_image_path(img_url, :thumbnail => '200x300>', :quality => 80), class: "img-responsive",  alt: site.title %>
-                         
-                          <div class="caption text-center">
-                            <p><a href="<%= site_preview_path(site)%>" target="_blank"><%= site.title.to_s.truncate(9) %></a></p>
-                            <p>
-                              <a href="<%= site_preview_path(site)%>" target="_blank" class="btn btn-info">点击预览</a>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    <% end %>
-                  </div>
-                <% end %>
               </div>
               <p>怎么样，是不是觉得很赞？<br>其实制作很简单，填一个表格+传几张图即可完成，还可以通过手机登录后台不断完善，超级方便！</p>
               <p class="text-right">

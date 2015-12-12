@@ -15,7 +15,7 @@ class Templates::Template < ActiveRecord::Base
     #Site.where(template_id: self.id).select { |s| s.site_pages.find{|p| p.site_images.any?} }[0..3]
   end
 
-  def recommend_sites(count = 4, opts)
+  def recommend_sites(count = 4, opts = {typo: nil})
     if opts[:typo]
       Site.where(template_id: self.id).where("typo = '#{opts[:typo]}' AND status in ('vip-recommend', 'recommend')").order("updated_at DESC").limit(count)
     else
