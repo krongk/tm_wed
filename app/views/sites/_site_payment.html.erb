@@ -6,8 +6,7 @@
 
   <% case site.site_payment.state %>
   <% when 'opening' %>
-    <span class="label label-warning">等待付款</span>
-    <%= link_to '进入支付页面', site_payment_path(site), class: 'btn btn-meflat' %>
+    <%= link_to '马上支付开通', site_payment_path(site), class: 'btn btn-meflat' %>
   <% when 'pending', 'paid' %>
     <span class="label label-warning">担保交易中</span>
     <%= link_to '进入支付宝确认收货', 'http://www.alipay.com', target: '_blank', class: 'btn btn-active' %>
