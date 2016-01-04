@@ -27,24 +27,23 @@
           <div class="panel-body">
             <%= image_tag('qr-alipay.png', alt: '维斗喜帖支付宝扫码支付', class: "img-responsive img-center") %>
             <br/>
-            <h4>支付宝支付注意事项：</h4>
-            <ul>
+            <h4>操作流程：</h4>
+            <ol>
               <li>长按上面二维码，保存到手机</li>
               <li>请在手机上打开<mark>支付宝钱包</mark>，选择［扫一扫］，选择图片，选择保存的二维码</li>
-              <li>请确认您付款的账户名叫：<mark>宋学江</mark></li>
               <li>支付成功后，发送您的应用编号<span class="label label-success"><%= @site.short_title %></span>到手机：<mark><%= ENV['CONTACT_MOBILE'] %></mark>，应用激活后会收到短信提示。</li>
               <li>没有安装支付宝钱包，可选择在电脑上支付</li>
-            </ul>
+            </ol>
           </div>
         <% else %>
           <div class="panel-body">
             <%= image_tag('qr-alipay.jpg', alt: '维斗喜帖支付宝扫码支付', class: "img-responsive img-center") %>
             <br/>
-            <h4>支付宝支付注意事项：</h4>
-            <ul>
+            <h4>操作说明：</h4>
+            <ol>
               <li>请在手机上打开<mark>支付宝钱包</mark>，选择［扫一扫］,进入支付。</li>
               <li>支付成功后，发送您的应用编号<span class="label label-success"><%= @site.short_title %></span>到手机：<mark><%= ENV['CONTACT_MOBILE'] %></mark>，应用激活后会收到短信提示。</li>
-            </ul>
+            </ol>
           </div>
         <% end %>
       </div>
@@ -57,14 +56,14 @@
         </div>
         <div class="panel-body">
           <p class="text-center">
-            <%= image_tag('weixin-qrcode-sxj.png', alt: '维斗喜帖微信二维码', class: "img-responsive") %>
+            <%= image_tag('wechat_aa_pay.jpg', alt: '维斗喜帖微信AA支付二维码', class: "img-responsive") %>
           </p>
           <h4>操作流程：</h4>
-          <ul>
-            <li>扫描上方二维码，添加微信好友</li>
-            <li>或添加微信号：<span class="label label-info"><%= ENV['CONTACT_WECHAT'] %></span></li>
-            <li>转账后，发送应用编号<span class="label label-success"><%= @site.short_title %></span>即可开通</li>
-          </ul>          
+          <ol>
+            <li>打开微信扫一扫上方二维码进行支付</li>
+            <li>支付成功后，发送您的应用编号<span class="label label-success"><%= @site.short_title %></span>到手机：<mark><%= ENV['CONTACT_MOBILE'] %></mark></li>
+            <li>2分钟后将收到应有激活的短信通知</li>
+          </ol>          
         </div>
       </div>
     </div>
