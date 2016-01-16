@@ -15,7 +15,9 @@ module SmsBao
     result = nil
     password = Digest::MD5.hexdigest password
     begin
-      open("http://www.smsbao.com/sms?u=inruby&p=#{password}&m=#{phones}&c=#{URI.escape(content)}") {|f|
+      #surl = "http://www.smsbao.com/sms?u=#{user_name}&p=#{password}&m=#{phones}&c=#{URI.escape(content)}"
+      surl = "http://api.smsbao.com/sms?u=inruby&p=#{password}&m=#{phones}&c=#{URI.escape(content)}"
+      open(surl) {|f|
         f.each_line {|line| result = line}
       }
     rescue => ex
