@@ -97,8 +97,8 @@ namespace :member_notify do
   desc "send notify when have sale promote(活动促销)"
   task promote_notify: :environment do
     version_count = 1
-    Member.find_each do |member|
-      SmsSendWorker.perform_async(member.auth_id, "微相册免费啦，点击这里查看：http://t.cn/RPnVVlx【维斗喜帖】")
+    Member.order("updated_at DESC").limit(100) do |member|
+      SmsSendWorker.perform_async(member.auth_id, "这周因为服务器问题，维斗喜帖已更换致华中双线机房，请放心使用，为您带来的不便深表歉意")
       member.promote_notify_count = version_count
       member.save!
       print member.id
