@@ -61,7 +61,8 @@ gem 'wicked'
 
 #Queue
 gem 'sidekiq'
-
+gem 'sidekiq-scheduler', '~> 1'
+gem 'sinatra' # for sidekqi web
 
 #Send Mail
 #gem 'mailgun'

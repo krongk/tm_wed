@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
+         
+  after_save :add_default_role, on: :create
 
   has_many :sites, -> { order("updated_at DESC") }, :dependent => :destroy
 
@@ -36,6 +38,12 @@ class User < ActiveRecord::Base
     else
       super
     end
+  end
+
+  private
+
+  def add_default_role
+    add_role :user if roles.empty?
   end
 
 end

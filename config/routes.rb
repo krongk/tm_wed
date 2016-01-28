@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 TmCard::Application.routes.draw do
 
   resources :resource_musics
@@ -60,6 +62,9 @@ TmCard::Application.routes.draw do
   root :to => "home#index"
 
   devise_for :users, :controllers => {:registrations => "registrations", omniauth_callbacks: "omniauth_callbacks"}
-
   resources :users
+  authenticate :user, lambda { |u| u.has_role?(:admin) } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
 end
