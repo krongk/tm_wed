@@ -56,13 +56,12 @@
         </div>
         <div class="panel-body">
           <p class="text-center">
-            <%= image_tag('wechat_aa_pay.jpg', alt: '维斗喜帖微信AA支付二维码', class: "img-responsive") %>
+            <%= image_tag('weixin-qrcode.png', alt: '维斗喜帖微信AA支付二维码', class: "img-responsive") %>
           </p>
           <h4>操作流程：</h4>
           <ol>
-            <li>打开微信扫一扫上方二维码进行支付</li>
-            <li>支付成功后，发送您的应用编号<span class="label label-success"><%= @site.short_title %></span>到手机：<mark><%= ENV['CONTACT_MOBILE'] %></mark></li>
-            <li>2分钟后将收到应有激活的短信通知</li>
+            <li>打开微信扫一扫上方二维码添加微信发红包进行支付</li>
+            <li>支付成功后，2分钟后将收到应用激活码</li>
           </ol>          
         </div>
       </div>
