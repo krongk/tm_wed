@@ -37,10 +37,10 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
             <div id="project-sidebar" class="col-md-3">
               <h2 id="sdbr-title">
                 <% unless @template.property == 'free' %>
-                  <%= link_to app_site_new_path(template_id: @template.id, typo: 'personal'), class: 'btn btn-meflat icon-right', style: 'height: 70px' do %>
-                    开始制作<i class="fa fa-arrow-right"></i><br/>
-                    <small>(免费试用)</small>
+                  <%= link_to app_site_new_path(template_id: @template.id, typo: 'personal'), class: 'btn btn-block btn-meflat icon-right', style: 'height: 70px' do %>
+                    开始制作<br/><small>(免费试用)</small>
                   <% end %>
+
                 <% else %>
                   <%= link_to app_site_new_path(template_id: @template.id, typo: 'personal'), class: 'btn btn-meflat icon-right', style: 'height: 70px' do %>
                     免费制作<i class="fa fa-arrow-right"></i>
@@ -79,7 +79,7 @@ PROJECT PREVIEW MODAL (Do not alter this markup)
               <p>怎么样，是不是觉得很赞？<br>其实制作很简单，填一个表格+传几张图即可完成，还可以通过手机登录后台不断完善，超级方便！</p>
               <p class="text-right">
                 <%= link_to new_site_path(template_id: @template.id, typo: 'personal'), class: 'btn btn-meflat icon-right' do %>
-                  我要制作 <i class="fa fa-arrow-up"></i>
+                  开始制作 <i class="fa fa-arrow-up"></i>
                 <% end %>      
               </p>
               <p class="text-right">
